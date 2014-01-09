@@ -14,14 +14,10 @@ body, html {
 	float: left;
 }
 .bodin .view {
-	position: relative;
 	overflow-y: scroll;
 	height: 100%;
 }
 .bodin .work {
-	position: absolute;
-	transition: top .5s;
-	-webkit-transition: top .5s;
 	display: block;
 	background-color: #333;
 }
