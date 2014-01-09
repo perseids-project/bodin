@@ -52,12 +52,149 @@
 		//------------------------------------------------------------
 		//	Mark your territory
 		//------------------------------------------------------------
-		$( self.elem ).addClass('bodin')
+		$( self.elem ).addClass('bodin');
 		
 		//------------------------------------------------------------
 		//	User options 
 		//------------------------------------------------------------
-		self.options = $.extend({}, _options );
+		self.options = $.extend({
+			break: 'paragraph',
+			break_count: null,
+			blocks_per_page: 3
+		}, _options );
+		
+		//------------------------------------------------------------
+		//  Events
+		//------------------------------------------------------------
+		self.events = {
+			goTo: 'BODIN-GOTO',
+			align: 'BODIN-ALIGN'
+		};
+		
+		//------------------------------------------------------------
+		//  Build the thing
+		//------------------------------------------------------------
+		self.build();
+		
+		//------------------------------------------------------------
+		//  Start event listeners
+		//------------------------------------------------------------
+		self.start();
+	}
+	
+	/**
+	 * Scroll to a block.
+	 *
+	 * @param { int } _blockId The id of a block
+	 */
+	bodin.prototype.goTo = function( _blockId ) {
+		var self = this;
+		var letter = '#block-'+_blockId+' .letter';
+		var pos = $( letter , self.elem ).position();
+		var mb = $( letter, self.elem ).siblings('.text').css('margin-bottom');
+		offset = parseInt( mb.replace('px','') );
+		var scroll = pos.top - offset;
+		var current = $( '.view', self.elem ).scrollTop();
+		$( '.view', self.elem ).animate ({
+			scrollTop: current + scroll
+		}, 1000 );
+	}
+	
+	/**
+	 * Build the text
+	 */
+	bodin.prototype.build = function() {
+		var self = this;
+		
+		//------------------------------------------------------------
+		//  Break up the text into blocks.
+		//------------------------------------------------------------
+		self.blocks = [];
+		switch ( self.options[ 'break'].toLowerCase() ) {
+			case 'paragraph':
+				var i = 0;
+				$( 'p', self.elem ).each( function() {
+					self.blocks[i] = $( this ).html();
+					i++;
+				});
+				break;
+		}
+		
+		//------------------------------------------------------------
+		//  Build the blocks
+		//------------------------------------------------------------
+		$( self.elem ).empty();
+		for ( var i=0, ii=self.blocks.length; i<ii; i++ ) {
+			self.blockBuild( i );
+		}
+		
+		//------------------------------------------------------------
+		//  Build the pages
+		//------------------------------------------------------------
+		self.pageBuild();
+		
+		//------------------------------------------------------------
+		//  Wrap it all up
+		//------------------------------------------------------------
+		$( self.elem ).wrapInner( '<div class="work"><div class="view"></div></div>')
+		
+		//------------------------------------------------------------
+		//  Add a clear
+		//------------------------------------------------------------
+		$( self.elem ).append( '<div style="clear:both"></div>' );
+	}
+	
+	/**
+	 * Build a block.
+	 *
+	 * @param { int } _i The index of the block.
+	 */
+	bodin.prototype.blockBuild = function( _i ) {
+		var self = this;
+		var i=_i+1;
+		var block = '<div id="block-'+i+'" class="block">';
+		var letter = '<a href="" class="letter">'+i+'</a>';
+		var text = '<div class="text">';
+		$( self.elem ).append( block );
+		$( '#block-'+i, self.elem ).append( letter );
+		$( '#block-'+i, self.elem ).append( text );
+		$( '#block-'+i+' .text', self.elem ).append( self.blocks[ _i ] );
+	}
+	
+	/**
+	 * Wrap blocks in pages.
+	 */
+	bodin.prototype.pageBuild = function() {
+		var self = this;
+		var blocks = $( ".block", self.elem );
+		var perPage = self.options['blocks_per_page'];
+		var page = 1;
+		for ( var i=0, ii=blocks.length; i<ii; i+=perPage ) {
+			blocks.slice( i, i+perPage ).wrapAll('<div class="page"></div>');
+			$( '.page', self.elem ).last().append('<div style="clear:both"></div>');
+			$( '.page', self.elem ).last().prepend('<div class="pageNum">'+page+'</div>');
+			page++;
+		}
+	}
+	
+	/**
+	 * Start event listeners.
+	 */
+	bodin.prototype.start = function() {
+		var self = this;
+		$( document ).on( self.events['goTo'], function( _e, _i ){
+			self.goTo( _i );
+		});
+		$( '.letter', self.elem ).click( function( _e ) {
+			var i = $(this).parent().attr('id').replace( 'block-','' );
+			$( document ).trigger( self.events['goTo'], [i] );
+			_e.preventDefault();
+		});
+	}
+	
+	bodin.prototype.align = function() {
+		var self = this;
+		console.log( self );
 	}
 	
 	//----------------
@@ -70,5 +207,34 @@
 				jQuery.data( this, id, new bodin( this, options, id ) );
 			});
 		};
+		
+		
 	})
 })(jQuery);
+
+/**
+ * Align the bodin blocks
+ */
+jQuery.fn.bodinAlign = function() {
+	var heights = [];
+	
+	//------------------------------------------------------------
+	//  Find the largest height
+	//------------------------------------------------------------
+	$( '.bodin .view' ).each( function() {
+		var i=1;
+		$( '.block .text', this ).each( function() {
+			var h = $(this).height();
+			heights[i] = ( i < heights.length && heights[i] > h ) ? heights[i] : h;
+			i++;
+		});
+	});
+	
+	//------------------------------------------------------------
+	//  Set the heights
+	//------------------------------------------------------------
+	for ( var i=0, ii=heights.length; i<ii; i++ ) {
+		var id = i;
+		$( '#block-'+id+' .text' ).css({ "min-height": heights[i] });
+	}
+}

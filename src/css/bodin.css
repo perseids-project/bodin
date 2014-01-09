@@ -3,15 +3,9 @@ body, html {
 	padding: 0;
 }
 .bodin {
-	padding: 10px;
+	padding: 4px;
 	background-color: #222;
-	
-}
-.bodin .column {
 	box-sizing: border-box;
-	padding: 0 5px;
-	width: 33%;
-	float: left;
 }
 .bodin .view {
 	overflow-y: scroll;
@@ -25,9 +19,15 @@ body, html {
 	color: #222;
 	box-sizing: border-box;
 	background-color: #F9F9F9;
-	margin: 10px 0;
-	padding: 40px 20px 20px 20px;
+	margin: 4px 0;
+	padding: 20px 20px 20px 20px;
 	width: 100%;
+}
+.bodin .pageNum {
+	width: 100%;
+	text-align: right;
+	color: #AAA;
+	margin-bottom: 25px;
 }
 .bodin .page:first-of-type {
 	margin-top: 0;
