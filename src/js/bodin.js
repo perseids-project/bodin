@@ -60,7 +60,8 @@
 		self.options = $.extend({
 			break: 'paragraph',
 			break_count: null,
-			blocks_per_page: 3
+			blocks_per_page: 5,
+			markers: null
 		}, _options );
 		
 		//------------------------------------------------------------
@@ -89,9 +90,9 @@
 	 */
 	bodin.prototype.goTo = function( _blockId ) {
 		var self = this;
-		var letter = '#block-'+_blockId+' .letter';
-		var pos = $( letter , self.elem ).position();
-		var mb = $( letter, self.elem ).siblings('.text').css('margin-bottom');
+		var marker = '#block-'+_blockId+' .marker';
+		var pos = $( marker , self.elem ).position();
+		var mb = $( marker, self.elem ).siblings('.text').css('margin-bottom');
 		offset = parseInt( mb.replace('px','') );
 		var scroll = pos.top - offset;
 		var current = $( '.view', self.elem ).scrollTop();
@@ -152,11 +153,16 @@
 	bodin.prototype.blockBuild = function( _i ) {
 		var self = this;
 		var i=_i+1;
+		var mrk = i;
+		if ( self.options['markers'] != null ) {
+			var mod = _i % self.options['markers'].length;
+			mrk = self.options['markers'][mod];
+		}
 		var block = '<div id="block-'+i+'" class="block">';
-		var letter = '<a href="" class="letter">'+i+'</a>';
+		var marker = '<a href="" class="marker">'+mrk+'</a>';
 		var text = '<div class="text">';
 		$( self.elem ).append( block );
-		$( '#block-'+i, self.elem ).append( letter );
+		$( '#block-'+i, self.elem ).append( marker );
 		$( '#block-'+i, self.elem ).append( text );
 		$( '#block-'+i+' .text', self.elem ).append( self.blocks[ _i ] );
 	}
@@ -185,7 +191,7 @@
 		$( document ).on( self.events['goTo'], function( _e, _i ){
 			self.goTo( _i );
 		});
-		$( '.letter', self.elem ).click( function( _e ) {
+		$( '.marker', self.elem ).click( function( _e ) {
 			var i = $(this).parent().attr('id').replace( 'block-','' );
 			$( document ).trigger( self.events['goTo'], [i] );
 			_e.preventDefault();
