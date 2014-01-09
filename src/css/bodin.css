@@ -22,6 +22,7 @@ body, html {
 	background-color: #333;
 }
 .bodin .page {
+	color: #222;
 	box-sizing: border-box;
 	background-color: #F9F9F9;
 	margin: 10px 0;
@@ -32,17 +33,21 @@ body, html {
 	margin-top: 0;
 }
 .bodin .letter {
+	text-decoration: none;
 	float: left;
 	display: block;
 	width: 10%;
 	font-style: italic;
 }
+.bodin .letter:hover {
+	text-decoration: underline;
+}
 .bodin .text {
 	float: left;
 	display: block;
 	width: 90%;
-	margin-bottom: 10px;
-	font-size: 14px;
+	margin-bottom: 30px;
+	font-size: 16px;
 	line-height: 20px;
 }
 .bodin .block {
@@ -50,9 +55,9 @@ body, html {
 .bodin .close {
 	box-sizing: border-box;
 	width: 100%;
-	background-color: #666;
+	background-color: #CCC;
 	text-decoration: none;
-	color: #FF8888;
+	color: #FF6666;
 	display: block;
 	text-align: left;
 	padding: 0 10px;
