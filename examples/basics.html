@@ -184,6 +184,7 @@
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script type="text/javascript" src="../src/js/bodin.js"></script>
 	<script type="text/javascript">
+	
 		//------------------------------------------------------------
 		//  Scroll all windows to a particular block
 		//------------------------------------------------------------
@@ -191,8 +192,9 @@
 			$( '.view' ).each( function(){
 				var letter = '#block-'+_blockId+' .letter';
 				var pos = $( letter , this ).position();
-				var height = $( letter ).height();
-				var scroll = pos.top - height;
+				var mb = $( letter, this ).siblings('.text').css('margin-bottom');
+				offset = parseInt( mb.replace('px','') );
+				var scroll = pos.top - offset;
 				var current = $( this ).scrollTop();
 				$( this ).animate ({
 					scrollTop: current + scroll
@@ -216,6 +218,7 @@
 					i++;
 				});
 			});
+			
 			//------------------------------------------------------------
 			//  Set the heights
 			//------------------------------------------------------------
