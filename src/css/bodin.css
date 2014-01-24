@@ -84,11 +84,34 @@ body, html {
 	background-color: #EEE;
 	padding: 5px;
 	text-align: center;
+	font-size: 12px;
 }
 .bodin .textStats span.stat {
-	margin: 0 10px;
+	margin: 0 5px;
 	color: #FF8888;
 }
 .bodin .textStats span.unit {
 	color: #CCC;
+}
+.bodin .text span.lite {
+	padding: 1px;
+	background-color: #FF8888;
+}
+.bodin .text.overlaid {
+	position: relative;
+}
+.bodin .overlay {
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 12px;
+	color: #DDD;
+	box-sizing: border-box;
+	padding: 20px;
+	background-color: rgba( 0,0,0,0.8 );
+	position: absolute;
+	top: 0;
+	left: -10;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px; /* future proofing */
+	-khtml-border-radius: 5px; /* for old Konqueror browsers */
 }

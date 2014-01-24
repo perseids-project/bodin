@@ -92,11 +92,32 @@
 			$( '#block-'+i+' .extras', self.elem ).append( '<a href="" class="blockStats">+</a>' );
 		}
 		
-		$( '.stats', self.elem ).click( function(_e) {
+		$( '.blockStats', self.elem ).click( function(_e) {
+			_e.preventDefault();
 			var block = $(this).parent().parent();
-			console.log( block );
+			var id = self.justId( block.attr('id') );
+			self.blockOverlay( id )
 			_e.preventDefault();
 		})
+	}
+	
+	/**
+	 * Return just and id from a block attribute
+	 *
+	 * @param {string} Block tag id attribute value
+	 */
+	bodin.prototype.justId = function( _block ) {
+		return parseInt( _block.replace( 'block-', '' ) );
+	}
+	
+	/**
+	 * Start up the extra features.  Statistics etc.
+	 */
+	bodin.prototype.extras = function() {
+		var self = this;
+		self.textStats();
+		self.textStatsBar();
+		self.blockStatsButtons();
 	}
 	
 	/**
@@ -112,6 +133,62 @@
 			</div>';
 			
 		$( '.view', self.elem ).prepend( textStats.smoosh() );
+	}
+	
+	/**
+	 * Wrap all words in spans
+	 */
+	bodin.prototype.spanify = function() {
+		var self = this;
+		for ( var i=0, ii=self.blocks.length; i<ii; i++ ) {
+			self.blockSpanify( i );
+		}
+	}
+	
+	/**
+	 * Clear up lites.
+	 */
+	bodin.prototype.clearLites = function() {
+		var self = this;
+		$( '.text span.lite', self.elem ).removeClass( 'lite' );
+	}
+	
+	/**
+	 * Lite-up a word. spanify() must be called previously.
+	 */
+	bodin.prototype.liteWord = function( _blockId, _wordId ) {
+		var self = this;
+		_wordId -= 1;
+		$( '#block-'+_blockId+' .text span:eq('+_wordId+')', self.elem ).addClass( 'lite' );
+	}
+	
+	/**
+	 * Overlay a block.
+	 */
+	bodin.prototype.blockOverlay = function( _blockId ) {
+		var self = this;
+		var block =	$( '#block-'+_blockId+' .text', self.elem );
+		block.addClass( 'overlaid' );
+		block.append( '<div class="overlay"></div>' );
+		$( '.overlay', block ).css({ 
+			width: block.width(),
+			height: block.height()
+		});
+	}
+	
+	/**
+	 * Spanify block-level
+	 *
+	 * @param { int } _blockId The id of a block
+	 */
+	bodin.prototype.blockSpanify = function( _blockId ) {
+		var self = this;
+		var words = self.blocks[ _blockId ].split(' ');
+		for ( var j=0, jj=words.length; j<jj; j++ ) {
+			words[j] = '<span>'+words[j]+'</span>';
+		}
+		var newBlock = words.join(' ');
+		$( '#block-'+_blockId+' .text', self.elem ).html( newBlock );
 	}
 	
 	/**
@@ -227,8 +304,9 @@
 			self.goTo( _i );
 		});
 		$( '.marker', self.elem ).click( function( _e ) {
-			var i = $(this).parent().parent().attr('id').replace( 'block-','' );
-			$( document ).trigger( self.events['goTo'], [i] );
+			var id = $(this).parent().parent().attr('id');
+			id = self.justId( id );
+			$( document ).trigger( self.events['goTo'], [id] );
 			_e.preventDefault();
 		});
 	}
