@@ -23,6 +23,9 @@ body, html {
 	padding: 20px 20px 20px 20px;
 	width: 100%;
 }
+.bodin .page.first {
+	margin-top: 0;
+}
 .bodin .pageNum {
 	width: 100%;
 	text-align: right;
@@ -32,15 +35,29 @@ body, html {
 .bodin .page:first-of-type {
 	margin-top: 0;
 }
-.bodin .marker {
-	text-decoration: none;
+.bodin .extras {
 	float: left;
 	display: block;
-	width: 10%;
+	width: 10%;	
+}
+.bodin .marker {
+	display: block;
+	text-decoration: none;
 	font-style: italic;
+	margin-bottom: 10px;
 }
 .bodin .marker:hover {
 	text-decoration: underline;
+}
+.bodin .blockStats {
+	display:block;
+	color: #DDD;
+	text-decoration: none;
+	transition: color .25s;
+	-webkit-transition: color .25s;
+}
+.bodin .blockStats:hover {
+	color: #FF8888;
 }
 .bodin .text {
 	float: left;
@@ -62,4 +79,16 @@ body, html {
 	text-align: left;
 	padding: 0 10px;
 	font-size: 20px;
+}
+.bodin .textStats {
+	background-color: #EEE;
+	padding: 5px;
+	text-align: center;
+}
+.bodin .textStats span.stat {
+	margin: 0 10px;
+	color: #FF8888;
+}
+.bodin .textStats span.unit {
+	color: #CCC;
 }

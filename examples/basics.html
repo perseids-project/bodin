@@ -78,11 +78,19 @@
 	
 	var bodinFamily = new bodinFamily();
 	$( document ).ready( function() {
+		
+		//------------------------------------------------------------
+		// Create the Bodin instances.
+		//------------------------------------------------------------
 		bodin_0 = $('#bodin-0').bodin({ markers: ['A','B','C','D','E'] }).data('#bodin-0');
 		bodin_1 = $('#bodin-1').bodin().data('#bodin-1');
 		bodin_2 = $('#bodin-2').bodin().data('#bodin-2');
 		$( document ).bodinAlign();
 		
+		//------------------------------------------------------------
+		// Keep track of the Bodin instaces by making them one
+		// big happy family.
+		//------------------------------------------------------------
 		bodinFamily.add( bodin_0 );
 		bodinFamily.add( bodin_1 );
 		bodinFamily.add( bodin_2 );

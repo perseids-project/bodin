@@ -84,6 +84,37 @@
 	}
 	
 	/**
+	 * Build the block stats buttons
+	 */
+	bodin.prototype.blockStatsButtons = function() {
+		var self = this;
+		for ( var i=0, ii=self.blocks.length; i<ii; i++ ) {
+			$( '#block-'+i+' .extras', self.elem ).append( '<a href="" class="blockStats">+</a>' );
+		}
+		
+		$( '.stats', self.elem ).click( function(_e) {
+			var block = $(this).parent().parent();
+			console.log( block );
+			_e.preventDefault();
+		})
+	}
+	
+	/**
+	 * Text level stats
+	 */
+	bodin.prototype.textStatsBar = function() {
+		var self = this;
+		var textStats = '\
+			<div class="textStats">\
+				<span class="stat"><span class="unit"> pages: </span>'+self.stats['pages']+'</span>\
+				<span class="stat"><span class="unit"> blocks: </span>'+self.stats['total_blocks']+'</span>\
+				<span class="stat"><span class="unit"> words: </span>'+self.stats['total_words']+'</span>\
+			</div>';
+			
+		$( '.view', self.elem ).prepend( textStats.smoosh() );
+	}
+	
+	/**
 	 * Scroll to a block.
 	 *
 	 * @param { int } _blockId The id of a block
@@ -92,7 +123,7 @@
 		var self = this;
 		var marker = '#block-'+_blockId+' .marker';
 		var pos = $( marker , self.elem ).position();
-		var mb = $( marker, self.elem ).siblings('.text').css('margin-bottom');
+		var mb = $( marker, self.elem ).parent().siblings('.text').css('margin-bottom');
 		offset = parseInt( mb.replace('px','') );
 		var scroll = pos.top - offset;
 		var current = $( '.view', self.elem ).scrollTop();
@@ -106,12 +137,11 @@
 	 */
 	bodin.prototype.build = function() {
 		var self = this;
-		
 		//------------------------------------------------------------
 		//  Break up the text into blocks.
 		//------------------------------------------------------------
 		self.blocks = [];
-		switch ( self.options[ 'break'].toLowerCase() ) {
+		switch ( self.options['break'].toLowerCase() ) {
 			case 'paragraph':
 				var i = 0;
 				$( 'p', self.elem ).each( function() {
@@ -120,7 +150,6 @@
 				});
 				break;
 		}
-		
 		//------------------------------------------------------------
 		//  Build the blocks
 		//------------------------------------------------------------
@@ -128,28 +157,25 @@
 		for ( var i=0, ii=self.blocks.length; i<ii; i++ ) {
 			self.blockBuild( i );
 		}
-		
 		//------------------------------------------------------------
 		//  Build the pages
 		//------------------------------------------------------------
 		self.pageBuild();
-		
 		//------------------------------------------------------------
 		//  Wrap it all up
 		//------------------------------------------------------------
 		$( self.elem ).wrapInner( '<div class="work"><div class="view"></div></div>')
-		
 		//------------------------------------------------------------
 		//  Add a clear
 		//------------------------------------------------------------
 		$( self.elem ).append( '<div style="clear:both"></div>' );
-		
 		//------------------------------------------------------------
 		//  Create a statistics object
 		//------------------------------------------------------------
 		self.stats = {
 			total_blocks: self.blocks.length,
-			blocks: {}
+			blocks: {},
+			pages: Math.ceil( self.blocks.length / self.options['blocks_per_page'] )
 		};
 	}
 	
@@ -167,10 +193,10 @@
 			mrk = self.options['markers'][mod];
 		}
 		var block = '<div id="block-'+i+'" class="block">';
-		var marker = '<a href="" class="marker">'+mrk+'</a>';
+		var extras = '<div class="extras"><a href="" class="marker">'+mrk+'</a></div>';
 		var text = '<div class="text">';
 		$( self.elem ).append( block );
-		$( '#block-'+i, self.elem ).append( marker );
+		$( '#block-'+i, self.elem ).append( extras );
 		$( '#block-'+i, self.elem ).append( text );
 		$( '#block-'+i+' .text', self.elem ).append( self.blocks[ _i ] );
 	}
@@ -189,6 +215,7 @@
 			$( '.page', self.elem ).last().prepend('<div class="pageNum">'+page+'</div>');
 			page++;
 		}
+		$( '.page', self.elem ).first().addClass('first');
 	}
 	
 	/**
@@ -200,7 +227,7 @@
 			self.goTo( _i );
 		});
 		$( '.marker', self.elem ).click( function( _e ) {
-			var i = $(this).parent().attr('id').replace( 'block-','' );
+			var i = $(this).parent().parent().attr('id').replace( 'block-','' );
 			$( document ).trigger( self.events['goTo'], [i] );
 			_e.preventDefault();
 		});
@@ -266,7 +293,6 @@
  */
 jQuery.fn.bodinAlign = function() {
 	var heights = [];
-	
 	//------------------------------------------------------------
 	//  Find the largest height
 	//------------------------------------------------------------
@@ -278,7 +304,6 @@ jQuery.fn.bodinAlign = function() {
 			i++;
 		});
 	});
-	
 	//------------------------------------------------------------
 	//  Set the heights
 	//------------------------------------------------------------
