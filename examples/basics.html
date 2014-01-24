@@ -71,14 +71,21 @@
 	
 	<!-- Load Javascript -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script type="text/javascript" src="../third_party/jslib/src/js/StringExt.js"></script>
+	<script type="text/javascript" src="../third_party/jslib/src/js/ObjectExt.js"></script>
 	<script type="text/javascript" src="../src/js/bodin.js"></script>
 	<script type="text/javascript">
-	var bodin_0 = null;
+	
+	var bodinFamily = new bodinFamily();
 	$( document ).ready( function() {
 		bodin_0 = $('#bodin-0').bodin({ markers: ['A','B','C','D','E'] }).data('#bodin-0');
 		bodin_1 = $('#bodin-1').bodin().data('#bodin-1');
 		bodin_2 = $('#bodin-2').bodin().data('#bodin-2');
 		$( document ).bodinAlign();
+		
+		bodinFamily.add( bodin_0 );
+		bodinFamily.add( bodin_1 );
+		bodinFamily.add( bodin_2 );
 	});
 	</script>
 <html>

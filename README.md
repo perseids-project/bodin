@@ -4,19 +4,22 @@ It's named after Jean Bodin, the French political philosopher, whose translated 
 
 # Requirements
 * jQuery
+* jslib
 
 # Installation
 Run this command in your terminal.
 
 	git clone https://github.com/caesarfeta/bodin bodin
-
+	git submodule update --init
 
 # Use
 Add the required Javascript and CSS files.
 
-	<link href="{% your-path %}/bodin/src/css/bodin.css" rel="stylesheet" type="text/css" />	
+	<link href="bodin/src/css/bodin.css" rel="stylesheet" type="text/css" />	
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script type="text/javascript" src="{% your-path %}/bodin/src/js/bodin.js"></script>
+	<script type="text/javascript" src="bodin/third_party/jslib/src/js/ObjectExt.js"></script>
+	<script type="text/javascript" src="bodin/third_party/jslib/src/js/StringExt.js"></script>
+	<script type="text/javascript" src="bodin/src/js/bodin.js"></script>
 
 Add your text.
 

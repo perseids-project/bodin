@@ -143,6 +143,14 @@
 		//  Add a clear
 		//------------------------------------------------------------
 		$( self.elem ).append( '<div style="clear:both"></div>' );
+		
+		//------------------------------------------------------------
+		//  Create a statistics object
+		//------------------------------------------------------------
+		self.stats = {
+			total_blocks: self.blocks.length,
+			blocks: {}
+		};
 	}
 	
 	/**
@@ -198,9 +206,46 @@
 		});
 	}
 	
-	bodin.prototype.align = function() {
+	/**
+	 * Retrieve some statistics about the text
+	 */
+	bodin.prototype.textStats = function() {
 		var self = this;
-		console.log( self );
+		//------------------------------------------------------------
+		//  Get statistics at the block level
+		//------------------------------------------------------------
+		var tCount = 0;
+		var textReport = {}; // Text level report
+		var objExt = new ObjectExt();
+		for ( var i=0, ii=self.blocks.length; i<ii; i++ ) {
+			self.blockStats( i );
+			tCount += self.stats['blocks'][i]['total_words'];
+			objExt.mergeAdd( self.stats['blocks'][i]['report'], textReport );
+		}
+		self.stats['total_words'] = tCount;
+		self.stats['report'] = textReport;
+		return self.stats;
+	}
+	
+	/**
+	 * Retrieve some statistics about a block
+	 */
+	bodin.prototype.blockStats = function( _i ) {
+		var self = this;
+		self.stats['blocks'][_i] = {};
+		//------------------------------------------------------------
+		//  Get a word frequency report
+		//------------------------------------------------------------
+		self.stats['blocks'][_i]['report'] = self.blocks[_i].report();
+		var report = self.stats['blocks'][_i]['report'];
+		var uCount = 0;
+		var tCount = 0;
+		for ( var word in report ) {
+			uCount++;
+			tCount+=report[word];
+		}
+		self.stats['blocks'][_i]['unique_words'] = uCount;
+		self.stats['blocks'][_i]['total_words'] = tCount;
 	}
 	
 	//----------------
@@ -213,8 +258,6 @@
 				jQuery.data( this, id, new bodin( this, options, id ) );
 			});
 		};
-		
-		
 	})
 })(jQuery);
 
@@ -243,4 +286,15 @@ jQuery.fn.bodinAlign = function() {
 		var id = i;
 		$( '#block-'+id+' .text' ).css({ "min-height": heights[i] });
 	}
+}
+
+/**
+ * Bodin family.  Interact with multiple bodin objects.
+ */
+function bodinFamily() {
+	this.bodins = [];
+}
+
+bodinFamily.prototype.add = function( _bodin ) {
+	this.bodins.push( _bodin );
 }
