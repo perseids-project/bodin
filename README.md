@@ -19,6 +19,7 @@ Add the required Javascript and CSS files.
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script type="text/javascript" src="bodin/third_party/jslib/src/js/ObjectExt.js"></script>
 	<script type="text/javascript" src="bodin/third_party/jslib/src/js/StringExt.js"></script>
+	<script type="text/javascript" src="bodin/third_party/jslib/src/js/jQueryPlus.js"></script>
 	<script type="text/javascript" src="bodin/src/js/bodin.js"></script>
 
 Add your text.

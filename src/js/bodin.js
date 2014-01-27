@@ -185,6 +185,9 @@
 			width: text.width()
 		});
 		$( '.overlay .content', block ).css({
+			height: 0
+		});
+		$( '.overlay .content', block ).css({
 			height: text.outerHeight() - nav.outerHeight()*2
 		});
 	}
@@ -197,8 +200,16 @@
 	bodin.prototype.overlayClear = function( _blockId ) {
 		var self = this;
 		var block =	$( '#block-'+_blockId, self.elem );
-		block.removeClass( 'overlaid' );
-		$( '#block-'+_blockId+' .overlay', self.elem ).remove();
+		$( '.overlay .content', block ).css({
+			height: 0
+		});
+		//------------------------------------------------------------
+		//  Remove the overlay after the transition finishes
+		//------------------------------------------------------------
+		setTimeout( function() {
+			block.removeClass( 'overlaid' );
+			$( '#block-'+_blockId+' .overlay', self.elem ).remove();
+		}, $( '.overlay .content').transLength() );
 	}
 	
 	/**
