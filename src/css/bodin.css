@@ -56,7 +56,8 @@ body, html {
 	transition: color .25s;
 	-webkit-transition: color .25s;
 }
-.bodin .blockStats:hover {
+.bodin .blockStats:hover,
+.bodin .block.overlaid .blockStats {
 	color: #FF8888;
 }
 .bodin .text {
@@ -97,7 +98,7 @@ body, html {
 	padding: 1px;
 	background-color: #FF8888;
 }
-.bodin .text.overlaid {
+.bodin .block.overlaid .text {
 	position: relative;
 }
 .bodin .overlay {
@@ -105,13 +106,24 @@ body, html {
 	font-size: 12px;
 	color: #DDD;
 	box-sizing: border-box;
-	padding: 20px;
-	background-color: rgba( 0,0,0,0.8 );
+	background-color: rgba( 165,0,0,0.8 );
 	position: absolute;
 	top: 0;
 	left: -10;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
-	border-radius: 5px; /* future proofing */
-	-khtml-border-radius: 5px; /* for old Konqueror browsers */
+	border-radius: 5px;
+}
+.bodin .overlay .content {
+	padding: 20px;
+}
+.bodin .overlay .nav {
+	padding: 5px 10px;
+	background-color: rgba( 165,0,0,0.5 );
+	-moz-border-radius-bottomleft: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
 }

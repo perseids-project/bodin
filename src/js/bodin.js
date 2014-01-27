@@ -91,13 +91,20 @@
 		for ( var i=0, ii=self.blocks.length; i<ii; i++ ) {
 			$( '#block-'+i+' .extras', self.elem ).append( '<a href="" class="blockStats">+</a>' );
 		}
-		
-		$( '.blockStats', self.elem ).click( function(_e) {
+		$( '.blockStats', self.elem ).click( function( _e ) {
 			_e.preventDefault();
+			
+			//------------------------------------------------------------
+			//  Mark it as selected
+			//------------------------------------------------------------
 			var block = $(this).parent().parent();
 			var id = self.justId( block.attr('id') );
-			self.blockOverlay( id )
-			_e.preventDefault();
+			if ( block.hasClass('overlaid') ) {
+				self.overlayClear( id );
+			}
+			else {
+				self.overlay( id );
+			}
 		})
 	}
 	
@@ -164,16 +171,34 @@
 	
 	/**
 	 * Overlay a block.
+	 *
+	 * @param { int } _blockId The id of a block
 	 */
-	bodin.prototype.blockOverlay = function( _blockId ) {
+	bodin.prototype.overlay = function( _blockId ) {
 		var self = this;
-		var block =	$( '#block-'+_blockId+' .text', self.elem );
+		var block =	$( '#block-'+_blockId, self.elem );
+		var text = $( '.text', block );
 		block.addClass( 'overlaid' );
-		block.append( '<div class="overlay"></div>' );
-		$( '.overlay', block ).css({ 
-			width: block.width(),
-			height: block.height()
+		text.append( '<div class="overlay"><div class="content"></div><div class="nav">$$$</div></div>' );
+		var nav = $( '.nav', text );
+		$( '.overlay', text ).css({ 
+			width: text.width()
 		});
+		$( '.overlay .content', block ).css({
+			height: text.outerHeight() - nav.outerHeight()*2
+		});
+	}
+	
+	/**
+	 * Clear block overlay.
+	 *
+	 * @param { int } _blockId The id of a block
+	 */
+	bodin.prototype.overlayClear = function( _blockId ) {
+		var self = this;
+		var block =	$( '#block-'+_blockId, self.elem );
+		block.removeClass( 'overlaid' );
+		$( '#block-'+_blockId+' .overlay', self.elem ).remove();
 	}
 	
 	/**
@@ -259,14 +284,14 @@
 	/**
 	 * Build a block.
 	 *
-	 * @param { int } _i The index of the block.
+	 * @param { int } _blockId The index of the block.
 	 */
-	bodin.prototype.blockBuild = function( _i ) {
+	bodin.prototype.blockBuild = function( _blockId ) {
 		var self = this;
-		var i=_i+1;
+		var i=_blockId+1;
 		var mrk = i;
 		if ( self.options['markers'] != null ) {
-			var mod = _i % self.options['markers'].length;
+			var mod = _blockId % self.options['markers'].length;
 			mrk = self.options['markers'][mod];
 		}
 		var block = '<div id="block-'+i+'" class="block">';
@@ -275,7 +300,7 @@
 		$( self.elem ).append( block );
 		$( '#block-'+i, self.elem ).append( extras );
 		$( '#block-'+i, self.elem ).append( text );
-		$( '#block-'+i+' .text', self.elem ).append( self.blocks[ _i ] );
+		$( '#block-'+i+' .text', self.elem ).append( self.blocks[ _blockId ] );
 	}
 	
 	/**
@@ -334,23 +359,25 @@
 	
 	/**
 	 * Retrieve some statistics about a block
+	 *
+	 * @param { int } _blockId The index of the block.
 	 */
-	bodin.prototype.blockStats = function( _i ) {
+	bodin.prototype.blockStats = function( _blockId ) {
 		var self = this;
-		self.stats['blocks'][_i] = {};
+		self.stats['blocks'][ _blockId ] = {};
 		//------------------------------------------------------------
 		//  Get a word frequency report
 		//------------------------------------------------------------
-		self.stats['blocks'][_i]['report'] = self.blocks[_i].report();
-		var report = self.stats['blocks'][_i]['report'];
+		self.stats['blocks'][ _blockId ]['report'] = self.blocks[ _blockId ].report();
+		var report = self.stats['blocks'][ _blockId ]['report'];
 		var uCount = 0;
 		var tCount = 0;
 		for ( var word in report ) {
 			uCount++;
-			tCount+=report[word];
+			tCount+=report[ word ];
 		}
-		self.stats['blocks'][_i]['unique_words'] = uCount;
-		self.stats['blocks'][_i]['total_words'] = tCount;
+		self.stats['blocks'][ _blockId ]['unique_words'] = uCount;
+		self.stats['blocks'][ _blockId ]['total_words'] = tCount;
 	}
 	
 	//----------------
