@@ -119,6 +119,10 @@ body, html {
 	transition: height 1s;
 	-webkit-transition: height 1s;
 }
+.bodin .overlay .content.move {
+	transition: none;
+	-webkit-transition: none;
+}
 .bodin .overlay .nav {
 	padding: 5px 10px;
 	background-color: rgb( 165,0,0 );
@@ -128,4 +132,9 @@ body, html {
 	-webkit-border-bottom-right-radius: 5px;
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
+	text-align: right;
+}
+.bodin .overlay .nav a {
+	text-decoration: none;
+	color: #FFF;
 }

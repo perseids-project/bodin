@@ -179,7 +179,7 @@
 		var block =	$( '#block-'+_blockId, self.elem );
 		var text = $( '.text', block );
 		block.addClass( 'overlaid' );
-		text.append( '<div class="overlay"><div class="content"></div><div class="nav">$$$</div></div>' );
+		text.append( '<div class="overlay"><div class="content"></div><div class="nav"></div></div>' );
 		var nav = $( '.nav', text );
 		$( '.overlay', text ).css({ 
 			width: text.width()
@@ -189,6 +189,41 @@
 		});
 		$( '.overlay .content', block ).css({
 			height: text.outerHeight() - nav.outerHeight()*2
+		});
+		self.overlayStart( _blockId );
+	}
+	
+	/**
+	 * Start overlay listeners.
+	 *
+	 * @param { int } _blockId The id of a block
+	 */
+	bodin.prototype.overlayStart = function( _blockId ) {
+		var self = this;
+		var block =	$( '#block-'+_blockId, self.elem );
+		$( '.nav', block ).on( 'mousedown', function( _e ){
+			_e.preventDefault();
+			self.currentOverlay = $( '.overlay', block );
+			$( '.content', self.currentOverlay ).addClass( 'move' );
+		});
+		$( document ).on( 'mousemove', function( _e ){
+			_e.preventDefault();
+			if ( self.currentOverlay != null ) {
+				var y = _e.clientY;
+				var pos = $( self.currentOverlay ).parent().position();
+				var top = pos['top'];
+				var navHeight = $( '.nav', self.currentOverlay ).outerHeight();
+				$( '.content', self.currentOverlay ).css({
+					height: ((top-y)*-1)-navHeight*4
+				});
+			}
+		});
+		$( document ).on( 'mouseup', function( _e ){
+			_e.preventDefault();
+			if ( self.currentOverlay != null ) {
+				$( '.content', self.currentOverlay ).removeClass( 'move' );
+			}
+			self.currentOverlay = null;
 		});
 	}
 	
