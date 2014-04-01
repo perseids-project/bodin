@@ -73,6 +73,11 @@
 		};
 		
 		//------------------------------------------------------------
+		//  Content that goes into an overlay
+		//------------------------------------------------------------
+		self.overlayContent = {};
+		
+		//------------------------------------------------------------
 		//  Build the thing
 		//------------------------------------------------------------
 		self.build();
@@ -190,7 +195,19 @@
 		$( '.overlay .content', block ).css({
 			height: text.outerHeight() - nav.outerHeight()*2
 		});
+		self.overlayLoad( _blockId, self.stats['blocks'][_blockId] );
 		self.overlayStart( _blockId );
+	}
+	
+	/**
+	 * Load content into a block.
+	 *
+	 * @param { int } _blockId The id of a block
+	 */
+	bodin.prototype.overlayLoad = function( _blockId, _content ) {
+		var self = this;
+		var block =	$( '#block-'+_blockId, self.elem );
+		$( '.overlay .content', block ).html( _content );
 	}
 	
 	/**
