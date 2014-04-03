@@ -13,6 +13,9 @@
 				font-size: 75%;
 			}
 			.TeiToBodin {
+				background-color: #FFFFF2;
+				color: #222;
+				letter-spacing: .02em;
 				line-height: 1.5em;
 				max-width: 600px;
 				padding: 20px;
@@ -41,7 +44,8 @@
 			this.url = _url;
 			this.id = _id;
 			this.xml = null;  // TEI xml retrieved
-			this.html = null; // html created from TEI xml
+			this.json = {};   // json created from TEI xml
+			this.html = null; // html created from this.json
 			this.notes = [];  // notes
 			this.getXml();
 		}
@@ -67,11 +71,17 @@
 			});
 		}
 		
+		/**
+		 * getXml() was a success!  Start it up!
+		 */
 		TeiToBodin.prototype.start = function() {
 			this.toHtml();
 			this.events();
 		}
 		
+		/**
+		 * Start UI event listeners
+		 */
 		TeiToBodin.prototype.events = function() {
 			var self = this;
 			jQuery( 'note' ).click( function( _e ) {
@@ -90,12 +100,60 @@
 			this.getNotes();
 			
 			//------------------------------------------------------------
+			//  Get editions books and pages from the main text
+			//------------------------------------------------------------
+			this.getBody();
+			
+			//------------------------------------------------------------
+			//  Get publication info
+			//------------------------------------------------------------
+			this.getPub();
+			
+			//------------------------------------------------------------
+			//  So now we have easy to use JSON objects from which to
+			//  build HTML used by the bodin jQuery plugin.
+			//------------------------------------------------------------
+			console.log( this.json );
+			//console.log( this.notes );
+			
+			//------------------------------------------------------------
 			//  Write output
 			//------------------------------------------------------------
-			jQuery( '#'+this.id ).html( this.xml.getElementsByTagName("text")[0].innerHTML );
-			// console.log( _xml.getElementsByTagName("text") );
-			// console.log( _xml.getElementsByTagName("text")[0].innerHTML );
-			// console.log( _xml.getElementsByTagName("text")[0].childNodes[0].nodeValue );
+			jQuery( '#'+this.id ).html( this.html );
+		}
+		
+		/**
+		 * Extract publication information from XML
+		 */
+		TeiToBodin.prototype.getPub = function() {
+			var pub = this.xml.getElementsByTagName("fileDesc")[0];
+			console.log( pub );
+		}
+		
+		/**
+		 * Extract editions, books, and chapters from the main text body
+		 */
+		TeiToBodin.prototype.getBody = function() {
+			var text = this.xml.getElementsByTagName("text")[0];
+			this.json['editions'] = [];
+			var editions = this.getByAttrValue( text, 'type', 'edition', 'div' );
+			//------------------------------------------------------------
+			//  This triple loop is quick and dirty... this code is ugly...
+			//  Please fix me!
+			//------------------------------------------------------------
+			for ( var i=0, ii=editions.length; i<ii; i++ ) {
+				this.json['editions'][i] = {};
+				var books = this.getByAttrValue( editions[i], 'subtype', 'book', 'div' );
+				this.json['editions'][i]['books'] = [];
+				for ( var j=0, jj=books.length; j<jj; j++ ) {
+					this.json['editions'][i]['books'][j] = {};
+					var chapters = this.getByAttrValue( books[j], 'subtype', 'chapter', 'div' );
+					this.json['editions'][i]['books'][j]['chapters'] = [];
+					for ( var k=0, kk=chapters.length; k<kk; k++ ) {
+						this.json['editions'][i]['books'][j]['chapters'][k] = chapters[k];
+					}
+				}
+			}
 		}
 		
 		/**
@@ -109,8 +167,28 @@
 			}
 		}
 		
+		TeiToBodin.prototype.getByAttrValue = function( _xml, _attr, _val, _tag ) {
+			_tag = ( _tag == undefined ) ? '*' : _tag;
+			var match = []
+			var nodes = _xml.getElementsByTagName( _tag );
+			for ( var i=0, ii=nodes.length; i<ii; i++ ) {
+				var attrs = nodes[i].attributes;
+				for ( var j=0, jj=attrs.length; j<jj; j++ ) {
+					var check = attrs[j];
+					if ( check.name == _attr && check.value == _val ) {
+						match.push( nodes[i] );
+					}
+				}
+			}
+			return match;
+		}
+		
 		jQuery( document ).ready( function() {
     		new TeiToBodin( 'xml/bodin_french.xml', 'bodin_french' );
 		});
+		
+		// console.log( _xml.getElementsByTagName("text") );
+		// console.log( _xml.getElementsByTagName("text")[0].innerHTML );
+		// console.log( _xml.getElementsByTagName("text")[0].childNodes[0].nodeValue );
 	</script>
 <html>
