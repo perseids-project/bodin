@@ -1,0 +1,116 @@
+<html>
+	<head>
+		<!-- Load CSS -->
+		<link href="../src/css/bodin.css" rel="stylesheet" type="text/css" />
+		<!-- End Load CSS -->
+		<title>bodin</title>
+		<style type="text/css">
+			.TeiToBodin note {
+				display: inline-block;
+				color: #FF0000;
+				margin: 0 5px 0 5px;
+				vertical-align: super;
+				font-size: 75%;
+			}
+			.TeiToBodin {
+				line-height: 1.5em;
+				max-width: 600px;
+				padding: 20px;
+			}
+		</style>
+	<head>
+	<body>
+		<div class="TeiToBodin" id="bodin_french"></div>
+	</body>
+	
+	<!-- Load Javascript -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script type="text/javascript">
+		/**
+		 * Takes TEI xml and creates HTML useable by the bodin plugin
+		 *
+		 * Use: new TeiToBodin( 'xml/tei.xml', 'tei' );
+		 *
+		 * @param { string } _url The url to the TEI xml
+		 * @param { string } _id The id of the DOM object to write HTML output
+		 */
+		function TeiToBodin( _url, _id ) {
+			this.config = {
+				timeout: 10 // seconds
+			};
+			this.url = _url;
+			this.id = _id;
+			this.xml = null;  // TEI xml retrieved
+			this.html = null; // html created from TEI xml
+			this.notes = [];  // notes
+			this.getXml();
+		}
+		
+		/**
+		 * Retrieve TEI xml from a URL
+		 */
+		TeiToBodin.prototype.getXml = function() {
+			var self = this;
+			jQuery.ajax({
+				url: self.url,
+				type: 'get',
+				timeout: self.config.timeout*1000,
+				dataType: 'xml',
+				success: function( _data ) {
+					self.xml = _data;
+					self.start();
+				},
+				error: function( _error ) {
+					console.log( 'Error' );
+					console.log( _error );
+				}
+			});
+		}
+		
+		TeiToBodin.prototype.start = function() {
+			this.toHtml();
+			this.events();
+		}
+		
+		TeiToBodin.prototype.events = function() {
+			var self = this;
+			jQuery( 'note' ).click( function( _e ) {
+				var i = jQuery( this ).text()
+				console.log(  self.notes[i] );
+			})
+		}
+		
+		/**
+		 * Takes TEI xml and creates HTML useable by the bodin plugin
+		 */
+		TeiToBodin.prototype.toHtml = function() {
+			//------------------------------------------------------------
+			// Extract notes
+			//------------------------------------------------------------
+			this.getNotes();
+			
+			//------------------------------------------------------------
+			//  Write output
+			//------------------------------------------------------------
+			jQuery( '#'+this.id ).html( this.xml.getElementsByTagName("text")[0].innerHTML );
+			// console.log( _xml.getElementsByTagName("text") );
+			// console.log( _xml.getElementsByTagName("text")[0].innerHTML );
+			// console.log( _xml.getElementsByTagName("text")[0].childNodes[0].nodeValue );
+		}
+		
+		/**
+		 * Extract note tags
+		 */
+		TeiToBodin.prototype.getNotes = function() {
+			var noteXml = this.xml.getElementsByTagName("note");
+			for ( var i=0, ii=noteXml.length; i<ii; i++ ) {
+				this.notes[i] = noteXml[i].innerHTML;
+				noteXml[i].innerHTML = i;
+			}
+		}
+		
+		jQuery( document ).ready( function() {
+    		new TeiToBodin( 'xml/bodin_french.xml', 'bodin_french' );
+		});
+	</script>
+<html>

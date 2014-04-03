@@ -61,7 +61,8 @@
 			break: 'paragraph',
 			break_count: null,
 			blocks_per_page: 5,
-			markers: null
+			markers: null,
+			xml: 'xml/boding_french.sml'
 		}, _options );
 		
 		//------------------------------------------------------------
@@ -86,6 +87,13 @@
 		//  Start event listeners
 		//------------------------------------------------------------
 		self.start();
+	}
+
+	/**
+	 * Get an XML document
+	 */
+	bodin.prototype.getXml = function() {
+		var self = this;
 	}
 	
 	/**
