@@ -6,26 +6,32 @@
 		<title>bodin</title>
 		<style type="text/css">
 			.TeiToBodin {
-				font-family: "Proxima Nova Regular","Helvetica Neue",Calibri,"Droid Sans",Helvetica,Arial,sans-serif;
 				color: #222;
 				letter-spacing: .02em;
 				line-height: 1.5em;
-				max-width: 600px;
+				padding: 2px;
+				background-color: #222;
+				width: 100%;
+				box-sizing: border-box;
+				display: block;
+				float: left;
+				margin: 0;
 			}
+			.TeiToBodin .navMenu {}
 			.TeiToBodin note {
 				display: inline-block;
 				color: #FF0000;
 				vertical-align: super;
 				font-size: 75%;
 			}
-			.TeiToBodin .work {
-				padding: 2px;
-				background-color: #222;
-			}
+			.TeiToBodin .work {}
 			.TeiToBodin .page {
-				padding: 60px 40px;
-				background-color: #FDFDF6;
+				background-color: #F9F9F9;
+				padding: 60px 80px 120px 80px;
 				margin-bottom: 5px;
+				max-width: 600px;
+				margin-left: auto;
+				margin-right: auto;
 			}
 			.TeiToBodin hi {
 				font-size: 300%;
@@ -35,11 +41,16 @@
 	<head>
 	<body>
 		<div class="TeiToBodin" id="bodin_french"></div>
+		<div class="TeiToBodin" id="bodin_latin"></div>
+		<div class="TeiToBodin" id="bodin_english"></div>
 	</body>
 	
 	<!-- Load Javascript -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script type="text/javascript">
+	<script src="../third_party/jslib/src/js/SharedConfig.js"></script>
+	<script src="../third_party/jslib/src/js/Styler.js"></script>
+	
+	<script type="text/javascript"> 
 		/**
 		 * Takes TEI xml and creates HTML useable by the bodin plugin
 		 *
@@ -55,10 +66,37 @@
 			this.url = _url;
 			this.id = _id;
 			this.xml = null;  // TEI xml retrieved
-			this.json = {};   // json created from TEI xml
+			this.json = {};	  // json created from TEI xml
 			this.html = null; // html created from this.json
 			this.notes = [];  // notes
+			//------------------------------------------------------------
+			//	Check number of instances
+			//------------------------------------------------------------
+			var shared = new SharedConfig();
+			if ( shared.check( 'count' ) == false ) {
+				shared.config['count'] = 1;
+			}
+			else {
+				shared.config['count']++;
+				this.makeRoom( shared.config['count'] );
+			}
+			//------------------------------------------------------------
+			//	Get the TEI XML
+			//------------------------------------------------------------
 			this.getXml();
+		}
+		
+		/**
+		 * Organize instances of TeiToBodin into columns
+		 *
+		 * @param {int } _count The number of instances.
+		 */
+		TeiToBodin.prototype.makeRoom = function( _count ) {
+			var styler = new Styler();
+			var percent = parseInt( 100/_count );
+			styler.add({
+				'.TeiToBodin': 'width: '+percent+'%'
+			});
 		}
 		
 		/**
@@ -83,7 +121,7 @@
 		}
 		
 		/**
-		 * getXml() was a success!  Start it up!
+		 * getXml() was a success!	Start it up!
 		 */
 		TeiToBodin.prototype.start = function() {
 			this.toHtml();
@@ -111,17 +149,17 @@
 			this.getNotes();
 			
 			//------------------------------------------------------------
-			//  Get editions books and pages from the main text
+			//	Get editions books and pages from the main text
 			//------------------------------------------------------------
 			this.getBody();
 			
 			//------------------------------------------------------------
-			//  Get publication info
+			//	Get publication info
 			//------------------------------------------------------------
 			this.getPub();
 			
 			//------------------------------------------------------------
-			//  Convert your JSON object to HTML
+			//	Convert your JSON object to HTML
 			//------------------------------------------------------------
 			this.jsonToHtml();
 		}
@@ -140,25 +178,25 @@
 			jQuery( '#'+this.id ).append('<div class="work"></div>');
 			var work = '#'+this.id+' .work';
 			//------------------------------------------------------------
-			//  Editions
+			//	Editions
 			//------------------------------------------------------------
 			for ( var i=0, ii=this.json['editions'].length; i<ii; i++ ) {
 				var edition = this.id+'-edition-'+i;
 				jQuery( work ).append('<div id="'+edition+'" class="edition"></div>');
 				//------------------------------------------------------------
-				//  Books
+				//	Books
 				//------------------------------------------------------------
 				for ( var j=0, jj=this.json['editions'][i]['books'].length; j<jj; j++ ) {
 					var book = edition+'-book-'+j;
 					jQuery( '#'+edition ).append('<div id="'+book+'" class="book"></div>');
 					//------------------------------------------------------------
-					//  Chapters
+					//	Chapters
 					//------------------------------------------------------------
 					for ( var k=0, kk=this.json['editions'][i]['books'][j]['chapters'].length; k<kk; k++ ) {
 						var chapter = book+'-chapter-'+k;
 						jQuery( '#'+book ).append('<div id="'+chapter+'" class="chapter"></div>');
 						//------------------------------------------------------------
-						//  Pages
+						//	Pages
 						//------------------------------------------------------------
 						for ( var m=0, mm=this.json['editions'][i]['books'][j]['chapters'][k]['pages'].length; m<mm; m++ ) {
 							var page = chapter+'-page-'+m;
@@ -178,33 +216,34 @@
 			this.json['editions'] = [];
 			var editions = this.getByAttrValue( text, 'type', 'edition', 'div' );
 			//------------------------------------------------------------
-			//  Find editions
+			//	Find editions
 			//------------------------------------------------------------
 			for ( var i=0, ii=editions.length; i<ii; i++ ) {
 				this.json['editions'][i] = {};
 				var books = this.getByAttrValue( editions[i], 'subtype', 'book', 'div' );
 				//------------------------------------------------------------
-				//  Find books
+				//	Find books
 				//------------------------------------------------------------
 				this.json['editions'][i]['books'] = [];
 				for ( var j=0, jj=books.length; j<jj; j++ ) {
 					this.json['editions'][i]['books'][j] = {};
 					var chapters = this.getByAttrValue( books[j], 'subtype', 'chapter', 'div' );
 					//------------------------------------------------------------
-					//  Record the book title
+					//	Record the book title
 					//------------------------------------------------------------
 					this.json['editions'][i]['books'][j]['head'] = books[j].getElementsByTagName("head")[0];
 					//------------------------------------------------------------
-					//  Find chapters
+					//	Find chapters
 					//------------------------------------------------------------
 					this.json['editions'][i]['books'][j]['chapters'] = [];
 					for ( var k=0, kk=chapters.length; k<kk; k++ ) {
 						//------------------------------------------------------------
-						//  Get chapter title
+						//	Get chapter title
 						//------------------------------------------------------------
 						this.json['editions'][i]['books'][j]['chapters'][k] = {};
+						this.json['editions'][i]['books'][j]['chapters'][k]['head'] = chapters[k].getElementsByTagName("head")[0];
 						//------------------------------------------------------------
-						//  Get pages
+						//	Get pages
 						//------------------------------------------------------------
 						var pages = chapters[k].innerHTML.split( /<pb.*\/>/ ); // not sure if this split is too aggressive.
 						this.json['editions'][i]['books'][j]['chapters'][k]['pages'] = pages;
@@ -224,6 +263,15 @@
 			}
 		}
 		
+		/**
+		 * Find an XML node using an attribute key value pair
+		 *
+		 * @param { Object } _xml The XML to search.
+		 * @param { String } _attr The attribute name to search for
+		 * @param { String } _val The attribute value to search for
+		 * @param { String } _tag ( optional ) XML tag type to search 
+		 *						  defaults to * ( all types )
+		 */
 		TeiToBodin.prototype.getByAttrValue = function( _xml, _attr, _val, _tag ) {
 			_tag = ( _tag == undefined ) ? '*' : _tag;
 			var match = []
@@ -241,7 +289,9 @@
 		}
 		
 		jQuery( document ).ready( function() {
-    		new TeiToBodin( 'xml/bodin_french.xml', 'bodin_french' );
+			new TeiToBodin( 'xml/bodin_french.xml', 'bodin_french' );
+			new TeiToBodin( 'xml/bodin_french.xml', 'bodin_latin' );
+//			new TeiToBodin( 'xml/bodin_french.xml', 'bodin_english' );
 		});
 		
 		// console.log( _xml.getElementsByTagName("text") );
