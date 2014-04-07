@@ -40,6 +40,41 @@
 			.TeiToBodin.slim .page{
 				padding: 60px 30px 120px 30px;
 			}
+			#tooltip {
+				text-align: center;
+				color: #fff;
+				background: #111;
+				position: absolute;
+				z-index: 100;
+				padding: 15px;
+			}
+			#tooltip:after {
+				width: 0;
+				height: 0;
+				border-left: 10px solid transparent;
+				border-right: 10px solid transparent;
+				border-top: 10px solid #111;
+				content: '';
+				position: absolute;
+				left: 50%;
+				bottom: -10px;
+				margin-left: -10px;
+			}
+			#tooltip.top:after {
+				border-top-color: transparent;
+				border-bottom: 10px solid #111;
+				top: -20px;
+				bottom: auto;
+			}
+			#tooltip.left:after {
+				left: 10px;
+				margin: 0;
+			}
+			#tooltip.right:after {
+				right: 10px;
+				left: auto;
+				margin: 0;
+			}
 		</style>
 	<head>
 	<body>
@@ -104,6 +139,9 @@
 			});
 		}
 		
+		/**
+		 * Check the size of the instance.
+		 */
 		TeiToBodin.prototype.sizeCheck = function() {
 			var self = this;
 			jQuery( window ).resize( function() {
@@ -144,6 +182,7 @@
 		TeiToBodin.prototype.start = function() {
 			this.toHtml();
 			this.events();
+			Tooltips();
 		}
 		
 		/**
@@ -158,7 +197,7 @@
 		TeiToBodin.prototype.noteClick = function() {
 			jQuery( 'note' ).click( function( _e ) {
 				var i = jQuery( this ).text()
-				console.log(  self.notes[i] );
+				console.log(  this.notes[i] );
 			})
 		}
 		
@@ -170,17 +209,14 @@
 			// Extract notes
 			//------------------------------------------------------------
 			this.getNotes();
-			
 			//------------------------------------------------------------
 			//	Get editions books and pages from the main text
 			//------------------------------------------------------------
 			this.getBody();
-			
 			//------------------------------------------------------------
 			//	Get publication info
 			//------------------------------------------------------------
 			this.getPub();
-			
 			//------------------------------------------------------------
 			//	Convert your JSON object to HTML
 			//------------------------------------------------------------
@@ -293,11 +329,85 @@
 				noteXml[i].setAttribute( 'href', '#'+(i+1) );
 				noteXml[i].setAttribute( 'title', this.notes[i].smoosh() );
 				noteXml[i].setAttribute( 'class', 'note' );
+				noteXml[i].setAttribute( 'rel', 'tooltip' );
 				noteXml[i] = DomPlus.tagChange( noteXml[i], "a" );
 				i--;
 			}
 		}
 		
+		/**
+		 * Tooltips startup.
+		 */
+		Tooltips = function() {
+			var target = false;
+			var tooltip = false;
+			var title = false;
+			
+			var targets = jQuery( '[rel~=tooltip]' );
+			targets.bind( 'touchstart click', function( _e ) {
+				_e.preventDefault();
+				target = jQuery( this );
+				tip = target.attr( 'title' );
+				tooltip = jQuery( '<div id="tooltip"></div>' );
+				if ( !tip || tip == '' ) {
+					return false;
+				}
+				target.removeAttr( 'title' );
+				tooltip.css( 'opacity', 0 ).html( tip ).appendTo( 'body' );
+				
+				var init_tooltip = function() {
+					if ( jQuery( window ).width() < tooltip.outerWidth() * 1.5 ) {
+						tooltip.css( 'max-width', jQuery( window ).width() / 2 );
+					}
+					else {
+						tooltip.css( 'max-width', 340 );
+					}
+					var pos_left = target.offset().left + ( target.outerWidth() / 2 ) - ( tooltip.outerWidth() / 2 );
+					var pos_top  = target.offset().top - tooltip.outerHeight() - 5;
+					if ( pos_left < 0 ) {
+						pos_left = target.offset().left + target.outerWidth() / 2 - 20;
+						tooltip.addClass( 'left' );
+					}
+					else {
+						tooltip.removeClass( 'left' );
+					}
+					if ( pos_left + tooltip.outerWidth() > jQuery( window ).width() ) {
+						pos_left = target.offset().left - tooltip.outerWidth() + target.outerWidth() / 2 + 20;
+						tooltip.addClass( 'right' );
+					}
+					else {
+						tooltip.removeClass( 'right' );
+					}
+					if ( pos_top < 0 ) {
+						var pos_top  = target.offset().top + target.outerHeight();
+						tooltip.addClass( 'top' );
+					}
+					else {
+						tooltip.removeClass( 'top' );
+					}
+					tooltip.css({ 
+						left: pos_left, 
+						top: pos_top 
+					});
+					tooltip.animate({
+						opacity: 1 
+					}, 50 );
+				};
+				init_tooltip();
+				jQuery( window ).resize( init_tooltip );
+				var remove_tooltip = function() {
+					tooltip.animate({ 
+						opacity: 0 
+					}, 50 );
+					target.attr( 'title', tip );
+				};
+				tooltip.bind( 'click touchstart', remove_tooltip );
+			});
+		};
+		
+		/**
+		 * When the document is ready start it up.
+		 */
 		jQuery( document ).ready( function() {
 			new TeiToBodin( 'xml/bodin_french.xml', 'bodin_french' );
 			new TeiToBodin( 'xml/bodin_french.xml', 'bodin_latin' );
