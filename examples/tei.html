@@ -18,13 +18,16 @@
 				margin: 0;
 			}
 			.TeiToBodin .navMenu {}
-			.TeiToBodin note {
+			.TeiToBodin a {
 				display: inline-block;
 				color: #FF0000;
 				vertical-align: super;
 				font-size: 75%;
 			}
-			.TeiToBodin .work {}
+			.TeiToBodin .work {
+				height: 100%;
+				overflow-y: scroll;
+			}
 			.TeiToBodin .page {
 				background-color: #F9F9F9;
 				padding: 60px 80px 120px 80px;
@@ -33,10 +36,6 @@
 				margin-left: auto;
 				margin-right: auto;
 			}
-			.TeiToBodin hi {
-				font-size: 300%;
-			}
-			
 		</style>
 	<head>
 	<body>
@@ -257,10 +256,49 @@
 		 */
 		TeiToBodin.prototype.getNotes = function() {
 			var noteXml = this.xml.getElementsByTagName("note");
-			for ( var i=0, ii=noteXml.length; i<ii; i++ ) {
+			var i=noteXml.length-1;
+			while ( i>=0 ) {
+				//------------------------------------------------------------
+				//  Pull the notes HTML out.
+				//------------------------------------------------------------
 				this.notes[i] = noteXml[i].innerHTML;
-				noteXml[i].innerHTML = i;
+				//------------------------------------------------------------
+				//  Change notes to anchor tags.
+				//------------------------------------------------------------
+				noteXml[i].innerHTML = i+1;
+				noteXml[i].setAttribute( 'href', '#'+(i+1) );
+				noteXml[i] = this.tagChange( noteXml[i], "a" );
+				i--;
 			}
+		}
+		
+		/**
+		 * Change the type of a tag.
+		 *
+		 * @param { Element } _elem Web API Dom Element
+		 * @param { string } _new The new tag type
+		 * @return { Element }
+		 */
+		TeiToBodin.prototype.tagChange = function( _elem, _new ) {
+			var newNode = document.createElement( _new );
+			//------------------------------------------------------------
+			//  Copy HTML
+			//------------------------------------------------------------
+			newNode.innerHTML = _elem.innerHTML;
+			//------------------------------------------------------------
+			//  Copy Attributes
+			//------------------------------------------------------------
+			var attributes = _elem.attributes;
+			for ( var i=0, ii=attributes.length; i<ii; i++ ) {
+				var nodeName = attributes[i].nodeName;
+				var nodeValue = attributes[i].nodeValue;
+				newNode.setAttribute( nodeName, nodeValue );
+			}
+			//------------------------------------------------------------
+			//  Copy the new node into place
+			//------------------------------------------------------------
+			_elem.parentNode.replaceChild( newNode, _elem );
+			return newNode;
 		}
 		
 		/**
