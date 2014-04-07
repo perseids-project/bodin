@@ -18,11 +18,12 @@
 				margin: 0;
 			}
 			.TeiToBodin .navMenu {}
-			.TeiToBodin a {
+			.TeiToBodin a.note {
 				display: inline-block;
 				color: #FF0000;
 				vertical-align: super;
 				font-size: 75%;
+				text-decoration: none;
 			}
 			.TeiToBodin .work {
 				height: 100%;
@@ -36,6 +37,9 @@
 				margin-left: auto;
 				margin-right: auto;
 			}
+			.TeiToBodin.slim .page{
+				padding: 60px 30px 120px 30px;
+			}
 		</style>
 	<head>
 	<body>
@@ -48,6 +52,7 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="../third_party/jslib/src/js/SharedConfig.js"></script>
 	<script src="../third_party/jslib/src/js/Styler.js"></script>
+	<script src="../third_party/jslib/src/js/StringExt.js"></script>
 	<script src="../third_party/jslib/src/js/DomPlus.js"></script>
 	
 	<script type="text/javascript"> 
@@ -99,6 +104,19 @@
 			});
 		}
 		
+		TeiToBodin.prototype.sizeCheck = function() {
+			var self = this;
+			jQuery( window ).resize( function() {
+				var elem = jQuery( '#'+self.id );
+				if ( elem.width() < 450 ) {
+					elem.addClass('slim');
+				}
+				else {
+					elem.removeClass('slim');
+				}
+			});
+		}
+		
 		/**
 		 * Retrieve TEI xml from a URL
 		 */
@@ -133,6 +151,11 @@
 		 */
 		TeiToBodin.prototype.events = function() {
 			var self = this;
+			self.noteClick();
+			self.sizeCheck();
+		}
+		
+		TeiToBodin.prototype.noteClick = function() {
 			jQuery( 'note' ).click( function( _e ) {
 				var i = jQuery( this ).text()
 				console.log(  self.notes[i] );
@@ -268,6 +291,8 @@
 				//------------------------------------------------------------
 				noteXml[i].innerHTML = i+1;
 				noteXml[i].setAttribute( 'href', '#'+(i+1) );
+				noteXml[i].setAttribute( 'title', this.notes[i].smoosh() );
+				noteXml[i].setAttribute( 'class', 'note' );
 				noteXml[i] = DomPlus.tagChange( noteXml[i], "a" );
 				i--;
 			}
@@ -276,11 +301,7 @@
 		jQuery( document ).ready( function() {
 			new TeiToBodin( 'xml/bodin_french.xml', 'bodin_french' );
 			new TeiToBodin( 'xml/bodin_french.xml', 'bodin_latin' );
-//			new TeiToBodin( 'xml/bodin_french.xml', 'bodin_english' );
+			// new TeiToBodin( 'xml/bodin_french.xml', 'bodin_english' );
 		});
-		
-		// console.log( _xml.getElementsByTagName("text") );
-		// console.log( _xml.getElementsByTagName("text")[0].innerHTML );
-		// console.log( _xml.getElementsByTagName("text")[0].childNodes[0].nodeValue );
 	</script>
 <html>
