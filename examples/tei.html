@@ -40,7 +40,7 @@
 			.TeiToBodin.slim .page{
 				padding: 60px 30px 120px 30px;
 			}
-			#tooltip {
+			#tooltipper {
 				text-align: center;
 				color: #fff;
 				background: #111;
@@ -48,7 +48,7 @@
 				z-index: 100;
 				padding: 15px;
 			}
-			#tooltip:after {
+			#tooltipper:after {
 				width: 0;
 				height: 0;
 				border-left: 10px solid transparent;
@@ -60,17 +60,17 @@
 				bottom: -10px;
 				margin-left: -10px;
 			}
-			#tooltip.top:after {
+			#tooltipper.top:after {
 				border-top-color: transparent;
 				border-bottom: 10px solid #111;
 				top: -20px;
 				bottom: auto;
 			}
-			#tooltip.left:after {
+			#tooltipper.left:after {
 				left: 10px;
 				margin: 0;
 			}
-			#tooltip.right:after {
+			#tooltipper.right:after {
 				right: 10px;
 				left: auto;
 				margin: 0;
@@ -182,7 +182,11 @@
 		TeiToBodin.prototype.start = function() {
 			this.toHtml();
 			this.events();
-			Tooltips();
+			//------------------------------------------------------------
+			//  Start tooltips
+			//  Pass along the parent "overflow-y: scroll" element.
+			//------------------------------------------------------------
+			new Tooltipper( '#'+this.id+' .work' );
 		}
 		
 		/**
@@ -335,75 +339,104 @@
 			}
 		}
 		
-		/**
-		 * Tooltips startup.
-		 */
-		Tooltips = function() {
-			var target = false;
-			var tooltip = false;
-			var title = false;
-			
-			var targets = jQuery( '[rel~=tooltip]' );
-			targets.bind( 'touchstart click', function( _e ) {
-				_e.preventDefault();
-				target = jQuery( this );
-				tip = target.attr( 'title' );
-				tooltip = jQuery( '<div id="tooltip"></div>' );
+		
+		function Tooltipper( _root ) {
+			this.root = _root;
+			this.tooltip = jQuery( '<div id="tooltipper"></div>' );
+			this.start();
+			this.target = null;
+		}
+		
+		Tooltipper.prototype.start = function() {
+			var self = this;
+			//------------------------------------------------------------
+			//  Click listener
+			//------------------------------------------------------------
+			jQuery( self.root + ' [rel~=tooltip]' ).bind( 'touchstart click', function( _e ) {
+				_e.preventDefault;
+				//------------------------------------------------------------
+				//  Store reference to clicked element.
+				//------------------------------------------------------------
+				self.target = jQuery(this);
+				//------------------------------------------------------------
+				//  Remove existing tooltip
+				//------------------------------------------------------------
+				jQuery( self.root+' #tooltipper' ).remove();
+				//------------------------------------------------------------
+				//  Check for title
+				//------------------------------------------------------------
+				var tip = jQuery( this ).attr( 'title' );
 				if ( !tip || tip == '' ) {
 					return false;
 				}
-				target.removeAttr( 'title' );
-				tooltip.css( 'opacity', 0 ).html( tip ).appendTo( 'body' );
-				
-				var init_tooltip = function() {
-					if ( jQuery( window ).width() < tooltip.outerWidth() * 1.5 ) {
-						tooltip.css( 'max-width', jQuery( window ).width() / 2 );
-					}
-					else {
-						tooltip.css( 'max-width', 340 );
-					}
-					var pos_left = target.offset().left + ( target.outerWidth() / 2 ) - ( tooltip.outerWidth() / 2 );
-					var pos_top  = target.offset().top - tooltip.outerHeight() - 5;
-					if ( pos_left < 0 ) {
-						pos_left = target.offset().left + target.outerWidth() / 2 - 20;
-						tooltip.addClass( 'left' );
-					}
-					else {
-						tooltip.removeClass( 'left' );
-					}
-					if ( pos_left + tooltip.outerWidth() > jQuery( window ).width() ) {
-						pos_left = target.offset().left - tooltip.outerWidth() + target.outerWidth() / 2 + 20;
-						tooltip.addClass( 'right' );
-					}
-					else {
-						tooltip.removeClass( 'right' );
-					}
-					if ( pos_top < 0 ) {
-						var pos_top  = target.offset().top + target.outerHeight();
-						tooltip.addClass( 'top' );
-					}
-					else {
-						tooltip.removeClass( 'top' );
-					}
-					tooltip.css({ 
-						left: pos_left, 
-						top: pos_top 
-					});
-					tooltip.animate({
-						opacity: 1 
-					}, 50 );
-				};
-				init_tooltip();
-				jQuery( window ).resize( init_tooltip );
-				var remove_tooltip = function() {
-					tooltip.animate({ 
-						opacity: 0 
-					}, 50 );
-					target.attr( 'title', tip );
-				};
-				tooltip.bind( 'click touchstart', remove_tooltip );
+				//------------------------------------------------------------
+				//  Add the tooltip.
+				//------------------------------------------------------------
+				self.tooltip.css( 'opacity', 0 ).html( tip ).appendTo( 'body' );
+				//------------------------------------------------------------
+				//  Position it.
+				//------------------------------------------------------------
+				self.position();
 			});
-		};
+			//------------------------------------------------------------
+			//  Listen for events that require repositioning
+			//------------------------------------------------------------
+			jQuery( window ).resize( self.position() );
+			jQuery( self.root ).scroll( function() {
+				self.position() 
+			});
+		}
+		
+		Tooltipper.prototype.position = function() {
+			//------------------------------------------------------------
+			//  Only procceed if you have what you need.
+			//------------------------------------------------------------
+			if ( this.tooltip == undefined || this.target == undefined ) {
+				return;
+			}
+			//------------------------------------------------------------
+			//  Calculate the position of tooltip relative to the target.
+			//------------------------------------------------------------ 
+			if ( jQuery( window ).width() < this.tooltip.outerWidth() * 1.5 ) {
+				this.tooltip.css( 'max-width', jQuery( window ).width() / 2 );
+			}
+			else {
+				this.tooltip.css( 'max-width', 340 );
+			}
+			var pos_left = this.target.offset().left + ( this.target.outerWidth() / 2 ) - ( this.tooltip.outerWidth() / 2 );
+			var pos_top  = this.target.offset().top - this.tooltip.outerHeight() - 5;
+			if ( pos_left < 0 ) {
+				pos_left = this.target.offset().left + this.target.outerWidth() / 2 - 20;
+				this.tooltip.addClass( 'left' );
+			}
+			else {
+				this.tooltip.removeClass( 'left' );
+			}
+			if ( pos_left + this.tooltip.outerWidth() > jQuery( window ).width() ) {
+				pos_left = this.target.offset().left - this.tooltip.outerWidth() + this.target.outerWidth() / 2 + 20;
+				this.tooltip.addClass( 'right' );
+			}
+			else {
+				this.tooltip.removeClass( 'right' );
+			}
+			if ( pos_top < 0 ) {
+				var pos_top  = this.target.offset().top + this.target.outerHeight();
+				this.tooltip.addClass( 'top' );
+			}
+			else {
+				this.tooltip.removeClass( 'top' );
+			}
+			//------------------------------------------------------------
+			//  Position that tooltip!
+			//------------------------------------------------------------
+			this.tooltip.css({ 
+				left: pos_left, 
+				top: pos_top 
+			});
+			this.tooltip.animate({
+				opacity: 1 
+			}, 50 );
+		}
 		
 		/**
 		 * When the document is ready start it up.
