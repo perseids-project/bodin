@@ -1,8 +1,8 @@
 <html>
 	<head>
 		<!-- Load CSS -->
-		<link href="../src/css/bodin.css" rel="stylesheet" type="text/css" />
 		<!-- End Load CSS -->
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
 		<title>bodin</title>
 		<style type="text/css">
 			.TeiToBodin {
@@ -13,9 +13,12 @@
 				background-color: #222;
 				width: 100%;
 				box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
 				display: block;
 				float: left;
 				margin: 0;
+				height: 100%;
 			}
 			.TeiToBodin .navMenu {}
 			.TeiToBodin a.note {
@@ -41,11 +44,13 @@
 				padding: 60px 30px 120px 30px;
 			}
 			#tooltipper {
+				text-decoration: none;
+				display: block;
 				text-align: center;
 				color: #fff;
 				background: #111;
 				position: absolute;
-				z-index: 100;
+				z-index: 9999;
 				padding: 15px;
 			}
 			#tooltipper:after {
@@ -194,15 +199,7 @@
 		 */
 		TeiToBodin.prototype.events = function() {
 			var self = this;
-			self.noteClick();
 			self.sizeCheck();
-		}
-		
-		TeiToBodin.prototype.noteClick = function() {
-			jQuery( 'note' ).click( function( _e ) {
-				var i = jQuery( this ).text()
-				console.log(  this.notes[i] );
-			})
 		}
 		
 		/**
@@ -342,7 +339,7 @@
 		
 		function Tooltipper( _root ) {
 			this.root = _root;
-			this.tooltip = jQuery( '<div id="tooltipper"></div>' );
+			this.tooltip = jQuery( '<a href="#" id="tooltipper"></a>' );
 			this.start();
 			this.target = null;
 		}
@@ -352,16 +349,21 @@
 			//------------------------------------------------------------
 			//  Click listener
 			//------------------------------------------------------------
-			jQuery( self.root + ' [rel~=tooltip]' ).bind( 'touchstart click', function( _e ) {
+			jQuery( self.root + ' [rel~=tooltip]' ).on( 'touchstart click', function( _e ) {
+				console.log( 'clicked' );
 				_e.preventDefault;
 				//------------------------------------------------------------
 				//  Store reference to clicked element.
 				//------------------------------------------------------------
-				self.target = jQuery(this);
+				var clicked = jQuery(this);
+				if ( self.target === clicked ) {
+					return;
+				}
+				self.target = clicked;
 				//------------------------------------------------------------
 				//  Remove existing tooltip
 				//------------------------------------------------------------
-				jQuery( self.root+' #tooltipper' ).remove();
+				self.remove();
 				//------------------------------------------------------------
 				//  Check for title
 				//------------------------------------------------------------
@@ -372,7 +374,10 @@
 				//------------------------------------------------------------
 				//  Add the tooltip.
 				//------------------------------------------------------------
-				self.tooltip.css( 'opacity', 0 ).html( tip ).appendTo( 'body' );
+				self.tooltip.html( tip );
+				self.tooltip.appendTo( 'body' );
+				self.tooltip.css( 'opacity', 0 );
+				console.dir( self.tooltip );
 				//------------------------------------------------------------
 				//  Position it.
 				//------------------------------------------------------------
@@ -381,10 +386,31 @@
 			//------------------------------------------------------------
 			//  Listen for events that require repositioning
 			//------------------------------------------------------------
-			jQuery( window ).resize( self.position() );
-			jQuery( self.root ).scroll( function() {
-				self.position() 
+			jQuery( window ).resize( function(){ self.position() });
+			jQuery( self.root ).scroll( function(){ self.position() });
+			//------------------------------------------------------------
+			//  Listen for close click.
+			//------------------------------------------------------------
+			self.closeClick();
+		}
+		Tooltipper.prototype.closeClick = function() {
+			var self = this;
+			jQuery( self.root ).on( 'touchstart click', function( _e ) {
+				_e.preventDefault();
+				if ( self.target == null ) {
+					return;
+				}
+				//------------------------------------------------------------
+				//  Ignore clicks on same target
+				//------------------------------------------------------------
+				if ( _e.originalEvent.srcElement === self.target[0] ) {
+					return;
+				}
+				self.remove();
 			});
+		}
+		Tooltipper.prototype.remove = function() {
+			this.tooltip.remove();
 		}
 		
 		Tooltipper.prototype.position = function() {
