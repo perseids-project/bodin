@@ -18,7 +18,6 @@
 				display: block;
 				float: left;
 				margin: 0;
-				height: 100%;
 			}
 			.TeiToBodin .navMenu {}
 			.TeiToBodin a.note {
@@ -40,7 +39,7 @@
 				margin-left: auto;
 				margin-right: auto;
 			}
-			.TeiToBodin.slim .page{
+			.TeiToBodin.slim .page {
 				padding: 60px 30px 120px 30px;
 			}
 			#tooltipper {
@@ -83,7 +82,6 @@
 		</style>
 	<head>
 	<body>
-		<div class="TeiToBodin" id="bodin_french"></div>
 		<div class="TeiToBodin" id="bodin_latin"></div>
 		<div class="TeiToBodin" id="bodin_english"></div>
 	</body>
@@ -95,7 +93,12 @@
 	<script src="../third_party/jslib/src/js/StringExt.js"></script>
 	<script src="../third_party/jslib/src/js/DomPlus.js"></script>
 	
-	<script type="text/javascript"> 
+	<script type="text/javascript">
+		/**
+		 * Align bodin texts
+		 */
+		function BodinAligner( _url  ) {}
+		
 		/**
 		 * Takes TEI xml and creates HTML useable by the bodin plugin
 		 *
@@ -106,14 +109,13 @@
 		 */
 		function TeiToBodin( _url, _id ) {
 			this.config = {
-				timeout: 10 // seconds
+				timeout: 10, // seconds
+				xslUrl: "xslt/bodin.xsl"
 			};
 			this.url = _url;
 			this.id = _id;
-			this.xml = null;  // TEI xml retrieved
-			this.json = {};	  // json created from TEI xml
-			this.html = null; // html created from this.json
-			this.notes = [];  // notes
+			this.tei = null;  // TEI xml retrieved
+			this.xsl = null;  // xsl retrieved
 			//------------------------------------------------------------
 			//	Check number of instances
 			//------------------------------------------------------------
@@ -128,7 +130,7 @@
 			//------------------------------------------------------------
 			//	Get the TEI XML
 			//------------------------------------------------------------
-			this.getXml();
+			this.getTei();
 		}
 		
 		/**
@@ -163,7 +165,7 @@
 		/**
 		 * Retrieve TEI xml from a URL
 		 */
-		TeiToBodin.prototype.getXml = function() {
+		TeiToBodin.prototype.getTei = function() {
 			var self = this;
 			jQuery.ajax({
 				url: self.url,
@@ -171,14 +173,32 @@
 				timeout: self.config.timeout*1000,
 				dataType: 'xml',
 				success: function( _data ) {
-					self.xml = _data;
-					self.start();
+					self.tei = _data;
+					self.getXsl();
 				},
 				error: function( _error ) {
-					console.log( 'Error' );
+					console.log( 'Error getXml' );
 					console.log( _error );
 				}
 			});
+		}
+		
+		TeiToBodin.prototype.getXsl = function() {
+			var self = this;
+			jQuery.ajax({
+				url: self.config.xslUrl,
+				type: 'get',
+				timeout: self.config.timeout*1000,
+				dataType: 'xml',
+				success: function( _data ) {
+					self.xsl = _data;
+					self.start();
+				},
+				error: function( _error ) {
+					console.log( 'Error getXsl');
+					console.log( _error );
+				}
+			})
 		}
 		
 		/**
@@ -189,7 +209,7 @@
 			this.events();
 			//------------------------------------------------------------
 			//  Start tooltips
-			//  Pass along the parent "overflow-y: scroll" element.
+			//  Pass along to the parent "overflow-y: scroll" element.
 			//------------------------------------------------------------
 			new Tooltipper( '#'+this.id+' .work' );
 		}
@@ -198,142 +218,18 @@
 		 * Start UI event listeners
 		 */
 		TeiToBodin.prototype.events = function() {
-			var self = this;
-			self.sizeCheck();
+			this.sizeCheck();
 		}
 		
 		/**
 		 * Takes TEI xml and creates HTML useable by the bodin plugin
 		 */
 		TeiToBodin.prototype.toHtml = function() {
-			//------------------------------------------------------------
-			// Extract notes
-			//------------------------------------------------------------
-			this.getNotes();
-			//------------------------------------------------------------
-			//	Get editions books and pages from the main text
-			//------------------------------------------------------------
-			this.getBody();
-			//------------------------------------------------------------
-			//	Get publication info
-			//------------------------------------------------------------
-			this.getPub();
-			//------------------------------------------------------------
-			//	Convert your JSON object to HTML
-			//------------------------------------------------------------
-			this.jsonToHtml();
-		}
-		
-		/**
-		 * Extract publication information from XML
-		 */
-		TeiToBodin.prototype.getPub = function() {
-			var pub = this.xml.getElementsByTagName("fileDesc")[0];
-		}
-		
-		/**
-		 * Turn your relatively clean JSON into Bodin Formatted HTML
-		 */
-		TeiToBodin.prototype.jsonToHtml = function() {
-			jQuery( '#'+this.id ).append('<div class="work"></div>');
-			var work = '#'+this.id+' .work';
-			//------------------------------------------------------------
-			//	Editions
-			//------------------------------------------------------------
-			for ( var i=0, ii=this.json['editions'].length; i<ii; i++ ) {
-				var edition = this.id+'-edition-'+i;
-				jQuery( work ).append('<div id="'+edition+'" class="edition"></div>');
-				//------------------------------------------------------------
-				//	Books
-				//------------------------------------------------------------
-				for ( var j=0, jj=this.json['editions'][i]['books'].length; j<jj; j++ ) {
-					var book = edition+'-book-'+j;
-					jQuery( '#'+edition ).append('<div id="'+book+'" class="book"></div>');
-					//------------------------------------------------------------
-					//	Chapters
-					//------------------------------------------------------------
-					for ( var k=0, kk=this.json['editions'][i]['books'][j]['chapters'].length; k<kk; k++ ) {
-						var chapter = book+'-chapter-'+k;
-						jQuery( '#'+book ).append('<div id="'+chapter+'" class="chapter"></div>');
-						//------------------------------------------------------------
-						//	Pages
-						//------------------------------------------------------------
-						for ( var m=0, mm=this.json['editions'][i]['books'][j]['chapters'][k]['pages'].length; m<mm; m++ ) {
-							var page = chapter+'-page-'+m;
-							var text = this.json['editions'][i]['books'][j]['chapters'][k]['pages'][m];
-							jQuery( '#'+chapter ).append('<div id="'+page+'" class="page">'+text+'</div>');
-						}
-					}
-				}
-			}
-		}
-		
-		/**
-		 * Extract editions, books, and chapters from the main text body
-		 */
-		TeiToBodin.prototype.getBody = function() {
-			var text = this.xml.getElementsByTagName("text")[0];
-			this.json['editions'] = [];
-			var editions = DomPlus.getByAttrValue( text, 'type', 'edition', 'div' );
-			//------------------------------------------------------------
-			//	Find editions
-			//------------------------------------------------------------
-			for ( var i=0, ii=editions.length; i<ii; i++ ) {
-				this.json['editions'][i] = {};
-				var books = DomPlus.getByAttrValue( editions[i], 'subtype', 'book', 'div' );
-				//------------------------------------------------------------
-				//	Find books
-				//------------------------------------------------------------
-				this.json['editions'][i]['books'] = [];
-				for ( var j=0, jj=books.length; j<jj; j++ ) {
-					this.json['editions'][i]['books'][j] = {};
-					var chapters = DomPlus.getByAttrValue( books[j], 'subtype', 'chapter', 'div' );
-					//------------------------------------------------------------
-					//	Record the book title
-					//------------------------------------------------------------
-					this.json['editions'][i]['books'][j]['head'] = books[j].getElementsByTagName("head")[0];
-					//------------------------------------------------------------
-					//	Find chapters
-					//------------------------------------------------------------
-					this.json['editions'][i]['books'][j]['chapters'] = [];
-					for ( var k=0, kk=chapters.length; k<kk; k++ ) {
-						//------------------------------------------------------------
-						//	Get chapter title
-						//------------------------------------------------------------
-						this.json['editions'][i]['books'][j]['chapters'][k] = {};
-						this.json['editions'][i]['books'][j]['chapters'][k]['head'] = chapters[k].getElementsByTagName("head")[0];
-						//------------------------------------------------------------
-						//	Get pages
-						//------------------------------------------------------------
-						var pages = chapters[k].ownerElement.innerHTML.split( /<pb.*\/>/ ); // not sure if this split is too aggressive.
-						this.json['editions'][i]['books'][j]['chapters'][k]['pages'] = pages;
-					}
-				}
-			}
-		}
-		
-		/**
-		 * Extract note tags
-		 */
-		TeiToBodin.prototype.getNotes = function() {
-			var noteXml = this.xml.getElementsByTagName("note");
-			var i=noteXml.length-1;
-			while ( i>=0 ) {
-				//------------------------------------------------------------
-				//  Pull the notes HTML out.
-				//------------------------------------------------------------
-				this.notes[i] = noteXml[i].innerHTML;
-				//------------------------------------------------------------
-				//  Change notes to anchor tags.
-				//------------------------------------------------------------
-				noteXml[i].innerHTML = i+1;
-				noteXml[i].setAttribute( 'href', '#'+(i+1) );
-				noteXml[i].setAttribute( 'title', this.notes[i].smoosh() );
-				noteXml[i].setAttribute( 'class', 'note' );
-				noteXml[i].setAttribute( 'rel', 'tooltip' );
-				noteXml[i] = DomPlus.tagChange( noteXml[i], "a" );
-				i--;
-			}
+			var xslt = new XSLTProcessor();
+			xslt.importStylesheet( this.xsl );
+			this.bodinHtml = xslt.transformToFragment( this.tei, document );
+			console.dir( this.bodinHtml );
+			jQuery( '#'+this.id ).append( this.bodinHtml );
 		}
 		
 		
@@ -350,7 +246,6 @@
 			//  Click listener
 			//------------------------------------------------------------
 			jQuery( self.root + ' [rel~=tooltip]' ).on( 'touchstart click', function( _e ) {
-				console.log( 'clicked' );
 				_e.preventDefault;
 				//------------------------------------------------------------
 				//  Store reference to clicked element.
@@ -377,7 +272,6 @@
 				self.tooltip.html( tip );
 				self.tooltip.appendTo( 'body' );
 				self.tooltip.css( 'opacity', 0 );
-				console.dir( self.tooltip );
 				//------------------------------------------------------------
 				//  Position it.
 				//------------------------------------------------------------
@@ -468,8 +362,8 @@
 		 * When the document is ready start it up.
 		 */
 		jQuery( document ).ready( function() {
-			new TeiToBodin( 'xml/bodin_french.xml', 'bodin_french' );
-			new TeiToBodin( 'xml/bodin_french.xml', 'bodin_latin' );
+			new TeiToBodin( 'xml/passage.xml', 'bodin_latin' );
+			//new TeiToBodin( 'xml/english_translation.xml', 'bodin_english' );
 			// new TeiToBodin( 'xml/bodin_french.xml', 'bodin_english' );
 		});
 	</script>
