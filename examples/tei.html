@@ -305,7 +305,7 @@
 						//------------------------------------------------------------
 						//	Get pages
 						//------------------------------------------------------------
-						var pages = chapters[k].innerHTML.split( /<pb.*\/>/ ); // not sure if this split is too aggressive.
+						var pages = chapters[k].ownerElement.innerHTML.split( /<pb.*\/>/ ); // not sure if this split is too aggressive.
 						this.json['editions'][i]['books'][j]['chapters'][k]['pages'] = pages;
 					}
 				}

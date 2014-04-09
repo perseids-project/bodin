@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:oac="http://www.openannotation.org/ns/" xmlns:cnt="http://www.w3.org/2008/content#">
+  <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/984/1360/1509/139/2">
+    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1360/urn:cts:pdlpsci:bodin.livrep.perseus-lat1:1.1@At[2]-est[15]"/>
+    <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1642/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@Which[3]-together[6]"/>
+    <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="oa:linking_translation"/>
+    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
+      <Person xmlns="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/sosol/users/ClintPorte"/>
+    </annotatedBy>
+    <serializedBy xmlns="http://www.w3.org/ns/oa#">
+      <SoftwareAgent xmlns="http://www.w3.org/ns/prov#" rdf:about="http://perseids.org/perseids-annotator#0.0.1"/>
+    </serializedBy>
+    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-04-03T02:59:41+00:00</annotatedAt>
+  </Annotation>
+</rdf:RDF>

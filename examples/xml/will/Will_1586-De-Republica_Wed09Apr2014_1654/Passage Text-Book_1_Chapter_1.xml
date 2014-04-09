@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+   <text xml:lang="lat">
+                    <body>
+                        <div type="edition" xml:space="preserve">
+                            <div n="1" type="textpart" subtype="book">
+                                <div n="1" type="textpart" subtype="chapter">
+                                    <head>
+                                        <hi rend="italic">
+                                            <choice>
+                                                <sic>CAPVT</sic>
+                                                <corr/>
+                        </choice>. I</hi>? Quis optimus sit <choice>
+                                            <sic>Reipublicae</sic>
+                                            <corr/>
+                     </choice> finis.</head>
+                                    <pb n="1"/>
+                                    <p>
+                     Respvblica est familiarum rerúmque inter ipsas communium summa potestate ac ratione moderata multitudo. Definitionem, ab iis qui de Republica scripserunt prætermissam, principio posuimus: quoniam artium tradendarum, ac rerum omnium agendarum ex,remum intueri prius oportet, quàm quid aliud differatur: deinde, comperto &amp; explorato fine,<milestone n="C" unit="unspec"/>aditus inuestigare, quibus eo perueniri possit. Est autem definitio nihil aliud, quàm rei propositae finis, qui nisi firmo ac stabili fundamento nititur, quaecumque super exstruas, vno 
+                     ruitura sunt &amp; eodem momento. Plerisque tamen vsuuenit, vt, certis finibus propositis, eum quem concupierunt rerum exitum non assequantur: vt neque is, qui scopo sibi ad feriendum proposito malè arcum intendit. Sed si quis artem adhibuerit, &amp; argutè conlineare volet, etiam si aliquantùm aberrauerit àscopò propius tamen aberit, quam ille: nec boni artificis laude carebit, si quæ optimus sagittarius facturus esset, ea ipsa fecerit. At qui rerum agendarum finem ignorat, eius adipiscendi spes æqua est illi adempta vt eis scepum
+                     <milestone n="D" unit="unspec"/>feriendi, qui telum: incertus quò iaculetur, emittit. Finem igitur a definitionis propositæ membra singula suis ponderibus exigamus. Primum Rempublicam diximus ratione moderatam esse oportere: quia Reipublicae nomen sanctum est, vt ab ea latronum ac piratarum caetus arceantur, quibuscum nulla contractuum fides, nulla iuris societas esse debet, sed summa distractio. Et quidem in omnibus bene ac prudenter constitutis ciuitatibus, seu de fide ac publica securitate seruanda, seu de fœderibus ineundis, seu de bello inferendo, seu de finibus imperij regendis, seu de controuersiis principum inter ipsos dirimendis agatur, latrones ac piratæ ab omni iure faeciali procul summouentur. Iustos enim ac legitimos<note place="marg">hostes. de <choice>
+                                                <sic>verb</sic>
+                                                <corr/>
+                        </choice>. <choice>
+                                                <sic>signif</sic>
+                                                <corr/>
+                        </choice>.</note>hostes, qui respublicas suis quibusdam legibus ac iure gentium communi moderantur, seiunxerunt ab istis, qui Rerum publicarum &amp; ciuilis societatis euersionem moliuntur. Quamobrem si latronibus pactum<pb n="2"/>pro capite pretium non afferatur nulla fraus est: quando iura belli cum illis communicari nec debent: nec iisdem frui legibus,quibus hostes captiui aut liberi fruuntur. Quinetiam à prædonibus captum nec libertatem amittere<note place="marg">
+                                            <choice>
+                                                <sic>l</sic>
+                                                <corr/>
+                        </choice>.postliminium de captiuis.</note>, &amp; testamentum condere<note place="marg">
+                                            <choice>
+                                                <sic>l</sic>
+                                                <corr/>
+                        </choice>.<choice>
+                                                <sic>j</sic>
+                                                <corr/>
+                        </choice>.de legat <choice>
+                                                <sic>2</sic>
+                                                <corr/>
+                        </choice>.</note>, omnésque actus legitimos obire leges patiuntur: quæ tamen ab hostibus captis<note place="marg">
+                                            <choice>
+                                                <sic>l</sic>
+                                                <corr/>
+                        </choice>. eius qui à latronibus. de testamentis.</note>olim non licuissent: propterea quòd iure gentium, qui in hostium manus venerat, vnà cum libertate eam quoque, quam in suos haberet potestatem<note place="marg">
+                                            <choice>
+                                                <sic>l</sic>
+                                                <corr/>
+                        </choice>. in bello.de captiuis.</note>amittebat. Ac si quāndo depositum, pignus,commodatum latronibus reddi, ac de possessione quantumuis iniusta vi deiectos restitui lex<note place="marg">
+                                            <choice>
+                                                <sic>l</sic>
+                                                <corr/>
+                        </choice>. si pignore. <choice>
+                                                <sic>§</sic>
+                                                <corr/>
+                        </choice>.si prædo.de actio <choice>
+                                                <sic>pig</sic>
+                                                <corr/>
+                        </choice>.<choice>
+                                                <sic>l</sic>
+                                                <corr/>
+                        </choice>. <choice>
+                                                <sic>j</sic>
+                                                <corr/>
+                        </choice>.<choice>
+                                                <sic>§</sic>
+                                                <corr/>
+                        </choice>. si <choice>
+                                                <sic>predo</sic>
+                                                <corr/>
+                        </choice>.<choice>
+                                                <sic>l</sic>
+                                                <corr/>
+                        </choice>. bona fides depositi.<choice>
+                                                <sic>l</sic>
+                                                <corr/>
+                        </choice>.ita vt si fur vel prædo.<choice>
+                                                <sic>commod</sic>
+                                                <corr/>
+                        </choice>.</note>iubet, non tam latronum ac prædonum gratiæ fit illud, quàm vt pœnæ ab iis exigantur, qui depositum eiurauerunt, aut qui amissam rerum suarum possessionem,<milestone n="B" unit="unspec"/>qua iure à magistratu debuissent, vi recuperare maluerunt:aut quia praedonum, qui vocati vel inuocati in ius veniunt,&amp; magistratuum imperia sponte subeunt,rationem in iudiciis haberi æquum est, cùm eo ipso iam desierint esse prædones. cuius rei cum exempla deesse possunt nemini: tum verò nullum est illustrius: quàm de Augusto Caesare
+                     <note place="marg">
+                        Dio.lib.<choice>
+                                                <sic>56</sic>
+                                                <corr/>
+                        </choice>.</note>,qui decies sestertium edicto promiserat iis, qui Coracotam latronum in Hispania ducem ad se deduceret. Coracotas, re intellecta, seipsum Augusto sponte obtulit, ac præmium ex edicto poposcit. Augustus &amp; veniam illi, &amp; pactum præmium dari iussit, ne aut mercede promissa vitam eripuisse, aut publicam securitatem violasse videretur aduersus eum, qui sponte seipsum iudicio stiterat,tametsi iure damnare ac supplicio latronem affice-<milestone n="C" unit="unspec"/>-re potuisset. Alioqui, si erga latrones eodem iure, quo aduersus hostes, vtamur, verendum sit, ne perditorum hominum multitudinem &amp; 
+                     colluuiem 
+                     vndique arcessere velle videamur: qui cum prædonibus capitali fraude e sociati ad bonorum exitium conspirent.Interdum tamen ex prædone regem optimum exstitisse, &amp; qui pirata omnium maximus antea fuisset, in bonum principem euasisse legimus. certè quidem multi grassatores regum appellatione digniores habiti sunt, quàm eorum plerique, qui regalia sceptra tenent, qui suæ diritatis ac immanitatis probabilem causam nullam habent. Id enim Alexandro Magno probrum obiecit Demetrius pirata, cum diceret se nihil præter piraticam didicisse, nec aliud quicquam de paterna haereditate creuisse, præter duos Myoparo-<milestone n="D" unit="unspec"/>-nes: Alexandrum vero,qui piraticam in Demetrio improbaret,cum exercitu potentissimo terra maríque impunè latrocinari, tametsi à patre regnum Macedoniae florentissimum accepisset. quæ certè oratio Alexandrum non ad vltionem acceptæ contumeliæ, sed ad commiserationem adeo permouit, vt 
+                     Demetrium legioni præficeret. Ac ne longius exempla petantur, ætate nostra Sulimanus 
+                     Turcarum rex Ariadenum 
+                     AEnobarbum, Dragutum, Ochialam piratarum omnium potentissimos, maximis propositis præmiis ad se pellexit, &amp; classibus ac maris imperio præfecit, <choice>
+                                            <sic>vt&amp;</sic>
+                                            <corr/>
+                     </choice> eorum opibus suum imperium confirmaret,&amp; piratarum copias toto mari grassantes frangeret ac debilitaret. His quidem illecebris prædonum duces ad sanitatum perducere laudabile est, ne extrema desperatione coacti in Rerumpublicarum status inuadant, sed <choice>
+                                            <sic>po</sic>
+                                            <corr/>
+                     </choice>-<pb n="3"/>
+                                        <choice>
+                                            <sic>tius</sic>
+                                            <corr/>
+                     </choice> latronum copias ipsi euertant, qui tametsi amicitiam ac societatem colere videantur,ac spolia ex æquo diuidant,vt fertur de Bargulo 
+                     &amp; Viriato piratarum ducibus:ita tamen sceleratæ consensionis fides sanctum amicitiae nomen respuit : ac ne spoliorum quidem diuisio legitima, sed latrocinium dici debet:<note place="marg">
+                                            <choice>
+                                                <sic>l</sic>
+                                                <corr/>
+                        </choice>.communi.<choice>
+                                                <sic>§</sic>
+                                                <corr/>
+                        </choice> inter prædonis <choice>
+                                                <sic>commum</sic>
+                                                <corr/>
+                        </choice> diuidundo.</note>cùm societatis &amp; amicitiæ fundamenta,quae in certa naturæque consentanea ratione posita sunt, latronibus omnino desint. Quamobrem Respublicas appellāt<note>
+                        Cicero 
+                        &amp; 
+                        Aristoteles in politicis.</note>hominum caetus benè beatéque viuendi causa sociatos. quæ descriptio vt ciuitati conueniat, definitioni tamen inseruire omnino non potest: quoniam altera sui parte redundat, altera parte deseritur: cùm tria,quæ in omni Republica <choice>
+                                            <sic>potissi</sic>
+                                            <corr/>
+                     </choice>-<milestone n="B" unit="unspec"/>-<choice>
+                                            <sic>ma</sic>
+                                            <corr/>
+                     </choice> iudicantur, familia, inquam, summa imperandi potestas, &amp; ea quæ ciuitatis communia sunt, huic descriptioni desint. Nam illud beatè viuere,si ad ciuitatis definitionem necessarium esse demus, nullus sit nisi cum summa rerum omnium affluentia virtuti locus : nec honesta ciuitatas, nisi placido mari secundis conspirantium ventorum flatibus impulsa feratur: &amp; cum horribiles illam procellæ ac turbinum vis agitauerit misera censeatur: quæ disciplina omnibus est omnium theologorum ac philosophorum præceptis aliena. Hi enim iustos,etiam si omnes fortunæ acerbitates excipiāt, semper beatos:iniustos etiam in maximis prosperitatibus secundísq; rebus infoelicissimos esse iudicant. sic etiam Rempublicam bene institutam dicemus,quæ ad verum decus &amp; honestatē dirigetur: etiam<milestone n="C" unit="unspec"/>si prematur inopia, si ab hostibus obsessa,si ab amicis deserta, si denique omni genere calamitatum obtrua videatur: quo in statu Massiliam, cum triumphatum est à Caio Caesare,M.. Tullius fuisse confitetur:quam tamen rerum omnium publicarum laudatissimam appellat, quis vero ciuitatem, quæ solo fertili sit &amp; 
+                     vbere locuples, hominum multitudine abundans, amicis carissima,hostibus formidabilis, armorum vi potens,propugnaculis bene munita, præclarè institutam putet, si omni scelerum ac flagitiorum immanitate cumulata fuerit? cum nulla virtutum capitalior pestis esse possit, quam beate illa &amp; affluens ad cupiditates explendas rerum copia, quam eum honestate coniugare non minùs difficile est, quàm quæ maximè inter se contraria sunt. Quoniam igitur cæteris quidem rebus &amp; carere<milestone n="D" unit="unspec"/>sine probro,&amp; abundare sine laude possumus: virtutibus autem sine contumelia vacare, aut vitiis inquinari sine infamia non possumus, consequens est ea,quæ beatiorem vitam efficere putantur, opes, inquam,copias, latifundia, bene constitutis ciuitatibus necessaria non esse: sed altius intuentem quàm proximè fieri poterit ab optimo statu discedere oportet: siquidem ciuitatum æquè ac rerum omnium dignitaté ac præstantiam bonorum finibus metimur: vt quanto finis cuiusque ciuitatis præstantior ac diuinior erit, tanto ipsa cæteris excellere iudicetur. Nec tamen Rempublicam idearum sola notione terminare decreuimus, qualem Plato, qualem etiam Thomas 
+                     Maurus inani opinione sibi finxerunt: sed optimas quasque ciuitatum florentissimarum leges, quantum quidem fieri poterit,proximè consequemur. Quod si eadem est vnius ciuis, quæ totius ciuitatis foelicitas, &amp; 
+                     vtriusque summum bonum in iis <choice>
+                                            <sic>posi</sic>
+                                            <corr/>
+                     </choice>-<pb n="4"/>tum virtutibus,quæ mentis ipsius propriæ sunt,quæque in sola contemplatione versantur, vt summa consensione asseuerant<note place="marg">
+                                            <choice>
+                                                <sic>Aristot</sic>
+                                                <corr/>
+                        </choice>. Lib.<choice>
+                                                <sic>7</sic>
+                                                <corr/>
+                        </choice>.<choice>
+                                                <sic>c</sic>
+                                                <corr/>
+                        </choice>.<choice>
+                                                <sic>3&amp;</sic>
+                                                <corr/>
+                        </choice> in polit.lib.<choice>
+                                                <sic>10</sic>
+                                                <corr/>
+                        </choice>. ethi. <choice>
+                                                <sic>Nicomachi</sic>
+                                                <corr/>
+                        </choice>.</note>qui cæteris sapientia excellere dicuntur: consequens est illud quoque,ciues illos vera foelicitate frui,qui in rerum naturalium,humanarum,ac diuinarum suauissima cognitione exercentur,quique contemplationis suæ fructus præpotenti Deo,totius naturæ principi,ferunt acceptos. Hoc igitur bonorum extremum in singulis statuentes, cur non etiam vniuersorum ac totius Reipublicae summum <choice>
+                                            <sic>vltimúmque</sic>
+                                            <corr/>
+                     </choice> finem esse concedemus<note place="marg">
+                                            <choice>
+                                                <sic>Aristot</sic>
+                                                <corr/>
+                        </choice>. In politicis eundem singulorum &amp; ciuitatis finem statuit.</note>? Sed occurritur ciuitatum moderatores plurimum in eo genere à se ipsis dissentire,cum suis quisque cupiditatibus foelicitatem metiatur: &amp; quorum de summo bono disciplinæ inter se consentiunt,non tamen boni viri ac<milestone n="B" unit="unspec"/>boni ciuis, nec singulorum eundem quem vniuersorum finem statuunt. Hinc existit tanta legum,ac morum pro cuiusque principis arbitrio ac voluntate diuersitas. Plerisque sordida hominum vita putatur, si studia necessitaté tantum, non etiam voluptatibus &amp; ornatu dirigantur : miserum, inquam, arbitrantur casis fragmine contectis &amp; angustis tuguriis aut gurgustiis cæli iniurias arcere. Sed quoniam vir sapiēs iusti &amp; iniusti, veri &amp; falsi quodammodo lex est, ac veluti norma quædam inflexibilis: qui autem iustitia caeteris ac sapientia excellere putantur, eandem singulorum ac vniuersorum 
+                     <choice>
+                                            <sic>fœlicitatem</sic>
+                                            <corr/>
+                     </choice> statuunt, nos boni viri ac boni ciuis differentia sublata, summum bonum singulorum æquè ac vniuersitatis totius ea quam diximus pulcherrima suauissimáque sublimium re-<milestone n="C" unit="unspec"/>-rum contemplatione metiamur.Aristoteles enim popularem opinionem interdum secutus anceps in summo bono finiendo nec suorum dogmatum constantiam ac conuenientiam tueri videtur: quippe qui virtutis actionibus opes ac robur copulare necesse putat : cùm tamen subtilius eo de genere disputaret summum hominis extremúmque bonum in contemplatione collocauit<note place="marg">lib.10. <choice>
+                                                <sic>ethic</sic>
+                                                <corr/>
+                        </choice>. &amp; 
+                        <choice>
+                                                <sic>7</sic>
+                                                <corr/>
+                        </choice>.polit.</note>At M.. <choice>
+                                            <sic>Varro</sic>
+                                            <corr/>
+                     </choice> superiorem opinionem minuens humanam <choice>
+                                            <sic>fœlicitatem</sic>
+                                            <corr/>
+                     </choice> actione &amp; contemplatione complexus est, cuius hæc ratio videri possit, quod rerum simplicium beatitas simplex est:mistarum verò , quæ duabus ex rebus conflatæ sunt, duplex esse videatur. nam corporis opes in robore, alacritate, decentíque membrorum omnium- <choice>
+                                            <sic>nium</sic>
+                                            <corr/>
+                     </choice> conformatione: animi bona,id est eius facultatis,quæ corpori cohaeret-<milestone n="D" unit="unspec"/>-hæret in cupiditatum erga rationem obsequio versatur:mentis verò ipsius bonum in intelligendi virtutibus, prudentia, inquam, scientia,religione consistit: vt prudentia ad res humanas, scientia ad naturae inspectionem,religione ad res diuinas præclarè vtatur:quarum virtutum prima quidem boni &amp; mali: secunda veri &amp; falsi : tertia pietatis &amp; impietatis discrimen intuetur:&amp;,quid omnino expetendum sit aut declinandum, continent. porro ex his tribus virtutibus existit vera sapientia qua nihil est hominum generi præstantius ab immortali Deo tributum: quia non modò furtis eripi,aut incendio absumi,aut naufragio absorberi non potest:verumetiam homines cæteris rebus destitutos ac desertos beare per seipsa potest: non tantum singulos, sedetiam 
+                     vniuersos. beatior tamen futura ciuitas est, quæ his aucta virtutibus,fundos habuerit vbertate fertiles,<pb n="5"/>aut quantum satis est ad ciuium alimenta:eaque sit aquarum ac spirabilis cæli temperatio, vt salubriter viui possit, tum etiam materies ad exstruendas arces ac domos idonea: nisi regio satis ad vim hostium, &amp; ad iniurias cæli propulsandas per se ipsa tuta sit ac munita . Hæc primordia sunt nascentis Reipublicae, vt scilicet ea,parentur,sine quibus viui nullo modo possit:deinde quærantur ea,quibus commodius viuitur:vt medicamenta ad morborum curationem: metalla quibus instrumenta opificibus armáque militibus necessaria conflari possint, non tantùm ad repellendos,verumetiam ad vlciscendos hostes ac latrones. Iam verò cum inexplebiles sint hominum cupiditates, postea quàm parta sunt ea, quæ<milestone n="B" unit="unspec"/>necessaria, quæque vtilia putantur, deliciis etiam affluere, ac voluptates inanes consectari libet,vt 
+                     suauius viui <choice>
+                                            <sic>incundiúsque</sic>
+                                            <corr/>
+                     </choice> possit. Et quemadmodum nullam instituendorum liberorum curam habemus, priusquam idonea educatione corporis incrementa consecuti rationis &amp; orationis capaces videantur: ita quoque de conformandis moribus, déque naturalium ac diuinarum rerum peruestigatione ciuitates non ante curam habent,quàm ea,quæ ad ciues alendos ac tuendos necessaria sunt, conquirant: sed mediocri prudentia contentae sunt ad hostes propulsandos, &amp; ab iniuria ciues continendos. Is autem,qui adeptus est omnia quæ ad vitam securè ac beatè degendam commoda videntur, si bene est à natura,melius etiam à doctrina informatus, à flagitiosis &amp; consceleratis hominum<milestone n="C" unit="unspec"/>
+                                        <choice>
+                                            <sic>cætibus</sic>
+                                            <corr/>
+                     </choice> abhorret, ac bonorum consortium &amp; amicitiam consectatur: deinde cùm ab iis perturbationibus, quæ métem de sanitate deturbant, sese liberum <choice>
+                                            <sic>&amp;vacuum</sic>
+                                            <corr/>
+                     </choice> senserit ,nec in præmiis caducis spem posuerit rerum suarum, certè casus humanos &amp; inconstantiam variósque mores, ætates, conditiones intuetur : alios quidem in summo potestatis &amp; imperii gradu,alios in extrema calamitate &amp; inopia constitutos:tum vicissitudines,ortus,obitúsque rerum publicarum studiosè contemplatur,&amp; antecessiones consequentibus coniungit. pòst à rebus humanis ad naturæ pulchritudinem conuersus,seipsum in contemplanda stirpium , animantium, metallorum varietate oblectat, &amp; 
+                     vniuscuiusque formam, vires,præstantiam,atque adeò elementorum vices alternas, ac singularem<milestone n="D" unit="unspec"/>in rebus omnibus antipathiam &amp; contagionem, causarúmque mirabilem seriem &amp; consensionem, qua primis extrema, media vtrisque, omnia omnibus cohærere videt,<choice>
+                                            <sic>&amp;vnde</sic>
+                                            <corr/>
+                     </choice> singula generata sint, quò recurrant, quando, quomodò obitura, quid in iis mortale &amp; caducum, quid immortale sit ac sempiternum : ac paulatim in cælum veluti pérnicibus alis abreptus, clarissimorum fiderum splendorem, cœlestiúmque corporum vires,situs,interualla,cursus inæquales, ac mundi totius partiúmque omnium congruentiam &amp; quasi concentum suaissumum miratur, incredibilémque voluptatem ex his capit, cum flagrantissima cupiditate ac desiderio causarum omnium peruestigandarum, quousque ad vltimum principium, ac pulcherrimi huius opificij temperatorem Deum perducatur, quò cùm peruenerit cogitationum suarum cursum sistit, cùm intelligit æternam mentem esse infinitæ cuiusdam naturæ, magni-<pb n="6"/>
+                                        <choice>
+                                            <sic>tudinis</sic>
+                                            <corr/>
+                     </choice>, potestatis, sapientiæ, quæ nec oratione cuiusquam explicari, nec mentis vllius cogitatione percipi possit : laudationibus tamen diuinæ maiestatis splendorem, quantum quidem potest, euehit ac prædicat, summáque prosequitur veneratione. Talia mente agitantem suis oportet ille <choice>
+                                            <sic>cebris</sic>
+                                            <corr/>
+                     </choice> diuina virtus trahat ad verum decus, &amp; ad bonorum omnium extremum. His enim artibus homines pulcherrimam rerum naturalium, humanarum, diuinarum scientiam ac <choice>
+                                            <sic>fœlicitatis</sic>
+                                            <corr/>
+                     </choice> humanæ summam propemodum cõsecuti videntur . Si ergo ciuem ita institutum sapientem ac beatum iudicamus, non qui opum communium ac peruagatarum copiam, sed qui praestantium rerum &amp; remotarum à captu vulgi cognitionem &amp; intelligentiam sit assecutus, quantò Rempublicam
+                     <milestone n="B" unit="unspec"/>beatiorem iudicare debemus talium ciuium multitudine abundantem, etiam si angustis contenta finibus superbas aspernetur opes, ac delicias amplissimarum ciuitatum, quæ summam <choice>
+                                            <sic>fœlicitatem</sic>
+                                            <corr/>
+                     </choice> summa voluptate, aut copiis &amp; opibus, aut inani gloria metiuntur?Nec propterea summum illud hominis ac ciuitatis bonum confusum aut mistum <choice>
+                                            <sic>efficie</sic>
+                                            <corr/>
+                     </choice>-mus. etsi enim hominis natura duplex est, altera quidem mortalis &amp; caduca, altera verò immortalis ac sempiterna, illud tamen confitendum est in ea parte, quæ nobilitate cæteras vincit, id est, in mente summum bonum inesse. nam si verum est, vti est, corpus hoc ossibus &amp; carne compactum &amp; coagmentatum méti seruire, &amp; rationi cupiditatem, quis dubitet <choice>
+                                            <sic>fœlicitatis</sic>
+                                            <corr/>
+                     </choice> humanæ summam à præstantissima virtute, quam men-<milestone n="C" unit="unspec"/>-<choice>
+                                            <sic>tis</sic>
+                                            <corr/>
+                     </choice> agitationem appellant, totam pendere ? tametsi enim Aristoteles 
+                     ex opinione 
+                     Stoicorum hominis bonum in virtutis actione posuisset, idem tamen actionem ad contemplationis finem referri iudicauit oportere: alioqui hominum vita beatior esset, inquit, quàm deorum, qui nullis actionibus aut negotiis implicantur, sed mentis agitatione suauissima solidáque tranquillitate fruuntur. At quum nollet magistri Platonis sectam tueri, &amp; à proposita susceptáque sententia discedere, turpe putaret, quoniam in actione beatam vitam initio posuerat verborum ambiguitate vsus, summam <choice>
+                                            <sic>fœlicitatem</sic>
+                                            <corr/>
+                     </choice> in mentis actione, quæ ipsa nihil aliud est, quàm contemplatio, collocauit: ne summum bonum rebus omnino inter se diffidentibus; motu, inquam, &amp; quiete definiret, idem tamen cùm<milestone n="D" unit="unspec"/>perspicéret singulorum hominum, æque ac vniuersorum vitam perpetuo quodam agitari motu, ac necessariis negotiis impediri, noluit apertè summum illud, quod quærimus, bonum in sola contemplatione collocare; id quod tamen necesse est confiteri. Et si enim actiones, quibus hominum vita sustentatur, cibum, inquam, potum, somnum capere, tam necessariæ sunt, vt iis diu carere homines non possint: nemo tamen adeò rudis est, vt in iis rébus bonorum extremum consistere putet. virtutum enim earum, quæ morales dicuntur, dignitas longè maior est, propterea quòd ab his ad purgandos à perturbatione &amp; ægritudine animos adiumenta quæruntur, vt purgata mens clarissima intelligendi luce compleatur. ex quo intelligitur morales virtutes ad eas, quæ mentis propriæ sunt, quasi ad finem referri. foelicitas autem summa dici non potest, cuius est<pb n="7"/>aliud extremum, quæque ad diuiniora pertinet : vt corpus ad animum appetitus ad rationem, hæc ad mentem, motus ad quietem, actio ad contemplationem. Igitur M.. <choice>
+                                            <sic>Varro</sic>
+                                            <corr/>
+                     </choice> qui hominis bonum actione &amp; contemplatione mistum esse putauit, commodiùs, opinor, ac meliùs dixisset, hominum vitam <choice>
+                                            <sic>vtráque</sic>
+                                            <corr/>
+                     </choice> egere, summum tamen extremúmque bonum in contemplatione versari, quam Academici iucundam, Hebraei pretiosam mortem appellant: propterea quod mentem labe terrestri &amp; corporeis vinculis solutam ac purgatam in cælum perducit. Nôn poterit tamen Respvblica diu stare si deseratur ab iis actionibus, quae in ciuium salute tuenda, in iure dicundo, in alimentorum cæterarúmque rerum ad<milestone n="B" unit="unspec"/>vitam necessariarum assidua inuectione versantur: perinde vt mens sublimium rerum contemplatione abrepta corpus ipsum fame ac siti languere, aut vigiliarum studio enecari patiatur. Sed quemadmodum in hoc aspectabili mundo, quem perfectæ &amp; consummatæ Reipublicae imaginem appellare possumus, luna velut anima mundi ad solē propius accedens deserere videtur regionem hanc spirabilem &amp; 
+                     elementarem: postea tamen solis congressu grauida vim quandam cælestem singulis corporibus impertit: sic quoque animus vi contemplationis abreptus, &amp; quodammodo intelligenti soli, quæ mens est vniuersitatis, coniunctus,virtute diuina mirabilem in modum illustratur, deinde rursum ad corporis curam relapsus, vires corporeas instaurat. idem tamen si nimium<milestone n="C" unit="unspec"/>intentus corpori ac sensuum voluptatibus immersas métem deserat, idem illi vsu venit quod lunæ, quæ solis cospectû fugiens vmbra terrestri, obvoluta splendorem ac lucem amittit, ex quo quidem luminis deliquio fœda monstra procreantur, totáque rerum natura pérturbatur: si tamen à solis amplexu nunquam luna diuelleretur, vniuersa hæc mundi animabilis coagmentatio &amp; cohaerentia omnino dissiparetur. Idem nobis de Republica relinquitur iudicandum, cuius finis optimus in iis virtutibus consistit, quae ad contemplationem feruntur, etiam si publicæ actiones, quæ minus honestae sunt, antecedant, vt 
+                     sordium euectio, curatio frumentaria, annona Reipublicae, quæque ad ciuium alimenta &amp; 
+                     praesidia 
+                     vitae necessaria iudicantur, quæ virtutibus moralibus longè inferiora ducimus:<milestone n="D" unit="unspec"/>virtutum item moralium summa ad eas virtutes pertinet, quæ contemplatrices dicuntur, quarum præstantissima est, quæ circa rem omnium pulcherrimam versatur. Itaque Deus <choice>
+                                            <sic>Opt</sic>
+                                            <corr/>
+                     </choice>. <choice>
+                                            <sic>Max</sic>
+                                            <corr/>
+                     </choice>. cum omnia sapienter, tum illud potissimum quod rébus agendis ac negotiis contrahendis sex omnino dies definiit: diem vero septimum contemplationi &amp; quieti sanctissimæ consecrauit, quem vnum
+                     <note place="marg">
+                                            <choice>
+                                                <sic>Genef</sic>
+                                                <corr/>
+                        </choice>.<choice>
+                                                <sic>cap</sic>
+                                                <corr/>
+                        </choice>.<choice>
+                                                <sic>1</sic>
+                                                <corr/>
+                        </choice>.<choice>
+                                                <sic>Deut</sic>
+                                                <corr/>
+                        </choice>.Exodi <choice>
+                                                <sic>cap</sic>
+                                                <corr/>
+                        </choice>. ac.</note>ex omnibus beauit, &amp; cui soli benedixit, vt diem hunc festum hilariter ac iucundè transigamus, &amp; in pulcherrima Dei præpotentis opera, iudicia, iussa intuentes in eius laudibus acquiescamus. Atque hæc de summo singulorum ac vniuersorum totiusque ciuitatis bono. Quae cum ita sint, tânto beatior futura ciuitas est, quantô propius aberit ab eo fine, quem proponimus &amp; ad intuendum &amp; ad imitandum. Et quemadmodum humanae 
+                     <choice>
+                                            <sic>fœlicitatis</sic>
+                                            <corr/>
+                     </choice> ac calamitatis gradus in singulis hominibus quam plurimos videmus, prout bonorum ac malorum <choice>
+                                            <sic>va</sic>
+                                            <corr/>
+                     </choice>-<pb n="8"/>
+                                        <choice>
+                                            <sic>rios</sic>
+                                            <corr/>
+                     </choice> fines sibi proposuerunt: ita quoque <choice>
+                                            <sic>Respublicæ</sic>
+                                            <corr/>
+                     </choice> suos habent quodam modo <choice>
+                                            <sic>fœlicitatis</sic>
+                                            <corr/>
+                     </choice> ac miseriarum gradus. quia nec cum perfectis hominibus plenéque sapientibus, nec cum furiosis ac dementibus semper viuitur: sed plerique mediocria vitæ officia tuentur. Lacedaemonij quidem excelso ac forti animo sempérque. vincendi cupiditate inflammato fuisse ferûntur:<note place="marg">
+                        Plato.<choice>
+                                                <sic>Plutar</sic>
+                                                <corr/>
+                        </choice>. in <choice>
+                                                <sic>Lysandro</sic>
+                                                <corr/>
+                        </choice>, <choice>
+                                                <sic>Agesilao</sic>
+                                                <corr/>
+                        </choice>, <choice>
+                                                <sic>Lycurgo</sic>
+                                                <corr/>
+                        </choice>.</note>iniusti tamen ac toties perfidi, quoties de publicis commodis ageretur: quia ciuium disciplina, leges,mores, instituta non alium finem aut exitum habuere, quàm vt ciues tum ad pericula subeunda, tum ad voluptates ac delicias, quæ animorum vim ac robûr frangere sôlent, elatos &amp; inuictos efficerent: sed eatenus tamen vt suarum actionum &amp; cogitationum sùmmam Reipublicae 
+                     vtilitatibus metirentur. <choice>
+                                            <sic>Romano</sic>
+                                            <corr/>
+                     </choice>-<milestone n="B" unit="unspec"/>-rum vero ciuitas beatior quàm Lacedaemoniorum, quòd præter animi magnitudinem, iuris quoque ac iustitiæ<note place="marg">
+                        Cicero in <choice>
+                                                <sic>offic</sic>
+                                                <corr/>
+                        </choice>. <choice>
+                                                <sic>Dionys</sic>
+                                                <corr/>
+                        </choice>. <choice>
+                                                <sic>Halycar</sic>
+                                                <corr/>
+                        </choice>. lib. I.</note>vim veluti scopum ciues sibi proposuissent. Enitendum nobis est igitur vt quàm proximè fieri poterit, ab ea, quam summam duximus, singulorum ac vniuersorum ciuium foelicitate discedamus. Explicata nobis est prima pars definitionis Reipublicae, cætera suo quæque ordine ac loco persequamur.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </body>
+                </text>
+</TEI>

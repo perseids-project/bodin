@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:oac="http://www.openannotation.org/ns/" xmlns:cnt="http://www.w3.org/2008/content#">
+  <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/1015/1449/1456/142/2">
+    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1449/urn:cts:pdlpsci:bodin.livrep.perseus-lat1:1.1@quando[1]-fruuntur[1]"/>
+    <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1454/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@for[8]-enioy[2]"/>
+    <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="oa:linking_translation"/>
+    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
+      <Person xmlns="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/sosol/users/Will"/>
+    </annotatedBy>
+    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-02-21T16:50:53+00:00</annotatedAt>
+  </Annotation>
+  <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/1015/1449/1456/142/3">
+    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1449/urn:cts:pdlpsci:bodin.livrep.perseus-lat1:1.1@Quinetiam[1]-obire[1]"/>
+    <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1454/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@Yea[1]-actes[1]"/>
+    <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="oa:linking_translation"/>
+    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
+      <Person xmlns="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/sosol/users/Will"/>
+    </annotatedBy>
+    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-02-26T20:34:51+00:00</annotatedAt>
+  </Annotation>
+  <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/1015/1449/1456/142/4">
+    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1449/urn:cts:pdlpsci:bodin.livrep.perseus-lat1:1.1@Quinetiam[1]-patiuntur[1]"/>
+    <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1454/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@Yea[1]-actes[1]"/>
+    <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="oa:linking_translation"/>
+    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
+      <Person xmlns="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/sosol/users/Will"/>
+    </annotatedBy>
+    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-02-26T20:38:25+00:00</annotatedAt>
+  </Annotation>
+  <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/1015/1449/1456/142/5">
+    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1449/urn:cts:pdlpsci:bodin.livrep.perseus-lat1:1.1@quæ[2]-licuissent[1]"/>
+    <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1454/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@which[11]-enemies[3]"/>
+    <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="oa:linking_translation"/>
+    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
+      <Person xmlns="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/sosol/users/Will"/>
+    </annotatedBy>
+    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-02-26T20:45:37+00:00</annotatedAt>
+  </Annotation>
+  <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/1015/1449/1456/142/6">
+    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1449/urn:cts:pdlpsci:bodin.livrep.perseus-lat1:1.1@lex[1]-iubet[1]"/>
+    <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1454/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@the[36]-commaundeth[1]"/>
+    <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="oa:linking_translation"/>
+    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
+      <Person xmlns="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/sosol/users/Will"/>
+    </annotatedBy>
+    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-02-26T21:04:23+00:00</annotatedAt>
+  </Annotation>
+  <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/1015/1449/1456/142/7">
+    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1449/urn:cts:pdlpsci:bodin.livrep.perseus-lat1:1.1@commodatum[1]-reddi[1]"/>
+    <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1454/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@to[13]-pawne[1]"/>
+    <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="oa:linking_translation"/>
+    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
+      <Person xmlns="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/sosol/users/Will"/>
+    </annotatedBy>
+    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-02-26T21:07:00+00:00</annotatedAt>
+  </Annotation>
+  <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/1015/1449/1456/142/8">
+    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1449/urn:cts:pdlpsci:bodin.livrep.perseus-lat1:1.1@pignus[1]-iubet[1]"/>
+    <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1454/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@that[11]-obtained[1]"/>
+    <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="oa:linking_translation"/>
+    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
+      <Person xmlns="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/sosol/users/Will"/>
+    </annotatedBy>
+    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-02-26T21:27:43+00:00</annotatedAt>
+  </Annotation>
+  <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/1015/1449/1456/142/9">
+    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1449/urn:cts:pdlpsci:bodin.livrep.perseus-lat1:1.1@cùm[4]-collocauit[1]"/>
+    <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://perseids.org/annotsrc/urn:cts:greekLit:tlg0086.tlg010.perseus-eng1:1177a-1178a"/>
+    <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="oa:linking_translation"/>
+    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
+      <Person xmlns="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/sosol/users/Will"/>
+    </annotatedBy>
+    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-02-27T15:56:51+00:00</annotatedAt>
+  </Annotation>
+  <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/1015/1449/1456/142/10">
+    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1449/urn:cts:pdlpsci:bodin.livrep.perseus-lat1:1.1"/>
+    <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
+      <Person xmlns="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/sosol/users/Will"/>
+    </annotatedBy>
+    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-04-03T01:50:09+00:00</annotatedAt>
+  </Annotation>
+  <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/1015/1449/1456/142/11">
+    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1449/urn:cts:pdlpsci:bodin.livrep.perseus-lat1:1.1@Coracotas[1]-poposcit[1]"/>
+    <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1454/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@which[17]-reward[1]"/>
+    <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="oa:linking_translation"/>
+    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
+      <Person xmlns="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/sosol/users/Will"/>
+    </annotatedBy>
+    <serializedBy xmlns="http://www.w3.org/ns/oa#">
+      <SoftwareAgent xmlns="http://www.w3.org/ns/prov#" rdf:about="http://perseids.org/perseids-annotator#0.0.1"/>
+    </serializedBy>
+    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-04-03T02:05:17+00:00</annotatedAt>
+  </Annotation>
+  <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/1015/1449/1456/142/12">
+    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1449/urn:cts:pdlpsci:bodin.livrep.perseus-lat1:1.1@Augustus[1]-potuisset[1]"/>
+    <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1454/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@which[18]-him[14]"/>
+    <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="oa:linking_translation"/>
+    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
+      <Person xmlns="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/sosol/users/Will"/>
+    </annotatedBy>
+    <serializedBy xmlns="http://www.w3.org/ns/oa#">
+      <SoftwareAgent xmlns="http://www.w3.org/ns/prov#" rdf:about="http://perseids.org/perseids-annotator#0.0.1"/>
+    </serializedBy>
+    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-04-03T02:20:04+00:00</annotatedAt>
+  </Annotation>
+  <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/1015/1449/1456/142/13">
+    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1449/urn:cts:pdlpsci:bodin.livrep.perseus-lat1:1.1@Alioqui[1]-conspirent[1]"/>
+    <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1454/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@But[2]-justice[4]"/>
+    <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="oa:linking_translation"/>
+    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
+      <Person xmlns="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/sosol/users/Will"/>
+    </annotatedBy>
+    <serializedBy xmlns="http://www.w3.org/ns/oa#">
+      <SoftwareAgent xmlns="http://www.w3.org/ns/prov#" rdf:about="http://perseids.org/perseids-annotator#0.0.1"/>
+    </serializedBy>
+    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-04-03T02:22:41+00:00</annotatedAt>
+  </Annotation>
+</rdf:RDF>
