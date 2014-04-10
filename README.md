@@ -103,3 +103,12 @@ Maybe I need to be in a different directory.  I'm not sure how XSLT includes wor
 
 	cd third_party/tei2html-read-only
 	saxon ../../examples/xml/passage.xml tei2html.xsl
+
+I dunno... I might abandon XSLT all together...  Client side XSLT seems to be falling out of favor...  Nobody is going to use my plug-in if it requires server side code.  Considering I've found inconsistencies in XSLT parsers saxon and Chrome's even while doing rudimentary things has shaken my faith...
+https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/zIg2KC7PyH0%5B1-25-false%5D
+
+2 steps forward... 3 steps back.
+
+## Forgetting XSLT
+
+Back to Javascript.
