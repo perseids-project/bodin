@@ -82,3 +82,24 @@ But how are these linked to "Passage Text"?
 Okay so @firstword[occurence]-lastword[occurence]
 I'm assuming in firstword[occurence] occurence is relative to the entire text but is lastword[occurence] relative to the entire text or to firstword?
 
+# 2014-04-10
+I did some research and found the tei2html project on google code.
+jhellingman@gmail is the person behind this.
+Let's see what it includes shall we.
+
+So here are some commands that will help me explore the possibilities afforded me by this treasure trove of XSLT sheets.
+
+## extract-page.xsl 
+	saxon examples/xml/passage.xml third_party/tei2html-read-only/extract-page.xsl
+		Extracting page '-1' at position 0
+		<?xml version="1.0" encoding="UTF-8"?>
+
+Let's try the namesake ehhh?
+## tei2html.xsl
+	saxon examples/xml/passage.xml third_party/tei2html-read-only/tei2html.xsl
+
+It doesn't look like there's going to be any silver bullets...
+Maybe I need to be in a different directory.  I'm not sure how XSLT includes work... so let's try this.
+
+	cd third_party/tei2html-read-only
+	saxon ../../examples/xml/passage.xml tei2html.xsl

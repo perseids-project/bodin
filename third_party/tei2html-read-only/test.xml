@@ -1,0 +1,925 @@
+<?xml version="1.0"?>
+<!DOCTYPE TEI.2 PUBLIC "-//TEI//DTD TEI Lite 1.0//EN" "dtd/teixlite.dtd" [
+
+<!ENTITY prime  "&#x2032;">
+<!ENTITY mdash  "&#x2014;">
+
+<!ENTITY ldquo  "&#x201C;">
+<!ENTITY rdquo  "&#x201D;">
+<!ENTITY lsquo  "&#x2018;">
+<!ENTITY rsquo  "&#x2019;">
+<!ENTITY eacute "&#x00E9;">
+<!ENTITY apos   "&#x2019;">
+
+<!ENTITY egrave "&#232;">
+
+<!ENTITY lorem "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.">
+<!ENTITY quickbrown "The quick brown fox jumps over the lazy dog">
+
+<!ENTITY availability.en "<p lang='en'>This eBook is for the use of anyone anywhere at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at <xref url='http://www.gutenberg.org/'>www.gutenberg.org</xref>.</p>">
+
+<!ENTITY nl "<abbr expan='namelijk'>n.l.</abbr>">
+
+]>
+<TEI.2 lang="en-US">
+   <teiHeader type="text" status="new">
+      <fileDesc>
+         <titleStmt>
+            <title>Main Title of Work Goes Here</title>
+            <author>Author of Work (Birth-year&mdash;Death-year)</author>
+            <author>A. U. Thor</author>
+            <author>W. Riter</author>
+            <respStmt>
+               <resp>Transcription</resp>
+               <name>Transcribers Name</name>
+            </respStmt>
+         </titleStmt>
+         <publicationStmt>
+            <publisher>Project Gutenberg</publisher>
+            <pubPlace>Urbana, Illinois, USA.</pubPlace>
+            <date>2009-12-13</date>
+            <idno type="epub-id">urn:uuid:51F98242-DD7B-11E0-AA64-AB114924019B</idno>
+            <idno type="PGnum">123456789</idno>
+            <idno type="PGclearance">[PG Clearance code goes here]</idno>
+            <idno type="PGDPProjectID">[PGDP Project number goes here]</idno>
+            <availability>
+               <p>Details of the copyright status of the work go here. Most Project Gutenberg texts will be in the public domain in the US. This test file itself is released under the GNU General Public License, version 3.0, or any later version. See <xref url="http://www.gnu.org/copyleft/gpl.html" rend="title(GPL licence)">http://www.gnu.org/copyleft/gpl.html</xref>.</p>
+               <p>Typically, the following text will be used:</p>
+
+               &availability.en;
+            </availability>
+         </publicationStmt>
+        <notesStmt>
+            <note type="Description">A document intended to test the various features available in the Tei2html software.</note>
+        </notesStmt>
+        <sourceDesc>
+            <bibl>
+                <author>Author of Work (as appears in source)</author>
+                <title>Title of Work (as appears in source)</title>
+                <publisher>Publisher of Source</publisher>
+                <pubPlace>Place</pubPlace>
+                <date>Year of Publication</date>
+            </bibl>
+        </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <p>Details of encoding go here. Here you can describe any special conventions used in the text, such as special tags. This is also the place to describe any editorial policy followed when preparing the text.</p>
+      </encodingDesc>
+      <profileDesc>
+         <langUsage>
+            <language id="en-us">U.S. English.</language>
+         </langUsage>
+         <textClass>
+            <keywords>
+                <list>
+                   <item>TEI (Text Encoding Initiative)</item>
+                   <item>XSLT</item>
+                   <item>HTML</item>
+                </list>
+            </keywords>
+         </textClass>
+      </profileDesc>
+      <revisionDesc>
+         <list type="simple">
+            <item>2003-09-13 Added TEI Header.</item>
+         </list>
+      </revisionDesc>
+   </teiHeader>
+<text>
+<front id="front">
+<div1 id="cover" type="Cover">
+
+
+<p><figure id="cover-image" rend="image(images/cover500.jpg)">
+<figDesc>Cover illustration.</figDesc>
+</figure></p>
+
+
+</div1>
+<titlePage>
+<docTitle>
+<titlePart>Creating documents in TEI</titlePart>
+<titlePart type="sub" rend="font-style(italic)">A Tei2Html Test Document</titlePart>
+</docTitle>
+
+<byline>by <lb/><docAuthor>Jeroen Hellingman</docAuthor></byline>
+
+<docImprint>Project Gutenberg
+<lb/><docDate rend="background-color(yellow)">2010</docDate>
+</docImprint>
+</titlePage>
+
+<divGen id="toc" type="toc"/>
+
+</front>
+<body id="body">
+<div0 id="bk1" n="I" type="Book" rend="label(yes)">
+<head>Tei2html Test Document</head>
+
+<p>This is a test document, mainly intended to test<note n="1">Test of a footnote at the div0 level.</note> the features implemented in the tei2html <index level1="XSLT"/>XSLT stylesheets. This document serves the dual purpose of helping me to develop new features, and act as a cheat-sheet to look up how certain things are achieved with my <index level1="Stylesheet"/>stylesheet (yes, I sometimes forget myself). </p>
+
+
+
+<div1 id="ch1" n="1" type="Chapter" rend="media-overlay(test.smil)">
+<head type="label">Chapter 1</head>
+<head>Text Styles</head>
+
+<p rend="class(dropcap)">This is a sample paragraph, with<pb id="pb002" n="2"/> some <hi rend="italic">italic</hi> and <hi rend="bold">bold</hi> text. We continue the test with some
+<hi rend="sc">Small Caps</hi>, some <hi rend="font(fraktur)">fraktur</hi>, and some <hi rend="ex">letterspaced</hi>
+text.<note place="foot" n="*">This is a footnote with some <hi rend="italic">italics</hi>.</note> As you can see, the preceding sentence is followed by
+a footnote. <hi rend="font-size(14pt) color(red) background-color(yellow)">We can <hi rend="uc">shout</hi> in big red letters.</hi> We also have a reference to the <ref target="ch05">next chapter</ref>. It is very well possible to include some text in hieroglyphs, <figure rend="position(inline) image(images/hg2101.png)"><figDesc>Inline Hieroglyphs</figDesc></figure> using in-line images as shown here.</p>
+
+<table>
+<row><cell><hi>&quickbrown;</hi>    </cell><cell>Italic</cell></row>
+<row><cell><hi rend="bold">&quickbrown;</hi>    </cell><cell>Bold</cell></row>
+<row><cell><hi rend="sc">&quickbrown;</hi>    </cell><cell>Caps and small-caps</cell></row>
+<row><cell><hi rend="uc">&quickbrown;</hi>    </cell><cell>All-caps</cell></row>
+<row><cell><hi rend="ex">&quickbrown;</hi>    </cell><cell>letter-spaced</cell></row>
+</table>
+
+<p id="loon">A sample of an embedded audio file: The sound of a <hi>Loon</hi>, courtesy of the U.S. Fish and Wildlife Service.</p>
+
+<p>Footnote test paragraph.
+First,<note>Note without paragraph.</note>
+second,<note><p>Note with just one paragraph.</p></note>
+third,<note><p>Note with two paragraphs.</p><p>Second paragraph.</p></note>
+fourth.<note><p>Note with three paragraphs.</p><p>Second paragraph.</p><p>Third paragraph.</p></note>
+</p>
+
+
+</div1>
+<div1 id="ch2" n="2" type="Chapter">
+<head type="label">Chapter 2</head>
+<head>Text Elements</head>
+
+
+
+
+<q rend="block"><text><body><div1><head>Section head in quoted material</head>
+
+<p>This is a <index level1="Paragraph"/>paragraph in quoted material<note>This is a <index level1="Footnote" level2="in quoted material"/>footnote in quoted material.</note> This paragraph contains a <index level1="Footnote"/>footnote, to verify correct handling of this convoluted situation during the transformation.</p>
+</div1></body></text></q>
+
+
+<p>Books created with these stylesheet include: <xref url="pg:19585" lang="nl">De Wereld voor de schepping van den mensch</xref> by Camille Flammarion, and <hi><xref url="pg:37578#ch19" lang="nl">The Later Life</xref></hi> by Louis  Couperus (note how this last links points to chapter XIX of the book). Books will be posted at <index level1="Project Gutenberg"/><xref url="http://www.gutenberg.org/">Project Gutenberg</xref>. Text can include references to WorldCat or OpenLibrary catalog entries, for example: <xref url="oln:OL11170298M">OLN</xref> and <xref url="oclc:618671">OCLC</xref>. The code knows short-hand notations for references to such common things as <xref url="wp:wikipedia">Wikipedia</xref> (even in <xref lang="nl" url="wp:Nederlands">Dutch</xref>) and the <xref url="bib:gen 1:1">Bible</xref>.</p>
+
+</div1>
+<div1 id="ch3" type="Chapter" n="3" rend="label(yes)">
+<head>Footnotes<note place="foot" n="*">Footnote in <index level1="Chapter headings"/>chapter heading.</note></head>
+
+<p>In this chapter, we set out to test footnotes<index level1="Footnote"/>.</p>
+
+<p>Here we have a reference to a <ref target="n1">footnote</ref> in a following <ref target="ch05">chapter</ref>, and <ref target="inside-n1">element inside it</ref>.</p>
+
+
+</div1>
+
+
+<div1 id="ch05" n="5" type="Chapter" rend="label(no)">
+<head type="label" rend="image(images/Ornament.gif)">Chapter V</head>
+<head>Tables</head>
+
+<argument><p>This is the argument of this chapter, a block of text giving a short kind of index to the chapter.</p></argument>
+
+<epigraph>
+    <cit lang="fr"><q><lg type="Group"><l>&ldquo;Ils partent; et loin d&apos;eux repoussant la barri&egrave;re,</l>
+    <l>Ils fendent dans les airs les nuages mouvans,</l>
+    <l>Et de leurs pi&eacute;s ail&eacute;s ils devancent les vents.&rdquo;</l></lg></q>
+
+    <bibl>(<hi>Metamorphoses d&apos;Ovide</hi>).</bibl></cit>
+</epigraph>
+
+
+<p>You may note the small <index level1="ornaments"/>ornament above the <index level1="Chapter headings"/>chapter heading, which is included using a <index level1="rend attribute"/>rend attribute on the head element of this chapter.</p>
+
+<p>In this chapter we generate a table:<note place="foot" n="*">Yet another a footnote.</note></p>
+
+<p>
+<table rend="summary(A small table to demonstrate tables in TEI)">
+    <row>
+        <cell rows="2">1 (this cell is actually spanning two rows)</cell>
+        <cell>2 (with a much wider cell, for a change, so that we can verify the result of such wide cells in the output)</cell>
+    </row>
+    <row>
+        <cell>4</cell>
+    </row>
+    <row>
+        <cell>5 (yet another wide cell, just to see how it works out in the result formatting)</cell>
+        <cell>6<note place="foot" id="n1" n="*">This is a footnote with some <hi rend="bold">bold</hi>, and an element with an id inside it <ab id="inside-n1">here</ab>.</note></cell>
+    </row>
+    <row>
+        <cell cols="2">7: A cell spanning no less than two columns. This should work out fine, even with a <index level1="Footnote"/>footnote<ref target="n1" type="noteref">ignored text</ref> in it. (note how the footnote reference mark actually is the same as in a cell above, we can also reference to <ref target="n1">the same footnote</ref> without such a special treatment!)</cell>
+    </row>
+</table>
+</p>
+
+
+<p>A table with vertical borders on the inside [class(verticalBorderInside)]:</p>
+
+<p>
+<table rend="summary(A small table to demonstrate tables in TEI) class(verticalBorderInside)">
+    <column/>
+    <column/>
+    <column rend="text-align(right)"/>
+    <row role="label">
+        <cell rows="2">No.</cell>
+        <cell>Type.</cell>
+        <cell>Quantity.</cell>
+    </row>
+    <row role="unit">
+        <cell></cell>
+        <cell>kg</cell>
+    </row>
+    <row>
+        <cell>1</cell>
+        <cell>Apples</cell>
+        <cell>12.4</cell>
+    </row>
+    <row>
+        <cell>2</cell>
+        <cell>Bananas</cell>
+        <cell>22.8</cell>
+    </row>
+    <row>
+        <cell>3</cell>
+        <cell>Melon</cell>
+        <cell>4.6</cell>
+    </row>
+    <row>
+        <cell>4</cell>
+        <cell>Grapes</cell>
+        <cell>9.2</cell>
+    </row>
+</table>
+</p>
+
+<p>The same table with borders on the outside [class(borderOutside)]:</p>
+
+<p>
+<table rend="summary(A small table to demonstrate tables in TEI) class(borderOutside)">
+    <column/>
+    <column/>
+    <column rend="text-align(right)"/>
+    <row role="label">
+        <cell rows="2">No.</cell>
+        <cell>Type.</cell>
+        <cell>Quantity.</cell>
+    </row>
+    <row role="unit">
+        <cell></cell>
+        <cell>kg</cell>
+    </row>
+    <row>
+        <cell>1</cell>
+        <cell>Apples</cell>
+        <cell>12.4</cell>
+    </row>
+    <row>
+        <cell>2</cell>
+        <cell>Bananas</cell>
+        <cell>22.8</cell>
+    </row>
+    <row>
+        <cell>3</cell>
+        <cell>Melon</cell>
+        <cell>4.6</cell>
+    </row>
+    <row>
+        <cell>4</cell>
+        <cell>Grapes</cell>
+        <cell>9.2</cell>
+    </row>
+</table>
+</p>
+
+<p>The same table with all cell borders shown [class(borderAll)]:</p>
+
+<p>
+<table rend="summary(A small table to demonstrate tables in TEI) class(borderAll)">
+    <column/>
+    <column/>
+    <column rend="text-align(right)"/>
+    <row role="label">
+        <cell rows="2">No.</cell>
+        <cell>Type.</cell>
+        <cell>Quantity.</cell>
+    </row>
+    <row role="unit">
+        <cell></cell>
+        <cell>kg</cell>
+    </row>
+    <row>
+        <cell>1</cell>
+        <cell>Apples</cell>
+        <cell>12.4</cell>
+    </row>
+    <row>
+        <cell>2</cell>
+        <cell>Bananas</cell>
+        <cell>22.8</cell>
+    </row>
+    <row>
+        <cell>3</cell>
+        <cell>Melon</cell>
+        <cell>4.6</cell>
+    </row>
+    <row>
+        <cell>4</cell>
+        <cell>Grapes</cell>
+        <cell>9.2</cell>
+    </row>
+</table>
+</p>
+
+<p>The following table is centered:</p>
+
+<p>
+<table rend="summary(A small table to demonstrate bracket images.) align(center)">
+    <row>
+        <cell>Gadgets</cell>
+        <cell rows="2" rend="image(images/bracket3.gif) vertical-align(middle) width(2px)"></cell>
+        <cell rows="2" rend="vertical-align(middle)">Both 1</cell>
+    </row>
+    <row>
+        <cell>Fudgets</cell>
+    </row>
+</table>
+</p>
+
+<p>But this table is just indented 2 ems.</p>
+
+<p>
+<table rend="indent(2)">
+    <row>
+        <cell rend="width(25%)">Een Een Een Een Een Een Een Een Een Een Een Een </cell>
+        <cell rend="width(75%)">Twee Twee Twee Twee Twee Twee Twee Twee Twee Twee</cell>
+    </row>
+    <row>
+        <cell>Drie Drie Drie Drie Drie Drie Drie Drie Drie Drie Drie</cell>
+        <cell>Vier Vier Vier Vier Vier Vier Vier Vier Vier Vier Vier</cell>
+    </row>
+</table>
+</p>
+
+
+<p>
+<table rend="width(40%) align(center)">
+    <head>Head above table.</head>
+    <column rend="color(red) background-color(yellow)"/>
+    <column rend="color(green) align(right)"/>
+    <column rend="color(blue) align(right)"/>
+    <row role="label">
+        <cell>Name</cell>
+        <cell rend="align(right)">Age</cell>
+    </row>
+    <row role="unit">
+        <cell></cell>
+        <cell rend="align(right)">Years</cell>
+    </row>
+    <row>
+        <cell>Jeroen</cell>
+        <cell>40</cell>
+    </row>
+    <row>
+        <cell>Rodelyn</cell>
+        <cell>30</cell>
+    </row>
+    <row>
+        <cell>Joshua</cell>
+        <cell rend="align(center)">7</cell>
+    </row>
+    <row>
+        <cell>Raphael</cell>
+        <cell rend="align(left)">3</cell>
+    </row>
+</table>
+</p>
+
+<p>In the following table, we use a TEI extension element column to provide rendering attributes that cover an entire column. Since the HTML colspan and col elements are not widely supported, we translate these to attributes on each cell in the column.
+</p>
+
+<p>
+<table rend="width(40%) border-collapse(collapse)">
+    <column rend="align(left) width(40%) padding(4px)"/>
+    <column rend="align(right) border-left(1px solid black) padding(4px)"/>
+    <column rend="align(right) border-left(1px solid black) padding(4px)"/>
+    <column rend="align(right) border-left(1px solid black) padding(4px)"/>
+    <row role="label" rend="border-top(2px solid black)">
+        <cell>Name</cell>
+        <cell>Length</cell>
+        <cell>Weight</cell>
+        <cell>Notes</cell>
+    </row>
+    <row role="unit">
+        <cell></cell>
+        <cell>Meters</cell>
+        <cell>Kilograms</cell>
+        <cell> </cell>
+    </row>
+    <row rend="border-top(1px solid black)">
+        <cell>Jeroen</cell>
+        <cell>1.80</cell>
+        <cell>86</cell>
+        <cell></cell>
+    </row>
+    <row>
+        <cell>Rodelyn</cell>
+        <cell>&mdash;</cell>
+        <cell>&mdash;</cell>
+        <cell>No Info.</cell>
+    </row>
+    <row>
+        <cell>Joshua</cell>
+        <cell>1.20</cell>
+        <cell></cell>
+        <cell></cell>
+    </row>
+    <row>
+        <cell>Raphael</cell>
+        <cell>1.00</cell>
+        <cell></cell>
+        <cell></cell>
+    </row>
+    <row rend="border-bottom(2px solid black)">
+        <cell><hi>Total</hi></cell>
+        <cell role="sum">4.00</cell>
+        <cell></cell>
+        <cell></cell>
+    </row>
+</table>
+</p>
+
+
+<p>Here we have a reference to <ref target="pb002">page 2</ref>. We also have a reference to a <ref target="test2">figure</ref>.</p>
+
+<p><hi rend="sc">In this section</hi> we will see a <corr sic="mistake">correction</corr>, an <corr sic="">insertion</corr> and a deletion<corr sic="here"></corr>, an abbreviation: <abbr expan="United States of America">USA</abbr>, a currency amount: <amount unit="USD" amount="3.90">$3.90</amount>, and a measurement: <measure reg="25 cm">10 in</measure>.</p>
+
+<p>Test of the choice element as used for transcription: <choice><orig>Original</orig><reg type="trans">Transcription</reg></choice>.</p>
+
+<?epubsplit?>
+
+<p rend="class(dropcap firstlinecaps)">Lorem ipsum dolor sit amet, consectetur <foreign lang="de">Deutsch</foreign>  adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco<note place="margin">This is a small side note to the left of this this pseudo Latin text.</note> laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. <hi rend="font(fraktur)">Gebrochene Buchstaben</hi> Excepteur sint<note n="2"><p>Test</p></note> occaecat<note n="3" place="foot"><p>Just adding a table in a footnote:</p>
+
+
+<p><table rend="width(40%) align(center)">
+    <head>Head above table.</head>
+    <row>
+        <cell role="label">Name</cell>
+        <cell role="label" rend="align(right)">Age</cell>
+    </row>
+    <row>
+        <cell></cell>
+        <cell role="unit" rend="align(right)">Years</cell>
+    </row>
+    <row>
+        <cell>Jeroen</cell>
+        <cell rend="align(right)">39</cell>
+    </row>
+    <row>
+        <cell>Rodelyn</cell>
+        <cell rend="align(right)">29</cell>
+    </row>
+    <row>
+        <cell>Joshua</cell>
+        <cell rend="align(right)">6</cell>
+    </row>
+    <row>
+        <cell>Raphael</cell>
+        <cell rend="align(right)">2</cell>
+    </row>
+</table>
+</p>
+</note> cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</p>
+
+<figure id="test" rend="image(images/test.jpg)">
+    <head>This is the heading</head>
+    <p>This is the description.</p>
+</figure>
+
+<figure id="test1" rend="width(100px) float(left) image(images/test.jpg) link(images/test.jpg)">
+    <head>Tarsier</head>
+
+    <p>This is a somewhat longer test to verify we can limit the size of an image box.</p>
+</figure>
+
+<p>&lorem;
+</p>
+
+
+<figure id="test2" rend="image(images/test.jpg) float(right) link(http://www.bohol.ph/)">
+    <head>The <hi>Philippine</hi> Tarsier</head>
+    <figDesc>A picture of the Philippine tarsier in a tree.</figDesc>
+</figure>
+
+<p>&lorem;</p>
+
+<p>&lorem;</p>
+
+
+<figure id="tarsier1" rend="image(images/tarsier.jpg)">
+    <head>The <hi>Philippine</hi> Tarsier</head>
+
+    <p rend="position(figTopLeft)">Top Left</p>
+    <p rend="position(figTop)">Top</p>
+    <p rend="position(figTopRight)">Top Right</p>
+
+    <p rend="position(figBottomLeft)">Bottom Left</p>
+    <p rend="position(figBottom)">Bottom</p>
+    <p rend="position(figBottomRight)">Bottom Right</p>
+
+    <figDesc>A picture of the Philippine tarsier in a tree.</figDesc>
+</figure>
+
+
+<figure id="tarsier2" rend="image(images/tarsier.jpg)">
+    <head>The <hi>Philippine</hi> Tarsier</head>
+
+    <p rend="position(figTopLeft)">A very long piece of text in the top left to test its behaviour.</p>
+
+    <p rend="position(figBottomRight)">A very long piece of text in the bottom right to test its behaviour.</p>
+
+    <figDesc>A picture of the Philippine tarsier in a tree.</figDesc>
+</figure>
+
+<div2>
+<head>Letters, Closers, and Openers</head>
+
+
+<q rend="block"><text><body><div1 type="Letter">
+
+<opener>
+<dateline>23 June 1893</dateline>
+<salute>Dear John:</salute>
+</opener>
+
+<p>Test of letter</p>
+
+<closer>
+<signed>Dr. May</signed>
+</closer>
+
+
+</div1></body></text></q>
+
+
+
+
+</div2>
+<div2>
+<head type="label">Section</head>
+<head>Lists</head>
+
+<p>In this section, the various types of lists are demonstrated.</p>
+
+<p>First, we start with a simple, unnumbered list. List items can contain all the normal in-line elements, such as notes, corrections, etc.</p>
+
+<list>
+    <item>One</item>
+    <item>Two</item>
+    <item>Three</item>
+    <item rend="font(italic)">Four</item>
+    <item>Five<pb n="3"/></item>
+    <item>Six<note n="1">This is a footnote to list-item six.</note></item>
+    <item><corr sic="Zeven">Seven</corr></item>
+    <item>Eight</item>
+    <item>Nine</item>
+    <item>Ten</item>
+</list>
+
+<p>By specifying the type of the list as ordered, it becomes a numbered list.</p>
+
+<list type="ordered">
+    <item>One</item>
+    <item>Two</item>
+    <item>Three</item>
+    <item>Four</item>
+</list>
+
+<p>We can split a list into two columns, by putting columns(2) in the rend attribute.</p>
+
+<list rend="columns(2) list-style-type(disc)">
+    <item>One</item>
+    <item>Two</item>
+    <item>Three</item>
+    <item>Four</item>
+    <item>Five</item>
+    <item>Six</item>
+    <item>Seven</item>
+    <item>Eight</item>
+    <item>Nine</item>
+    <item>Ten</item>
+</list>
+
+
+<list rend="columns(2)" type="ordered" lang="nl">
+    <item>Een</item>
+    <item>Twee</item>
+    <item>Drie</item>
+    <item>Vier</item>
+</list>
+
+<list rend="columns(2) list-style-type(upper-roman)" type="ordered" lang="nl">
+    <item n="5">Vijf</item>
+    <item>Zes</item>
+    <item n="7">Zeven</item>
+    <item>Acht</item>
+</list>
+
+<p>A list with lower case roman numerals:</p>
+
+<list rend="list-style-type(lower-roman)" type="ordered" lang="nl">
+    <item>Een</item>
+    <item>Twee</item>
+    <item n="48">Drie</item>
+    <item>Vier</item>
+</list>
+
+<p>A list without bullets or numbers:</p>
+
+<list type="simple" lang="nl">
+    <item>Een</item>
+    <item>Twee</item>
+    <item>Drie</item>
+    <item>Vier</item>
+</list>
+
+
+<div3>
+<head>Division at Level 3</head>
+
+<p>Text in division at level 3</p>
+
+<div4>
+<head>Division at Level 4</head>
+
+<p>Text in division at level 4</p>
+
+<div5>
+<head>Division at Level 5</head>
+
+<p>Text in division at level 5</p>
+
+<div6>
+<head>Division at Level 6</head>
+
+<p>Text in division at level 6</p>
+
+
+</div6>
+</div5>
+</div4>
+</div3>
+</div2>
+<div2>
+<head>Some Further Tests</head>
+
+<p rend="align(left)">[align(left)] &lorem;</p>
+
+<milestone unit="tb"/>
+
+<p rend="align(right)">[align(right)] &lorem;</p>
+
+<p rend="align(center)">[align(center)] &lorem;</p>
+
+<p rend="initial-offset(45px) initial-width(90px) initial-height(95px) initial-image(images/initial-A.gif)">&lorem;<note place="foot">&lorem;</note></p>
+
+<p rend="align(justify)">[align(justify)] &lorem;</p>
+
+<p rend="initial-offset(45px) initial-width(90px) initial-height(95px) initial-image(images/initial-A.gif)">&lorem;<note place="foot">&lorem;</note></p>
+
+
+<p>Test of entity declaration: 23&prime; is 23 minutes.</p>
+
+<p>Test of parsed entity: &nl; should look like <abbr expan="namelijk">n.l.</abbr></p>
+
+
+<trailer rend="align(center)">The End</trailer>
+
+
+</div2>
+</div1>
+<pb n="23"/>
+<div1 id="ch6" n="II">
+<head>Tests of poetry</head>
+
+<p>This section is to test the rendering of poetry by the TEI stylesheet. The entire poem should appear centered, with all stanza&apos;s aligned. Note that the technique used to center an entire block of text does not work in IE.</p>
+
+<lg>
+<head rend="align(center)">Three stanzas in a row</head>
+
+<lg type="Group">
+<l>This is a rule of verse</l>
+<l rend="indent(1)">This is another <pb n="4"/>rule of verse</l>
+<l>This is a rule of verse</l>
+<l rend="indent(2)">This is another rule of verse</l>
+<l>This is a rule of verse</l>
+<l rend="indent(3)">This is another rule of verse</l>
+<l>This is a rule of verse</l>
+<l rend="indent(10)">This is another rule of verse</l></lg>
+
+
+<lg type="Group" rend="font(italic)">
+<l>This is a rule of verse in italics</l>
+<l rend="indent(1)">This is another rule of verse</l>
+<l>This is a rule of verse</l>
+<l rend="indent(2)">This is another rule of verse</l>
+<l>This is a rule of verse</l>
+<l rend="indent(3)">This is another rule of verse</l>
+<l>This is a rule of verse</l>
+<l rend="indent(10)">This is another rule of verse</l></lg>
+
+
+<lg type="Group" rend="font(italic)">
+<l n="1">This is a rule of verse in italics</l>
+<l n="2" rend="indent(1)">This is another rule of verse</l>
+<l n="3">This is a rule of verse</l>
+<l n="4" rend="indent(1)">This is <corr sic="Correction in verse">another</corr> rule of verse</l>
+<l n="5">This is a rule of verse</l>
+<l n="6" rend="indent(1)">This is another rule of verse</l>
+<l n="7">This is a rule of verse</l>
+<l n="8" rend="indent(10)">This is another rule of verse<note n="1" place="foot"><p>To add verse in a <index level1="Footnote"/>footnote, the lg element needs to be enclosed with a q element. This is a requirement of the TEI DTD.</p>
+
+<q><text><body><div1>
+<lg type="Group" rend="font(italic)" id="footnoteverse">
+<l>This is a rule of verse in italics in a footnote</l>
+<l rend="indent(1)">This is another rule of verse in a footnote</l>
+</lg>
+</div1></body></text></q></note></l></lg></lg>
+
+
+<q rend="block"><p rend="class(hangq)">&lsquo;Test of hanging punctuation. &lorem;&rsquo;</p>
+
+<p rend="class(hangqq)">&ldquo;Test of hanging punctuation. &lorem;&rdquo;</p>
+
+<p rend="class(hangqqq)">&lsquo;&ldquo;Test of hanging punctuation. &lorem;&rdquo;&rsquo;</p></q>
+
+
+<p>Note that the <index level1="Footnote"/>footnote includes some verse, to which we can link <ref target="footnoteverse">here</ref>, and elsewhere in the document.</p>
+
+<p>Another piece of verse with line-numbers:</p>
+
+<lg type="Group" rend="font(italic)">
+<l n="1">This is a rule of verse in italics</l>
+<l n="2" rend="indent(1)">This is another rule of verse</l>
+<l n="3">This is a rule of verse</l>
+<l n="4" rend="indent(1)">This is <corr sic="Correction in verse">another</corr> rule of verse</l>
+<l n="5">This is a rule of verse</l>
+<l n="6" rend="indent(1)">This is another rule of verse</l>
+<l n="7">This is a rule of verse</l>
+<l n="8" rend="indent(10)">This is another rule of verse</l>
+</lg>
+
+<p>Two verses, aligned:</p>
+
+<lg id="fj-fr" type="Group" rend="align-with(fj-en) font(italic)">
+    <head>Fr&egrave;re Jacques</head>
+
+    <l n="1">Fr&egrave;re Jacques, fr&egrave;re Jacques,</l>
+    <l>Dormez-vous ? Dormez-vous ?</l>
+    <l>Sonnez les matines ! Sonnez les matines !</l>
+    <l n="4" rend="indent(2)">Ding, daing, dong. Ding, daing, dong.</l>
+</lg>
+
+<lg id="fj-en" lang="fr" type="Group" rend="display(none)">
+    <head>Brother John</head>
+
+    <l>Are you sleeping, are you sleeping,</l>
+    <l n="2">Brother John? Brother John?</l>
+    <l>Morning bells are ringing! Morning bells are ringing!</l>
+    <l n="4" rend="indent(2)">Ding, dang, dong. Ding, dang, dong.</l>
+</lg>
+
+
+</div1>
+<div1 id="alignFirst" rend="align-with(alignSecond)">
+<head>Text-Alignment Test</head>
+
+<p n="1">This is a test of printing translated paragraphs side-by-side</p>
+
+<p n="2">The paragraphs will be numbered using the <hi>n</hi> attribute.</p>
+
+<p n="3">That way, the style sheet knows which paragraphs belong together.</p>
+
+<p n="4">This makes it easy to verify translations.</p>
+
+<p n="5">An extra paragraph, with the translation next to it.</p>
+
+<p n="6">And yet another paragraph.</p>
+
+<p n="7">And the final paragraph.</p>
+
+
+</div1>
+<div1 id="alignSecond" rend="display(none)" lang="nl">
+<head>Test van het naast elkaar afdrukken van tekst</head>
+
+<p n="1">Dit is een test van het naast elkaar afdrukken van vertaalde alinea&apos;s</p>
+
+<p n="2">De alinea&apos;s worden genummerd met het <hi>n</hi> attribuut.</p>
+
+<p n="3">Op die manier weet de stylesheet welke alinea&apos;s bij elkaar horen.</p>
+
+<p>Als er af en toe een extra alinea tussendoor komt, maakt dat niet uit.</p>
+
+<lg>
+    <l>Hebban olla vogala nestas hagunnan hinase hic enda thu. Wat unbidan we nu.</l>
+</lg>
+
+<p n="4">Dit maakt het eenvoudig vertalingen te controleren.</p>
+
+<p n="5">Een extra alinea, met de vertaling ernaast.</p>
+
+<p n="7">En de laatste alinea.</p>
+
+</div1>
+
+<div1 id="alignThird" rend="align-with-document(test-alignment.xml#test)">
+
+<p n="1">This is a test of printing translated paragraphs side-by-side</p>
+
+<p n="2">The paragraphs will be numbered using the <hi>n</hi> attribute.</p>
+
+<p n="3">That way, the style sheet knows which paragraphs belong together.</p>
+
+<p n="4">This makes it easy to verify translations.</p>
+
+<p n="5">An extra paragraph, with the translation next to it.</p>
+
+<p n="6">And yet another paragraph.</p>
+
+<p n="7">And the final paragraph.</p>
+
+</div1>
+
+
+
+</div0>
+</body>
+<back id="back">
+<div1 id="test-toc">
+<head>Test Table of Contents</head>
+
+
+<list type="tocList" lang="nl">
+<item>      Introductie   <ab type="tocPageNum">vii</ab></item>
+<item><ab type="tocDivNum">I</ab>      Eerste Hoofdstuk   <ab type="tocPageNum">1</ab></item>
+<item><ab type="tocDivNum">II</ab>      Tweede Hoofdstuk   <ab type="tocPageNum">22</ab></item>
+<item><ab type="tocDivNum">III</ab>      <corr sic="Vierde">Derde</corr> Hoofdstuk   <ab type="tocPageNum">35</ab></item>
+<item><ab type="tocDivNum">DCCCXLIV</ab>      Achthonderdenvierenveertigste Hoofdstuk   <ab type="tocPageNum">57</ab></item>
+<item>      Slot   <ab type="tocPageNum">77</ab></item>
+</list>
+
+
+</div1>
+<div1 id="index" type="Index" lang="nl">
+<head>Index</head>
+
+<divGen type="IndexToc"/>
+
+<div2>
+<head>A.</head>
+
+<p>A is een aapje.</p>
+
+</div2>
+<div2>
+<head>B.</head>
+
+<p>B is een Boom.</p>
+
+</div2>
+<div2>
+<head>C.</head>
+
+<p>C is een Cent.</p>
+
+</div2>
+<div2>
+<head>D.</head>
+
+<p>D is een Drommedaris.
+<lb/>en een Duizendpoot.</p>
+
+</div2>
+</div1>
+<div1 id="backmatter">
+
+<divGen type="Gallery"/>
+
+<divGen type="Index"/>
+
+<!-- <divGen type="Footnotes"/> -->
+
+<divGen type="toc" rend="tocMaxLevel(3)"/>
+
+<divGen type="loi"/>
+
+<divGen type="Colophon"/>
+
+<divGen type="LanguageFragments"/>
+
+</div1>
+</back>
+</text>
+</TEI.2>

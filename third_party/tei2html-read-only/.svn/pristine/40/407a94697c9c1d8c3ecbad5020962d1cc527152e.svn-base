@@ -1,0 +1,2806 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!-- This HTML file has been automatically generated from an XML source on 2014-04-08T06:31:23Z. -->
+<html xmlns="http://www.w3.org/1999/xhtml" id="xd21e1" lang="en-US">
+   <head>
+      <title>Main Title of Work Goes Here</title>
+      <meta http-equiv="content-type" content="text/html; charset=iso-8859-1"></meta>
+      <meta name="generator" content="tei2html.xsl, see http://code.google.com/p/tei2html/"></meta>
+      <meta name="author" content="Author of Work (Birth-year&#8212;Death-year) A. U. Thor W. Riter"></meta>
+      <link rel="coverpage" href="images/cover500.jpg"></link>
+      <link rel="schema.DC" href="http://dublincore.org/documents/1998/09/dces/"></link>
+      <meta name="DC.Creator" content="Author of Work (Birth-year&#8212;Death-year) A. U. Thor W. Riter"></meta>
+      <meta name="DC.Title" content="Main Title of Work Goes Here"></meta>
+      <meta name="DC.Date" content="2009-12-13"></meta>
+      <meta name="DC.Language" content="en-US"></meta>
+      <meta name="DC.Format" content="text/html"></meta>
+      <meta name="DC.Publisher" content="Project Gutenberg"></meta>
+      <meta name="DC.Rights" content="This book is not copyrighted in the United States. If you live elsewhere please check the laws of your country before downloading this book."></meta>
+      <meta name="DC.Identifier" content="http://www.gutenberg.org/etext/123456789"></meta>
+      <meta name="DC:Subject" content="TEI (Text Encoding Initiative)"></meta>
+      <meta name="DC:Subject" content="XSLT"></meta>
+      <meta name="DC:Subject" content="HTML"></meta><style type="text/css">
+
+
+body
+{
+    font-family: "Times New Roman", Times, serif;
+    font-size: 100%;
+    line-height: 1.2em;
+    margin: 1.58em 16%;
+    text-align: left;
+}
+
+/* Titlepage */
+
+.titlePage
+{
+    border: #DDDDDD 2px solid;
+    margin: 3em 0% 7em 0%;
+    padding: 5em 10% 6em 10%;
+    text-align: center;
+}
+
+.titlePage .docTitle
+{
+    line-height: 3.5em;
+    margin: 2em 0% 2em 0%;
+    font-weight: bold;
+}
+
+.titlePage .docTitle .mainTitle
+{
+    font-size: 1.8em;
+}
+
+.titlePage .docTitle .subTitle, .titlePage .docTitle .seriesTitle, .titlePage .docTitle .volumeTitle
+{
+    font-size: 1.44em;
+}
+
+.titlePage .byline
+{
+    margin: 2em 0% 2em 0%;
+    font-size:1.2em;
+    line-height:1.72em;
+}
+
+.titlePage .byline .docAuthor
+{
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.titlePage .figure
+{
+    margin: 2em 0% 2em 0%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.titlePage .docImprint
+{
+    margin: 4em 0% 0em 0%;
+    font-size: 1.2em;
+    line-height: 1.72em;
+}
+
+.titlePage .docImprint .docDate
+{
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+
+/* End Titlepage */
+
+
+.transcribernote
+{
+    background-color:#DDE;
+    border:black 1px dotted;
+    color:#000;
+    font-family:sans-serif;
+    font-size:80%;
+    margin:2em 5%;
+    padding:1em;
+}
+
+.advertisment
+{
+    background-color:#FFFEE0;
+    border:black 1px dotted;
+    color:#000;
+    margin:2em 5%;
+    padding:1em;
+}
+
+.correctiontable
+{
+    width: 75%;
+}
+
+.width20
+{
+    width: 20%;
+}
+
+.width40
+{
+    width: 40%;
+}
+
+.indextoc
+{
+    text-align: center;
+}
+
+.div0
+{
+    padding-top: 5.6em;
+}
+
+.div1
+{
+    padding-top: 4.8em;
+}
+
+.index
+{
+    font-size: 80%;
+}
+
+.div2
+{
+    padding-top: 3.6em;
+}
+
+.div3, .div4, .div5
+{
+    padding-top: 2.4em;
+}
+
+.footnotes .body,
+.footnotes .div1
+{
+    padding: 0;
+}
+
+.fnarrow
+{
+    color: #AAAAAA;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.apparatusnote
+{
+    text-decoration: none;
+}
+
+table.alignedtext, table.alignedverse
+{
+    border-collapse: collapse;
+}
+
+table.alignedtext td
+{
+    vertical-align: top;
+    width: 50%;
+}
+
+table.alignedverse
+{
+    vertical-align: top;
+}
+
+table.alignedtext td.first, table.alignedverse td.first
+{
+    border-width: 0 0.2px 0 0;
+    border-color: gray;
+    border-style: solid;
+    padding-right: 10px;
+}
+
+table.alignedtext td.second, table.alignedverse td.second
+{
+    padding-left: 10px;
+}
+
+table.alignedverse td.first, table.alignedverse td.second
+{
+    width: 45%;
+}
+
+table.alignedverse td.linenumbers
+{
+    width: 10%;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4
+{
+    clear: both;
+    font-style: normal;
+    text-transform: none;
+}
+
+h3, .h3
+{
+    font-size:1.2em;
+    line-height:1.2em;
+}
+
+h3.label
+{
+    font-size:1em;
+    line-height:1.2em;
+    margin-bottom:0;
+}
+
+h4, .h4
+{
+    font-size:1em;
+    line-height:1.2em;
+}
+
+
+.alignleft
+{
+    text-align:left;
+}
+
+.alignright
+{
+    text-align:right;
+}
+
+.alignblock
+{
+    text-align:justify;
+}
+
+p.tb, hr.tb
+{
+    margin-top: 1.6em;
+    margin-bottom: 1.6em;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+p.argument, p.note, p.tocArgument
+{
+    font-size:0.9em;
+    line-height:1.2em;
+    text-indent:0;
+}
+
+p.argument, p.tocArgument
+{
+    margin:1.58em 10%;
+}
+
+p.tocPart
+{
+    margin:1.58em 0%;
+    font-variant: small-caps;
+}
+
+p.tocChapter
+{
+    margin:1.58em 0%;
+}
+
+p.tocSection
+{
+    margin:0.7em 5%;
+}
+
+.opener, .address
+{
+    margin-top: 1.6em;
+    margin-bottom: 1.6em;
+}
+
+.addrline
+{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.dateline
+{
+    margin-top: 1.6em;
+    margin-bottom: 1.6em;
+    text-align: right;
+}
+
+.salute
+{
+    margin-top: 1.6em;
+    margin-left: 3.58em;
+    text-indent: -2em;
+}
+
+.signed
+{
+    margin-top: 1.6em;
+    margin-left: 3.58em;
+    text-indent: -2em;
+}
+
+.epigraph
+{
+    font-size:0.9em;
+    line-height:1.2em;
+    width: 60%;
+    margin-left: auto;
+}
+
+.epigraph span.bibl
+{
+    display: block;
+    text-align: right;
+}
+
+.trailer
+{
+    clear: both;
+    padding-top: 2.4em;
+    padding-bottom: 1.6em;
+}
+
+.figure
+{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.floatLeft
+{
+    float:left;
+    margin:10px 10px 10px 0;
+}
+
+.floatRight
+{
+    float:right;
+    margin:10px 0 10px 10px;
+}
+
+p.figureHead
+{
+    font-size:100%;
+    text-align:center;
+}
+
+.figAnnotation
+{
+    font-size:80%;
+    position:relative;
+    margin: 0 auto; /* center this */
+}
+
+.figTopLeft, .figBottomLeft
+{
+    float: left;
+}
+
+.figTop, .figBottom
+{
+}
+
+.figTopRight, .figBottomRight
+{
+    float: right;
+}
+
+.hangq
+{
+    text-indent: -0.32em;
+}
+
+.hangqq
+{
+    text-indent: -0.40em;
+}
+
+.hangqqq
+{
+    text-indent: -0.71em;
+}
+
+.figure p
+{
+    font-size:80%;
+    margin-top:0;
+    text-align:center;
+}
+
+img
+{
+    border-width:0;
+}
+
+p.smallprint,li.smallprint
+{
+    color:#666666;
+    font-size:80%;
+}
+
+span.parnum
+{
+    font-weight: bold;
+}
+
+.marginnote
+{
+    font-size:0.8em;
+    height:0;
+    left:1%;
+    line-height:1.2em;
+    position:absolute;
+    text-indent:0;
+    width:14%;
+}
+
+.pagenum
+{
+    display:inline;
+    font-size:70%;
+    font-style:normal;
+    margin:0;
+    padding:0;
+    position:absolute;
+    right:1%;
+    text-align:right;
+}
+
+a.noteref, a.pseudonoteref
+{
+    font-size: 80%;
+    text-decoration: none;
+    vertical-align: 0.25em;
+}
+
+
+.displayfootnote
+{
+    display: none;
+}
+
+div.footnotes
+{
+    font-size: 80%;
+    margin-top: 1em;
+    padding: 0;
+}
+
+hr.fnsep
+{
+    margin-left: 0;
+    margin-right: 0;
+    text-align: left;
+    width: 25%;
+}
+
+p.footnote
+{
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+}
+
+p.footnote .label
+{
+    float:left;
+    width:2em;
+    height:12pt;
+    display:block;
+}
+
+/* Tables */
+
+tr, td, th
+{
+    vertical-align: top;
+}
+
+td.bottom
+{
+    vertical-align: bottom;
+}
+
+td.label, tr.label td
+{
+    font-weight: bold;
+}
+
+td.unit, tr.unit td
+{
+    font-style: italic;
+}
+
+span.sum
+{
+    padding-top: 2px; border-top: solid black 1px;
+}
+
+/* Table border styles */
+
+/* Table with borders on the outside and between the table head and data. */
+
+table.borderOutside
+{
+    border-collapse: collapse;
+}
+
+table.borderOutside td
+{
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+table.borderOutside .cellHeadTop, table.borderOutside .cellTop
+{
+    border-top: 2px solid black;
+}
+
+table.borderOutside .cellHeadBottom
+{
+    border-bottom: 1px solid black;
+}
+
+table.borderOutside .cellBottom
+{
+    border-bottom: 2px solid black;
+}
+
+table.borderOutside .cellLeft, table.borderOutside .cellHeadLeft
+{
+    border-left: 2px solid black;
+}
+
+table.borderOutside .cellRight, table.borderOutside .cellHeadRight
+{
+    border-right: 2px solid black;
+}
+
+/* Table with borders on the vertical inside edges. */
+
+table.verticalBorderInside
+{
+    border-collapse: collapse;
+}
+
+table.verticalBorderInside td
+{
+    padding-left: 4px;
+    padding-right: 4px;
+    border-left: 1px solid black;
+}
+
+table.verticalBorderInside .cellHeadTop, table.verticalBorderInside .cellTop
+{
+    border-top: 2px solid black;
+}
+
+table.verticalBorderInside .cellHeadBottom
+{
+    border-bottom: 1px solid black;
+}
+
+table.verticalBorderInside .cellBottom
+{
+    border-bottom: 2px solid black;
+}
+
+table.verticalBorderInside .cellLeft, table.verticalBorderInside .cellHeadLeft
+{
+    border-left: 0px solid black;
+}
+
+/* Table with borders on all edges, outer edges somewhat fatter. */
+
+table.borderAll
+{
+    border-collapse: collapse;
+}
+
+table.borderAll td
+{
+    padding-left: 4px;
+    padding-right: 4px;
+    border: 1px solid black;
+}
+
+table.borderAll .cellHeadTop, table.borderAll .cellTop
+{
+    border-top: 2px solid black;
+}
+
+table.borderAll .cellHeadBottom
+{
+    border-bottom: 1px solid black;
+}
+
+table.borderAll .cellBottom
+{
+    border-bottom: 2px solid black;
+}
+
+table.borderAll .cellLeft, table.borderAll .cellHeadLeft
+{
+    border-left: 2px solid black;
+}
+
+table.borderAll .cellRight, table.borderAll .cellHeadRight
+{
+    border-right: 2px solid black;
+}
+
+/* Special purpose tables: */
+
+table.intralinear
+{
+    display: inline;
+    border-collapse: collapse;
+}
+
+table.intralinear td
+{
+    font-size: small;
+    text-align: center;
+}
+
+table.ditto
+{
+    display: inline;
+    border-collapse: collapse;
+    vertical-align: bottom;
+}
+
+table.ditto tr.s
+{
+    height: 0;
+    color: white;
+    line-height: 0;
+}
+
+table.ditto tr.s td
+{
+    padding: 0px;
+}
+
+table.ditto tr.d td
+{
+    text-align: center;
+    line-height: 10pt;
+}
+
+/* Poetry */
+
+.lgouter
+{
+    margin-left: auto;
+    margin-right: auto;
+    display:table; /* used to make the block shrink to the actual size */
+}
+
+.lg
+{
+    text-align: left;
+}
+
+.lg h4, .lgouter h4
+{
+    font-weight: normal;
+}
+
+.lg .linenum, .sp .linenum, .lgouter .linenum
+{
+    color:#777;
+    font-size:90%;
+    left: 16%;
+    margin:0;
+    position:absolute;
+    text-align:center;
+    text-indent:0;
+    top:auto;
+    width:1.75em;
+}
+
+p.line
+{
+    margin: 0 0% 0 0%;
+}
+
+span.hemistich /* invisible text to achieve visual effect of hemistich indentation. */
+{
+    color: white;
+}
+
+.versenum
+{
+    font-weight:bold;
+}
+
+
+/* Drama */
+
+
+.speaker
+{
+    font-weight: bold;
+    margin-bottom: 0.4em;
+}
+
+.sp .line
+{
+    margin: 0 10%;
+    text-align: left;
+}
+
+
+/* End Drama */
+
+
+/* right aligned page number in table of contents */
+span.tocPageNum, span.flushright
+{
+    position: absolute;
+    right: 16%;
+    top: auto;
+}
+
+table.tocList
+{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    border-width: 0;
+    border-collapse: collapse;
+}
+
+td.tocPageNum, td.tocDivNum
+{
+    text-align: right;
+    width: 10%;
+    border-width: 0;
+}
+
+td.tocDivNum
+{
+    padding-left: 0;
+    padding-right: 0.5em;
+}
+
+td.tocPageNum
+{
+    padding-left: 0.5em;
+    padding-right: 0;
+}
+
+td.tocDivTitle
+{
+    width: auto;
+}
+
+span.corr, span.gap
+{
+    border-bottom:1px dotted red;
+}
+
+span.abbr
+{
+    border-bottom:1px dotted gray;
+}
+
+span.measure
+{
+    border-bottom:1px dotted green;
+}
+
+/* Font Styles and Colors */
+
+.ex
+{
+    letter-spacing: 0.2em;
+}
+
+.sc
+{
+    font-variant: small-caps;
+}
+
+.uc
+{
+    text-transform: uppercase;
+}
+
+.tt
+{
+    font-family: monospace;
+}
+
+.underline
+{
+    text-decoration: underline;
+}
+
+/* overline is actually a bit too high; overtilde is approximated with overline */
+.overline, .overtilde
+{
+    text-decoration: overline;
+}
+
+.rm
+{
+    font-style: normal;
+}
+
+.red
+{
+    color: red;
+}
+
+/* End Font Styles and Colors */
+
+
+hr
+{
+    clear:both;
+    height:1px;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:1em;
+    text-align:center;
+    width:45%;
+}
+
+.aligncenter, div.figure
+{
+    text-align:center;
+}
+
+h1, h2
+{
+    font-size:1.44em;
+    line-height:1.5em;
+}
+
+h1.label, h2.label
+{
+    font-size:1.2em;
+    line-height:1.2em;
+    margin-bottom:0;
+}
+
+h5, h6
+{
+    font-size:1em;
+    font-style:italic;
+    line-height:1em;
+}
+
+p
+{
+    text-indent:0;
+}
+
+p.firstlinecaps:first-line
+{
+    text-transform: uppercase;
+}
+
+p.dropcap:first-letter
+{
+    float: left;
+    clear: left;
+    margin: 0em 0.05em 0 0;
+    padding: 0px;
+    line-height: 0.8em;
+    font-size: 420%;
+    vertical-align:super;
+}
+
+.lg
+{
+    padding: .5em 0% .5em 0%;
+}
+
+p.quote,div.blockquote, div.argument
+{
+    font-size:0.9em;
+    line-height:1.2em;
+    margin:1.58em 5%;
+}
+
+.pagenum a, a.noteref:hover, a.hidden:hover, a.hidden
+{
+    text-decoration:none;
+}
+
+
+ul { list-style-type: none; }
+
+.castlist, .castitem { list-style-type: none; }
+
+
+/* External Links */
+
+.pglink, .catlink, .exlink, .wplink, .biblink, .seclink
+{
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+
+.pglink
+{
+    background-image: url(images/book.png);
+    padding-right: 18px;
+}
+
+.catlink
+{
+    background-image: url(images/card.png);
+    padding-right: 17px;
+}
+
+.exlink, .wplink, .biblink, .seclink
+{
+    background-image: url(images/external.png);
+    padding-right: 13px;
+}
+
+.pglink:hover
+{
+    background-color: #DCFFDC;
+}
+
+.catlink:hover
+{
+    background-color: #FFFFDC;
+}
+
+.exlink:hover, .wplink:hover, .biblink:hover
+{
+    background-color: #FFDCDC;
+}
+
+
+
+
+
+body
+{
+    background: #FFFFFF;
+    font-family: "Times New Roman", Times, serif;
+}
+
+body, a.hidden
+{
+    color: black;
+}
+
+.titlePage
+{
+    color: #001FA4;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4
+{
+    color: #001FA4;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+p.byline
+{
+    font-style: italic;
+    margin-bottom: 2em;
+}
+
+.figureHead, .noteref, .pseudonoteref, .marginnote, p.legend, .versenum, .stage
+{
+    color: #001FA4;
+}
+
+.rightnote, .pagenum, .linenum, .pagenum a
+{
+    color: #AAAAAA;
+}
+
+a.hidden:hover, a.noteref:hover
+{
+    color: red;
+}
+
+p.dropcap:first-letter
+{
+    color: #001FA4;
+    font-weight: bold;
+}
+
+sub, sup 
+{ 
+    line-height: 0;
+}
+
+
+
+
+
+
+.pagenum, .linenum
+{
+    speak: none;
+}
+
+
+</style><style type="text/css">
+
+
+body
+{
+    margin: 1.58em 16%;
+}
+
+
+
+.xd21e384
+{
+text-align:right;
+}
+
+.xd21e558
+{
+color:red; background-color:yellow;
+}
+
+.xd21e559
+{
+color:green; text-align:right;
+}
+
+.xd21e560
+{
+color:blue; text-align:right;
+}
+
+.xd21e596
+{
+text-align:left;width:40%; padding:4px;
+}
+
+.xd21e597
+{
+text-align:right;border-left:1px solid black; padding:4px;
+}
+
+.xd21e600
+{
+border-top:2px solid black;
+}
+
+.xd21e617
+{
+border-top:1px solid black;
+}
+
+.xd21e648
+{
+border-bottom:2px solid black;
+}
+
+.xd21e98
+{
+font-style:italic;
+}
+
+.xd21e108
+{
+background-color:yellow;
+}
+
+.xd21e143
+{
+font-family:'Walbaum-Fraktur';
+}
+
+.xd21e156
+{
+font-size:14pt; color:red; background-color:yellow;
+}
+
+.xd21e526
+{
+margin:0px auto; display:table;
+}
+
+.xd21e530
+{
+vertical-align:middle; width:2px;
+}
+
+.xd21e531
+{
+vertical-align:middle;
+}
+
+.xd21e541
+{
+margin-left:2em;
+}
+
+.xd21e543
+{
+width:25%;
+}
+
+.xd21e545
+{
+width:75%;
+}
+
+.xd21e555
+{
+width:40%; margin:0px auto; display:table;
+}
+
+.xd21e564
+{
+text-align:right;
+}
+
+.xd21e583
+{
+text-align:center;
+}
+
+.xd21e588
+{
+text-align:left;
+}
+
+.xd21e595
+{
+width:40%; border-collapse:collapse;
+}
+
+.xd21e752width
+{
+    width:80px;
+}
+            
+.xd21e757
+{
+width:100px;
+}
+
+.xd21e757width
+{
+    width:80px;
+}
+            
+.xd21e764width
+{
+    width:80px;
+}
+            
+.xd21e776width
+{
+    width:480px;
+}
+            
+.xd21e796width
+{
+    width:480px;
+}
+            
+.xd21e847
+{
+font-style:italic;
+}
+
+.xd21e878
+{
+list-style-type:disc;
+}
+
+.xd21e908
+{
+list-style-type:upper-roman;
+}
+
+.xd21e920
+{
+list-style-type:lower-roman;
+}
+
+.xd21e963
+{
+text-align:left;
+}
+
+.xd21e966
+{
+text-align:right;
+}
+
+.xd21e968
+{
+text-align:center;
+}
+
+
+.xd21e970
+{
+    background: url(images/initial-A.gif) no-repeat top left;
+    
+        padding-top: 45px;
+    
+}
+
+.xd21e970init
+{
+    float: left;
+    width: 90px;
+    height: 95px;
+    background: url(images/initial-A.gif) no-repeat;
+    
+        background-position: 0px -45px;
+    
+    text-align: right;
+    color: white;
+    font-size: 1px;
+}
+
+        
+.xd21e974
+{
+text-align:justify;
+}
+
+.xd21e989
+{
+text-align:center;
+}
+
+.xd21e998
+{
+text-align:center;
+}
+
+.xd21e1003
+{
+text-indent:1em;
+}
+
+.xd21e1009
+{
+text-indent:2em;
+}
+
+.xd21e1013
+{
+text-indent:3em;
+}
+
+.xd21e1017
+{
+text-indent:10em;
+}
+
+.xd21e1019
+{
+font-style:italic;
+}
+
+.xd21e1111
+{
+font-style:italic;
+}
+
+.xd21e1122
+{
+display:none;
+}
+
+.xd21e1153
+{
+display:none;
+}
+</style></head>
+   <body>
+      
+      <div class="front" id="front">
+         <div id="cover" class="div1 cover"><span class="pagenum">[<a href="#toc">Contents</a>]</span><div class="divBody">
+               <p id="xd21e90" class="first"></p>
+                  <div class="figure  " id="cover-image"><img src="images/cover500.jpg" alt="Cover illustration."></img></div><p>
+               </p>
+            </div>
+         </div>
+         <div class="titlePage " id="xd21e94">
+            <div class="docTitle " id="xd21e95">
+               <div class="mainTitle " id="xd21e96">Creating documents in TEI</div>
+               <div class="subTitle xd21e98" id="xd21e98">A Tei2Html Test Document</div>
+            </div>
+            <div class="byline " id="xd21e100">by <br></br><span class="docAuthor " id="xd21e103">Jeroen Hellingman</span></div>
+            <div class="docImprint " id="xd21e105">Project Gutenberg
+               <br></br><span class="docDate xd21e108" id="xd21e108">2010</span>
+               
+            </div>
+         </div>
+         <div class="div1" id="toc">
+            <h2 class="main">Table of Contents</h2>
+            <ul>
+               <li>I. <a href="#bk1">Tei2html Test Document</a><ul>
+                     <li>1. <a href="#ch1">Text Styles</a></li>
+                     <li>2. <a href="#ch2">Text Elements</a>&nbsp;&nbsp;&nbsp;&nbsp; <span class="tocPageNum"><a class="pageref" href="#ch2">2</a></span></li>
+                     <li>3. <a href="#ch3">Footnotes</a>&nbsp;&nbsp;&nbsp;&nbsp; <span class="tocPageNum"><a class="pageref" href="#ch3">2</a></span></li>
+                     <li>5. <a href="#ch05">Tables</a>&nbsp;&nbsp;&nbsp;&nbsp; <span class="tocPageNum"><a class="pageref" href="#ch05">2</a></span><ul>
+                           <li><a href="#xd21e809">Letters, Closers, and Openers</a>&nbsp;&nbsp;&nbsp;&nbsp; <span class="tocPageNum"><a class="pageref" href="#xd21e809">2</a></span></li>
+                           <li><a href="#xd21e831">Lists</a>&nbsp;&nbsp;&nbsp;&nbsp; <span class="tocPageNum"><a class="pageref" href="#xd21e831">2</a></span><ul>
+                                 <li><a href="#xd21e940">Division at Level 3</a>&nbsp;&nbsp;&nbsp;&nbsp; <span class="tocPageNum"><a class="pageref" href="#xd21e940">3</a></span><ul>
+                                       <li><a href="#xd21e945">Division at Level 4</a>&nbsp;&nbsp;&nbsp;&nbsp; <span class="tocPageNum"><a class="pageref" href="#xd21e945">3</a></span><ul>
+                                             <li><a href="#xd21e950">Division at Level 5</a>&nbsp;&nbsp;&nbsp;&nbsp; <span class="tocPageNum"><a class="pageref" href="#xd21e950">3</a></span><ul>
+                                                   <li><a href="#xd21e955">Division at Level 6</a>&nbsp;&nbsp;&nbsp;&nbsp; <span class="tocPageNum"><a class="pageref" href="#xd21e955">3</a></span></li>
+                                                </ul>
+                                             </li>
+                                          </ul>
+                                       </li>
+                                    </ul>
+                                 </li>
+                              </ul>
+                           </li>
+                           <li><a href="#xd21e960">Some Further Tests</a>&nbsp;&nbsp;&nbsp;&nbsp; <span class="tocPageNum"><a class="pageref" href="#xd21e960">3</a></span></li>
+                        </ul>
+                     </li>
+                     <li>II. <a href="#ch6">Tests of poetry</a>&nbsp;&nbsp;&nbsp;&nbsp; <span class="tocPageNum"><a class="pageref" href="#ch6">23</a></span></li>
+                     <li><a href="#alignFirst">Text-Alignment Test</a>&nbsp;&nbsp;&nbsp;&nbsp; <span class="tocPageNum"><a class="pageref" href="#alignFirst">4</a></span></li>
+                  </ul>
+               </li>
+               <li><a href="#test-toc">Test Table of Contents</a>&nbsp;&nbsp;&nbsp;&nbsp; <span class="tocPageNum"><a class="pageref" href="#test-toc">4</a></span></li>
+               <li><a href="#index">Index</a>&nbsp;&nbsp;&nbsp;&nbsp; <span class="tocPageNum"><a class="pageref" href="#index">4</a></span></li>
+            </ul>
+         </div>
+      </div>
+      <div class="body" id="body">
+         <div id="bk1" class="div0 book">
+            <h2 class="label">Book I</h2>
+            <h2 id="xd21e114" class="main">Tei2html Test Document</h2>
+            <p id="xd21e116" class="first">This is a test document, mainly intended to test<a class="noteref" id="xd21e118src" href="#xd21e118">1</a> the features implemented in the tei2html <a id="xd21e121"></a>XSLT stylesheets. This document serves the dual purpose of helping me to develop new features, and act as a cheat-sheet to
+               look up how certain things are achieved with my <a id="xd21e123"></a>stylesheet (yes, I sometimes forget myself). 
+            </p>
+            <div class="footnotes">
+               <hr class="fnsep"></hr>
+               <p class="footnote"><span class="label"><a class="noteref" id="xd21e118" href="#xd21e118src">1</a></span> Test of a footnote at the div0 level.&nbsp;<a class="fnarrow" href="#xd21e118src">&#8593;</a></p>
+            </div>
+            <div id="ch1" class="div1 chapter"><span class="pagenum">[<a href="#toc">Contents</a>]</span><div class="divHead">
+                  <h2 id="xd21e126" class="label">Chapter 1</h2>
+                  <h2 id="xd21e128" class="main">Text Styles</h2>
+               </div>
+               <div class="divBody">
+                  <p id="xd21e130" class="first dropcap">This is a sample paragraph, with<span class="pagenum">[<a id="pb002" href="#pb002">2</a>]</span> some <i id="xd21e134">italic</i> and <b id="xd21e137">bold</b> text. We continue the test with some
+                     <span class="sc" id="xd21e140">Small Caps</span>, some <span id="xd21e143" class="xd21e143">fraktur</span>, and some <span class="ex" id="xd21e147">letterspaced</span>
+                     text.<a class="noteref" id="xd21e150src" href="#xd21e150">1</a> As you can see, the preceding sentence is followed by
+                     a footnote. <span id="xd21e156" class="xd21e156">We can <span class="uc" id="xd21e158">shout</span> in big red letters.</span> We also have a reference to the <a href="#ch05" id="xd21e162">next chapter</a>. It is very well possible to include some text in hieroglyphs, <img src="images/hg2101.png" alt="Inline Hieroglyphs"></img> using in-line images as shown here.
+                  </p>
+                  <div class="table" id="xd21e169">
+                     <table>
+                        <tr id="xd21e170">
+                           <td id="xd21e171" class="cellLeft cellTop"><i id="xd21e172">The quick brown fox jumps over the lazy dog</i>    
+                           </td>
+                           <td id="xd21e175" class="cellRight cellTop">Italic</td>
+                        </tr>
+                        <tr id="xd21e177">
+                           <td id="xd21e178" class="cellLeft"><b id="xd21e179">The quick brown fox jumps over the lazy dog</b>    
+                           </td>
+                           <td id="xd21e182" class="cellRight">Bold</td>
+                        </tr>
+                        <tr id="xd21e184">
+                           <td id="xd21e185" class="cellLeft"><span class="sc" id="xd21e186">The quick brown fox jumps over the lazy dog</span>    
+                           </td>
+                           <td id="xd21e189" class="cellRight">Caps and small-caps</td>
+                        </tr>
+                        <tr id="xd21e191">
+                           <td id="xd21e192" class="cellLeft"><span class="uc" id="xd21e193">The quick brown fox jumps over the lazy dog</span>    
+                           </td>
+                           <td id="xd21e196" class="cellRight">All-caps</td>
+                        </tr>
+                        <tr id="xd21e198">
+                           <td id="xd21e199" class="cellLeft cellBottom"><span class="ex" id="xd21e200">The quick brown fox jumps over the lazy dog</span>    
+                           </td>
+                           <td id="xd21e203" class="cellRight cellBottom">letter-spaced</td>
+                        </tr>
+                     </table>
+                  </div>
+                  <p id="loon">A sample of an embedded audio file: The sound of a <i id="xd21e207">Loon</i>, courtesy of the U.S. Fish and Wildlife Service.
+                  </p>
+                  <p id="xd21e210">Footnote test paragraph.
+                     First,<a class="noteref" id="xd21e212src" href="#xd21e212">2</a>
+                     second,<a class="noteref" id="xd21e215src" href="#xd21e215">3</a>
+                     third,<a class="noteref" id="xd21e219src" href="#xd21e219">4</a>
+                     fourth.<a class="noteref" id="xd21e225src" href="#xd21e225">5</a>
+                     
+                  </p>
+               </div>
+               <div class="footnotes">
+                  <hr class="fnsep"></hr>
+                  <p class="footnote"><span class="label"><a class="noteref" id="xd21e150" href="#xd21e150src">1</a></span> This is a footnote with some <i id="xd21e152">italics</i>.&nbsp;<a class="fnarrow" href="#xd21e150src">&#8593;</a></p>
+                  <p class="footnote"><span class="label"><a class="noteref" id="xd21e212" href="#xd21e212src">2</a></span> Note without paragraph.&nbsp;<a class="fnarrow" href="#xd21e212src">&#8593;</a></p>
+                  <p class="footnote"><span class="label"><a class="noteref" id="xd21e215" href="#xd21e215src">3</a></span> Note with just one paragraph.&nbsp;<a class="fnarrow" href="#xd21e215src">&#8593;</a></p>
+                  <p class="footnote"><span class="label"><a class="noteref" id="xd21e219" href="#xd21e219src">4</a></span> Note with two paragraphs.
+                  </p>
+                  <p class="footnote" id="xd21e222">Second paragraph.&nbsp;<a class="fnarrow" href="#xd21e219src">&#8593;</a></p>
+                  <p class="footnote"><span class="label"><a class="noteref" id="xd21e225" href="#xd21e225src">5</a></span> Note with three paragraphs.
+                  </p>
+                  <p class="footnote" id="xd21e228">Second paragraph.</p>
+                  <p class="footnote" id="xd21e230">Third paragraph.&nbsp;<a class="fnarrow" href="#xd21e225src">&#8593;</a></p>
+               </div>
+            </div>
+            <div id="ch2" class="div1 chapter"><span class="pagenum">[<a href="#toc">Contents</a>]</span><div class="divHead">
+                  <h2 id="xd21e234" class="label">Chapter 2</h2>
+                  <h2 id="xd21e236" class="main">Text Elements</h2>
+                  <div id="xd21e238" class="blockquote">
+                     <div class="body" id="xd21e240">
+                        <div id="xd21e241" class="div1">
+                           <div class="divHead">
+                              <h2 id="xd21e242" class="main">Section head in quoted material</h2>
+                           </div>
+                           <div class="divBody">
+                              <p id="xd21e244" class="first">This is a <a id="xd21e246"></a>paragraph in quoted material<a class="noteref" id="xd21e248src" href="#xd21e248">1</a> This paragraph contains a <a id="xd21e253"></a>footnote, to verify correct handling of this convoluted situation during the transformation.
+                              </p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="divBody">
+                  <p id="xd21e255" class="first">Books created with these stylesheet include: <a id="xd21e257" lang="nl" class="pglink xd21e43" title="Link to Project Gutenberg ebook" href="http://www.gutenberg.org/ebooks/19585">De Wereld voor de schepping van den mensch</a> by Camille Flammarion, and <i id="xd21e260"><a id="xd21e261" lang="nl" class="pglink xd21e43" title="Link to Project Gutenberg ebook" href="http://www.gutenberg.org/files/37578/37578-h/37578-h.htm#ch19">The Later Life</a></i> by Louis  Couperus (note how this last links points to chapter XIX of the book). Books will be posted at <a id="xd21e264"></a><a id="xd21e265" class="exlink xd21e43" title="External link" href="http://www.gutenberg.org/">Project Gutenberg</a>. Text can include references to WorldCat or OpenLibrary catalog entries, for example: <a id="xd21e268" class="catlink xd21e43" title="Link to OpenLibrary catalog page" href="http://openlibrary.org/books/OL11170298M">OLN</a> and <a id="xd21e271" class="catlink xd21e43" title="Link to WorldCat catalog page" href="http://www.worldcat.org/oclc/618671">OCLC</a>. The code knows short-hand notations for references to such common things as <a id="xd21e275" class="wplink xd21e43" title="Link to related Wikipedia article" href="http://en.wikipedia.org/wiki/wikipedia">Wikipedia</a> (even in <a id="xd21e278" lang="nl" class="wplink xd21e43" title="Link to related Wikipedia article" href="http://en.wikipedia.org/wiki/Nederlands">Dutch</a>) and the <a id="xd21e281" class="biblink xd21e43" title="Link to cited location in Bible" href="http://www.biblegateway.com/passage/?search=gen%201:1">Bible</a>.
+                  </p>
+               </div>
+               <div class="footnotes">
+                  <hr class="fnsep"></hr>
+                  <p class="footnote"><span class="label"><a class="noteref" id="xd21e248" href="#xd21e248src">1</a></span> This is a <a id="xd21e250"></a>footnote in quoted material.&nbsp;<a class="fnarrow" href="#xd21e248src">&#8593;</a></p>
+               </div>
+            </div>
+            <div id="ch3" class="div1 chapter"><span class="pagenum">[<a href="#toc">Contents</a>]</span><h2 class="label">Chapter 3</h2>
+               <div class="divHead">
+                  <h2 id="xd21e285" class="main">Footnotes<a class="noteref" id="xd21e287src" href="#xd21e287">1</a></h2>
+               </div>
+               <div class="divBody">
+                  <p id="xd21e291" class="first">In this chapter, we set out to test footnotes<a id="xd21e293"></a>.
+                  </p>
+                  <p id="xd21e295">Here we have a reference to a <a href="#n1" id="xd21e297">footnote</a> in a following <a href="#ch05" id="xd21e300">chapter</a>, and <a href="#inside-n1" id="xd21e303">element inside it</a>.
+                  </p>
+               </div>
+               <div class="footnotes">
+                  <hr class="fnsep"></hr>
+                  <p class="footnote"><span class="label"><a class="noteref" id="xd21e287" href="#xd21e287src">1</a></span> Footnote in <a id="xd21e289"></a>chapter heading.&nbsp;<a class="fnarrow" href="#xd21e287src">&#8593;</a></p>
+               </div>
+            </div>
+            <div id="ch05" class="div1 chapter"><span class="pagenum">[<a href="#toc">Contents</a>]</span><div class="divHead">
+                  <div class="figure"><img src="images/Ornament.gif" alt="Chapter V"></img></div>
+                  <h2 id="xd21e307" class="label">Chapter V</h2>
+                  <h2 id="xd21e309" class="main">Tables</h2>
+                  <div class="argument" id="xd21e311">
+                     <p id="xd21e312" class="first">This is the argument of this chapter, a block of text giving a short kind of index to the chapter.</p>
+                  </div>
+                  <div class="epigraph" id="xd21e314"><span class="cit" id="xd21e315" lang="fr">
+                        <div id="xd21e316" class="q">
+                           <div id="xd21e317" class="lgouter ">
+                              <p id="xd21e318" class="line ">&#8220;Ils partent; et loin d'eux repoussant la barrière,</p>
+                              <p id="xd21e320" class="line ">Ils fendent dans les airs les nuages mouvans,</p>
+                              <p id="xd21e322" class="line ">Et de leurs piés ailés ils devancent les vents.&#8221;</p>
+                           </div>
+                        </div><span class="bibl" id="xd21e324">(<i id="xd21e326">Metamorphoses d'Ovide</i>).</span></span></div>
+               </div>
+               <div class="divBody">
+                  <p id="xd21e329" class="first">You may note the small <a id="xd21e331"></a>ornament above the <a id="xd21e333"></a>chapter heading, which is included using a <a id="xd21e335"></a>rend attribute on the head element of this chapter.
+                  </p>
+                  <p id="xd21e337">In this chapter we generate a table:<a class="noteref" id="xd21e339src" href="#xd21e339">1</a></p>
+                  <p id="xd21e341">
+                     </p>
+                     <div class="table" id="xd21e343">
+                        <table summary="A small table to demonstrate tables in TEI">
+                           <tr id="xd21e344">
+                              <td id="xd21e345" rowspan="2" class="cellLeft cellTop">1 (this cell is actually spanning two rows)</td>
+                              <td id="xd21e347" class="cellRight cellTop">2 (with a much wider cell, for a change, so that we can verify the result of such wide cells in the output)</td>
+                           </tr>
+                           <tr id="xd21e349">
+                              <td id="xd21e350" class="cellRight">4</td>
+                           </tr>
+                           <tr id="xd21e352">
+                              <td id="xd21e353" class="cellLeft">5 (yet another wide cell, just to see how it works out in the result formatting)</td>
+                              <td id="xd21e355" class="cellRight">6<a class="noteref" id="n1src" href="#n1">2</a></td>
+                           </tr>
+                           <tr id="xd21e365">
+                              <td id="xd21e366" colspan="2" class="cellLeft cellRight cellBottom">7: A cell spanning no less than two columns. This should work out fine, even with a <a id="xd21e368"></a>footnote<a class="pseudonoteref" href="#n1">2</a> in it. (note how the footnote reference mark actually is the same as in a cell above, we can also reference to <a href="#n1" id="xd21e373">the same footnote</a> without such a special treatment!)
+                              </td>
+                           </tr>
+                        </table>
+                     </div><p>
+                     
+                  </p>
+                  <p id="xd21e377">A table with vertical borders on the inside [class(verticalBorderInside)]:</p>
+                  <p id="xd21e379">
+                     </p>
+                     <div class="table" id="xd21e381">
+                        <table class="verticalBorderInside" summary="A small table to demonstrate tables in TEI">
+                           <thead>
+                              <tr class="label" id="xd21e385">
+                                 <td id="xd21e386" rowspan="2" class="cellHeadLeft cellHeadTop cellHeadBottom">No.</td>
+                                 <td id="xd21e388" class="cellHeadTop">Type.</td>
+                                 <td id="xd21e390" class="xd21e384 cellHeadRight cellHeadTop">Quantity.</td>
+                              </tr>
+                              <tr class="unit" id="xd21e392">
+                                 <td id="xd21e393" class="cellHeadBottom"></td>
+                                 <td id="xd21e394" class="xd21e384 cellHeadRight cellHeadBottom">kg</td>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr id="xd21e396">
+                                 <td id="xd21e397" class="cellLeft">1</td>
+                                 <td id="xd21e399">Apples</td>
+                                 <td id="xd21e401" class="xd21e384 cellRight">12.4</td>
+                              </tr>
+                              <tr id="xd21e403">
+                                 <td id="xd21e404" class="cellLeft">2</td>
+                                 <td id="xd21e406">Bananas</td>
+                                 <td id="xd21e408" class="xd21e384 cellRight">22.8</td>
+                              </tr>
+                              <tr id="xd21e410">
+                                 <td id="xd21e411" class="cellLeft">3</td>
+                                 <td id="xd21e413">Melon</td>
+                                 <td id="xd21e415" class="xd21e384 cellRight">4.6</td>
+                              </tr>
+                              <tr id="xd21e417">
+                                 <td id="xd21e418" class="cellLeft cellBottom">4</td>
+                                 <td id="xd21e420" class="cellBottom">Grapes</td>
+                                 <td id="xd21e422" class="xd21e384 cellRight cellBottom">9.2</td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div><p>
+                     
+                  </p>
+                  <p id="xd21e425">The same table with borders on the outside [class(borderOutside)]:</p>
+                  <p id="xd21e427">
+                     </p>
+                     <div class="table" id="xd21e429">
+                        <table class="borderOutside" summary="A small table to demonstrate tables in TEI">
+                           <thead>
+                              <tr class="label" id="xd21e433">
+                                 <td id="xd21e434" rowspan="2" class="cellHeadLeft cellHeadTop cellHeadBottom">No.</td>
+                                 <td id="xd21e436" class="cellHeadTop">Type.</td>
+                                 <td id="xd21e438" class="xd21e384 cellHeadRight cellHeadTop">Quantity.</td>
+                              </tr>
+                              <tr class="unit" id="xd21e440">
+                                 <td id="xd21e441" class="cellHeadBottom"></td>
+                                 <td id="xd21e442" class="xd21e384 cellHeadRight cellHeadBottom">kg</td>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr id="xd21e444">
+                                 <td id="xd21e445" class="cellLeft">1</td>
+                                 <td id="xd21e447">Apples</td>
+                                 <td id="xd21e449" class="xd21e384 cellRight">12.4</td>
+                              </tr>
+                              <tr id="xd21e451">
+                                 <td id="xd21e452" class="cellLeft">2</td>
+                                 <td id="xd21e454">Bananas</td>
+                                 <td id="xd21e456" class="xd21e384 cellRight">22.8</td>
+                              </tr>
+                              <tr id="xd21e458">
+                                 <td id="xd21e459" class="cellLeft">3</td>
+                                 <td id="xd21e461">Melon</td>
+                                 <td id="xd21e463" class="xd21e384 cellRight">4.6</td>
+                              </tr>
+                              <tr id="xd21e465">
+                                 <td id="xd21e466" class="cellLeft cellBottom">4</td>
+                                 <td id="xd21e468" class="cellBottom">Grapes</td>
+                                 <td id="xd21e470" class="xd21e384 cellRight cellBottom">9.2</td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div><p>
+                     
+                  </p>
+                  <p id="xd21e474">The same table with all cell borders shown [class(borderAll)]:</p>
+                  <p id="xd21e476">
+                     </p>
+                     <div class="table" id="xd21e478">
+                        <table class="borderAll" summary="A small table to demonstrate tables in TEI">
+                           <thead>
+                              <tr class="label" id="xd21e482">
+                                 <td id="xd21e483" rowspan="2" class="cellHeadLeft cellHeadTop cellHeadBottom">No.</td>
+                                 <td id="xd21e485" class="cellHeadTop">Type.</td>
+                                 <td id="xd21e487" class="xd21e384 cellHeadRight cellHeadTop">Quantity.</td>
+                              </tr>
+                              <tr class="unit" id="xd21e489">
+                                 <td id="xd21e490" class="cellHeadBottom"></td>
+                                 <td id="xd21e491" class="xd21e384 cellHeadRight cellHeadBottom">kg</td>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr id="xd21e493">
+                                 <td id="xd21e494" class="cellLeft">1</td>
+                                 <td id="xd21e496">Apples</td>
+                                 <td id="xd21e498" class="xd21e384 cellRight">12.4</td>
+                              </tr>
+                              <tr id="xd21e500">
+                                 <td id="xd21e501" class="cellLeft">2</td>
+                                 <td id="xd21e503">Bananas</td>
+                                 <td id="xd21e505" class="xd21e384 cellRight">22.8</td>
+                              </tr>
+                              <tr id="xd21e507">
+                                 <td id="xd21e508" class="cellLeft">3</td>
+                                 <td id="xd21e510">Melon</td>
+                                 <td id="xd21e512" class="xd21e384 cellRight">4.6</td>
+                              </tr>
+                              <tr id="xd21e514">
+                                 <td id="xd21e515" class="cellLeft cellBottom">4</td>
+                                 <td id="xd21e517" class="cellBottom">Grapes</td>
+                                 <td id="xd21e519" class="xd21e384 cellRight cellBottom">9.2</td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div><p>
+                     
+                  </p>
+                  <p id="xd21e522">The following table is centered:</p>
+                  <p id="xd21e524">
+                     </p>
+                     <div class="table" id="xd21e526">
+                        <table class="xd21e526" summary="A small table to demonstrate bracket images.">
+                           <tr id="xd21e527">
+                              <td id="xd21e528" class="cellLeft cellTop">Gadgets</td>
+                              <td id="xd21e530" rowspan="2" class="xd21e530 cellTop cellBottom"><img src="images/bracket3.gif" alt=""></img></td>
+                              <td id="xd21e531" rowspan="2" class="xd21e531 cellRight cellTop cellBottom">Both 1</td>
+                           </tr>
+                           <tr id="xd21e533">
+                              <td id="xd21e534" class="cellLeft cellBottom">Fudgets</td>
+                           </tr>
+                        </table>
+                     </div><p>
+                     
+                  </p>
+                  <p id="xd21e537">But this table is just indented 2 ems.</p>
+                  <p id="xd21e539">
+                     </p>
+                     <div class="table" id="xd21e541">
+                        <table class="xd21e541">
+                           <tr id="xd21e542">
+                              <td id="xd21e543" class="xd21e543 cellLeft cellTop">Een Een Een Een Een Een Een Een Een Een Een Een </td>
+                              <td id="xd21e545" class="xd21e545 cellRight cellTop">Twee Twee Twee Twee Twee Twee Twee Twee Twee Twee</td>
+                           </tr>
+                           <tr id="xd21e547">
+                              <td id="xd21e548" class="cellLeft cellBottom">Drie Drie Drie Drie Drie Drie Drie Drie Drie Drie Drie</td>
+                              <td id="xd21e550" class="cellRight cellBottom">Vier Vier Vier Vier Vier Vier Vier Vier Vier Vier Vier</td>
+                           </tr>
+                        </table>
+                     </div><p>
+                     
+                  </p>
+                  <p id="xd21e553">
+                     </p>
+                     <div class="table" id="xd21e555">
+                        <h4 class="aligncenter" id="xd21e556">Head above table.</h4>
+                        <table class="xd21e555" width="100%">
+                           <thead>
+                              <tr class="label" id="xd21e561">
+                                 <td id="xd21e562" class="xd21e558 cellHeadLeft cellHeadTop">Name</td>
+                                 <td id="xd21e564" class="xd21e564 xd21e559 cellHeadRight cellHeadTop">Age</td>
+                              </tr>
+                              <tr class="unit" id="xd21e566">
+                                 <td id="xd21e567" class="xd21e558 cellHeadLeft cellHeadBottom"></td>
+                                 <td id="xd21e568" class="xd21e564 xd21e559 cellHeadRight cellHeadBottom">Years</td>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr id="xd21e570">
+                                 <td id="xd21e571" class="xd21e558 cellLeft">Jeroen</td>
+                                 <td id="xd21e573" class="xd21e559 cellRight">40</td>
+                              </tr>
+                              <tr id="xd21e575">
+                                 <td id="xd21e576" class="xd21e558 cellLeft">Rodelyn</td>
+                                 <td id="xd21e578" class="xd21e559 cellRight">30</td>
+                              </tr>
+                              <tr id="xd21e580">
+                                 <td id="xd21e581" class="xd21e558 cellLeft">Joshua</td>
+                                 <td id="xd21e583" class="xd21e583 xd21e559 cellRight">7</td>
+                              </tr>
+                              <tr id="xd21e585">
+                                 <td id="xd21e586" class="xd21e558 cellLeft cellBottom">Raphael</td>
+                                 <td id="xd21e588" class="xd21e588 xd21e559 cellRight cellBottom">3</td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div><p>
+                     
+                  </p>
+                  <p id="xd21e591">In the following table, we use a TEI extension element column to provide rendering attributes that cover an entire column.
+                     Since the HTML colspan and col elements are not widely supported, we translate these to attributes on each cell in the column.
+                     
+                  </p>
+                  <p id="xd21e593">
+                     </p>
+                     <div class="table" id="xd21e595">
+                        <table class="xd21e595" width="100%">
+                           <thead>
+                              <tr class="label" id="xd21e600">
+                                 <td id="xd21e601" class="xd21e600 xd21e596 cellHeadLeft cellHeadTop">Name</td>
+                                 <td id="xd21e603" class="xd21e600 xd21e597 cellHeadTop">Length</td>
+                                 <td id="xd21e605" class="xd21e600 xd21e597 cellHeadTop">Weight</td>
+                                 <td id="xd21e607" class="xd21e600 xd21e597 cellHeadRight cellHeadTop">Notes</td>
+                              </tr>
+                              <tr class="unit" id="xd21e609">
+                                 <td id="xd21e610" class="xd21e596 cellHeadLeft cellHeadBottom"></td>
+                                 <td id="xd21e611" class="xd21e597 cellHeadBottom">Meters</td>
+                                 <td id="xd21e613" class="xd21e597 cellHeadBottom">Kilograms</td>
+                                 <td id="xd21e615" class="xd21e597 cellHeadRight cellHeadBottom"> </td>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr id="xd21e617">
+                                 <td id="xd21e618" class="xd21e617 xd21e596 cellLeft">Jeroen</td>
+                                 <td id="xd21e620" class="xd21e617 xd21e597">1.80</td>
+                                 <td id="xd21e622" class="xd21e617 xd21e597">86</td>
+                                 <td id="xd21e624" class="xd21e617 xd21e597 cellRight"></td>
+                              </tr>
+                              <tr id="xd21e625">
+                                 <td id="xd21e626" class="xd21e596 cellLeft">Rodelyn</td>
+                                 <td id="xd21e628" class="xd21e597">&#8212;</td>
+                                 <td id="xd21e630" class="xd21e597">&#8212;</td>
+                                 <td id="xd21e632" class="xd21e597 cellRight">No Info.</td>
+                              </tr>
+                              <tr id="xd21e634">
+                                 <td id="xd21e635" class="xd21e596 cellLeft">Joshua</td>
+                                 <td id="xd21e637" class="xd21e597">1.20</td>
+                                 <td id="xd21e639" class="xd21e597"></td>
+                                 <td id="xd21e640" class="xd21e597 cellRight"></td>
+                              </tr>
+                              <tr id="xd21e641">
+                                 <td id="xd21e642" class="xd21e596 cellLeft">Raphael</td>
+                                 <td id="xd21e644" class="xd21e597">1.00</td>
+                                 <td id="xd21e646" class="xd21e597"></td>
+                                 <td id="xd21e647" class="xd21e597 cellRight"></td>
+                              </tr>
+                              <tr id="xd21e648">
+                                 <td id="xd21e649" class="xd21e648 xd21e596 cellLeft cellBottom"><i id="xd21e650">Total</i></td>
+                                 <td id="xd21e652" class="xd21e648 xd21e597 cellBottom"><span class="sum">4.00</span></td>
+                                 <td id="xd21e654" class="xd21e648 xd21e597 cellBottom"></td>
+                                 <td id="xd21e655" class="xd21e648 xd21e597 cellRight cellBottom"></td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div><p>
+                     
+                  </p>
+                  <p id="xd21e657">Here we have a reference to <a href="#pb002" id="xd21e659">page 2</a>. We also have a reference to a <a href="#test2" id="xd21e662">figure</a>.
+                  </p>
+                  <p id="xd21e665"><span class="sc" id="xd21e666">In this section</span> we will see a <span class="corr" id="xd21e669" title="Source: mistake">correction</span>, an <span class="corr" id="xd21e672" title="Not in source">insertion</span> and a deletion<a id="xd21e675"></a>, an abbreviation: <span class="abbr" id="xd21e677" title="United States of America"><abbr title="United States of America">USA</abbr></span>, a currency amount: <span class="measure" id="xd21e680" title="USD 3.90">$3.90</span>, and a measurement: <span class="measure" id="xd21e684" title="25 cm">10 in</span>.
+                  </p>
+                  <p id="xd21e688">Test of the choice element as used for transcription: <span class="trans" title="Transcription">Original</span>.
+                  </p>
+                  <p id="xd21e697" class="dropcap firstlinecaps">Lorem ipsum dolor sit amet, consectetur <span id="xd21e699" lang="de">Deutsch</span>  adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                     exercitation ullamco<span class="marginnote" id="xd21e702">This is a small side note to the left of this this pseudo Latin text.</span> laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                     eu fugiat nulla pariatur. <span id="xd21e705" class="xd21e143">Gebrochene Buchstaben</span> Excepteur sint<a class="noteref" id="xd21e708src" href="#xd21e708">3</a> occaecat<a class="noteref" id="xd21e712src" href="#xd21e712">4</a> cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                     
+                  </p>
+                  <div class="figure  xd21e752width" id="test"><img src="images/test.jpg" alt="This is the heading" width="80" height="80"></img><p class="figureHead">This is the heading</p>
+                     <p id="xd21e755" class="first">This is the description.</p>
+                  </div>
+                  <div class="figure floatLeft xd21e757 xd21e757width" id="test1"><a href="images/test.jpg"><img src="images/test.jpg" alt="Tarsier" width="80" height="80"></img></a><p class="figureHead">Tarsier</p>
+                     <p id="xd21e760" class="first">This is a somewhat longer test to verify we can limit the size of an image box.</p>
+                  </div>
+                  <p id="xd21e762">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                     dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                     proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                     
+                  </p>
+                  <div class="figure floatRight  xd21e764width" id="test2"><a href="http://www.bohol.ph/"><img src="images/test.jpg" alt="A picture of the Philippine tarsier in a tree." width="80" height="80"></img></a><p class="figureHead">The <i id="xd21e767">Philippine</i> Tarsier
+                     </p>
+                  </div>
+                  <p id="xd21e772">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                     dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                     proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                  </p>
+                  <p id="xd21e774">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                     dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                     proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                  </p>
+                  <div class="figure  xd21e776width" id="tarsier1">
+                     <div class="figAnnotation xd21e776width"><span class="figTopLeft">Top Left</span><span class="figTop">Top</span><span class="figTopRight">Top Right</span></div><img src="images/tarsier.jpg" alt="A picture of the Philippine tarsier in a tree." width="480" height="326"></img><div class="figAnnotation xd21e776width"><span class="figBottomLeft">Bottom Left</span><span class="figBottom">Bottom</span><span class="figBottomRight">Bottom Right</span></div>
+                     <p class="figureHead">The <i id="xd21e779">Philippine</i> Tarsier
+                     </p>
+                  </div>
+                  <div class="figure  xd21e796width" id="tarsier2">
+                     <div class="figAnnotation xd21e796width"><span class="figTopLeft">A very long piece of text in the top left to test its behaviour.</span><span class="figTop">&nbsp;</span></div><img src="images/tarsier.jpg" alt="A picture of the Philippine tarsier in a tree." width="480" height="326"></img><div class="figAnnotation xd21e796width"><span class="figTop">&nbsp;</span><span class="figBottomRight">A very long piece of text in the bottom right to test its behaviour.</span></div>
+                     <p class="figureHead">The <i id="xd21e799">Philippine</i> Tarsier
+                     </p>
+                  </div>
+                  <div id="xd21e809" class="div2"><span class="pagenum">[<a href="#toc">Contents</a>]</span><div class="divHead">
+                        <h3 id="xd21e810" class="main">Letters, Closers, and Openers</h3>
+                        <div id="xd21e812" class="blockquote">
+                           <div class="body" id="xd21e814">
+                              <div id="xd21e815" class="div1 letter">
+                                 <div class="divHead">
+                                    <div class="opener">
+                                       
+                                       <div class="dateline">23 June 1893</div>
+                                       
+                                       <div class="salute">Dear John:</div>
+                                       
+                                    </div>
+                                 </div>
+                                 <div class="divBody">
+                                    <p id="xd21e824" class="first">Test of letter</p>
+                                    <div class="closer">
+                                       
+                                       <div class="signed">Dr. May</div>
+                                       
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div id="xd21e831" class="div2"><span class="pagenum">[<a href="#toc">Contents</a>]</span><div class="divHead">
+                        <h3 id="xd21e832" class="label">Section</h3>
+                        <h3 id="xd21e834" class="main">Lists</h3>
+                     </div>
+                     <div class="divBody">
+                        <p id="xd21e836" class="first">In this section, the various types of lists are demonstrated.</p>
+                        <p id="xd21e838">First, we start with a simple, unnumbered list. List items can contain all the normal in-line elements, such as notes, corrections,
+                           etc.
+                        </p>
+                        <ul id="xd21e840">
+                           <li id="xd21e841">One</li>
+                           <li id="xd21e843">Two</li>
+                           <li id="xd21e845">Three</li>
+                           <li id="xd21e847" class="xd21e847">Four</li>
+                           <li id="xd21e849">Five<span class="pagenum">[<a id="xd21e851" href="#xd21e851">3</a>]</span></li>
+                           <li id="xd21e852">Six<a class="noteref" id="xd21e854src" href="#xd21e854">5</a></li>
+                           <li id="xd21e856"><span class="corr" id="xd21e857" title="Source: Zeven">Seven</span></li>
+                           <li id="xd21e859">Eight</li>
+                           <li id="xd21e861">Nine</li>
+                           <li id="xd21e863">Ten</li>
+                        </ul>
+                        <p id="xd21e865">By specifying the type of the list as ordered, it becomes a numbered list.</p>
+                        <ol id="xd21e867">
+                           <li id="xd21e868">One</li>
+                           <li id="xd21e870">Two</li>
+                           <li id="xd21e872">Three</li>
+                           <li id="xd21e874">Four</li>
+                        </ol>
+                        <p id="xd21e876">We can split a list into two columns, by putting columns(2) in the rend attribute.</p>
+                        <table id="xd21e878">
+                           <tr>
+                              <td>
+                                 <ul class="xd21e878">
+                                    <li id="xd21e879">One</li>
+                                    <li id="xd21e881">Two</li>
+                                    <li id="xd21e883">Three</li>
+                                    <li id="xd21e885">Four</li>
+                                    <li id="xd21e887">Five</li>
+                                 </ul>
+                              </td>
+                              <td>
+                                 <ul class="xd21e878">
+                                    <li id="xd21e889">Six</li>
+                                    <li id="xd21e891">Seven</li>
+                                    <li id="xd21e893">Eight</li>
+                                    <li id="xd21e895">Nine</li>
+                                    <li id="xd21e897">Ten</li>
+                                 </ul>
+                              </td>
+                           </tr>
+                        </table>
+                        <table id="xd21e899" lang="nl">
+                           <tr>
+                              <td>
+                                 <ol>
+                                    <li id="xd21e900">Een</li>
+                                    <li id="xd21e902">Twee</li>
+                                 </ol>
+                              </td>
+                              <td>
+                                 <ol>
+                                    <li id="xd21e904">Drie</li>
+                                    <li id="xd21e906">Vier</li>
+                                 </ol>
+                              </td>
+                           </tr>
+                        </table>
+                        <table id="xd21e908" lang="nl">
+                           <tr>
+                              <td>
+                                 <ol class="xd21e908">
+                                    <li id="xd21e909" value="5">Vijf</li>
+                                    <li id="xd21e911">Zes</li>
+                                 </ol>
+                              </td>
+                              <td>
+                                 <ol class="xd21e908">
+                                    <li id="xd21e913" value="7">Zeven</li>
+                                    <li id="xd21e915">Acht</li>
+                                 </ol>
+                              </td>
+                           </tr>
+                        </table>
+                        <p id="xd21e918">A list with lower case roman numerals:</p>
+                        <ol id="xd21e920" lang="nl" class="xd21e920">
+                           <li id="xd21e921">Een</li>
+                           <li id="xd21e923">Twee</li>
+                           <li id="xd21e925" value="48">Drie</li>
+                           <li id="xd21e927">Vier</li>
+                        </ol>
+                        <p id="xd21e929">A list without bullets or numbers:</p>
+                        <ul id="xd21e931" lang="nl">
+                           <li id="xd21e932">Een</li>
+                           <li id="xd21e934">Twee</li>
+                           <li id="xd21e936">Drie</li>
+                           <li id="xd21e938">Vier</li>
+                        </ul>
+                        <div class="div3" id="xd21e940">
+                           <div class="divHead">
+                              <h4 id="xd21e941" class="main">Division at Level 3</h4>
+                           </div>
+                           <div class="divBody">
+                              <p id="xd21e943" class="first">Text in division at level 3</p>
+                              <div class="div4" id="xd21e945">
+                                 <div class="divHead">
+                                    <h5 id="xd21e946" class="main">Division at Level 4</h5>
+                                 </div>
+                                 <div class="divBody">
+                                    <p id="xd21e948" class="first">Text in division at level 4</p>
+                                    <div class="div5" id="xd21e950">
+                                       <div class="divHead">
+                                          <h6 id="xd21e951" class="main">Division at Level 5</h6>
+                                       </div>
+                                       <div class="divBody">
+                                          <p id="xd21e953" class="first">Text in division at level 5</p>
+                                          <div class="div6" id="xd21e955">
+                                             <div class="divHead">
+                                                <h6 id="xd21e956" class="main">Division at Level 6</h6>
+                                             </div>
+                                             <div class="divBody">
+                                                <p id="xd21e958" class="first">Text in division at level 6</p>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div id="xd21e960" class="div2"><span class="pagenum">[<a href="#toc">Contents</a>]</span><div class="divHead">
+                        <h3 id="xd21e961" class="main">Some Further Tests</h3>
+                     </div>
+                     <div class="divBody">
+                        <p id="xd21e963" class="first xd21e963">[align(left)] Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                           magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                           Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                           cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                        <hr class="tb" id="xd21e965"></hr>
+                        <p id="xd21e966" class="xd21e966">[align(right)] Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                           magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                           Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                           cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                        <p id="xd21e968" class="xd21e968">[align(center)] Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                           magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                           Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                           cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                        <p id="xd21e970" class="xd21e970"><span class="xd21e970init">L</span>orem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                           Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                           dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                           proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<a class="noteref" id="xd21e972src" href="#xd21e972">6</a></p>
+                        <p id="xd21e974" class="xd21e974">[align(justify)] Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                           magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                           Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                           cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                        <p id="xd21e976" class="xd21e970"><span class="xd21e970init">L</span>orem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                           Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                           dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                           proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<a class="noteref" id="xd21e978src" href="#xd21e978">7</a></p>
+                        <p id="xd21e980">Test of entity declaration: 23&#8242; is 23 minutes.</p>
+                        <p id="xd21e982">Test of parsed entity: <span class="abbr" id="xd21e984" title="namelijk"><abbr title="namelijk">n.l.</abbr></span> should look like <span class="abbr" id="xd21e987" title="namelijk"><abbr title="namelijk">n.l.</abbr></span></p>
+                        <p id="xd21e989" class="trailer xd21e989">The End</p>
+                     </div>
+                  </div>
+               </div>
+               <div class="footnotes">
+                  <hr class="fnsep"></hr>
+                  <p class="footnote"><span class="label"><a class="noteref" id="xd21e339" href="#xd21e339src">1</a></span> Yet another a footnote.&nbsp;<a class="fnarrow" href="#xd21e339src">&#8593;</a></p>
+                  <p class="footnote"><span class="label"><a class="noteref" id="n1" href="#n1src">2</a></span> This is a footnote with some <b id="xd21e359">bold</b>, and an element with an id inside it <span id="inside-n1">here</span>.&nbsp;<a class="fnarrow" href="#n1src">&#8593;</a></p>
+                  <p class="footnote"><span class="label"><a class="noteref" id="xd21e708" href="#xd21e708src">3</a></span> Test&nbsp;<a class="fnarrow" href="#xd21e708src">&#8593;</a></p>
+                  <p class="footnote"><span class="label"><a class="noteref" id="xd21e712" href="#xd21e712src">4</a></span> Just adding a table in a footnote:
+                  </p>
+                  <p class="footnote" id="xd21e716"></p>
+                     <div class="table" id="xd21e717">
+                        <h4 class="aligncenter" id="xd21e718">Head above table.</h4>
+                        <table class="xd21e555" width="100%">
+                           <tr id="xd21e720">
+                              <td id="xd21e721" class="label cellLeft cellTop">Name</td>
+                              <td id="xd21e723" class="label xd21e564 cellRight cellTop">Age</td>
+                           </tr>
+                           <tr id="xd21e725">
+                              <td id="xd21e726" class="cellLeft"></td>
+                              <td id="xd21e727" class="unit xd21e564 cellRight">Years</td>
+                           </tr>
+                           <tr id="xd21e729">
+                              <td id="xd21e730" class="cellLeft">Jeroen</td>
+                              <td id="xd21e732" class="xd21e564 cellRight">39</td>
+                           </tr>
+                           <tr id="xd21e734">
+                              <td id="xd21e735" class="cellLeft">Rodelyn</td>
+                              <td id="xd21e737" class="xd21e564 cellRight">29</td>
+                           </tr>
+                           <tr id="xd21e739">
+                              <td id="xd21e740" class="cellLeft">Joshua</td>
+                              <td id="xd21e742" class="xd21e564 cellRight">6</td>
+                           </tr>
+                           <tr id="xd21e744">
+                              <td id="xd21e745" class="cellLeft cellBottom">Raphael</td>
+                              <td id="xd21e747" class="xd21e564 cellRight cellBottom">2</td>
+                           </tr>
+                        </table>
+                     </div><p>
+                     &nbsp;<a class="fnarrow" href="#xd21e712src">&#8593;</a></p>
+                  <p class="footnote"><span class="label"><a class="noteref" id="xd21e854" href="#xd21e854src">5</a></span> This is a footnote to list-item six.&nbsp;<a class="fnarrow" href="#xd21e854src">&#8593;</a></p>
+                  <p class="footnote"><span class="label"><a class="noteref" id="xd21e972" href="#xd21e972src">6</a></span> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                     dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                     proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&nbsp;<a class="fnarrow" href="#xd21e972src">&#8593;</a></p>
+                  <p class="footnote"><span class="label"><a class="noteref" id="xd21e978" href="#xd21e978src">7</a></span> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                     dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                     proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&nbsp;<a class="fnarrow" href="#xd21e978src">&#8593;</a></p>
+               </div>
+            </div><span class="pagenum">[<a id="xd21e991" href="#xd21e991">23</a>]</span><div id="ch6" class="div1"><span class="pagenum">[<a href="#toc">Contents</a>]</span><div class="divHead">
+                  <h2 id="xd21e993" class="main">Tests of poetry</h2>
+               </div>
+               <div class="divBody">
+                  <p id="xd21e995" class="first">This section is to test the rendering of poetry by the TEI stylesheet. The entire poem should appear centered, with all stanza's
+                     aligned. Note that the technique used to center an entire block of text does not work in IE.
+                  </p>
+                  <div id="xd21e997" class="lgouter ">
+                     <h4 class="xd21e998">Three stanzas in a row</h4>
+                     <div id="xd21e1000" class="lg ">
+                        <p id="xd21e1001" class="line ">This is a rule of verse</p>
+                        <p id="xd21e1003" class="line xd21e1003">This is another <span class="pagenum">[<a id="xd21e1005" href="#xd21e1005">4</a>]</span>rule of verse
+                        </p>
+                        <p id="xd21e1007" class="line ">This is a rule of verse</p>
+                        <p id="xd21e1009" class="line xd21e1009">This is another rule of verse</p>
+                        <p id="xd21e1011" class="line ">This is a rule of verse</p>
+                        <p id="xd21e1013" class="line xd21e1013">This is another rule of verse</p>
+                        <p id="xd21e1015" class="line ">This is a rule of verse</p>
+                        <p id="xd21e1017" class="line xd21e1017">This is another rule of verse</p>
+                     </div>
+                     <div id="xd21e1019" class="lg xd21e1019">
+                        <p id="xd21e1020" class="line ">This is a rule of verse in italics</p>
+                        <p id="xd21e1022" class="line xd21e1003">This is another rule of verse</p>
+                        <p id="xd21e1024" class="line ">This is a rule of verse</p>
+                        <p id="xd21e1026" class="line xd21e1009">This is another rule of verse</p>
+                        <p id="xd21e1028" class="line ">This is a rule of verse</p>
+                        <p id="xd21e1030" class="line xd21e1013">This is another rule of verse</p>
+                        <p id="xd21e1032" class="line ">This is a rule of verse</p>
+                        <p id="xd21e1034" class="line xd21e1017">This is another rule of verse</p>
+                     </div>
+                     <div id="xd21e1036" class="lg xd21e1019">
+                        <p id="xd21e1037" class="line "><span class="linenum">1</span>This is a rule of verse in italics
+                        </p>
+                        <p id="xd21e1039" class="line xd21e1003"><span class="linenum">2</span>This is another rule of verse
+                        </p>
+                        <p id="xd21e1041" class="line "><span class="linenum">3</span>This is a rule of verse
+                        </p>
+                        <p id="xd21e1043" class="line xd21e1003"><span class="linenum">4</span>This is <span class="corr" id="xd21e1045" title="Source: Correction in verse">another</span> rule of verse
+                        </p>
+                        <p id="xd21e1048" class="line "><span class="linenum">5</span>This is a rule of verse
+                        </p>
+                        <p id="xd21e1050" class="line xd21e1003"><span class="linenum">6</span>This is another rule of verse
+                        </p>
+                        <p id="xd21e1052" class="line "><span class="linenum">7</span>This is a rule of verse
+                        </p>
+                        <p id="xd21e1054" class="line xd21e1017"><span class="linenum">8</span>This is another rule of verse<a class="noteref" id="xd21e1056src" href="#xd21e1056">1</a></p>
+                     </div>
+                  </div>
+                  <div id="xd21e1071" class="blockquote">
+                     <p id="xd21e1072" class="first hangq">&#8216;Test of hanging punctuation. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                        sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&#8217;
+                     </p>
+                     
+                     
+                     <p id="xd21e1075" class="hangqq">&#8220;Test of hanging punctuation. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                        sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&#8221;
+                     </p>
+                     
+                     
+                     <p id="xd21e1078" class="hangqqq">&#8216;&#8220;Test of hanging punctuation. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+                        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&#8221;&#8217;
+                     </p>
+                  </div>
+                  <p id="xd21e1080">Note that the <a id="xd21e1082"></a>footnote includes some verse, to which we can link <a href="#footnoteverse" id="xd21e1084">here</a>, and elsewhere in the document.
+                  </p>
+                  <p id="xd21e1087">Another piece of verse with line-numbers:</p>
+                  <div id="xd21e1089" class="lgouter xd21e1019">
+                     <p id="xd21e1090" class="line "><span class="linenum">1</span>This is a rule of verse in italics
+                     </p>
+                     <p id="xd21e1092" class="line xd21e1003"><span class="linenum">2</span>This is another rule of verse
+                     </p>
+                     <p id="xd21e1094" class="line "><span class="linenum">3</span>This is a rule of verse
+                     </p>
+                     <p id="xd21e1096" class="line xd21e1003"><span class="linenum">4</span>This is <span class="corr" id="xd21e1098" title="Source: Correction in verse">another</span> rule of verse
+                     </p>
+                     <p id="xd21e1101" class="line "><span class="linenum">5</span>This is a rule of verse
+                     </p>
+                     <p id="xd21e1103" class="line xd21e1003"><span class="linenum">6</span>This is another rule of verse
+                     </p>
+                     <p id="xd21e1105" class="line "><span class="linenum">7</span>This is a rule of verse
+                     </p>
+                     <p id="xd21e1107" class="line xd21e1017"><span class="linenum">8</span>This is another rule of verse
+                     </p>
+                  </div>
+                  <p id="xd21e1109" class="first">Two verses, aligned:</p>
+                  <table class="alignedverse">
+                     <tr>
+                        <td class="linenumbers"></td>
+                        <td class="first"><span class="h4">Frère Jacques</span></td>
+                        <td class="second"><span class="h4">Brother John</span></td>
+                     </tr>
+                     <tr>
+                        <td class="linenumbers"><span class="linenum">1</span></td>
+                        <td class="first">
+                           <p id="xd21e1114" class="line ">Frère Jacques, frère Jacques,</p>
+                        </td>
+                        <td class="second">
+                           <p id="xd21e1125" class="line ">Are you sleeping, are you sleeping,</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="linenumbers"><span class="linenum">2</span></td>
+                        <td class="first">
+                           <p id="xd21e1116" class="line ">Dormez-vous ? Dormez-vous ?</p>
+                        </td>
+                        <td class="second">
+                           <p id="xd21e1127" class="line ">Brother John? Brother John?</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="linenumbers"></td>
+                        <td class="first">
+                           <p id="xd21e1118" class="line ">Sonnez les matines ! Sonnez les matines !</p>
+                        </td>
+                        <td class="second">
+                           <p id="xd21e1129" class="line ">Morning bells are ringing! Morning bells are ringing!</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="linenumbers"><span class="linenum">4</span></td>
+                        <td class="first">
+                           <p id="xd21e1120" class="line xd21e1009">Ding, daing, dong. Ding, daing, dong.</p>
+                        </td>
+                        <td class="second">
+                           <p id="xd21e1131" class="line xd21e1009">Ding, dang, dong. Ding, dang, dong.</p>
+                        </td>
+                     </tr>
+                  </table>
+               </div>
+               <div class="footnotes">
+                  <hr class="fnsep"></hr>
+                  <p class="footnote"><span class="label"><a class="noteref" id="xd21e1056" href="#xd21e1056src">1</a></span> To add verse in a <a id="xd21e1059"></a>footnote, the lg element needs to be enclosed with a q element. This is a requirement of the TEI DTD.
+                  </p>
+                  <div class="body" id="xd21e1064">
+                     <div id="xd21e1065" class="div1">
+                        <div class="divHead">
+                           <div id="footnoteverse" class="lgouter footnote xd21e1019">
+                              <p id="xd21e1067" class="line ">This is a rule of verse in italics in a footnote</p>
+                              <p id="xd21e1069" class="line xd21e1003">This is another rule of verse in a footnote</p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="alignFirst" class="div1"><span class="pagenum">[<a href="#toc">Contents</a>]</span><table class="alignedtext">
+                  <tr>
+                     <td class="first">
+                        <h2 id="xd21e1134" class="main">Text-Alignment Test</h2>
+                     </td>
+                     <td class="second">
+                        <h2 id="xd21e1154" class="main">Test van het naast elkaar afdrukken van tekst</h2>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td class="first">
+                        <p id="xd21e1136" class="first">This is a test of printing translated paragraphs side-by-side</p>
+                     </td>
+                     <td class="second">
+                        <p id="xd21e1156" class="first">Dit is een test van het naast elkaar afdrukken van vertaalde alinea's</p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td class="first">
+                        <p id="xd21e1138" class="first">The paragraphs will be numbered using the <i id="xd21e1140">n</i> attribute.
+                        </p>
+                     </td>
+                     <td class="second">
+                        <p id="xd21e1158" class="first">De alinea's worden genummerd met het <i id="xd21e1160">n</i> attribuut.
+                        </p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td class="first">
+                        <p id="xd21e1143" class="first">That way, the style sheet knows which paragraphs belong together.</p>
+                     </td>
+                     <td class="second">
+                        <p id="xd21e1163" class="first">Op die manier weet de stylesheet welke alinea's bij elkaar horen.</p>
+                        <p id="xd21e1165" class="first">Als er af en toe een extra alinea tussendoor komt, maakt dat niet uit.</p>
+                        <div id="xd21e1167" class="lgouter ">
+                           <p id="xd21e1168" class="line ">Hebban olla vogala nestas hagunnan hinase hic enda thu. Wat unbidan we nu.</p>
+                        </div>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td class="first">
+                        <p id="xd21e1145" class="first">This makes it easy to verify translations.</p>
+                     </td>
+                     <td class="second">
+                        <p id="xd21e1170" class="first">Dit maakt het eenvoudig vertalingen te controleren.</p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td class="first">
+                        <p id="xd21e1147" class="first">An extra paragraph, with the translation next to it.</p>
+                        <p id="xd21e1149" class="first">And yet another paragraph.</p>
+                     </td>
+                     <td class="second">
+                        <p id="xd21e1172" class="first">Een extra alinea, met de vertaling ernaast.</p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td class="first">
+                        <p id="xd21e1151" class="first">And the final paragraph.</p>
+                     </td>
+                     <td class="second">
+                        <p id="xd21e1174" class="first">En de laatste alinea.</p>
+                     </td>
+                  </tr>
+               </table>
+            </div>
+            <div id="alignThird" class="div1"><span class="pagenum">[<a href="#toc">Contents</a>]</span><table class="alignedtext">
+                  <tr>
+                     <td class="first"></td>
+                     <td class="second">
+                        <h2 id="xd750e5" class="main">Nogmaals een test</h2>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td class="first">
+                        <p id="xd21e1177" class="first">This is a test of printing translated paragraphs side-by-side</p>
+                     </td>
+                     <td class="second">
+                        <p id="xd750e8" class="first">Dit is een test van het naast elkaar afdrukken van vertaalde alinea's</p>
+                        <p id="xd750e11" class="first">Deze alinea staat in een externe bron.</p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td class="first">
+                        <p id="xd21e1179" class="first">The paragraphs will be numbered using the <i id="xd21e1181">n</i> attribute.
+                        </p>
+                     </td>
+                     <td class="second">
+                        <p id="xd750e14" class="first">De alinea's worden genummerd met het <i id="xd750e16">n</i> attribuut.
+                        </p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td class="first">
+                        <p id="xd21e1184" class="first">That way, the style sheet knows which paragraphs belong together.</p>
+                     </td>
+                     <td class="second">
+                        <p id="xd750e20" class="first">Op die manier weet de stylesheet welke alinea's bij elkaar horen.</p>
+                        <p id="xd750e24" class="first">Als er af en toe een extra alinea tussendoor komt, maakt dat niet uit.</p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td class="first">
+                        <p id="xd21e1186" class="first">This makes it easy to verify translations.</p>
+                     </td>
+                     <td class="second">
+                        <p id="xd750e27" class="first">Dit maakt het eenvoudig vertalingen te controleren.</p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td class="first">
+                        <p id="xd21e1188" class="first">An extra paragraph, with the translation next to it.</p>
+                        <p id="xd21e1190" class="first">And yet another paragraph.</p>
+                     </td>
+                     <td class="second">
+                        <p id="xd750e30" class="first">Een extra alinea, met de vertaling ernaast.</p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td class="first">
+                        <p id="xd21e1192" class="first">And the final paragraph.</p>
+                     </td>
+                     <td class="second">
+                        <p id="xd750e33" class="first">En de laatste alinea.</p>
+                     </td>
+                  </tr>
+               </table>
+            </div>
+         </div>
+      </div>
+      <div class="back" id="back">
+         <div id="test-toc" class="div1"><span class="pagenum">[<a href="#toc">Contents</a>]</span><div class="divHead">
+               <h2 id="xd21e1196" class="main">Test Table of Contents</h2>
+               <table class="tocList" id="xd21e1198" lang="nl">
+                  <tr>
+                     <td class="tocDivNum"></td>
+                     <td class="tocDivTitle" colspan="5">      Introductie   </td>
+                     <td class="tocPageNum">vii</td>
+                  </tr>
+                  <tr>
+                     <td class="tocDivNum">I</td>
+                     <td class="tocDivTitle" colspan="5">      Eerste Hoofdstuk   </td>
+                     <td class="tocPageNum">1</td>
+                  </tr>
+                  <tr>
+                     <td class="tocDivNum">II</td>
+                     <td class="tocDivTitle" colspan="5">      Tweede Hoofdstuk   </td>
+                     <td class="tocPageNum">22</td>
+                  </tr>
+                  <tr>
+                     <td class="tocDivNum">III</td>
+                     <td class="tocDivTitle" colspan="5">      <span class="corr" id="xd21e1219" title="Source: Vierde">Derde</span> Hoofdstuk   
+                     </td>
+                     <td class="tocPageNum">35</td>
+                  </tr>
+                  <tr>
+                     <td class="tocDivNum">DCCCXLIV</td>
+                     <td class="tocDivTitle" colspan="5">      Achthonderdenvierenveertigste Hoofdstuk   </td>
+                     <td class="tocPageNum">57</td>
+                  </tr>
+                  <tr>
+                     <td class="tocDivNum"></td>
+                     <td class="tocDivTitle" colspan="5">      Slot   </td>
+                     <td class="tocPageNum">77</td>
+                  </tr>
+               </table>
+            </div>
+         </div>
+         <div id="index" lang="nl" class="div1 index"><span class="pagenum">[<a href="#toc">Contents</a>]</span><div class="divHead">
+               <h2 id="xd21e1235" class="main">Index</h2>
+               <div class="transcribernote indextoc" id="xd21e1237"><a href="#xd21e1239">A</a> | <a href="#xd21e1244">B</a> | <a href="#xd21e1249">C</a> | <a href="#xd21e1254">D</a></div>
+               <div id="xd21e1238" class="div2"><span class="pagenum">[<a href="#toc">Contents</a>]</span><div class="divHead">
+                     <h3 id="xd21e1239" class="main">A.</h3>
+                  </div>
+                  <div class="divBody">
+                     <p id="xd21e1241" class="first">A is een aapje.</p>
+                  </div>
+               </div>
+               <div id="xd21e1243" class="div2"><span class="pagenum">[<a href="#toc">Contents</a>]</span><div class="divHead">
+                     <h3 id="xd21e1244" class="main">B.</h3>
+                  </div>
+                  <div class="divBody">
+                     <p id="xd21e1246" class="first">B is een Boom.</p>
+                  </div>
+               </div>
+               <div id="xd21e1248" class="div2"><span class="pagenum">[<a href="#toc">Contents</a>]</span><div class="divHead">
+                     <h3 id="xd21e1249" class="main">C.</h3>
+                  </div>
+                  <div class="divBody">
+                     <p id="xd21e1251" class="first">C is een Cent.</p>
+                  </div>
+               </div>
+               <div id="xd21e1253" class="div2"><span class="pagenum">[<a href="#toc">Contents</a>]</span><div class="divHead">
+                     <h3 id="xd21e1254" class="main">D.</h3>
+                  </div>
+                  <div class="divBody">
+                     <p id="xd21e1256" class="first">D is een Drommedaris.
+                        <br id="xd21e1258"></br>en een Duizendpoot.
+                     </p>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="backmatter" class="div1"><span class="pagenum">[<a href="#toc">Contents</a>]</span><div class="divHead">
+               <div class="div1" id="xd21e1261">
+                  <h2 class="main">List of Illustrations</h2>
+                  <table>
+                     <tr>
+                        <td align="center" valign="middle"><a href="#cover-image"><img src="images/thumbs/cover500.jpg" alt=""></img></a></td>
+                        <td align="center" valign="middle"><a href="#xd21e165"><img src="images/thumbs/hg2101.png" alt=""></img></a></td>
+                        <td align="center" valign="middle"><a href="#test"><img src="images/thumbs/test.jpg" alt="This is the heading"></img></a></td>
+                     </tr>
+                     <tr>
+                        <td align="center" valign="top"><a href="#cover-image"></a></td>
+                        <td align="center" valign="top"><a href="#xd21e165"></a></td>
+                        <td align="center" valign="top"><a href="#test">This is the heading</a></td>
+                     </tr>
+                     <tr>
+                        <td align="center" valign="middle"><a href="#test2"><img src="images/thumbs/test.jpg" alt="The Philippine Tarsier"></img></a></td>
+                        <td align="center" valign="middle"><a href="#tarsier1"><img src="images/thumbs/tarsier.jpg" alt="The Philippine Tarsier"></img></a></td>
+                        <td align="center" valign="middle"><a href="#tarsier2"><img src="images/thumbs/tarsier.jpg" alt="The Philippine Tarsier"></img></a></td>
+                     </tr>
+                     <tr>
+                        <td align="center" valign="top"><a href="#test2">The <i>Philippine</i> Tarsier</a></td>
+                        <td align="center" valign="top"><a href="#tarsier1">The <i>Philippine</i> Tarsier</a></td>
+                        <td align="center" valign="top"><a href="#tarsier2">The <i>Philippine</i> Tarsier</a></td>
+                     </tr>
+                  </table>
+               </div>
+               <div class="div1" id="xd21e1262">
+                  <h2 class="main">Index</h2>
+                  <p>Chapter headings  <a href="#xd21e289">2</a></p>
+                  <p>Footnote  <a href="#xd21e253">2</a>, <a href="#xd21e1059">4</a>; in quoted material <a href="#xd21e250">2</a></p>
+                  <p>ornaments  <a href="#xd21e331">2</a></p>
+                  <p>Paragraph  <a href="#xd21e246">2</a></p>
+                  <p>Project Gutenberg  <a href="#xd21e264">2</a></p>
+                  <p>rend attribute  <a href="#xd21e335">2</a></p>
+                  <p>Stylesheet  <a href="#xd21e123">###</a></p>
+                  <p>XSLT  <a href="#xd21e121">###</a></p>
+               </div>
+               <div class="div1" id="xd21e1264">
+                  <h2 class="main">Table of Contents</h2>
+                  <ul>
+                     <li>I. <a href="#bk1">Tei2html Test Document</a><ul>
+                           <li>1. <a href="#ch1">Text Styles</a></li>
+                           <li>2. <a href="#ch2">Text Elements</a>&nbsp;&nbsp;&nbsp;&nbsp; <span class="tocPageNum"><a class="pageref" href="#ch2">2</a></span></li>
+                           <li>3. <a href="#ch3">Footnotes</a>&nbsp;&nbsp;&nbsp;&nbsp; <span class="tocPageNum"><a class="pageref" href="#ch3">2</a></span></li>
+                           <li>5. <a href="#ch05">Tables</a>&nbsp;&nbsp;&nbsp;&nbsp; <span class="tocPageNum"><a class="pageref" href="#ch05">2</a></span><ul>
+                                 <li><a href="#xd21e809">Letters, Closers, and Openers</a>&nbsp;&nbsp;&nbsp;&nbsp; <span class="tocPageNum"><a class="pageref" href="#xd21e809">2</a></span></li>
+                                 <li><a href="#xd21e831">Lists</a>&nbsp;&nbsp;&nbsp;&nbsp; <span class="tocPageNum"><a class="pageref" href="#xd21e831">2</a></span><ul>
+                                       <li><a href="#xd21e940">Division at Level 3</a>&nbsp;&nbsp;&nbsp;&nbsp; <span class="tocPageNum"><a class="pageref" href="#xd21e940">3</a></span></li>
+                                    </ul>
+                                 </li>
+                                 <li><a href="#xd21e960">Some Further Tests</a>&nbsp;&nbsp;&nbsp;&nbsp; <span class="tocPageNum"><a class="pageref" href="#xd21e960">3</a></span></li>
+                              </ul>
+                           </li>
+                           <li>II. <a href="#ch6">Tests of poetry</a>&nbsp;&nbsp;&nbsp;&nbsp; <span class="tocPageNum"><a class="pageref" href="#ch6">23</a></span></li>
+                           <li><a href="#alignFirst">Text-Alignment Test</a>&nbsp;&nbsp;&nbsp;&nbsp; <span class="tocPageNum"><a class="pageref" href="#alignFirst">4</a></span></li>
+                        </ul>
+                     </li>
+                     <li><a href="#test-toc">Test Table of Contents</a>&nbsp;&nbsp;&nbsp;&nbsp; <span class="tocPageNum"><a class="pageref" href="#test-toc">4</a></span></li>
+                     <li><a href="#index">Index</a>&nbsp;&nbsp;&nbsp;&nbsp; <span class="tocPageNum"><a class="pageref" href="#index">4</a></span></li>
+                  </ul>
+               </div>
+               <div class="div1" id="xd21e1265">
+                  <h2 class="main">List of Illustrations</h2>
+                  <ul>
+                     <li id="test"><a href="#test">This is the heading</a>&nbsp;&nbsp;&nbsp;&nbsp; <span class="tocPageNum"><a class="pageref" href="#test">2</a></span></li>
+                     <li id="test1"><a href="#test1">Tarsier</a>&nbsp;&nbsp;&nbsp;&nbsp; <span class="tocPageNum"><a class="pageref" href="#test1">2</a></span></li>
+                     <li id="test2"><a href="#test2">The <i>Philippine</i> Tarsier</a>&nbsp;&nbsp;&nbsp;&nbsp; <span class="tocPageNum"><a class="pageref" href="#test2">2</a></span></li>
+                     <li id="tarsier1"><a href="#tarsier1">The <i>Philippine</i> Tarsier</a>&nbsp;&nbsp;&nbsp;&nbsp; <span class="tocPageNum"><a class="pageref" href="#tarsier1">2</a></span></li>
+                     <li id="tarsier2"><a href="#tarsier2">The <i>Philippine</i> Tarsier</a>&nbsp;&nbsp;&nbsp;&nbsp; <span class="tocPageNum"><a class="pageref" href="#tarsier2">2</a></span></li>
+                  </ul>
+               </div>
+               <div class="transcribernote" id="xd21e1266">
+                  <h2 class="main">Colophon</h2>
+                  <h3 class="main">Availability</h3>
+                  <p id="xd21e34" class="first">Details of the copyright status of the work go here. Most Project Gutenberg texts will be in the public domain in the US.
+                     This test file itself is released under the GNU General Public License, version 3.0, or any later version. See <a id="xd21e36" class="exlink xd21e36" title="External link" href="http://www.gnu.org/copyleft/gpl.html">http://www.gnu.org/copyleft/gpl.html</a>.
+                  </p>
+                  <p id="xd21e39">Typically, the following text will be used:</p>
+                  <p id="xd21e41" lang="en">This eBook is for the use of anyone anywhere at no cost and with almost no restrictions whatsoever. You may copy it, give
+                     it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at <a id="xd21e43" class="exlink xd21e43" title="External link" href="http://www.gutenberg.org/">www.gutenberg.org</a>.
+                  </p>
+                  <p>Project Gutenberg catalog page:
+                     <a class="pglink" href="http://www.gutenberg.org/ebooks/123456789">123456789</a>.
+                     
+                  </p>
+                  <h3 class="main">Encoding</h3>
+                  <p id="xd21e68" class="first">Details of encoding go here. Here you can describe any special conventions used in the text, such as special tags. This is
+                     also the place to describe any editorial policy followed when preparing the text.
+                  </p>
+                  <h3 class="main">Revision History</h3>
+                  <ul id="xd21e84">
+                     <li id="xd21e85">2003-09-13 Added TEI Header.</li>
+                  </ul>
+                  <h3 class="main">External References</h3>
+                  <p>This Project Gutenberg eBook contains external references. These links may not work for you.</p>
+                  <h3 class="main">Corrections</h3>
+                  <p>The following corrections have been applied to the text:</p>
+                  <table class="correctiontable" summary="Overview of corrections applied to the text.">
+                     <tr>
+                        <th>Page</th>
+                        <th>Source</th>
+                        <th>Correction</th>
+                     </tr>
+                     <tr>
+                        <td class="width20"><a class="pageref" href="#xd21e669">2</a></td>
+                        <td class="width40 bottom">mistake</td>
+                        <td class="width40 bottom">correction</td>
+                     </tr>
+                     <tr>
+                        <td class="width20"><a class="pageref" href="#xd21e672">2</a></td>
+                        <td class="width40 bottom">
+                           [<i>Not in source</i>]
+                           
+                        </td>
+                        <td class="width40 bottom">insertion</td>
+                     </tr>
+                     <tr>
+                        <td class="width20"><a class="pageref" href="#xd21e675">2</a></td>
+                        <td class="width40 bottom">here</td>
+                        <td class="width40 bottom">
+                           [<i>Deleted</i>]
+                           
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="width20"><a class="pageref" href="#xd21e857">3</a></td>
+                        <td class="width40 bottom">Zeven</td>
+                        <td class="width40 bottom">Seven</td>
+                     </tr>
+                     <tr>
+                        <td class="width20"><a class="pageref" href="#xd21e1045">4</a>, <a class="pageref" href="#xd21e1098">4</a></td>
+                        <td class="width40 bottom">Correction in verse</td>
+                        <td class="width40 bottom">another</td>
+                     </tr>
+                     <tr>
+                        <td class="width20"><a class="pageref" href="#xd21e1219">4</a></td>
+                        <td class="width40 bottom">Vierde</td>
+                        <td class="width40 bottom">Derde</td>
+                     </tr>
+                  </table>
+               </div>
+               <div class="transcribernote">
+                  <h2 class="main">Overview of fragments in foreign languages</h2>
+                  <h3 class="main">German</h3>
+                  <table class="languageFragmentTable">
+                     <tr>
+                        <th>Page</th>
+                        <th>Element</th>
+                        <th>Fragment</th>
+                     </tr>
+                     <tr>
+                        <td><a class="pageref" href="#xd21e699" id="xd21e699ext">2</a></td>
+                        <td>foreign</td>
+                        <td><span id="xd21e699" lang="de">Deutsch</span></td>
+                     </tr>
+                  </table>
+                  <h3 class="main">English</h3>
+                  <table class="languageFragmentTable">
+                     <tr>
+                        <th>Page</th>
+                        <th>Element</th>
+                        <th>Fragment</th>
+                     </tr>
+                     <tr>
+                        <td><a class="pageref" href="#xd21e41" id="xd21e41ext">N.A.</a></td>
+                        <td>p</td>
+                        <td>
+                           <p id="xd21e41" lang="en" class="first">This eBook is for the use of anyone anywhere at no cost and with almost no restrictions whatsoever. You may copy it, give
+                              it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at <a id="xd21e43" class="exlink xd21e43" title="External link" href="http://www.gutenberg.org/">www.gutenberg.org</a>.
+                           </p>
+                        </td>
+                     </tr>
+                  </table>
+                  <h3 class="main">French</h3>
+                  <table class="languageFragmentTable">
+                     <tr>
+                        <th>Page</th>
+                        <th>Element</th>
+                        <th>Fragment</th>
+                     </tr>
+                     <tr>
+                        <td><a class="pageref" href="#xd21e315" id="xd21e315ext">2</a></td>
+                        <td>cit</td>
+                        <td><span class="cit" id="xd21e315" lang="fr">
+                              <div id="xd21e316" class="q">
+                                 <div id="xd21e317" class="lgouter ">
+                                    <p id="xd21e318" class="line ">&#8220;Ils partent; et loin d'eux repoussant la barrière,</p>
+                                    <p id="xd21e320" class="line ">Ils fendent dans les airs les nuages mouvans,</p>
+                                    <p id="xd21e322" class="line ">Et de leurs piés ailés ils devancent les vents.&#8221;</p>
+                                 </div>
+                              </div><span class="bibl" id="xd21e324">(<i id="xd21e326">Metamorphoses d'Ovide</i>).</span></span></td>
+                     </tr>
+                     <tr>
+                        <td><a class="pageref" href="#fj-en" id="fj-enext">4</a></td>
+                        <td>lg</td>
+                        <td></td>
+                     </tr>
+                  </table>
+                  <h3 class="main">Dutch</h3>
+                  <table class="languageFragmentTable">
+                     <tr>
+                        <th>Page</th>
+                        <th>Element</th>
+                        <th>Fragment</th>
+                     </tr>
+                     <tr>
+                        <td><a class="pageref" href="#xd21e257" id="xd21e257ext">2</a></td>
+                        <td>xref</td>
+                        <td><a id="xd21e257" lang="nl" class="pglink xd21e43" title="Link to Project Gutenberg ebook" href="http://www.gutenberg.org/ebooks/19585">De Wereld voor de schepping van den mensch</a></td>
+                     </tr>
+                     <tr>
+                        <td><a class="pageref" href="#xd21e261" id="xd21e261ext">2</a></td>
+                        <td>xref</td>
+                        <td><a id="xd21e261" lang="nl" class="pglink xd21e43" title="Link to Project Gutenberg ebook" href="http://www.gutenberg.org/files/37578/37578-h/37578-h.htm#ch19">The Later Life</a></td>
+                     </tr>
+                     <tr>
+                        <td><a class="pageref" href="#xd21e278" id="xd21e278ext">2</a></td>
+                        <td>xref</td>
+                        <td><a id="xd21e278" lang="nl" class="wplink xd21e43" title="Link to related Wikipedia article" href="http://en.wikipedia.org/wiki/Nederlands">Dutch</a></td>
+                     </tr>
+                     <tr>
+                        <td><a class="pageref" href="#xd21e899" id="xd21e899ext">3</a></td>
+                        <td>list</td>
+                        <td>
+                           <table id="xd21e899" lang="nl">
+                              <tr>
+                                 <td>
+                                    <ol>
+                                       <li id="xd21e900">Een</li>
+                                       <li id="xd21e902">Twee</li>
+                                    </ol>
+                                 </td>
+                                 <td>
+                                    <ol>
+                                       <li id="xd21e904">Drie</li>
+                                       <li id="xd21e906">Vier</li>
+                                    </ol>
+                                 </td>
+                              </tr>
+                           </table>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td><a class="pageref" href="#xd21e908" id="xd21e908ext">3</a></td>
+                        <td>list</td>
+                        <td>
+                           <table id="xd21e908" lang="nl">
+                              <tr>
+                                 <td>
+                                    <ol class="xd21e908">
+                                       <li id="xd21e909" value="5">Vijf</li>
+                                       <li id="xd21e911">Zes</li>
+                                    </ol>
+                                 </td>
+                                 <td>
+                                    <ol class="xd21e908">
+                                       <li id="xd21e913" value="7">Zeven</li>
+                                       <li id="xd21e915">Acht</li>
+                                    </ol>
+                                 </td>
+                              </tr>
+                           </table>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td><a class="pageref" href="#xd21e920" id="xd21e920ext">3</a></td>
+                        <td>list</td>
+                        <td>
+                           <ol id="xd21e920" lang="nl" class="xd21e920">
+                              <li id="xd21e921">Een</li>
+                              <li id="xd21e923">Twee</li>
+                              <li id="xd21e925" value="48">Drie</li>
+                              <li id="xd21e927">Vier</li>
+                           </ol>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td><a class="pageref" href="#xd21e931" id="xd21e931ext">3</a></td>
+                        <td>list</td>
+                        <td>
+                           <ul id="xd21e931" lang="nl">
+                              <li id="xd21e932">Een</li>
+                              <li id="xd21e934">Twee</li>
+                              <li id="xd21e936">Drie</li>
+                              <li id="xd21e938">Vier</li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td><a class="pageref" href="#alignSecond" id="alignSecondext">4</a></td>
+                        <td>div1</td>
+                        <td></td>
+                     </tr>
+                     <tr>
+                        <td><a class="pageref" href="#xd21e1198" id="xd21e1198ext">4</a></td>
+                        <td>list</td>
+                        <td>
+                           <table class="tocList" id="xd21e1198" lang="nl">
+                              <tr>
+                                 <td class="tocDivNum"></td>
+                                 <td class="tocDivTitle" colspan="5">      Introductie   </td>
+                                 <td class="tocPageNum">vii</td>
+                              </tr>
+                              <tr>
+                                 <td class="tocDivNum">I</td>
+                                 <td class="tocDivTitle" colspan="5">      Eerste Hoofdstuk   </td>
+                                 <td class="tocPageNum">1</td>
+                              </tr>
+                              <tr>
+                                 <td class="tocDivNum">II</td>
+                                 <td class="tocDivTitle" colspan="5">      Tweede Hoofdstuk   </td>
+                                 <td class="tocPageNum">22</td>
+                              </tr>
+                              <tr>
+                                 <td class="tocDivNum">III</td>
+                                 <td class="tocDivTitle" colspan="5">      <span class="corr" id="xd21e1219" title="Source: Vierde">Derde</span> Hoofdstuk   
+                                 </td>
+                                 <td class="tocPageNum">35</td>
+                              </tr>
+                              <tr>
+                                 <td class="tocDivNum">DCCCXLIV</td>
+                                 <td class="tocDivTitle" colspan="5">      Achthonderdenvierenveertigste Hoofdstuk   </td>
+                                 <td class="tocPageNum">57</td>
+                              </tr>
+                              <tr>
+                                 <td class="tocDivNum"></td>
+                                 <td class="tocDivTitle" colspan="5">      Slot   </td>
+                                 <td class="tocPageNum">77</td>
+                              </tr>
+                           </table>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td><a class="pageref" href="#index" id="indexext">4</a></td>
+                        <td>div1</td>
+                        <td>
+                           <div id="index" lang="nl" class="div1 index"><span class="pagenum">[<a href="#toc">Contents</a>]</span><div class="divHead">
+                                 <h2 id="xd21e1235" class="main">Index</h2>
+                                 <div class="transcribernote indextoc" id="xd21e1237"><a href="#xd21e1239">A</a> | <a href="#xd21e1244">B</a> | <a href="#xd21e1249">C</a> | <a href="#xd21e1254">D</a></div>
+                                 <div id="xd21e1238" class="div2"><span class="pagenum">[<a href="#toc">Contents</a>]</span><div class="divHead">
+                                       <h3 id="xd21e1239" class="main">A.</h3>
+                                    </div>
+                                    <div class="divBody">
+                                       <p id="xd21e1241" class="first">A is een aapje.</p>
+                                    </div>
+                                 </div>
+                                 <div id="xd21e1243" class="div2"><span class="pagenum">[<a href="#toc">Contents</a>]</span><div class="divHead">
+                                       <h3 id="xd21e1244" class="main">B.</h3>
+                                    </div>
+                                    <div class="divBody">
+                                       <p id="xd21e1246" class="first">B is een Boom.</p>
+                                    </div>
+                                 </div>
+                                 <div id="xd21e1248" class="div2"><span class="pagenum">[<a href="#toc">Contents</a>]</span><div class="divHead">
+                                       <h3 id="xd21e1249" class="main">C.</h3>
+                                    </div>
+                                    <div class="divBody">
+                                       <p id="xd21e1251" class="first">C is een Cent.</p>
+                                    </div>
+                                 </div>
+                                 <div id="xd21e1253" class="div2"><span class="pagenum">[<a href="#toc">Contents</a>]</span><div class="divHead">
+                                       <h3 id="xd21e1254" class="main">D.</h3>
+                                    </div>
+                                    <div class="divBody">
+                                       <p id="xd21e1256" class="first">D is een Drommedaris.
+                                          <br id="xd21e1258"></br>en een Duizendpoot.
+                                       </p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                  </table>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>

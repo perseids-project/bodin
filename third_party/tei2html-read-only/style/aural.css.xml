@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<style type="text/css">
+<![CDATA[
+
+.pagenum, .linenum
+{
+    speak: none;
+}
+
+]]>
+</style>
