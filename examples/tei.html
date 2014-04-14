@@ -1,6 +1,7 @@
 <html>
 	<head>
 		<!-- Load CSS -->
+		<link href="../third_party/sidecart/src/css/sidecart.css" rel="stylesheet" type="text/css" />
 		<link href="../src/css/bodin.css" rel="stylesheet" type="text/css" />
 		<!-- End Load CSS -->
 		<title>bodin</title>
@@ -77,15 +78,22 @@
 				left: auto;
 				margin: 0;
 			}
+			body > #content {
+				display: none;
+			}
 		</style>
 	<head>
 	<body>
-		<div class="TeiToBodin" id="bodin_latin"></div>
-		<div class="TeiToBodin" id="bodin_english"></div>
+		<div id="content">Sidecart oh yeah.</div>
+		<div class="TeiToBodin" id="bodin_latin"><div id="sidecart_latin"></div></div>
+		<div class="TeiToBodin" id="bodin_english"><div id="sidecart_english"></div></div>
 	</body>
+	
+	
 	
 	<!-- Load Javascript -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="../third_party/sidecart/src/js/sidecart.js"></script>
 	<script src="../third_party/jslib/src/js/SharedConfig.js"></script>
 	<script src="../third_party/jslib/src/js/Styler.js"></script>
 	<script src="../third_party/jslib/src/js/StringExt.js"></script>
@@ -202,6 +210,7 @@
 		BodinAlign.prototype.start = function() {
 			if ( this.readyCount == 2 ) {
 				this.getXml();
+				startSidecart();
 			}
 		}
 		
@@ -627,5 +636,62 @@
 			new TeiToBodin( 'xml/passage.xml', 'bodin_latin' );
 			new TeiToBodin( 'xml/english_translation.xml', 'bodin_english' );
 		});
+		
+		/**
+		 * Start up side-cart.
+		 */
+		function startSidecart() {
+			//------------------------------------------------------------
+			//  Side Cart Latin
+			//------------------------------------------------------------
+			jQuery('#sidecart_latin').sidecart({
+				side: 'top',
+				inside: true,
+				views: [
+					{
+						id: 'nav-1',
+						type: 'nav',
+						link: 'NAV',
+						src: '#content',
+						init: function() {},
+						refresh: function() {}
+					},
+					{
+						id: 'nav-2',
+						type: 'notes',
+						link: 'NOTES',
+						src: '#content',
+						init: function() {},
+						refresh: function() {}
+					},
+				]
+			});
+			
+			//------------------------------------------------------------
+			//  Side Cart English
+			//------------------------------------------------------------
+			jQuery('#sidecart_english').sidecart({
+				side: 'top',
+				inside: true,
+				views: [
+					{
+						id: 'nav-1',
+						type: 'nav',
+						link: 'NAV',
+						src: '#content',
+						init: function() {},
+						refresh: function() {}
+					},
+					{
+						id: 'nav-2',
+						type: 'notes',
+						link: 'NOTES',
+						src: '#content',
+						init: function() {},
+						refresh: function() {}
+					},
+				]
+			});
+		}
 	</script>
 <html>

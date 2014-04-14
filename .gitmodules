@@ -1,3 +1,6 @@
 [submodule "third_party/jslib"]
 	path = third_party/jslib
 	url = http://github.com/caesarfeta/jslib
+[submodule "third_party/sidecart"]
+	path = third_party/sidecart
+	url = https://github.com/caesarfeta/sidecart
