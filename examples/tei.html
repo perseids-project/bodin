@@ -483,13 +483,15 @@
 				//------------------------------------------------------------
 				for ( var j=0, jj=this.json['editions'][i]['books'].length; j<jj; j++ ) {
 					var book = edition+'-book-'+(j+1);
-					output += '<li><a href="#'+book+'">Book</a><ul>';
+					var title = jQuery(this.json['editions'][i]['books'][j]['head']).text();
+					output += '<li><a class="book" href="#'+book+'">'+title+'</a><ul>';
 					//------------------------------------------------------------
 					//	Chapters
 					//------------------------------------------------------------
 					for ( var k=0, kk=this.json['editions'][i]['books'][j]['chapters'].length; k<kk; k++ ) {
 						var chapter = book+'-chapter-'+(k+1);
-						output += '<li><a href="#'+chapter+'">Chapter</li>';
+						title = jQuery(this.json['editions'][i]['books'][j]['chapters'][k]['head']).text();
+						output += '<li><a class="chapter" href="#'+chapter+'">'+title+'</li>';
 					}
 					output += '</ul></li>'
 				}
