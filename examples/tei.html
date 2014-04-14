@@ -88,9 +88,6 @@
 		<div class="TeiToBodin" id="bodin_latin"><div id="sidecart_latin"></div></div>
 		<div class="TeiToBodin" id="bodin_english"><div id="sidecart_english"></div></div>
 	</body>
-	
-	
-	
 	<!-- Load Javascript -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="../third_party/sidecart/src/js/sidecart.js"></script>
@@ -98,9 +95,8 @@
 	<script src="../third_party/jslib/src/js/Styler.js"></script>
 	<script src="../third_party/jslib/src/js/StringExt.js"></script>
 	<script src="../third_party/jslib/src/js/DomPlus.js"></script>
-	
 	<script type="text/javascript"> 
-		
+
 		function BodinAlign( _url, _id1, _id2 ) {
 			this.config = {
 				timeout: 10 // seconds
@@ -155,13 +151,22 @@
 			});
 		}
 		
+		/**
+		 * Put the alignment markup in place
+		 */
 		BodinAlign.prototype.alignMarkup = function() {
-			var self = this;
-			DomWalk( document.getElementById( self.id1 ), function( _node ) {
-				//console.log( _node.innerHTML )
-			});
+			for ( var i=0, ii=this.map.length; i<ii; i++ ) {
+				var book = this.map[i]['book'];
+				var chapter = this.map[i]['chapter'];
+				var start = this.map[i]['start'];
+				var end = this.map[i]['end'];
+//				jQuery().html();
+			}
 		}
 		
+		/**
+		 * Get the alignment map
+		 */
 		BodinAlign.prototype.getAlignMap = function() {
 			var self = this;
 			jQuery( self.xml ).find('Annotation').each( function(){
@@ -190,23 +195,40 @@
 		
 		BodinAlign.prototype.jsonTarget = function( _target ) {
 			//------------------------------------------------------------
+			//  Get book and chapter
+			//------------------------------------------------------------
+			var colon = _target.lastIndexOf(':')+1;
+			//------------------------------------------------------------
 			//  Make sure _target is valid
 			//------------------------------------------------------------
-			var at = _target.indexOf('@')
+			var at = _target.indexOf('@');
 			if ( at == -1 ) {
 				return undefined;
 			}
+			//------------------------------------------------------------
+			//  Get book and chapter
+			//------------------------------------------------------------
+			var sub = _target.substr( colon, at-colon );
+			var split = sub.split('.');
+			var book = parseInt( split[0] );
+			var chapter = parseInt( split[1] );
+			//------------------------------------------------------------
+			//  Get the word and occurence
+			//------------------------------------------------------------
 			_target = _target.substr( at , _target.length-1 );
 			_target = _target.replace('@','');
 			var index = _target.split('-');
 			var start = this.wordAndOccurence( index[0] );
 			var end = this.wordAndOccurence( index[1] );
-			return { 'start': start, 'end': end }
+			//------------------------------------------------------------
+			//  Return target data JSON style
+			//------------------------------------------------------------
+			return { 'book': book, 'chapter': chapter, 'start': start, 'end': end }
 		}
 		
 		BodinAlign.prototype.wordAndOccurence = function( _string ) {
-			var sep = _string.indexOf('[')
-			var word = _string.substr( 0 , sep - 1 )
+			var sep = _string.indexOf('[');
+			var word = _string.substr( 0 , sep-1 );
 			var occurence = _string.substr( sep, _string.length-1 ).replace('[','').replace(']','');
 			return { 'word': word, 'occurence': occurence }
 		}
@@ -214,7 +236,7 @@
 		BodinAlign.prototype.start = function() {
 			if ( this.readyCount == 2 ) {
 				this.getXml();
-				startSidecart();
+				startSidecart(); // Should move this out of here.
 			}
 		}
 		
@@ -500,6 +522,9 @@
 			return output;
 		}
 		
+		/**
+		 * Tooltip
+		 */
 		function Tooltipper( _root ) {
 			this.root = _root;
 			this.tooltip = jQuery( '<div id="tooltipper"></div>' );
@@ -507,6 +532,9 @@
 			this.target = null;
 		}
 		
+		/**
+		 * Start Tooltipper
+		 */
 		Tooltipper.prototype.start = function() {
 			var self = this;
 			//------------------------------------------------------------
@@ -547,6 +575,9 @@
 			});
 		}
 		
+		/**
+		 * Position the tooltip
+		 */
 		Tooltipper.prototype.position = function() {
 			//------------------------------------------------------------
 			//  Only procceed if you have what you need.
@@ -719,11 +750,14 @@
 						type: 'nav',
 						link: 'NAV',
 						src: '#content',
-						init: function() {},
-						refresh: function() {
+						init: function( _this ) {
 							var navHtml = englishBodin.buildNav();
 							jQuery('#sidecart_english #nav-1').html( navHtml );
-						}
+							jQuery('#sidecart_english #nav-1 a').on( 'touchstart click', function( _e ) {
+								_this.hide();
+							})
+						},
+						refresh: function() {}
 					},
 					{
 						id: 'nav-2',
