@@ -20,6 +20,9 @@
 				float: left;
 				margin: 0;
 			}
+			.TeiToBodin span.align {
+				background-color: rgba( 255, 255, 0, 0.25 );
+			}
 			.TeiToBodin .navMenu {}
 			.TeiToBodin a.note {
 				display: inline-block;
@@ -156,26 +159,31 @@
 		 */
 		BodinAlign.prototype.alignMarkup = function() {
 			for ( var i=0, ii=this.map.length; i<ii; i++ ) {
-				//------------------------------------------------------------
-				//  Get the body
-				//------------------------------------------------------------
-				var book = this.map[i]['body']['book'];
-				var chapter = this.map[i]['body']['chapter'];
-				var start = this.map[i]['body']['start'];
-				var end = this.map[i]['body']['end'];
-				var select = '#'+this.id1+'-edition-1-book-'+book+'-chapter-'+chapter;
-				var html = jQuery( select ).html();
-				console.log( start );
-				//------------------------------------------------------------
-				//  Get the body
-				//------------------------------------------------------------
-				var book = this.map[i]['target']['book'];
-				var chapter = this.map[i]['target']['chapter'];
-				var start = this.map[i]['target']['start'];
-				var end = this.map[i]['target']['end'];
-				var select = '#'+this.id2+'-edition-1-book-'+book+'-chapter-'+chapter;
-				var html = jQuery( select ).html();
+				this.alignSide( 'body', i, this.id2 );
+				this.alignSide( 'target', i, this.id1 );
 			}
+		}
+		
+		BodinAlign.prototype.alignSide = function( _side, _i, _id ) {
+			//------------------------------------------------------------
+			//  Get the body
+			//------------------------------------------------------------
+			var book = this.map[_i][_side]['book'];
+			var chapter = this.map[_i][_side]['chapter'];
+			var start = this.map[_i][_side]['start'];
+			var end = this.map[_i][_side]['end'];
+			var select = '#'+_id+'-edition-1-book-'+book+'-chapter-'+chapter;
+			var html = jQuery( select ).html();
+			//------------------------------------------------------------
+			//  Wrap the passage in a span tag
+			//------------------------------------------------------------
+			var positions = html.positions( start['word'], false, true, false );
+			var ind = positions[ start['occurence']-1 ];
+			html = html.insertAt( ind, '<span id="'+(_i+1)+'" class="align">' );
+			positions = html.positions( end['word'], false, true, false );
+			ind = positions[ (end['occurence']-1) ]+end['word'].length;
+			html = html.insertAt( ind, '</span>' );
+			jQuery( select ).html( html );
 		}
 		
 		/**
@@ -222,14 +230,10 @@
 			//------------------------------------------------------------
 			//  Get book and chapter
 			//------------------------------------------------------------
-			/*
 			var sub = _target.substr( colon, at-colon );
 			var split = sub.split('.');
 			var book = parseInt( split[0] );
 			var chapter = parseInt( split[1] );
-			*/
-			var book = null;
-			var chapter = null;
 			//------------------------------------------------------------
 			//  Get the word and occurence
 			//------------------------------------------------------------
