@@ -156,11 +156,25 @@
 		 */
 		BodinAlign.prototype.alignMarkup = function() {
 			for ( var i=0, ii=this.map.length; i<ii; i++ ) {
-				var book = this.map[i]['book'];
-				var chapter = this.map[i]['chapter'];
-				var start = this.map[i]['start'];
-				var end = this.map[i]['end'];
-//				jQuery().html();
+				//------------------------------------------------------------
+				//  Get the body
+				//------------------------------------------------------------
+				var book = this.map[i]['body']['book'];
+				var chapter = this.map[i]['body']['chapter'];
+				var start = this.map[i]['body']['start'];
+				var end = this.map[i]['body']['end'];
+				var select = '#'+this.id1+'-edition-1-book-'+book+'-chapter-'+chapter;
+				var html = jQuery( select ).html();
+				console.log( start );
+				//------------------------------------------------------------
+				//  Get the body
+				//------------------------------------------------------------
+				var book = this.map[i]['target']['book'];
+				var chapter = this.map[i]['target']['chapter'];
+				var start = this.map[i]['target']['start'];
+				var end = this.map[i]['target']['end'];
+				var select = '#'+this.id2+'-edition-1-book-'+book+'-chapter-'+chapter;
+				var html = jQuery( select ).html();
 			}
 		}
 		
@@ -208,15 +222,18 @@
 			//------------------------------------------------------------
 			//  Get book and chapter
 			//------------------------------------------------------------
+			/*
 			var sub = _target.substr( colon, at-colon );
 			var split = sub.split('.');
 			var book = parseInt( split[0] );
 			var chapter = parseInt( split[1] );
+			*/
+			var book = null;
+			var chapter = null;
 			//------------------------------------------------------------
 			//  Get the word and occurence
 			//------------------------------------------------------------
-			_target = _target.substr( at , _target.length-1 );
-			_target = _target.replace('@','');
+			_target = _target.substr( at+1 , _target.length );
 			var index = _target.split('-');
 			var start = this.wordAndOccurence( index[0] );
 			var end = this.wordAndOccurence( index[1] );
@@ -228,7 +245,7 @@
 		
 		BodinAlign.prototype.wordAndOccurence = function( _string ) {
 			var sep = _string.indexOf('[');
-			var word = _string.substr( 0 , sep-1 );
+			var word = _string.substr( 0 , sep );
 			var occurence = _string.substr( sep, _string.length-1 ).replace('[','').replace(']','');
 			return { 'word': word, 'occurence': occurence }
 		}
