@@ -118,6 +118,10 @@
 			//  Listen for TeiToBodin to complete
 			//------------------------------------------------------------
 			this.listen();
+			//------------------------------------------------------------
+			//  Return this.
+			//------------------------------------------------------------
+			return this;
 		}
 		
 		BodinAlign.prototype.listen = function() {
@@ -154,7 +158,7 @@
 		BodinAlign.prototype.alignMarkup = function() {
 			var self = this;
 			DomWalk( document.getElementById( self.id1 ), function( _node ) {
-				console.log( _node.innerHTML )
+				//console.log( _node.innerHTML )
 			});
 		}
 		
@@ -366,25 +370,25 @@
 			//	Editions
 			//------------------------------------------------------------
 			for ( var i=0, ii=this.json['editions'].length; i<ii; i++ ) {
-				var edition = this.id+'-edition-'+i;
+				var edition = this.id+'-edition-'+(i+1);
 				jQuery( work ).append('<div id="'+edition+'" class="edition"></div>');
 				//------------------------------------------------------------
 				//	Books
 				//------------------------------------------------------------
 				for ( var j=0, jj=this.json['editions'][i]['books'].length; j<jj; j++ ) {
-					var book = edition+'-book-'+j;
+					var book = edition+'-book-'+(j+1);
 					jQuery( '#'+edition ).append('<div id="'+book+'" class="book"></div>');
 					//------------------------------------------------------------
 					//	Chapters
 					//------------------------------------------------------------
 					for ( var k=0, kk=this.json['editions'][i]['books'][j]['chapters'].length; k<kk; k++ ) {
-						var chapter = book+'-chapter-'+k;
+						var chapter = book+'-chapter-'+(k+1);
 						jQuery( '#'+book ).append('<div id="'+chapter+'" class="chapter"></div>');
 						//------------------------------------------------------------
 						//	Pages
 						//------------------------------------------------------------
 						for ( var m=0, mm=this.json['editions'][i]['books'][j]['chapters'][k]['pages'].length; m<mm; m++ ) {
-							var page = chapter+'-page-'+m;
+							var page = chapter+'-page-'+(m+1);
 							var text = this.json['editions'][i]['books'][j]['chapters'][k]['pages'][m];
 							jQuery( '#'+chapter ).append('<div id="'+page+'" class="page">'+text+'</div>');
 						}
@@ -464,6 +468,35 @@
 			}
 		}
 		
+		/**
+		 * Build navigation -- used by sidecart
+		 */
+		TeiToBodin.prototype.buildNav = function() {
+			var output = '<ul>'
+			//------------------------------------------------------------
+			//	Editions
+			//------------------------------------------------------------
+			for ( var i=0, ii=this.json['editions'].length; i<ii; i++ ) {
+				var edition = this.id+'-edition-'+(i+1);
+				//------------------------------------------------------------
+				//	Books
+				//------------------------------------------------------------
+				for ( var j=0, jj=this.json['editions'][i]['books'].length; j<jj; j++ ) {
+					var book = edition+'-book-'+(j+1);
+					output += '<li><a href="#'+book+'">Book</a><ul>';
+					//------------------------------------------------------------
+					//	Chapters
+					//------------------------------------------------------------
+					for ( var k=0, kk=this.json['editions'][i]['books'][j]['chapters'].length; k<kk; k++ ) {
+						var chapter = book+'-chapter-'+(k+1);
+						output += '<li><a href="#'+chapter+'">Chapter</li>';
+					}
+					output += '</ul></li>'
+				}
+			}
+			output += '</ul>';
+			return output;
+		}
 		
 		function Tooltipper( _root ) {
 			this.root = _root;
@@ -631,10 +664,12 @@
 		/**
 		 * When the document is ready start it up.
 		 */
+		var latinBodin = null;
+		var englishBodin = null;
 		jQuery( document ).ready( function() {
 			new BodinAlign( 'xml/alignment.xml', 'bodin_latin', 'bodin_english')
-			new TeiToBodin( 'xml/passage.xml', 'bodin_latin' );
-			new TeiToBodin( 'xml/english_translation.xml', 'bodin_english' );
+			latinBodin = new TeiToBodin( 'xml/passage.xml', 'bodin_latin' );
+			englishBodin = new TeiToBodin( 'xml/english_translation.xml', 'bodin_english' );
 		});
 		
 		/**
@@ -653,7 +688,10 @@
 						type: 'nav',
 						link: 'NAV',
 						src: '#content',
-						init: function() {},
+						init: function() {
+							var navHtml = latinBodin.buildNav();
+							jQuery('#sidecart_latin #nav-1').html( navHtml );
+						},
 						refresh: function() {}
 					},
 					{
@@ -680,7 +718,10 @@
 						link: 'NAV',
 						src: '#content',
 						init: function() {},
-						refresh: function() {}
+						refresh: function() {
+							var navHtml = englishBodin.buildNav();
+							jQuery('#sidecart_english #nav-1').html( navHtml );
+						}
 					},
 					{
 						id: 'nav-2',
