@@ -1,0 +1,45 @@
+<html>
+	<head>
+		<!-- Load CSS -->
+		<link href="../../src/css/bodin.css" rel="stylesheet" type="text/css" />
+		<!-- End Load CSS -->
+		<title>bodin</title>
+	<head>
+	<body>
+		<div class="bodin" src="tempHtml/latin.html" id="latin"></div>
+		<div class="bodin" src="tempHtml/french.html" id="french"></div>
+		<div class="bodin" src="tempHtml/english.html" id="english"></div>
+	</body>
+	
+	<!-- Load Javascript -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script type="text/javascript" src="../../third_party/jslib/src/js/jQueryPlus.js"></script>
+	<script type="text/javascript" src="../../third_party/jslib/src/js/StringExt.js"></script>
+	<script type="text/javascript" src="../../third_party/jslib/src/js/ObjectExt.js"></script>
+	<script type="text/javascript" src="../../src/js/bodin.js"></script>
+	<script type="text/javascript">
+	
+	jQuery( document ).ready( function() {
+		//------------------------------------------------------------
+		//  Start up the UI once alignment XML is loaded
+		//------------------------------------------------------------
+		jQuery( window ).on( 'BodinAlign-LOADED', function() {
+			jQuery( '.bodin' ).BodinUI();
+		});
+		//------------------------------------------------------------
+		//  Once Bodin texts are loaded get the alignment XML
+		//------------------------------------------------------------
+		jQuery( window ).on( 'Bodin-LOADED', function() {
+			var bodinAlign = new BodinAlign();
+			bodinAlign.start([
+				{ 
+					src: 'tempXml/alignment.xml', 
+					ids: [ 'latin', 'english' ] 
+				}
+			]);
+		});
+		var bodin = new Bodin();
+		bodin.start( '.bodin' );
+	});
+	</script>
+<html>

@@ -6,6 +6,8 @@ body, html {
 	padding: 4px;
 	background-color: #222;
 	box-sizing: border-box;
+	width: 33%;
+	float: left;
 }
 .bodin .view {
 	overflow-y: scroll;
@@ -137,4 +139,82 @@ body, html {
 .bodin .overlay .nav a {
 	text-decoration: none;
 	color: #FFF;
+}
+.TeiToBodin {
+	color: #222;
+	letter-spacing: .02em;
+	line-height: 1.5em;
+	padding: 2px;
+	background-color: #222;
+	width: 100%;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	display: block;
+	float: left;
+	margin: 0;
+}
+.TeiToBodin span.align {
+	background-color: rgba( 255, 255, 0, 0.25 );
+}
+.TeiToBodin .navMenu {}
+.TeiToBodin a.note {
+	display: inline-block;
+	color: #FF0000;
+	vertical-align: super;
+	font-size: 75%;
+	text-decoration: none;
+}
+.TeiToBodin .work {
+	height: 100%;
+	overflow-y: scroll;
+}
+.TeiToBodin .page {
+	background-color: #F9F9F9;
+	padding: 60px 80px 120px 80px;
+	margin-bottom: 5px;
+	max-width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.TeiToBodin.slim .page{
+	padding: 60px 30px 120px 30px;
+}
+#tooltipper {
+	text-align: center;
+	color: #fff;
+	background: #111;
+	position: absolute;
+	z-index: 100;
+	padding: 15px;
+}
+#tooltipper:after {
+	width: 0;
+	height: 0;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-top: 10px solid #111;
+	content: '';
+	position: absolute;
+	left: 50%;
+	bottom: -10px;
+	margin-left: -10px;
+}
+#tooltipper.top:after {
+	border-top-color: transparent;
+	border-bottom: 10px solid #111;
+	top: -20px;
+	bottom: auto;
+}
+#tooltipper.left:after {
+	left: 10px;
+	margin: 0;
+}
+#tooltipper.right:after {
+	right: 10px;
+	left: auto;
+	margin: 0;
+}
+body > #content {
+	display: none;
 }

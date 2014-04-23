@@ -1,0 +1,1125 @@
+/*!
+ * bodin - bodin
+ * http://adamtavares.com
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+;(function($) {
+	
+	/**
+	 * Holds default options, adds user defined options, and initializes the plugin
+	 *
+	 * @param { obj } _elem The DOM element where the plugin will be drawn
+	 *
+	 * @param { obj } _options Key value pairs to hold the plugin's configuration
+	 *
+	 * @param { string } _id The id of the DOM element
+	 */
+	function bodin( _elem, _options, _id ) {
+		var self = this;
+		self.elem = _elem;
+		self.id = _id;
+		self.init( _elem, _options );
+	}
+	
+	/**
+	 * Holds default options, adds user defined options, and initializes the plugin
+	 *
+	 * @param { obj } _elem The DOM element where the plugin will be drawn
+	 *
+	 * @param { obj } _options Key value pairs to hold the plugin's configuration
+	 */
+	bodin.prototype.init = function( _elem, _options ) {
+		var self = this;
+		
+		//------------------------------------------------------------
+		//	Mark your territory
+		//------------------------------------------------------------
+		$( self.elem ).addClass('bodin');
+		
+		//------------------------------------------------------------
+		//	User options 
+		//------------------------------------------------------------
+		self.options = $.extend({
+			break: 'paragraph',
+			break_count: null,
+			blocks_per_page: 5,
+			markers: null,
+			xml: 'xml/boding_french.sml'
+		}, _options );
+		
+		//------------------------------------------------------------
+		//  Events
+		//------------------------------------------------------------
+		self.events = {
+			goTo: 'BODIN-GOTO',
+			align: 'BODIN-ALIGN'
+		};
+		
+		//------------------------------------------------------------
+		//  Content that goes into an overlay
+		//------------------------------------------------------------
+		self.overlayContent = {};
+		
+		//------------------------------------------------------------
+		//  Build the thing
+		//------------------------------------------------------------
+		self.build();
+		
+		//------------------------------------------------------------
+		//  Start event listeners
+		//------------------------------------------------------------
+		self.start();
+	}
+
+	/**
+	 * Get an XML document
+	 */
+	bodin.prototype.getXml = function() {
+		var self = this;
+	}
+	
+	/**
+	 * Build the block stats buttons
+	 */
+	bodin.prototype.blockStatsButtons = function() {
+		var self = this;
+		for ( var i=0, ii=self.blocks.length; i<ii; i++ ) {
+			$( '#block-'+i+' .extras', self.elem ).append( '<a href="" class="blockStats">+</a>' );
+		}
+		$( '.blockStats', self.elem ).click( function( _e ) {
+			_e.preventDefault();
+			
+			//------------------------------------------------------------
+			//  Mark it as selected
+			//------------------------------------------------------------
+			var block = $(this).parent().parent();
+			var id = self.justId( block.attr('id') );
+			if ( block.hasClass('overlaid') ) {
+				self.overlayClear( id );
+			}
+			else {
+				self.overlay( id );
+			}
+		})
+	}
+	
+	/**
+	 * Return just and id from a block attribute
+	 *
+	 * @param {string} Block tag id attribute value
+	 */
+	bodin.prototype.justId = function( _block ) {
+		return parseInt( _block.replace( 'block-', '' ) );
+	}
+	
+	/**
+	 * Start up the extra features.  Statistics etc.
+	 */
+	bodin.prototype.extras = function() {
+		var self = this;
+		self.textStats();
+		self.textStatsBar();
+		self.blockStatsButtons();
+	}
+	
+	/**
+	 * Text level stats
+	 */
+	bodin.prototype.textStatsBar = function() {
+		var self = this;
+		var textStats = '\
+			<div class="textStats">\
+				<span class="stat"><span class="unit"> pages: </span>'+self.stats['pages']+'</span>\
+				<span class="stat"><span class="unit"> blocks: </span>'+self.stats['total_blocks']+'</span>\
+				<span class="stat"><span class="unit"> words: </span>'+self.stats['total_words']+'</span>\
+			</div>';
+			
+		$( '.view', self.elem ).prepend( textStats.smoosh() );
+	}
+	
+	/**
+	 * Wrap all words in spans
+	 */
+	bodin.prototype.spanify = function() {
+		var self = this;
+		for ( var i=0, ii=self.blocks.length; i<ii; i++ ) {
+			self.blockSpanify( i );
+		}
+	}
+	
+	/**
+	 * Clear up lites.
+	 */
+	bodin.prototype.clearLites = function() {
+		var self = this;
+		$( '.text span.lite', self.elem ).removeClass( 'lite' );
+	}
+	
+	/**
+	 * Lite-up a word. spanify() must be called previously.
+	 */
+	bodin.prototype.liteWord = function( _blockId, _wordId ) {
+		var self = this;
+		_wordId -= 1;
+		$( '#block-'+_blockId+' .text span:eq('+_wordId+')', self.elem ).addClass( 'lite' );
+	}
+	
+	/**
+	 * Overlay a block.
+	 *
+	 * @param { int } _blockId The id of a block
+	 */
+	bodin.prototype.overlay = function( _blockId ) {
+		var self = this;
+		var block =	$( '#block-'+_blockId, self.elem );
+		var text = $( '.text', block );
+		block.addClass( 'overlaid' );
+		text.append( '<div class="overlay"><div class="content"></div><div class="nav"></div></div>' );
+		var nav = $( '.nav', text );
+		$( '.overlay', text ).css({ 
+			width: text.width()
+		});
+		$( '.overlay .content', block ).css({
+			height: 0
+		});
+		$( '.overlay .content', block ).css({
+			height: text.outerHeight() - nav.outerHeight()*2
+		});
+		self.overlayLoad( _blockId, self.stats['blocks'][_blockId] );
+		self.overlayStart( _blockId );
+	}
+	
+	/**
+	 * Load content into a block.
+	 *
+	 * @param { int } _blockId The id of a block
+	 */
+	bodin.prototype.overlayLoad = function( _blockId, _content ) {
+		var self = this;
+		var block =	$( '#block-'+_blockId, self.elem );
+		$( '.overlay .content', block ).html( _content );
+	}
+	
+	/**
+	 * Start overlay listeners.
+	 *
+	 * @param { int } _blockId The id of a block
+	 */
+	bodin.prototype.overlayStart = function( _blockId ) {
+		var self = this;
+		var block =	$( '#block-'+_blockId, self.elem );
+		$( '.nav', block ).on( 'mousedown', function( _e ){
+			_e.preventDefault();
+			self.currentOverlay = $( '.overlay', block );
+			$( '.content', self.currentOverlay ).addClass( 'move' );
+		});
+		$( document ).on( 'mousemove', function( _e ){
+			_e.preventDefault();
+			if ( self.currentOverlay != null ) {
+				var y = _e.clientY;
+				var pos = $( self.currentOverlay ).parent().position();
+				var top = pos['top'];
+				var navHeight = $( '.nav', self.currentOverlay ).outerHeight();
+				$( '.content', self.currentOverlay ).css({
+					height: ((top-y)*-1)-navHeight*4
+				});
+			}
+		});
+		$( document ).on( 'mouseup', function( _e ){
+			_e.preventDefault();
+			if ( self.currentOverlay != null ) {
+				$( '.content', self.currentOverlay ).removeClass( 'move' );
+			}
+			self.currentOverlay = null;
+		});
+	}
+	
+	/**
+	 * Clear block overlay.
+	 *
+	 * @param { int } _blockId The id of a block
+	 */
+	bodin.prototype.overlayClear = function( _blockId ) {
+		var self = this;
+		var block =	$( '#block-'+_blockId, self.elem );
+		$( '.overlay .content', block ).css({
+			height: 0
+		});
+		//------------------------------------------------------------
+		//  Remove the overlay after the transition finishes
+		//------------------------------------------------------------
+		setTimeout( function() {
+			block.removeClass( 'overlaid' );
+			$( '#block-'+_blockId+' .overlay', self.elem ).remove();
+		}, $( '.overlay .content').transLength() );
+	}
+	
+	/**
+	 * Spanify block-level
+	 *
+	 * @param { int } _blockId The id of a block
+	 */
+	bodin.prototype.blockSpanify = function( _blockId ) {
+		var self = this;
+		var words = self.blocks[ _blockId ].split(' ');
+		for ( var j=0, jj=words.length; j<jj; j++ ) {
+			words[j] = '<span>'+words[j]+'</span>';
+		}
+		var newBlock = words.join(' ');
+		$( '#block-'+_blockId+' .text', self.elem ).html( newBlock );
+	}
+	
+	/**
+	 * Scroll to a block.
+	 *
+	 * @param { int } _blockId The id of a block
+	 */
+	bodin.prototype.goTo = function( _blockId ) {
+		var self = this;
+		var marker = '#block-'+_blockId+' .marker';
+		var pos = $( marker , self.elem ).position();
+		var mb = $( marker, self.elem ).parent().siblings('.text').css('margin-bottom');
+		offset = parseInt( mb.replace('px','') );
+		var scroll = pos.top - offset;
+		var current = $( '.view', self.elem ).scrollTop();
+		$( '.view', self.elem ).animate ({
+			scrollTop: current + scroll
+		}, 1000 );
+	}
+	
+	/**
+	 * Build the text
+	 */
+	bodin.prototype.build = function() {
+		var self = this;
+		//------------------------------------------------------------
+		//  Break up the text into blocks.
+		//------------------------------------------------------------
+		self.blocks = [];
+		switch ( self.options['break'].toLowerCase() ) {
+			case 'paragraph':
+				var i = 0;
+				$( 'p', self.elem ).each( function() {
+					self.blocks[i] = $( this ).html();
+					i++;
+				});
+				break;
+		}
+		//------------------------------------------------------------
+		//  Build the blocks
+		//------------------------------------------------------------
+		$( self.elem ).empty();
+		for ( var i=0, ii=self.blocks.length; i<ii; i++ ) {
+			self.blockBuild( i );
+		}
+		//------------------------------------------------------------
+		//  Build the pages
+		//------------------------------------------------------------
+		self.pageBuild();
+		//------------------------------------------------------------
+		//  Wrap it all up
+		//------------------------------------------------------------
+		$( self.elem ).wrapInner( '<div class="work"><div class="view"></div></div>')
+		//------------------------------------------------------------
+		//  Add a clear
+		//------------------------------------------------------------
+		$( self.elem ).append( '<div style="clear:both"></div>' );
+		//------------------------------------------------------------
+		//  Create a statistics object
+		//------------------------------------------------------------
+		self.stats = {
+			total_blocks: self.blocks.length,
+			blocks: {},
+			pages: Math.ceil( self.blocks.length / self.options['blocks_per_page'] )
+		};
+	}
+	
+	/**
+	 * Build a block.
+	 *
+	 * @param { int } _blockId The index of the block.
+	 */
+	bodin.prototype.blockBuild = function( _blockId ) {
+		var self = this;
+		var i=_blockId+1;
+		var mrk = i;
+		if ( self.options['markers'] != null ) {
+			var mod = _blockId % self.options['markers'].length;
+			mrk = self.options['markers'][mod];
+		}
+		var block = '<div id="block-'+i+'" class="block">';
+		var extras = '<div class="extras"><a href="" class="marker">'+mrk+'</a></div>';
+		var text = '<div class="text">';
+		$( self.elem ).append( block );
+		$( '#block-'+i, self.elem ).append( extras );
+		$( '#block-'+i, self.elem ).append( text );
+		$( '#block-'+i+' .text', self.elem ).append( self.blocks[ _blockId ] );
+	}
+	
+	/**
+	 * Wrap blocks in pages.
+	 */
+	bodin.prototype.pageBuild = function() {
+		var self = this;
+		var blocks = $( ".block", self.elem );
+		var perPage = self.options['blocks_per_page'];
+		var page = 1;
+		for ( var i=0, ii=blocks.length; i<ii; i+=perPage ) {
+			blocks.slice( i, i+perPage ).wrapAll('<div class="page"></div>');
+			$( '.page', self.elem ).last().append('<div style="clear:both"></div>');
+			$( '.page', self.elem ).last().prepend('<div class="pageNum">'+page+'</div>');
+			page++;
+		}
+		$( '.page', self.elem ).first().addClass('first');
+	}
+	
+	/**
+	 * Start event listeners.
+	 */
+	bodin.prototype.start = function() {
+		var self = this;
+		$( document ).on( self.events['goTo'], function( _e, _i ){
+			self.goTo( _i );
+		});
+		$( '.marker', self.elem ).click( function( _e ) {
+			var id = $(this).parent().parent().attr('id');
+			id = self.justId( id );
+			$( document ).trigger( self.events['goTo'], [id] );
+			_e.preventDefault();
+		});
+	}
+	
+	/**
+	 * Retrieve some statistics about the text
+	 */
+	bodin.prototype.textStats = function() {
+		var self = this;
+		//------------------------------------------------------------
+		//  Get statistics at the block level
+		//------------------------------------------------------------
+		var tCount = 0;
+		var textReport = {}; // Text level report
+		var objExt = new ObjectExt();
+		for ( var i=0, ii=self.blocks.length; i<ii; i++ ) {
+			self.blockStats( i );
+			tCount += self.stats['blocks'][i]['total_words'];
+			objExt.mergeAdd( self.stats['blocks'][i]['report'], textReport );
+		}
+		self.stats['total_words'] = tCount;
+		self.stats['report'] = textReport;
+		return self.stats;
+	}
+	
+	/**
+	 * Retrieve some statistics about a block
+	 *
+	 * @param { int } _blockId The index of the block.
+	 */
+	bodin.prototype.blockStats = function( _blockId ) {
+		var self = this;
+		self.stats['blocks'][ _blockId ] = {};
+		//------------------------------------------------------------
+		//  Get a word frequency report
+		//------------------------------------------------------------
+		self.stats['blocks'][ _blockId ]['report'] = self.blocks[ _blockId ].report();
+		var report = self.stats['blocks'][ _blockId ]['report'];
+		var uCount = 0;
+		var tCount = 0;
+		for ( var word in report ) {
+			uCount++;
+			tCount+=report[ word ];
+		}
+		self.stats['blocks'][ _blockId ]['unique_words'] = uCount;
+		self.stats['blocks'][ _blockId ]['total_words'] = tCount;
+	}
+	
+	//----------------
+	//	Extend JQuery 
+	//----------------
+	jQuery(document).ready( function($) {
+		jQuery.fn.bodin = function( options ) {
+			var id = jQuery(this).selector;
+			return this.each( function() {
+				jQuery.data( this, id, new bodin( this, options, id ) );
+			});
+		};
+	})
+})(jQuery);
+
+/**
+ * Align the bodin blocks
+ */
+jQuery.fn.bodinAlign = function() {
+	var heights = [];
+	//------------------------------------------------------------
+	//  Find the largest height
+	//------------------------------------------------------------
+	$( '.bodin .view' ).each( function() {
+		var i=1;
+		$( '.block .text', this ).each( function() {
+			var h = $(this).height();
+			heights[i] = ( i < heights.length && heights[i] > h ) ? heights[i] : h;
+			i++;
+		});
+	});
+	//------------------------------------------------------------
+	//  Set the heights
+	//------------------------------------------------------------
+	for ( var i=0, ii=heights.length; i<ii; i++ ) {
+		var id = i;
+		$( '#block-'+id+' .text' ).css({ "min-height": heights[i] });
+	}
+}
+
+/**
+ * Bodin family.  Interact with multiple bodin objects.
+ */
+function bodinFamily() {
+	this.bodins = [];
+}
+bodinFamily.prototype.add = function( _bodin ) {
+	this.bodins.push( _bodin );
+}
+
+/**
+ * Align Bodin.
+ */
+function BodinAlign( _url, _id1, _id2 ) {
+	this.config = {
+		timeout: 10 // seconds
+	};
+	this.xml = null;
+	this.url = _url;
+	this.id1 = _id1;
+	this.id2 = _id2;
+	this.readyCount = 0;
+	//------------------------------------------------------------
+	//  This is where target/body pairs are stored.
+	//------------------------------------------------------------
+	this.map = [];
+	//------------------------------------------------------------
+	//  Listen for TeiToBodin to complete
+	//------------------------------------------------------------
+	this.listen();
+	//------------------------------------------------------------
+	//  Return this.
+	//------------------------------------------------------------
+	return this;
+}
+
+BodinAlign.prototype.listen = function() {
+	var self = this;
+	jQuery( '#'+self.id1).on( 'TeiToBodin-READY', function(){
+		self.readyCount+=1;
+		self.start();
+	});
+	jQuery( '#'+self.id2).on( 'TeiToBodin-READY', function(){
+		self.readyCount+=1;
+		self.start();
+	});
+}
+
+BodinAlign.prototype.getXml = function() {
+	var self = this;
+	jQuery.ajax({
+		url: self.url,
+		type: 'get',
+		timeout: self.config.timeout*1000,
+		dataType: 'xml',
+		success: function( _data ) {
+			self.xml = _data;
+			self.getAlignMap();
+			self.alignMarkup();
+			self.listen();
+		},
+		error: function( _error ) {
+			console.log( 'Error' );
+			console.log( _error );
+		}
+	});
+}
+
+BodinAlign.prototype.listen = function() {
+	var self = this;
+	jQuery('span.align').on( 'touchstart click', function( _e ) {
+		console.log( this );
+	});
+}
+
+/**
+ * Put the alignment markup in place
+ */
+BodinAlign.prototype.alignMarkup = function() {
+	for ( var i=0, ii=this.map.length; i<ii; i++ ) {
+		this.alignSide( 'body', i, this.id2 );
+		this.alignSide( 'target', i, this.id1 );
+	}
+}
+
+BodinAlign.prototype.alignSide = function( _side, _i, _id ) {
+	//------------------------------------------------------------
+	//  Get the body
+	//------------------------------------------------------------
+	var book = this.map[_i][_side]['book'];
+	var chapter = this.map[_i][_side]['chapter'];
+	var start = this.map[_i][_side]['start'];
+	var end = this.map[_i][_side]['end'];
+	var select = '#'+_id+'-edition-1-book-'+book+'-chapter-'+chapter;
+	var html = jQuery( select ).html();
+	//------------------------------------------------------------
+	//  Wrap the passage in a span tag
+	//------------------------------------------------------------
+	var positions = html.positions( start['word'], false, true, true );
+	var ind = positions[ start['occurence']-1 ];
+	html = html.insertAt( ind, '<span id="'+(_i+1)+'" class="align">' );
+	positions = html.positions( end['word'], false, true, true );
+	ind = positions[ (end['occurence']-1) ]+end['word'].length;
+	html = html.insertAt( ind, '</span>' );
+	jQuery( select ).html( html );
+}
+
+/**
+ * Get the alignment map
+ */
+BodinAlign.prototype.getAlignMap = function() {
+	var self = this;
+	jQuery( self.xml ).find('Annotation').each( function(){
+		var annot = this;
+		//------------------------------------------------------------
+		//  Get the target
+		//------------------------------------------------------------
+		var target = jQuery( annot ).find('hasTarget');
+		target = jQuery(target[0]).attr('rdf:resource');
+		target = self.jsonTarget( target );
+		if ( target == undefined ) {
+			return true; // a continue in jQuery().each() land
+		}
+		//------------------------------------------------------------
+		//  Get the body
+		//------------------------------------------------------------
+		var body = jQuery( annot ).find('hasBody');
+		body = jQuery(body[0]).attr('rdf:resource');
+		body = self.jsonTarget( body );
+		if ( target == undefined ) {
+			return true; // a continue in jQuery().each() land
+		}
+		self.map.push({ target: target, body: body });
+	});
+}
+
+BodinAlign.prototype.jsonTarget = function( _target ) {
+	//------------------------------------------------------------
+	//  Get book and chapter
+	//------------------------------------------------------------
+	var colon = _target.lastIndexOf(':')+1;
+	//------------------------------------------------------------
+	//  Make sure _target is valid
+	//------------------------------------------------------------
+	var at = _target.indexOf('@');
+	if ( at == -1 ) {
+		return undefined;
+	}
+	//------------------------------------------------------------
+	//  Get book and chapter
+	//------------------------------------------------------------
+	var sub = _target.substr( colon, at-colon );
+	var split = sub.split('.');
+	var book = parseInt( split[0] );
+	var chapter = parseInt( split[1] );
+	//------------------------------------------------------------
+	//  Get the word and occurence
+	//------------------------------------------------------------
+	_target = _target.substr( at+1 , _target.length );
+	var index = _target.split('-');
+	var start = this.wordAndOccurence( index[0] );
+	var end = this.wordAndOccurence( index[1] );
+	//------------------------------------------------------------
+	//  Return target data JSON style
+	//------------------------------------------------------------
+	return { 'book': book, 'chapter': chapter, 'start': start, 'end': end }
+}
+
+BodinAlign.prototype.wordAndOccurence = function( _string ) {
+	var sep = _string.indexOf('[');
+	var word = _string.substr( 0 , sep );
+	var occurence = _string.substr( sep, _string.length-1 ).replace('[','').replace(']','');
+	return { 'word': word, 'occurence': occurence }
+}
+
+BodinAlign.prototype.start = function() {
+	if ( this.readyCount == 2 ) {
+		this.getXml();
+		startSidecart(); // Should move this out of here.
+	}
+}
+
+/**
+ * Takes TEI xml and creates HTML useable by the bodin plugin
+ *
+ * Use: new TeiToBodin( 'xml/tei.xml', 'tei' );
+ *
+ * @param { string } _url The url to the TEI xml
+ * @param { string } _id The id of the DOM object to write HTML output
+ */
+function TeiToBodin( _url, _id ) {
+	this.config = {
+		timeout: 10 // seconds
+	};
+	this.events = {
+		ready: 'TeiToBodin-READY'
+	}
+	this.url = _url;
+	this.id = _id;
+	this.xml = null;  // TEI xml retrieved
+	this.json = {};	  // json created from TEI xml
+	this.html = null; // html created from this.json
+	this.notes = [];  // notes
+	//------------------------------------------------------------
+	//	Check number of instances
+	//------------------------------------------------------------
+	var shared = new SharedConfig();
+	if ( shared.check( 'count' ) == false ) {
+		shared.config['count'] = 1;
+	}
+	else {
+		shared.config['count']++;
+		this.makeRoom( shared.config['count'] );
+	}
+	//------------------------------------------------------------
+	//	Get the TEI XML
+	//------------------------------------------------------------
+	this.getXml();
+}
+
+/**
+ * Organize instances of TeiToBodin into columns
+ *
+ * @param {int } _count The number of instances.
+ */
+TeiToBodin.prototype.makeRoom = function( _count ) {
+	var styler = new Styler();
+	var percent = parseInt( 100/_count );
+	styler.add({
+		'.TeiToBodin': 'width: '+percent+'%'
+	});
+}
+
+/**
+ * Check the size of the instance.
+ */
+TeiToBodin.prototype.sizeCheck = function() {
+	var self = this;
+	jQuery( window ).resize( function() {
+		var elem = jQuery( '#'+self.id );
+		if ( elem.width() < 450 ) {
+			elem.addClass('slim');
+		}
+		else {
+			elem.removeClass('slim');
+		}
+	});
+}
+
+/**
+ * Retrieve TEI xml from a URL
+ */
+TeiToBodin.prototype.getXml = function() {
+	var self = this;
+	jQuery.ajax({
+		url: self.url,
+		type: 'get',
+		timeout: self.config.timeout*1000,
+		dataType: 'xml',
+		success: function( _data ) {
+			self.xml = _data;
+			self.start();
+		},
+		error: function( _error ) {
+			console.log( 'Error' );
+			console.log( _error );
+		}
+	});
+}
+
+/**
+ * getXml() was a success!	Start it up!
+ */
+TeiToBodin.prototype.start = function() {
+	this.toHtml();
+	this.listen();
+	//------------------------------------------------------------
+	//  Start tooltips
+	//  Pass along the parent "overflow-y: scroll" element.
+	//------------------------------------------------------------
+	new Tooltipper( '#'+this.id+' .work' );
+}
+
+/**
+ * Start UI event listeners
+ */
+TeiToBodin.prototype.listen = function() {
+	var self = this;
+	self.sizeCheck();
+}
+
+/**
+ * Takes TEI xml and creates HTML useable by the bodin plugin
+ */
+TeiToBodin.prototype.toHtml = function() {
+	//------------------------------------------------------------
+	// Extract notes
+	//------------------------------------------------------------
+	this.getNotes();
+	//------------------------------------------------------------
+	//	Get editions books and pages from the main text
+	//------------------------------------------------------------
+	this.getBody();
+	//------------------------------------------------------------
+	//	Get publication info
+	//------------------------------------------------------------
+	this.getPub();
+	//------------------------------------------------------------
+	//	Convert your JSON object to HTML
+	//------------------------------------------------------------
+	this.jsonToHtml();
+	//------------------------------------------------------------
+	//  Announce your "readiness"
+	//------------------------------------------------------------
+	jQuery( '#'+this.id ).trigger( this.events['ready'] );
+}
+
+/**
+ * Extract publication information from XML
+ */
+TeiToBodin.prototype.getPub = function() {
+	var pub = this.xml.getElementsByTagName("fileDesc")[0];
+}
+
+/**
+ * Turn your relatively clean JSON into Bodin Formatted HTML
+ */
+TeiToBodin.prototype.jsonToHtml = function() {
+	jQuery( '#'+this.id ).append('<div class="work"></div>');
+	var work = '#'+this.id+' .work';
+	//------------------------------------------------------------
+	//	Editions
+	//------------------------------------------------------------
+	for ( var i=0, ii=this.json['editions'].length; i<ii; i++ ) {
+		var edition = this.id+'-edition-'+(i+1);
+		jQuery( work ).append('<div id="'+edition+'" class="edition"></div>');
+		//------------------------------------------------------------
+		//	Books
+		//------------------------------------------------------------
+		for ( var j=0, jj=this.json['editions'][i]['books'].length; j<jj; j++ ) {
+			var book = edition+'-book-'+(j+1);
+			jQuery( '#'+edition ).append('<div id="'+book+'" class="book"></div>');
+			//------------------------------------------------------------
+			//	Chapters
+			//------------------------------------------------------------
+			for ( var k=0, kk=this.json['editions'][i]['books'][j]['chapters'].length; k<kk; k++ ) {
+				var chapter = book+'-chapter-'+(k+1);
+				jQuery( '#'+book ).append('<div id="'+chapter+'" class="chapter"></div>');
+				//------------------------------------------------------------
+				//	Pages
+				//------------------------------------------------------------
+				for ( var m=0, mm=this.json['editions'][i]['books'][j]['chapters'][k]['pages'].length; m<mm; m++ ) {
+					var page = chapter+'-page-'+(m+1);
+					var text = this.json['editions'][i]['books'][j]['chapters'][k]['pages'][m];
+					jQuery( '#'+chapter ).append('<div id="'+page+'" class="page">'+text+'</div>');
+				}
+			}
+		}
+	}
+}
+
+/**
+ * Extract editions, books, and chapters from the main text body
+ */
+TeiToBodin.prototype.getBody = function() {
+	var text = this.xml.getElementsByTagName("text")[0];
+	this.json['editions'] = [];
+	var editions = DomPlus.getByAttrValue( text, 'type', 'edition', 'div' );
+	//------------------------------------------------------------
+	//	Find editions
+	//------------------------------------------------------------
+	for ( var i=0, ii=editions.length; i<ii; i++ ) {
+		this.json['editions'][i] = {};
+		var books = DomPlus.getByAttrValue( editions[i], 'subtype', 'book', 'div' );
+		//------------------------------------------------------------
+		//	Find books
+		//------------------------------------------------------------
+		this.json['editions'][i]['books'] = [];
+		for ( var j=0, jj=books.length; j<jj; j++ ) {
+			this.json['editions'][i]['books'][j] = {};
+			var chapters = DomPlus.getByAttrValue( books[j], 'subtype', 'chapter', 'div' );
+			//------------------------------------------------------------
+			//	Record the book title
+			//------------------------------------------------------------
+			this.json['editions'][i]['books'][j]['head'] = books[j].getElementsByTagName("head")[0];
+			//------------------------------------------------------------
+			//	Find chapters
+			//------------------------------------------------------------
+			this.json['editions'][i]['books'][j]['chapters'] = [];
+			for ( var k=0, kk=chapters.length; k<kk; k++ ) {
+				//------------------------------------------------------------
+				//	Get chapter title
+				//------------------------------------------------------------
+				this.json['editions'][i]['books'][j]['chapters'][k] = {};
+				this.json['editions'][i]['books'][j]['chapters'][k]['head'] = chapters[k].getElementsByTagName("head")[0];
+				//------------------------------------------------------------
+				//	Get pages
+				//------------------------------------------------------------
+				
+				var pages = chapters[k].innerHTML.split( /<pb.*\/>/ ); // not sure if this split is too aggressive.
+				this.json['editions'][i]['books'][j]['chapters'][k]['pages'] = pages;
+			}
+		}
+	}
+}
+
+/**
+ * Extract note tags
+ */
+TeiToBodin.prototype.getNotes = function() {
+	var noteXml = this.xml.getElementsByTagName("note");
+	var i=noteXml.length-1;
+	while ( i>=0 ) {
+		//------------------------------------------------------------
+		//  Pull the notes HTML out.
+		//  Note:  I'm using jQuery().html instead of innerHTML
+		//  because of Safari
+		//------------------------------------------------------------
+		this.notes[i] = jQuery( noteXml[i] ).text();
+		//------------------------------------------------------------
+		//  Change notes to anchor tags.
+		//------------------------------------------------------------
+		jQuery( noteXml[i] ).text( i+1 );
+		noteXml[i].setAttribute( 'href', '#'+(i+1) );
+		noteXml[i].setAttribute( 'title', this.notes[i].smoosh() );
+		noteXml[i].setAttribute( 'class', 'note' );
+		noteXml[i].setAttribute( 'rel', 'tooltip' );
+		noteXml[i] = DomPlus.tagChange( noteXml[i], "a" );
+		i--;
+	}
+}
+
+/**
+ * Build navigation -- used by sidecart
+ */
+TeiToBodin.prototype.buildNav = function() {
+	var output = '<ul>'
+	//------------------------------------------------------------
+	//	Editions
+	//------------------------------------------------------------
+	for ( var i=0, ii=this.json['editions'].length; i<ii; i++ ) {
+		var edition = this.id+'-edition-'+(i+1);
+		//------------------------------------------------------------
+		//	Books
+		//------------------------------------------------------------
+		for ( var j=0, jj=this.json['editions'][i]['books'].length; j<jj; j++ ) {
+			var book = edition+'-book-'+(j+1);
+			var title = jQuery(this.json['editions'][i]['books'][j]['head']).text();
+			output += '<li><a class="book" href="#'+book+'">'+title+'</a><ul>';
+			//------------------------------------------------------------
+			//	Chapters
+			//------------------------------------------------------------
+			for ( var k=0, kk=this.json['editions'][i]['books'][j]['chapters'].length; k<kk; k++ ) {
+				var chapter = book+'-chapter-'+(k+1);
+				title = jQuery(this.json['editions'][i]['books'][j]['chapters'][k]['head']).text();
+				output += '<li><a class="chapter" href="#'+chapter+'">'+title+'</li>';
+			}
+			output += '</ul></li>'
+		}
+	}
+	output += '</ul>';
+	return output;
+}
+
+/**
+ * Tooltip
+ */
+function Tooltipper( _root ) {
+	this.root = _root;
+	this.tooltip = jQuery( '<div id="tooltipper"></div>' );
+	this.start();
+	this.target = null;
+}
+
+/**
+ * Start Tooltipper
+ */
+Tooltipper.prototype.start = function() {
+	var self = this;
+	//------------------------------------------------------------
+	//  Click listener
+	//------------------------------------------------------------
+	jQuery( self.root + ' [rel~=tooltip]' ).bind( 'touchstart click', function( _e ) {
+		_e.preventDefault;
+		//------------------------------------------------------------
+		//  Store reference to clicked element.
+		//------------------------------------------------------------
+		self.target = jQuery(this);
+		//------------------------------------------------------------
+		//  Remove existing tooltip
+		//------------------------------------------------------------
+		jQuery( self.root+' #tooltipper' ).remove();
+		//------------------------------------------------------------
+		//  Check for title
+		//------------------------------------------------------------
+		var tip = jQuery( this ).attr( 'title' );
+		if ( !tip || tip == '' ) {
+			return false;
+		}
+		//------------------------------------------------------------
+		//  Add the tooltip.
+		//------------------------------------------------------------
+		self.tooltip.css( 'opacity', 0 ).html( tip ).appendTo( 'body' );
+		//------------------------------------------------------------
+		//  Position it.
+		//------------------------------------------------------------
+		self.position();
+	});
+	//------------------------------------------------------------
+	//  Listen for events that require repositioning
+	//------------------------------------------------------------
+	jQuery( window ).resize( self.position() );
+	jQuery( self.root ).scroll( function() {
+		self.position() 
+	});
+}
+
+/**
+ * Position the tooltip
+ */
+Tooltipper.prototype.position = function() {
+	//------------------------------------------------------------
+	//  Only procceed if you have what you need.
+	//------------------------------------------------------------
+	if ( this.tooltip == undefined || this.target == undefined ) {
+		return;
+	}
+	//------------------------------------------------------------
+	//  Calculate the position of tooltip relative to the target.
+	//------------------------------------------------------------ 
+	if ( jQuery( window ).width() < this.tooltip.outerWidth() * 1.5 ) {
+		this.tooltip.css( 'max-width', jQuery( window ).width() / 2 );
+	}
+	else {
+		this.tooltip.css( 'max-width', 340 );
+	}
+	var pos_left = this.target.offset().left + ( this.target.outerWidth() / 2 ) - ( this.tooltip.outerWidth() / 2 );
+	var pos_top  = this.target.offset().top - this.tooltip.outerHeight() - 5;
+	if ( pos_left < 0 ) {
+		pos_left = this.target.offset().left + this.target.outerWidth() / 2 - 20;
+		this.tooltip.addClass( 'left' );
+	}
+	else {
+		this.tooltip.removeClass( 'left' );
+	}
+	if ( pos_left + this.tooltip.outerWidth() > jQuery( window ).width() ) {
+		pos_left = this.target.offset().left - this.tooltip.outerWidth() + this.target.outerWidth() / 2 + 20;
+		this.tooltip.addClass( 'right' );
+	}
+	else {
+		this.tooltip.removeClass( 'right' );
+	}
+	if ( pos_top < 0 ) {
+		var pos_top  = this.target.offset().top + this.target.outerHeight();
+		this.tooltip.addClass( 'top' );
+	}
+	else {
+		this.tooltip.removeClass( 'top' );
+	}
+	//------------------------------------------------------------
+	//  Position that tooltip!
+	//------------------------------------------------------------
+	this.tooltip.css({ 
+		left: pos_left, 
+		top: pos_top 
+	});
+	this.tooltip.animate({
+		opacity: 1 
+	}, 50 );
+}
+
+var DomWalk = function walk( _node, _func ) {
+	_func( _node );
+	_node = _node.firstChild;
+	while ( _node ) {
+		walk( _node, _func);
+		_node = _node.nextSibling;
+    }
+};
+
+/**
+ * Extract note tags
+ */
+var htmlToFragment = function(html) {
+	var retval = document.createDocumentFragment();
+	var currentParent = retval;
+
+	HTMLParser(html, {
+		start: function(tag, attrs, unary) {
+			var node = document.createElement(tag);
+			for (var i = 0; i < attrs.length; i++) {
+				node.setAttribute(attrs[i].name, attrs[i].value);
+			}
+			currentParent.appendChild(node);
+			if (!unary) {
+				currentParent = node;
+			}
+		},
+
+		end: function(tag) {
+			currentParent = currentParent.parentNode || retval;
+		},
+
+		chars: function(text) {
+			currentParent.appendChild(document.createTextNode(text));
+		},
+
+		comment: function(text) {
+			currentParent.appendChild(document.createComment(text));
+		}
+	});
+	return retval;
+};
+//------------------------------------------------------------
+// This is a workaround for bug #336, also seen in:
+// http://blog.johnmckerrell.com/2007/03/07/problems-with-safari-and-innerhtml/
+//------------------------------------------------------------
+jQuery.fn.safeHtml = function(html) {
+	for (var i = 0; i < this.length; i++) {
+		var element = this[i];
+		element.innerHTML = html;
+		if (html != "" && element.childNodes.length < 1) {
+			element.appendChild( htmlToFragment(html) );
+		}
+	}
+	return this;
+};
+var jQueryHtml = jQuery.fn.html;
+jQuery.fn.html = function(html) {
+	if (typeof(html) != "string" || arguments.length != 1) {
+		return jQueryHtml.apply(this, arguments);
+	}
+	return this.safeHtml(html);
+};
