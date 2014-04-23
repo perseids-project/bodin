@@ -208,7 +208,9 @@ var BodinAlign = function() {
 		//------------------------------------------------------------
 		//	User options 
 		//------------------------------------------------------------
-		self.options = $.extend({}, _options );
+		self.options = $.extend({
+			scrollPad: 40
+		}, _options );
 		//------------------------------------------------------------
 		//	Events
 		//------------------------------------------------------------
@@ -226,7 +228,9 @@ var BodinAlign = function() {
 		this.sizeCheck();
 		this.buildNav();
 		this.tooltips();
-		//this.milestones();
+		if ( this.options['milestones'] != undefined ) {
+			this.milestones();
+		}
 	}
 	
 	/**
@@ -258,16 +262,41 @@ var BodinAlign = function() {
 		});
 	}
 	
-	BodinUI.prototype.showMilestones = function() {
+	/**
+	* Build milestones
+	*/
+	BodinUI.prototype.milestones = function() {
 		var self = this;
+		var i = 0;
+		var stones = self.options['milestones'];
 		jQuery( 'p', self.elem ).each( function() {
-			console.log( this );
+			var index = i % stones.length;
+			var stone = stones[index];
+			i++;
+			jQuery( this ).prepend( '<a href="" class="milestone" id="stone-'+i+'">' + stone + '</a>' );
 		});
-		/*
-		this.tooltip.css({ 
-			left: pos_left, 
-			top: pos_top 
-		})*/
+		jQuery( '.milestone' ).on( 'touchstart click', function( _e ) {
+			_e.preventDefault();
+			jQuery( window ).trigger( self.events['goTo'], [ jQuery( this ).attr('id') ] );
+		});
+	}
+	
+	/**
+	*  Go to a particular milestone
+	*
+	*  @param { string } _id The milestone's id
+	*/
+	BodinUI.prototype.goToMilestone = function( _id ) {
+		var self = this;
+		var pos = $( '#'+_id , self.elem ).position();
+		if ( pos == undefined ) {
+			return;
+		}
+		var scroll = pos.top - self.options['scrollPad'];
+		var current = $( '.work', self.elem ).scrollTop();
+		$( '.work', self.elem ).animate ({
+			scrollTop: current + scroll
+		}, 1000 );
 	}
 	
 	/**

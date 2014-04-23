@@ -24,10 +24,34 @@
 	
 	jQuery( document ).ready( function() {
 		//------------------------------------------------------------
+		//  Store all of your bodin instances
+		//------------------------------------------------------------
+		bodins = [];
+		//------------------------------------------------------------
+		//  When a milestone is clicked in any instance all instances
+		//  will scroll to that milestone
+		//------------------------------------------------------------
+		jQuery( window ).on( 'BodinUI-GOTO', function(_e, _id) {
+			for ( var i in bodins ) {
+				bodins[i].goToMilestone( _id );
+			}
+		});
+		//------------------------------------------------------------
 		//  Start up the UI once alignment XML is loaded
 		//------------------------------------------------------------
 		jQuery( window ).on( 'BodinAlign-LOADED', function() {
-			jQuery( '.bodin' ).BodinUI();
+			//------------------------------------------------------------
+			//  This sneaky bit of jQuery put's all Bodin instances
+			//  in an array so I can easily
+			//------------------------------------------------------------
+			jQuery( '.bodin' ).each( function() {
+				var id = jQuery( this ).attr('id');
+				bodins.push(
+					jQuery( '#'+id ).BodinUI({
+						milestones: [ 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J' ]
+					}).data( '#'+id )
+				);
+			})
 		});
 		//------------------------------------------------------------
 		//  Once Bodin texts are loaded get the alignment XML
