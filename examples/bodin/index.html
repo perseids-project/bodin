@@ -18,23 +18,23 @@
 	<script type="text/javascript" src="../../third_party/jslib/src/js/StringExt.js"></script>
 	<script type="text/javascript" src="../../third_party/jslib/src/js/ObjectExt.js"></script>
 	<script type="text/javascript" src="../../third_party/jslib/src/js/Styler.js"></script>
+	<script type="text/javascript" src="../../third_party/jslib/src/js/Palette.js"></script>
+	<script type="text/javascript" src="../../third_party/jslib/src/js/Culuh.js"></script>
 	<script src="../../third_party/sidecart/src/js/sidecart.js"></script>
 	<script type="text/javascript" src="../../src/js/bodin.js"></script>
 	<script type="text/javascript">
 	
 	jQuery( document ).ready( function() {
 		//------------------------------------------------------------
-		//  Store all of your bodin instances
+		//  Once Bodin texts are loaded get the alignment XML
 		//------------------------------------------------------------
-		bodins = [];
-		//------------------------------------------------------------
-		//  When a milestone is clicked in any instance all instances
-		//  will scroll to that milestone
-		//------------------------------------------------------------
-		jQuery( window ).on( 'BodinUI-GOTO', function(_e, _id) {
-			for ( var i in bodins ) {
-				bodins[i].goToMilestone( _id );
-			}
+		jQuery( window ).on( 'Bodin-LOADED', function() {
+			bodinAlign.start([
+				{ 
+					src: 'tempXml/alignment.xml', 
+					ids: { body: 'english', target: 'latin' }
+				}
+			]);
 		});
 		//------------------------------------------------------------
 		//  Start up the UI once alignment XML is loaded
@@ -52,19 +52,28 @@
 					}).data( '#'+id )
 				);
 			})
+			bodinAlign.apply();
 		});
 		//------------------------------------------------------------
-		//  Once Bodin texts are loaded get the alignment XML
+		//  When a milestone is clicked in any instance all instances
+		//  will scroll to that milestone
 		//------------------------------------------------------------
-		jQuery( window ).on( 'Bodin-LOADED', function() {
-			var bodinAlign = new BodinAlign();
-			bodinAlign.start([
-				{ 
-					src: 'tempXml/alignment.xml', 
-					ids: [ 'latin', 'english' ] 
-				}
-			]);
+		jQuery( window ).on( 'BodinUI-GOTO', function(_e, _id) {
+			for ( var i in bodins ) {
+				bodins[i].goToMilestone( _id );
+			}
 		});
+		//------------------------------------------------------------
+		//  Get a BodinAlign object.
+		//------------------------------------------------------------
+		var bodinAlign = new BodinAlign();
+		//------------------------------------------------------------
+		//  Store all of your bodin instances
+		//------------------------------------------------------------
+		bodins = [];
+		//------------------------------------------------------------
+		//  Start it all up.
+		//------------------------------------------------------------
 		var bodin = new Bodin();
 		bodin.start( '.bodin' );
 	});

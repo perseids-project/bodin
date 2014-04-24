@@ -100,13 +100,17 @@ var BodinAlign = function() {
 		return BodinAlign.prototype._singleton;
 	}
 	BodinAlign.prototype._singleton = this;
-	
+	//------------------------------------------------------------
+	//  Properties
+	//------------------------------------------------------------
 	this.src = {};
-	this.xml = {};
+	this.alignments = {};
 	this.config = null;
+	this.palette = new Palette( 'primary' );
 	this.events = {
 		loaded: 'BodinAlign-LOADED'
 	};
+	
 	/**
 	 *	Start it up!
 	 *
@@ -114,7 +118,7 @@ var BodinAlign = function() {
 	 *		[
 	 *			{ 
 	 *				src: 'tempXml/alignment.xml', 
-	 *				ids: [ 'latin', 'english' ] 
+	 *				ids: { body: 'latin', target: 'english' }
 	 *			}
 	 *		]
 	 */
@@ -133,7 +137,7 @@ var BodinAlign = function() {
 		//	Create a container
 		//------------------------------------------------------------
 		for ( var i in this.src ) {
-			this.xml[ i ] = { loaded: false };
+			this.alignments[ i ] = { loaded: false };
 		}
 		//------------------------------------------------------------
 		//	Get each alignment xml
@@ -152,8 +156,9 @@ var BodinAlign = function() {
 		var self = this;
 		jQuery.get( _src )
 		.done( function( _data ){
-			self.xml[ _src ]['data'] = _data;
-			self.xml[ _src ]['loaded'] = true;
+			self.alignments[ _src ]['xml'] = _data;
+			self.alignments[ _src ]['loaded'] = true;
+			self.alignments[ _src ]['json'] = self._json( _data );
 			self.loadCheck();
 		})
 		.fail( function(){
@@ -162,11 +167,158 @@ var BodinAlign = function() {
 	}
 	
 	/**
-	 *	Check to see if each is loaded
+	 *	Extract target data from XML
+	 *	@param { dom }
+	 *  @param { obj } JSON version
+	 */
+	this._target = function( _target ) {
+		//------------------------------------------------------------
+		//  Get book and chapter
+		//------------------------------------------------------------
+		var colon = _target.lastIndexOf(':')+1;
+		//------------------------------------------------------------
+		//  Make sure _target is valid
+		//------------------------------------------------------------
+		var at = _target.indexOf('@');
+		if ( at == -1 ) {
+			return undefined;
+		}
+		//------------------------------------------------------------
+		//  Get book and chapter
+		//------------------------------------------------------------
+		var sub = _target.substr( colon, at-colon );
+		var split = sub.split('.');
+		var book = parseInt( split[0] );
+		var chapter = parseInt( split[1] );
+		//------------------------------------------------------------
+		//  Get the word and occurence
+		//------------------------------------------------------------
+		_target = _target.substr( at+1 , _target.length );
+		var index = _target.split('-');
+		var start = this._wordAndOccurence( index[0] );
+		var end = this._wordAndOccurence( index[1] );
+		//------------------------------------------------------------
+		//  Return target data JSON style
+		//------------------------------------------------------------
+		return { 'book': book, 'chapter': chapter, 'start': start, 'end': end }
+	}
+	
+	this._json = function( _data ) {
+		var self = this;
+		var json = []
+		jQuery( _data ).find('Annotation').each( function(){
+			var annot = this;
+			//------------------------------------------------------------
+			//  Get the target
+			//------------------------------------------------------------
+			var target = jQuery( annot ).find('hasTarget');
+			target = jQuery( target[0] ).attr('rdf:resource');
+			target = self._target( target );
+			if ( target == undefined ) {
+				return true; // a continue in jQuery().each() land
+			}
+			//------------------------------------------------------------
+			//  Get the body
+			//------------------------------------------------------------
+			var body = jQuery( annot ).find('hasBody');
+			body = jQuery( body[0] ).attr('rdf:resource');
+			body = self._target( body );
+			if ( target == undefined ) {
+				return true; // a continue in jQuery().each() land
+			}
+			json.push({ target: target, body: body });
+		});
+		return json;
+	}
+	
+	this._wordAndOccurence = function( _string ) {
+		var sep = _string.indexOf('[');
+		var word = _string.substr( 0 , sep );
+		var occurence = _string.substr( sep, _string.length-1 ).replace('[','').replace(']','');
+		return { 'word': word, 'occurence': occurence }
+	}
+	
+	/**
+	 *  Apply translation alignment tags to Bodin markup.
+	 */
+	this.apply = function() {
+		//------------------------------------------------------------
+		//  Loop through the alignments and markup where appropriate
+		//------------------------------------------------------------
+		for ( var src in this.alignments ) {
+			var ids = this._xmlToIds( src );
+			if ( ids == undefined ) {
+				console.log( 'No ids specified for ' + src );
+				continue;
+			}
+			var id = 1;
+			for ( var j in this.alignments[src]['json'] ) {
+				var obj = this.alignments[src]['json'][j];
+				this._mark( ids['body'], id, obj['body'] );
+				this._mark( ids['target'], id, obj['target'] );
+				id++;
+			}
+		}
+	}
+	
+	/**
+	 *  Find ids associated with an xml source
+	 *  @param { string } _src The path to the alignment xml
+	 *  return { obj }
+	 */
+	this._xmlToIds = function( _src ) {
+		for ( var i in this.config ) {
+			if ( this.config[i]['src'] == _src ) {
+				return ( this.config[i]['ids'] );
+			}
+		}
+		return undefined;
+	}
+	
+	/**
+	 *  Markup html with tags for translation alignment UI display
+	 *  @param { string } _bodinId The id of the bodin instance
+	 *  @param { int } _alignId The id of the alignment
+	 *  @param { obj } _obj 
+	 */
+	this._mark = function( _bodinId, _alignId, _obj ) {
+		//------------------------------------------------------------
+		//  Get the selector
+		//------------------------------------------------------------
+		var id = '#'+_bodinId;
+		var book = '#book-'+_obj['book'];
+		var chapter = '#chapter-'+_obj['chapter'];
+		var select =  id+' '+book+' '+chapter;
+		var html = jQuery( select ).html();
+		//------------------------------------------------------------
+		//  Find the start and end positions
+		//------------------------------------------------------------
+		var start = _obj['start'];
+		var end = _obj['end'];
+		var positions = html.positions( start['word'], false, true, true );
+		var ind = positions[ start['occurence']-1 ];
+		//------------------------------------------------------------
+		//  Wrap the passage in a span tag
+		//------------------------------------------------------------
+		var color = this._highlightColor( _alignId );
+		html = html.insertAt( ind, '<span id="'+( _alignId )+'" class="align" style="background-color:'+color+'">' );
+		positions = html.positions( end['word'], false, true, true );
+		ind = positions[ ( end['occurence']-1 ) ]+end['word'].length;
+		html = html.insertAt( ind, '</span>' );
+		jQuery( select ).html( html );
+	}
+	
+	this._highlightColor = function( _id ) {
+		var color = this.palette.colors[  _id % this.palette.colors.length ];
+		return 'rgba('+color.r+','+color.g+','+color.b+', 0.15 )';
+	}
+	
+	/**
+	 *  Trigger loaded event when each alignment is loaded
 	 */
 	this.loadCheck = function() {
 		for ( var i in this.xml ) {
-			if ( this.xml[i]['loaded'] != true ) {
+			if ( this.alignments[i]['loaded'] != true ) {
 				return;
 			}
 		}
@@ -314,9 +466,7 @@ var BodinAlign = function() {
 		//------------------------------------------------------------
 		jQuery( '.edition', self.elem ).each( function() {
 			jQuery( '.book', this ).each( function() {
-				console.log( this );
 				jQuery( '.chapter', this ).each( function() {
-					console.log( this );
 				});
 			})
 		})
