@@ -263,6 +263,7 @@ var BodinAlign = function() {
 	
 	/**
 	 *  Find ids associated with an xml source
+	 *
 	 *  @param { string } _src The path to the alignment xml
 	 *  return { obj }
 	 */
@@ -277,6 +278,7 @@ var BodinAlign = function() {
 	
 	/**
 	 *  Markup html with tags for translation alignment UI display
+	 *
 	 *  @param { string } _bodinId The id of the bodin instance
 	 *  @param { int } _alignId The id of the alignment
 	 *  @param { obj } _obj 
@@ -301,16 +303,22 @@ var BodinAlign = function() {
 		//  Wrap the passage in a span tag
 		//------------------------------------------------------------
 		var color = this._highlightColor( _alignId );
-		html = html.insertAt( ind, '<span id="'+( _alignId )+'" class="align" style="background-color:'+color+'">' );
+		html = html.insertAt( ind, '<span id="align-'+( _alignId )+'" class="align" style="background-color:'+color+'">' );
 		positions = html.positions( end['word'], false, true, true );
 		ind = positions[ ( end['occurence']-1 ) ]+end['word'].length;
 		html = html.insertAt( ind, '</span>' );
 		jQuery( select ).html( html );
 	}
 	
+	/**
+	 *  Retrieve a highlight color
+	 *
+	 *  @param { int } _id The alignment id
+	 *  @return { string } An rgba(255,0,0,0.25) string
+	 */
 	this._highlightColor = function( _id ) {
 		var color = this.palette.colors[  _id % this.palette.colors.length ];
-		return 'rgba('+color.r+','+color.g+','+color.b+', 0.15 )';
+		return color.toAlpha( 0.15 );
 	}
 	
 	/**
@@ -361,13 +369,15 @@ var BodinAlign = function() {
 		//	User options 
 		//------------------------------------------------------------
 		self.options = $.extend({
-			scrollPad: 40
+			scrollPad: 40,
+			blinkAlpha: .5
 		}, _options );
 		//------------------------------------------------------------
 		//	Events
 		//------------------------------------------------------------
 		self.events = {
-			goTo: 'BodinUI-GOTO'
+			milestone: 'BodinUI-MILESTONE',
+			align: 'BodinUI-ALIGN'
 		};
 		//------------------------------------------------------------
 		//	Start event listeners
@@ -380,9 +390,49 @@ var BodinAlign = function() {
 		this.sizeCheck();
 		this.buildNav();
 		this.tooltips();
+		this.align();
 		if ( this.options['milestones'] != undefined ) {
 			this.milestones();
 		}
+	}
+	
+	/**
+	 * Start alignment events
+	 */
+	BodinUI.prototype.align = function() {
+		var self = this;
+		jQuery( '.align', self.elem ).on( 'touchstart click', function( _e ) {
+			_e.preventDefault();
+			jQuery( window ).trigger( self.events['align'], [ jQuery( this ).attr('id') ] );
+		});
+	}
+	
+	/**
+	 * Alpha blink.
+	 *
+	 * @param { string } _id The dom element you want to blink.
+	 */
+	BodinUI.prototype.alphaBlink = function( _id ) {
+		var self = this;
+		var dom = jQuery( '#'+_id, self.elem );
+		var colors = self._alphaBlinkColors( dom );
+		var times = [];
+		self.blinkCounter = 0;
+		for ( var i=1; i<=9; i++ ) {
+			setTimeout( function() {
+				jQuery( dom ).css('background-color', colors[ self.blinkCounter%colors.length ] );
+				self.blinkCounter++;
+			}, i*500 );
+		}
+	}
+	
+	BodinUI.prototype._alphaBlinkColors = function( _dom ) {
+		var color = jQuery( _dom ).css( 'background-color' );
+		var numString = color.substring( color.indexOf('(')+1, color.indexOf(')')-1 );
+		var numArray = numString.split(',');
+		numArray[3] = this.options['blinkAlpha'];
+		var newColor = 'rgba('+numArray.join(',')+')'
+		return [ color, newColor ];
 	}
 	
 	/**
@@ -429,16 +479,16 @@ var BodinAlign = function() {
 		});
 		jQuery( '.milestone' ).on( 'touchstart click', function( _e ) {
 			_e.preventDefault();
-			jQuery( window ).trigger( self.events['goTo'], [ jQuery( this ).attr('id') ] );
+			jQuery( window ).trigger( self.events['milestone'], [ jQuery( this ).attr('id') ] );
 		});
 	}
 	
 	/**
-	*  Go to a particular milestone
+	*  Go to a particular element
 	*
-	*  @param { string } _id The milestone's id
+	*  @param { string } _id The element's id
 	*/
-	BodinUI.prototype.goToMilestone = function( _id ) {
+	BodinUI.prototype.goTo = function( _id ) {
 		var self = this;
 		var pos = $( '#'+_id , self.elem ).position();
 		if ( pos == undefined ) {

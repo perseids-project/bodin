@@ -179,6 +179,17 @@ body,html {
 	line-height: 1;
 	text-decoration: none;
 }
+.bodin span.align {
+	cursor: pointer;
+	/* Firefox */
+	-moz-transition: all .25s ease-in;
+	/* WebKit */
+	-webkit-transition: all .25s ease-in;
+	/* Opera */
+	-o-transition: all .25s ease-in;
+	/* Standard */
+	transition: all .25s ease-in;
+}
 .bodin .work {
 	height: 100%;
 	overflow-y: scroll;

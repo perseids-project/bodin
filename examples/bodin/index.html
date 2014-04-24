@@ -41,6 +41,10 @@
 		//------------------------------------------------------------
 		jQuery( window ).on( 'BodinAlign-LOADED', function() {
 			//------------------------------------------------------------
+			//  Markup translation alignment
+			//------------------------------------------------------------
+			bodinAlign.apply();
+			//------------------------------------------------------------
 			//  This sneaky bit of jQuery put's all Bodin instances
 			//  in an array so I can easily
 			//------------------------------------------------------------
@@ -52,15 +56,20 @@
 					}).data( '#'+id )
 				);
 			})
-			bodinAlign.apply();
 		});
 		//------------------------------------------------------------
 		//  When a milestone is clicked in any instance all instances
 		//  will scroll to that milestone
 		//------------------------------------------------------------
-		jQuery( window ).on( 'BodinUI-GOTO', function(_e, _id) {
+		jQuery( window ).on( 'BodinUI-MILESTONE', function( _e, _id ) {
 			for ( var i in bodins ) {
-				bodins[i].goToMilestone( _id );
+				bodins[i].goTo( _id );
+			}
+		});
+		jQuery( window ).on( 'BodinUI-ALIGN', function( _e, _id ) {
+			for ( var i in bodins ) {
+				bodins[i].goTo( _id );
+				bodins[i].alphaBlink( _id );
 			}
 		});
 		//------------------------------------------------------------
