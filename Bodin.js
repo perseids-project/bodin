@@ -1549,6 +1549,7 @@ var Bodin = function() {
 		jQuery( window ).trigger( this.events['loaded'] );
 	}
 }
+
 /**
  * BodinAlign
  */
