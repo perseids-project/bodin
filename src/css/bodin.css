@@ -61,6 +61,10 @@ body,html {
 .bodin.slim .page{
 	padding: 60px 30px 120px 30px;
 }
+.bodin.slim .milestone {
+	margin-left: -18px;
+	margin-right: 8px;
+}
 #tooltipper {
 	text-align: center;
 	color: #fff;

@@ -2203,7 +2203,7 @@ var BodinAlign = function() {
 		note: true,
 		milestone: true
 	}
-	this.palette = new Palette( 'primary' );
+	this.palette = new Palette( 'secondary' );
 	this.events = {
 		loaded: 'BodinAlign-LOADED'
 	};
