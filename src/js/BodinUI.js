@@ -53,14 +53,19 @@
 	 * Start the interface
 	 */
 	BodinUI.prototype.start = function() {
-		this.makeRoom();
-		this.sizeCheck();
-		this.buildNav();
-		this.tooltips();
-		this.align();
-		if ( this.options['milestones'] != undefined ) {
-			this.milestones();
+		var self = this;
+		self.makeRoom();
+		self.sizeCheck();
+		self.buildNav();
+		self.tooltips();
+		self.align();
+		if ( self.options['milestones'] != undefined ) {
+			self.milestones();
 		}
+		jQuery( window ).resize( function() {
+			self.sizeCheck();
+		});
+		
 	}
 	
 	/**
@@ -83,6 +88,9 @@
 		var self = this;
 		var dom = jQuery( '#'+_id, self.elem );
 		var colors = self._alphaBlinkColors( dom );
+		if ( colors == undefined ) {
+			return;
+		}
 		var times = [];
 		self.blinkCounter = 0;
 		for ( var i=1; i<=9; i++ ) {
@@ -97,10 +105,16 @@
 	 * Alpha blink.
 	 *
 	 * @param { string } _id The dom element you want to blink.
-	 * @return 
+	 * @return { array }
 	 */
 	BodinUI.prototype._alphaBlinkColors = function( _dom ) {
+		if ( _dom == undefined ) {
+			return undefined;
+		}
 		var color = jQuery( _dom ).css( 'background-color' );
+		if ( color == undefined ) {
+			return undefined;
+		}
 		var numString = color.substring( color.indexOf('(')+1, color.indexOf(')')-1 );
 		var numArray = numString.split(',');
 		numArray[3] = this.options['blinkAlpha'];
@@ -126,15 +140,12 @@
 	* Check the size of the instance.
 	*/
    BodinUI.prototype.sizeCheck = function() {
-		var self = this;
-		jQuery( window ).resize( function() {
-			if ( jQuery( self.elem ).width() < 450 ) {
-				jQuery( self.elem ).addClass('slim');
-			}
-			else {
-				jQuery( self.elem ).removeClass('slim');
-			}
-		});
+		if ( jQuery( this.elem ).width() < 450 ) {
+			jQuery( this.elem ).addClass('slim');
+		}
+		else {
+			jQuery( this.elem ).removeClass('slim');
+		}
 	}
 	
 	/**

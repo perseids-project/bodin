@@ -198,13 +198,6 @@ var BodinAlign = function() {
 	
 	/**
 	 *  Markup html with tags for translation alignment UI display
-	 *
-	 *  @param { string } _bodinId The id of the bodin instance
-	 *  @param { int } _alignId The id of the alignment
-	 *  @param { obj } _obj 
-	 */
-	/**
-	 *  Markup html with tags for translation alignment UI display
 	 *  @param { string } _bodinId The id of the bodin instance
 	 *  @param { int } _alignId The id of the alignment
 	 *  @param { obj } _obj 
