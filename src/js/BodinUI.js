@@ -183,20 +183,57 @@
 		jQuery( self.elem ).prepend('\
 			<div id="sidecart_'+id+'"></div>\
 		');
-		var nav = '';
+		var nav = '<ul>';
 		//------------------------------------------------------------
-		//  Get the nav by walking the dom
+		//  Build the nav.
+		//  TODO I could make this a recursive function...
+		//  Is it worth it?
 		//------------------------------------------------------------
+		//------------------------------------------------------------
+		//  Edition
+		//------------------------------------------------------------
+		var edition = 1;
 		jQuery( '.edition', self.elem ).each( function() {
+			var id = jQuery( this ).attr('id');
+			nav += '<li><a href="#'+id+'">Edition -- '+edition+'</a></li>';
+			nav += '<ul>';
+			edition++;
+			//------------------------------------------------------------
+			//  Book
+			//------------------------------------------------------------
+			var book = 1;
 			jQuery( '.book', this ).each( function() {
+				var id = jQuery( this ).attr('id');
+				nav += '<li><a href="#'+id+'">Book -- '+book+'</a></li>';
+				nav += '<ul>';
+				book++
+				//------------------------------------------------------------
+				//  Chapter
+				//------------------------------------------------------------
+				var chapter = 1;
 				jQuery( '.chapter', this ).each( function() {
+					//------------------------------------------------------------
+					//   What are you going to use as a chapter title?
+					//------------------------------------------------------------
+					var title = jQuery( 'h1', this ).text();
+					var subtitle = jQuery( 'h2', this ).text();
+					var text = 'Chapter -- '+chapter;
+					if ( title != '' ) {
+						text = '<div>'+title+'</div><div>'+subtitle+'</div>';
+					}
+					var id = jQuery( this ).attr('id');
+					nav += '<li><a href="#'+id+'">'+text+'</a></li>';
+					chapter++;
 				});
-			})
-		})
+				nav += '</ul>';
+			});
+			nav += '</ul>';
+		});
+		nav += '</ul>';
 		//------------------------------------------------------------
 		//  Start sidecart
 		//------------------------------------------------------------
-		jQuery( '#sidecart_'+id ).sidecart({
+		self.sidecart = jQuery( '#sidecart_'+id ).sidecart({
 			side: 'top',
 			inside: true,
 			views: [
@@ -204,11 +241,26 @@
 					id: id+'-view-1',
 					type: 'nav',
 					link: 'index',
-					src: '#content',
+					text: nav,
 					init: function() {},
 					refresh: function() {}
 				}
 			]
+		}).data( '#sidecart_'+id );
+		//------------------------------------------------------------
+		//  Start nav events
+		//------------------------------------------------------------
+		self.navEvents();
+	}
+	
+	BodinUI.prototype.navEvents = function() {
+		var self = this;
+		var id = jQuery( self.elem ).attr('id');
+		jQuery( '#sidecart_'+id+' .nav a', this.elem ).on( 'touchstart click', function( _e ){
+			_e.preventDefault();
+			var id = jQuery( this ).attr('href').replace('#', '');
+			self.sidecart.hide();
+			self.goTo( id );
 		});
 	}
 	

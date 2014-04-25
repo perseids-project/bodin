@@ -203,6 +203,40 @@ var BodinAlign = function() {
 	 *  @param { int } _alignId The id of the alignment
 	 *  @param { obj } _obj 
 	 */
+	/**
+	 *  Markup html with tags for translation alignment UI display
+	 *  @param { string } _bodinId The id of the bodin instance
+	 *  @param { int } _alignId The id of the alignment
+	 *  @param { obj } _obj 
+	 */
+	this._mark = function( _bodinId, _alignId, _obj ) {
+		//------------------------------------------------------------
+		//  Get the selector
+		//------------------------------------------------------------
+		var id = '#'+_bodinId;
+		var book = '#book-'+_obj['book'];
+		var chapter = '#chapter-'+_obj['chapter'];
+		var select =  id+' '+book+' '+chapter;
+		var html = jQuery( select ).html();
+		//------------------------------------------------------------
+		//  Find the start and end positions
+		//------------------------------------------------------------
+		var start = _obj['start'];
+		var end = _obj['end'];
+		var positions = html.positions( start['word'], false, true, true );
+		var ind = positions[ start['occurence']-1 ];
+		//------------------------------------------------------------
+		//  Wrap the passage in a span tag
+		//------------------------------------------------------------
+		var color = this._highlightColor( _alignId );
+		html = html.insertAt( ind, '<span id="'+( _alignId )+'" class="align" style="background-color:'+color+'">' );
+		positions = html.positions( end['word'], false, true, true );
+		ind = positions[ ( end['occurence']-1 ) ]+end['word'].length;
+		html = html.insertAt( ind, '</span>' );
+		jQuery( select ).html( html );
+	}
+	
+	/*
 	this._mark = function( _bodinId, _alignId, _obj ) {
 		var self = this;
 		//------------------------------------------------------------
