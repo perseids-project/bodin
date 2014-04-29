@@ -16,16 +16,13 @@ Tooltipper.prototype.start = function() {
 	//------------------------------------------------------------
 	//  Click listener
 	//------------------------------------------------------------
-	jQuery( self.root + ' [rel~=tooltip]' ).bind( 'touchstart click', function( _e ) {
+	jQuery( self.root + ' [rel~=tooltip]' ).on( 'touchstart click', function( _e ) {
+		_e.stopPropagation();
 		_e.preventDefault();
 		//------------------------------------------------------------
 		//  Store reference to clicked element.
 		//------------------------------------------------------------
 		self.target = jQuery(this);
-		//------------------------------------------------------------
-		//  Remove existing tooltip
-		//------------------------------------------------------------
-		jQuery( self.root+' #tooltipper' ).remove();
 		//------------------------------------------------------------
 		//  Check for title
 		//------------------------------------------------------------
@@ -41,6 +38,15 @@ Tooltipper.prototype.start = function() {
 		//  Position it.
 		//------------------------------------------------------------
 		self.position();
+	});
+	//------------------------------------------------------------
+	//  Close the tooltip when appropriate
+	//------------------------------------------------------------
+	jQuery( window ).on( 'touchstart click', function( _e ) {
+		if ( _e.originalEvent.target == self.tooltip.get(0) ) {
+			return;
+		}
+		self.tooltip.remove();
 	});
 	//------------------------------------------------------------
 	//  Listen for events that require repositioning

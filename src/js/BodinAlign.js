@@ -222,7 +222,7 @@ var BodinAlign = function() {
 		//  Wrap the passage in a span tag
 		//------------------------------------------------------------
 		var color = this._highlightColor( _alignId );
-		html = html.insertAt( ind, '<span id="'+( _alignId )+'" class="align" style="background-color:'+color+'">' );
+		html = html.insertAt( ind, '<span id="align-'+( _alignId )+'" class="align" style="background-color:'+color+'">' );
 		positions = html.positions( end['word'], false, true, true );
 		ind = positions[ ( end['occurence']-1 ) ]+end['word'].length;
 		html = html.insertAt( ind, '</span>' );

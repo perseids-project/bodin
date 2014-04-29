@@ -4,38 +4,40 @@
 ;(function( jQuery ) {
 	
 	/**
-	 * Holds default options, adds user defined options, and initializes the plugin
+	 * Holds default config, adds user defined config, and initializes the plugin
 	 *
 	 * @param { obj } _elem The DOM element where the plugin will be drawn\
-	 * @param { obj } _options Key value pairs to hold the plugin's configuration
+	 * @param { obj } _config Key value pairs to hold the plugin's configuration
 	 * @param { string } _id The id of the DOM element
 	 */
-	function BodinUI( _elem, _options, _id ) {
+	function BodinUI( _elem, _config, _id ) {
 		var self = this;
 		self.elem = _elem;
 		self.id = _id;
-		self.init( _elem, _options );
+		self.init( _elem, _config );
 	}
 	
 	/**
-	 * Holds default options, adds user defined options, and initializes the plugin
+	 * Holds default config, adds user defined config, and initializes the plugin
 	 *
 	 * @param { obj } _elem The DOM element where the plugin will be drawn
-	 * @param { obj } _options Key value pairs to hold the plugin's configuration
+	 * @param { obj } _config Key value pairs to hold the plugin's configuration
 	 */
-	BodinUI.prototype.init = function( _elem, _options ) {
+	BodinUI.prototype.init = function( _elem, _config ) {
 		var self = this;
 		//------------------------------------------------------------
 		//	Mark your territory
 		//------------------------------------------------------------
 		jQuery( self.elem ).addClass('bodin');
 		//------------------------------------------------------------
-		//	User options 
+		//	User config 
 		//------------------------------------------------------------
-		self.options = $.extend({
+		self.config = $.extend({
 			scrollPad: 40,
-			blinkAlpha: .5
-		}, _options );
+			blinkAlpha: .5,
+			blinkLength: .5, // seconds
+			blinkN: 3
+		}, _config );
 		//------------------------------------------------------------
 		//	Events
 		//------------------------------------------------------------
@@ -43,6 +45,10 @@
 			milestone: 'BodinUI-MILESTONE',
 			align: 'BodinUI-ALIGN'
 		};
+		//------------------------------------------------------------
+		//  Used for managing multiple alignment clicks
+		//------------------------------------------------------------
+		self.alignClick=0;
 		//------------------------------------------------------------
 		//	Start event listeners
 		//------------------------------------------------------------
@@ -59,7 +65,7 @@
 		self.buildNav();
 		self.tooltips();
 		self.align();
-		if ( self.options['milestones'] != undefined ) {
+		if ( self.config['milestones'] != undefined ) {
 			self.milestones();
 		}
 		jQuery( window ).resize( function() {
@@ -74,8 +80,10 @@
 	BodinUI.prototype.align = function() {
 		var self = this;
 		jQuery( '.align', self.elem ).on( 'touchstart click', function( _e ) {
+			_e.stopPropagation();
 			_e.preventDefault();
-			jQuery( window ).trigger( self.events['align'], [ jQuery( this ).attr('id') ] );
+			var id = jQuery( this ).attr('id')
+			jQuery( window ).trigger( self.events['align'], [ id ] );
 		});
 	}
 	
@@ -93,11 +101,12 @@
 		}
 		var times = [];
 		self.blinkCounter = 0;
-		for ( var i=1; i<=9; i++ ) {
+		var ii = (self.config['blinkN']*2)+1;
+		for ( var i=1; i<=ii; i++ ) {
 			setTimeout( function() {
 				jQuery( dom ).css('background-color', colors[ self.blinkCounter%colors.length ] );
 				self.blinkCounter++;
-			}, i*500 );
+			}, i*self.config['blinkLength']*1000 );
 		}
 	}
 	
@@ -117,7 +126,7 @@
 		}
 		var numString = color.substring( color.indexOf('(')+1, color.indexOf(')')-1 );
 		var numArray = numString.split(',');
-		numArray[3] = this.options['blinkAlpha'];
+		numArray[3] = this.config['blinkAlpha'];
 		var newColor = 'rgba('+numArray.join(',')+')'
 		return [ color, newColor ];
 	}
@@ -154,7 +163,7 @@
 	BodinUI.prototype.milestones = function() {
 		var self = this;
 		var i = 0;
-		var stones = self.options['milestones'];
+		var stones = self.config['milestones'];
 		jQuery( 'p', self.elem ).each( function() {
 			var index = i % stones.length;
 			var stone = stones[index];
@@ -178,7 +187,7 @@
 		if ( pos == undefined ) {
 			return;
 		}
-		var scroll = pos.top - self.options['scrollPad'];
+		var scroll = pos.top - self.config['scrollPad'];
 		var current = $( '.work', self.elem ).scrollTop();
 		$( '.work', self.elem ).animate ({
 			scrollTop: current + scroll
@@ -294,10 +303,10 @@
 	//	Extend JQuery 
 	//----------------
 	jQuery(document).ready( function( jQuery ) {
-		jQuery.fn.BodinUI = function( options ) {
+		jQuery.fn.BodinUI = function( config ) {
 			var id = jQuery(this).selector;
 			return this.each( function() {
-				jQuery.data( this, id, new BodinUI( this, options, id ) );
+				jQuery.data( this, id, new BodinUI( this, config, id ) );
 			});
 		};
 	})
