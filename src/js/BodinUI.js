@@ -251,8 +251,15 @@
 				{
 					id: id+'-view-1',
 					type: 'nav',
-					link: 'index',
+					link: '&hearts; Index',
 					text: nav,
+					init: function() {},
+					refresh: function() {}
+				},
+				{
+					id: id+'-view-2',
+					type: 'option',
+					link: '&clubs; Options',
 					init: function() {},
 					refresh: function() {}
 				}

@@ -203,7 +203,6 @@ var BodinAlign = function() {
 	 *  @param { obj } _obj 
 	 */
 	this._mark = function( _bodinId, _alignId, _obj ) {
-		var self = this;
 		//------------------------------------------------------------
 		//  Get the selector
 		//------------------------------------------------------------
@@ -211,6 +210,35 @@ var BodinAlign = function() {
 		var book = '#book-'+_obj['book'];
 		var chapter = '#chapter-'+_obj['chapter'];
 		var select =  id+' '+book+' '+chapter;
+		var html = jQuery( select ).html();
+		//------------------------------------------------------------
+		//  Find the start and end positions
+		//------------------------------------------------------------
+		var start = _obj['start'];
+		var end = _obj['end'];
+		var positions = html.positions( start['word'], false, true, true );
+		var ind = positions[ start['occurence']-1 ];
+		//------------------------------------------------------------
+		//  Wrap the passage in a span tag
+		//------------------------------------------------------------
+		var color = this._highlightColor( _alignId );
+		html = html.insertAt( ind, '<span id="'+( _alignId )+'" class="align" style="background-color:'+color+'">' );
+		positions = html.positions( end['word'], false, true, true );
+		ind = positions[ ( end['occurence']-1 ) ]+end['word'].length;
+		html = html.insertAt( ind, '</span>' );
+		jQuery( select ).html( html );
+	}
+	
+	/*
+	this._mark = function( _bodinId, _alignId, _obj ) {
+		var self = this;
+		//------------------------------------------------------------
+		//  Get the selector
+		//------------------------------------------------------------
+		var id = '#'+_bodinId;
+		var book = '#book-'+_obj['book'];
+		var chapter = '#chapter-'+_obj['chapter'];
+		var select =  id+' '+book+' '+chapter+' *';
 		//------------------------------------------------------------
 		//  Find the start and end positions
 		//------------------------------------------------------------
@@ -221,82 +249,72 @@ var BodinAlign = function() {
 		//------------------------------------------------------------
 		var color = this._highlightColor( _alignId );
 		//------------------------------------------------------------
-		//  Get the root node
+		//  Retrieve text nodes
 		//------------------------------------------------------------
-		var root = jQuery( select, self.elem ).get(0);
-		//------------------------------------------------------------
-		//  Insert start span
-		//------------------------------------------------------------
-		var span = '<span id="align-'+_alignId+'" class="align" style="background-color:'+color+'">'
-		this._nodeCheck( root, start.word, start.occurence, span, false, 0, undefined );
-		//------------------------------------------------------------
-		//  Close span
-		//------------------------------------------------------------
-		span = '</span>';
-		this._nodeCheck( root, end.word, start.occurence, span, true, 0, undefined );
+		var startOccur = parseInt( start['occurence'] );
+		var endOccur = parseInt( end['occurence'] );
+		var textNodes = [];
 		
-	}
-	
-	this._nodeCheck = function( _node, _search, _occurence, _insert, _after, _count ) {
-		var node = _node;
-		var next;
-		//------------------------------------------------------------
-		//  Elements
-		//------------------------------------------------------------
-		if ( node.nodeType === 1 ) {
+		jQuery( select ).each( function() {
+			var tag = jQuery( this ).get(0).tagName;
+			var cls = jQuery( this ).attr( 'class' );
 			//------------------------------------------------------------
-			//  Ignore this node?
+			//  Ignore tag?
 			//------------------------------------------------------------
-			if ( this.ignoreTag[ node.nodeName ] == true ) {
-				this._nodeCheck( node.nextSibling, _search, _occurence, _insert, _after, _count );
-				return;
+			if ( self.ignoreTag[ tag ] == true ) {
+				return 1;
 			}
-			//------------------------------------------------------------
-			//  Start walking that DOM
-			//------------------------------------------------------------
-			if ( node = node.firstChild ) {
-				do {
-					next = node.nextSibling;
-					this._nodeCheck( node, _search, _occurence, _insert, _after, _count );
-				} while( node = next );
-			}
-		//------------------------------------------------------------
-		//  Text
-		//------------------------------------------------------------
-		} else if ( node.nodeType === 3 ) { 
-			var text = node.data
-			var regex = new RegExp( _search+'[^a-zA-Z0-9]', 'gm' );
-			var matches = regex.exec( text );
-			//------------------------------------------------------------
-			//  Hey you have a match!
-			//------------------------------------------------------------
-			if ( matches != null ) {
-				for ( var i=0; i<matches.length; i++ ) {
-					_count++;
-					//------------------------------------------------------------
-					//  Is this the right occurence?
-					//------------------------------------------------------------
-					if ( _count == _occurence ) {
-						//------------------------------------------------------------
-						//  Before or after the matched word?
-						//------------------------------------------------------------
-						var index = matches.index;
-						if ( _after == true ) {
-							index += _search.length;
-						}
-						//------------------------------------------------------------
-						//  Splice the insert string and exit!
-						//------------------------------------------------------------
-						text = text.splice( _insert, index );
-						node.data = text;
-						//------------------------------------------------------------
-						//  Okay inserting nodes is tricky
-						//------------------------------------------------------------
-						return;
-					}
+			if ( cls != undefined ) {
+				cls = cls.replace( '.', '' );
+				if ( self.ignoreClass[ cls ] == true ) {
+					return 1;
 				}
 			}
-		}
+			//------------------------------------------------------------
+			//  Store the DOM element and its words to rebuild later
+			//------------------------------------------------------------
+			var startFound = false;
+			var endFound = false;
+			var words = jQuery( this ).html().replace( /\n/g, " " ).split(" ");
+			for ( var i=0, ii=words.length; i<ii; i++ ) {
+				var check = words[i];
+				//------------------------------------------------------------
+				//  Skip over html tags
+				//------------------------------------------------------------
+				if ( check.indexOf( '<' ) == 0 ) {
+					while( check.indexOf( '>' ) == -1 && i<ii ) {
+						i++;
+					}
+					continue;
+				}
+				//------------------------------------------------------------
+				//  Clean up string to ensure accurate checks
+				//------------------------------------------------------------
+				check = check.stripTags().alphaOnly();
+				//------------------------------------------------------------
+				//  Check for word and occurence
+				//------------------------------------------------------------
+				if ( check == start['word'] && startFound == false ) {
+					if ( startOccur == 1 ) {
+						startFound = true;
+						words[i] = '<span id="align-'+( _alignId )+'" class="align" style="background-color:'+color+'">' + words[i];
+					}
+					startOccur--;
+				}
+				if ( check == end['word'] && endFound == false ) {
+					if ( endOccur == 1 ) {
+						endFound = true;
+						words[i] = words[i] + '</span>';
+					}
+					endOccur--;
+				}
+				if ( startFound == true && endFound == true ) {
+					break;
+				}
+			}
+			console.log( words.join(' ') );
+			jQuery( this ).html( words.join(' ') );
+		});
 	}
 	
 	/**
