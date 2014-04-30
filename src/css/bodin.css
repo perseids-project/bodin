@@ -58,6 +58,9 @@ body,html {
 	margin-left: auto;
 	margin-right: auto;
 }
+.bodin .options .switches {
+	width: 200px;
+}
 .bodin.slim .page{
 	padding: 60px 30px 120px 45px;
 }

@@ -59,7 +59,7 @@
 	 * Returns the options
 	 */
 	BodinUI.prototype.optionsUI = function() {
-		return '<div class="bodin-options">\
+		return '<div class="switches">\
 			<label class="switch-light switch-ios" onclick="">\
 				<input type="checkbox">\
 				<span>\
@@ -291,7 +291,7 @@
 				},
 				{
 					id: id+'-view-2',
-					type: 'option',
+					type: 'options',
 					link: '&clubs; Options',
 					text: self.optionsUI(),
 					init: function() { self.startOptionsUI() },
