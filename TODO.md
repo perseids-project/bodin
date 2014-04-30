@@ -78,4 +78,24 @@ Here's a sampling.
 						all ciuill societie. <span id="align-9" class="align" style="background-color:rgba(0,255,255,0.15)">For which cause, if ransome promised vnto robbers</span> for a
 						mans redemption, bee not vnto them </span></p>
 					 </div>
-	
+
+## Problems inherent with text alignment and HTML
+
+So there is an obvious problem with using *one* tag to wrap *all* aligned text.
+Can you guess what it is?
+
+Overlap...  Not all kinds of overlap mind you but a particular variety.  Let's look at a passage.
+
+	<span id="align-4" class="align">A definition is nothing else than the very end and
+	scope of the matter propounded, which if it be not well and surely grounded,
+	whatsoeuer you build <span id="align-10" class="align">thereupon must together and in a moment fall.</span> And yet
+	oftentimes it falleth out with many, that hauing propounded vnto themselues
+	certaine ends, yet can they not attaine vnto the end by them desired; no more
+	than the vnskilfull archer who shooteth farre and wide from the marke he aimed
+	at, whereas he which shooteth markeman like, although he misse somewhat the
+	marke, yet shall he shoot neerer than he, neither shall</span>
+
+So there are two spans wrapping all the text in this passage.  Things are fine if one alignment passage is contained completely within another: &lt;1&gt;&lt;2&gt;&lt;/2&gt;&lt;/1&gt;  *thereupon-fall* is inside *A-shall* ( a nested overlap ), but what if the two passages were *thereupon-shall* and *A-fall* &lt;1&gt;&lt;2&gt;&lt;/1&gt;&lt;/2&gt;, ( a hanging overlap )
+
+### Proposed solutions.
+My explanation of the situation used pseudo-xml.  We can do something similar with real HTML.  Alignment tags could be spans <span> and anchors <a>, and the appropriate CSS and Javascript could make them functionally identical.  This works for a hanging overlap with 2 passages, but will this work for N passages?  I haven't thought that through all the way.
