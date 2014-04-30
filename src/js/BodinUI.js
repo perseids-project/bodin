@@ -60,15 +60,17 @@
 	 */
 	BodinUI.prototype.optionsUI = function() {
 		return '<div class="switches">\
-			<label class="switch-light switch-ios" onclick="">\
-				<input type="checkbox">\
-				<span>\
-					Highlights\
-					<span>On</span>\
-					<span>Off</span>\
-				</span>\
-				<a></a>\
-			</label>\
+		\
+			<!-- Highlights -->\
+			<h3>Highlights</h3>\
+			<div class="onoffswitch">\
+				<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="highlight" checked>\
+				<label class="onoffswitch-label" for="highlight">\
+					<div class="onoffswitch-inner"></div>\
+					<div class="onoffswitch-switch"></div>\
+				</label>\
+			</div>\
+		\
 		</div>'
 	}
 	
@@ -77,6 +79,33 @@
 	 */
 	BodinUI.prototype.startOptionsUI = function() {
 		var self = this;
+		//------------------------------------------------------------
+		//  Start the switch click event handlers
+		//------------------------------------------------------------
+		jQuery( '.onoffswitch-label', self.elem ).on( 'touchstart click', function(_e) {
+			//------------------------------------------------------------
+			//  Switch
+			//------------------------------------------------------------
+			var id = jQuery( this ).attr('for');
+			var on_off = jQuery( '.onoffswitch input#'+id, self.elem );
+			var on = null;
+			if ( on_off.prop( 'checked' ) == true ) {
+				on_off.prop( 'checked', false );
+				on = false;
+			}
+			else {
+				on_off.prop( 'checked', true );
+				on = true;
+			}
+			//------------------------------------------------------------
+			//  Events
+			//------------------------------------------------------------
+			switch ( id ) {
+				case 'highlight':
+					console.log( on );
+					break;
+			}
+		});
 	}
 	
 	/**
