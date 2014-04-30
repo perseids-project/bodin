@@ -30,6 +30,10 @@
 		//------------------------------------------------------------
 		jQuery( self.elem ).addClass('bodin');
 		//------------------------------------------------------------
+		//  Get the instance id
+		//------------------------------------------------------------
+		self.id = jQuery( self.elem ).attr('id');
+		//------------------------------------------------------------
 		//	User config 
 		//------------------------------------------------------------
 		self.config = $.extend({
@@ -43,7 +47,8 @@
 		//------------------------------------------------------------
 		self.events = {
 			milestone: 'BodinUI-MILESTONE',
-			align: 'BodinUI-ALIGN'
+			align: 'BodinUI-ALIGN',
+			switch_highlight: 'BodinUI-SWITCH_HIGHLIGHT'
 		};
 		//------------------------------------------------------------
 		//  Used for managing multiple alignment clicks
@@ -59,19 +64,21 @@
 	 * Returns the options
 	 */
 	BodinUI.prototype.optionsUI = function() {
-		return '<div class="switches">\
-		\
-			<!-- Highlights -->\
-			<h3>Highlights</h3>\
-			<div class="onoffswitch">\
-				<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="highlight" checked>\
-				<label class="onoffswitch-label" for="highlight">\
-					<div class="onoffswitch-inner"></div>\
-					<div class="onoffswitch-switch"></div>\
-				</label>\
-			</div>\
-		\
-		</div>'
+		var self = this;
+		return '\
+			<div class="switches">\
+			\
+				<!-- Highlights -->\
+				<h3>Highlights</h3>\
+				<div class="onoffswitch">\
+					<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="highlight_'+self.id+'" checked>\
+					<label class="onoffswitch-label" for="highlight_'+self.id+'">\
+						<div class="onoffswitch-inner"></div>\
+						<div class="onoffswitch-switch"></div>\
+					</label>\
+				</div>\
+			\
+			</div>'
 	}
 	
 	/**
@@ -88,20 +95,12 @@
 			//------------------------------------------------------------
 			var id = jQuery( this ).attr('for');
 			var on_off = jQuery( '.onoffswitch input#'+id, self.elem );
-			var on = null;
-			if ( on_off.prop( 'checked' ) == true ) {
-				on_off.prop( 'checked', false );
-				on = false;
-			}
-			else {
-				on_off.prop( 'checked', true );
-				on = true;
-			}
+			var on = ( on_off.prop( 'checked' ) == true ) ? false : true; 
 			//------------------------------------------------------------
 			//  Events
 			//------------------------------------------------------------
 			switch ( id ) {
-				case 'highlight':
+				case 'highlight_'+self.id:
 					console.log( on );
 					break;
 			}
