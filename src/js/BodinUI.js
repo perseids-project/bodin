@@ -56,6 +56,30 @@
 	}
 	
 	/**
+	 * Returns the options
+	 */
+	BodinUI.prototype.optionsUI = function() {
+		return '<div class="bodin-options">\
+			<label class="switch-light switch-ios" onclick="">\
+				<input type="checkbox">\
+				<span>\
+					Highlights\
+					<span>On</span>\
+					<span>Off</span>\
+				</span>\
+				<a></a>\
+			</label>\
+		</div>'
+	}
+	
+	/**
+	 * Returns the options
+	 */
+	BodinUI.prototype.startOptionsUI = function() {
+		var self = this;
+	}
+	
+	/**
 	 * Start the interface
 	 */
 	BodinUI.prototype.start = function() {
@@ -269,7 +293,8 @@
 					id: id+'-view-2',
 					type: 'option',
 					link: '&clubs; Options',
-					init: function() {},
+					text: self.optionsUI(),
+					init: function() { self.startOptionsUI() },
 					refresh: function() {}
 				}
 			]
