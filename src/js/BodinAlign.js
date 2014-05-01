@@ -115,8 +115,13 @@ var BodinAlign = function() {
 		//------------------------------------------------------------
 		_target = _target.substr( at+1 , _target.length );
 		var index = _target.split('-');
-		var start = this._wordAndOccurence( index[0] );
-		var end = this._wordAndOccurence( index[1] );
+		
+		//------------------------------------------------------------
+		// this assumes that the html is already pre-processed with 
+		// word[occurrence] as the value of the data-ref attribute
+		//------------------------------------------------------------
+		var start = index[0];
+		var end = index[1];
 		//------------------------------------------------------------
 		//  Return target data JSON style
 		//------------------------------------------------------------
@@ -212,21 +217,82 @@ var BodinAlign = function() {
 		var select =  id+' '+book+' '+chapter;
 		var html = jQuery( select ).html();
 		//------------------------------------------------------------
-		//  Find the start and end positions
+		//  Find the start and end elements
 		//------------------------------------------------------------
 		var start = _obj['start'];
 		var end = _obj['end'];
-		var positions = html.positions( start['word'], false, true, true );
-		var ind = positions[ start['occurence']-1 ];
+		
+		//-------------------------------------------------------------
+		// calculation of positions needs knowledge of the citation structure
+		// of the document -- this should be handled in a pre-processing 
+		// state so ui code doesn't need to deal with it
+		//---------------------------------------------------------------
+		
+		
 		//------------------------------------------------------------
-		//  Wrap the passage in a span tag
+		//  identify each word in the passage with the alignment id 
 		//------------------------------------------------------------
 		var color = this._highlightColor( _alignId );
-		html = html.insertAt( ind, '<span id="align-'+( _alignId )+'" class="align" style="background-color:'+color+'">' );
-		positions = html.positions( end['word'], false, true, true );
-		ind = positions[ ( end['occurence']-1 ) ]+end['word'].length;
-		html = html.insertAt( ind, '</span>' );
-		jQuery( select ).html( html );
+		var start_elem = jQuery("span.token.text[data-ref='" + start + "']");
+		var end_elem = jQuery("span.token.text[data-ref='" + end + "']");
+		
+		if (start_elem && end_elem) {
+	        //-----------------------------------------------------------
+	        // note that this breaks if the start and end of the range 
+	        // aren't in the same display hierarchy (e.g. if there are not
+	        // citation-specific groupings that break up the hierarchy
+	        // haven't figured out the best way to deal with that yet
+	        //-----------------------------------------------------------
+	        var sibs = $(start_elem).nextAll('.token').addBack();
+	        var done = false;
+	        for (var i=0; i<sibs.length; i++) {
+	            if (done) {
+	                break;
+                }
+                if ( jQuery(sibs[i]).hasClass('aligned') ) {
+                    var num = parseInt(jQuery(sibs[i]).attr('data-aligned')) + 1;
+                    jQuery(sibs[i]).attr('data-aligned',num);
+                    var start_class = '';
+                    var end_class = '';
+                    if (i == 0) {
+                        start_class = ' align-start';   
+                    }
+                    if (jQuery(sibs[i]).attr('data-ref') == end) {
+                        // add a class to indicate its the end of the alignment
+                        end_class = ' align-end';
+                    }
+                    //------------------------------------------------------
+                    // if we already have aligned this word, we need to add 
+                    // another wrapping element for the next alignment
+                    // make it an inner element so that it doesn't break
+                    // with finding siblings for other alignments
+                    //------------------------------------------------------
+                    jQuery(sibs[i]).wrapInner('<span class="token aligned align-' + ( _alignId ) + start_class + end_class +
+                        '" data-alignId="' + (_alignId) + '" style="background-color:' + (color) +';"></span>');
+                }
+                else {
+                    jQuery(sibs[i]).css("background-color",color).attr('data-alignId',( _alignId )).addClass('aligned').attr('data-aligned','1');
+                    // add a class to indicate its the start of the alignment
+                    if (i == 0) {
+                        jQuery(sibs[i]).addClass('align-start');   
+                    } 
+                    if (jQuery(sibs[i]).attr('data-ref') == end) {
+                        // add a class to indicate its the end of the alignment
+                        jQuery(sibs[i]).addClass('align-end');
+                    }
+                    
+                }
+                
+                if (jQuery(sibs[i]).attr('data-ref') == end) {
+                    done = true;
+                }
+            } // end loop through siblings 		    
+        }
+        //------------------------------------------------------
+        // we should probably handle the case where the matching
+        // alignment couldn't be found and remove the highlights
+        //------------------------------------------------------
+        
 	}
 	
 	/*

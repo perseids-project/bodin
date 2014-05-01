@@ -6,14 +6,14 @@
 		<link href="../../src/css/bodin.css" rel="stylesheet" type="text/css" />
 		<!-- End Load CSS -->
 		<title>bodin</title>
-	<head>
+	</head>
 	<body>
 		<div class="bodin" src="tempHtml/latin.html" id="latin"></div>
 		<!--<div class="bodin" src="tempHtml/french.html" id="french"></div>-->
 		<div class="bodin" src="tempHtml/english.html" id="english"></div>
 		<div class="sidecart" id="master_options"></div>
 		<div id="control_view"><p>Master options.</p></div>
-	</body>
+	
 	
 	<!-- Load Javascript -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -87,10 +87,10 @@
 				bodins[i].goTo( _id );
 			}
 		});
-		jQuery( window ).on( 'BodinUI-ALIGN', function( _e, _id ) {
+		jQuery( window ).on( 'BodinUI-ALIGN', function( _e, _filter, _key, _value ) {
 			for ( var i in bodins ) {
-				bodins[i].goTo( _id );
-				bodins[i].alphaBlink( _id );
+				bodins[i].filteredGoTo( _filter, _key, _value );
+				bodins[i].filteredAlphaBlink( 'aligned', _key, _value );
 			}
 		});
 		//------------------------------------------------------------
@@ -108,4 +108,5 @@
 		bodin.start( '.bodin' );
 	});
 	</script>
-<html>
+	</body>
+</html>
