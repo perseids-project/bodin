@@ -30,6 +30,7 @@ var BodinAlign = function() {
 	this.events = {
 		loaded: 'BodinAlign-LOADED'
 	};
+	this.styler = new Styler();
 	
 	/**
 	 *	Start it up!
@@ -63,7 +64,7 @@ var BodinAlign = function() {
 		//	Get each alignment xml
 		//------------------------------------------------------------
 		for ( var i in this.src ) {
-			this._get( i );
+			this.get( i );
 		}
 	}
 	
@@ -72,13 +73,13 @@ var BodinAlign = function() {
 	 *
 	 *	@param { string } _src URL to an XML document
 	 */
-	this._get = function( _src ) {
+	this.get = function( _src ) {
 		var self = this;
 		jQuery.get( _src )
 		.done( function( _data ){
 			self.alignments[ _src ]['xml'] = _data;
 			self.alignments[ _src ]['loaded'] = true;
-			self.alignments[ _src ]['json'] = self._json( _data );
+			self.alignments[ _src ]['json'] = self.json( _data );
 			self.loadCheck();
 		})
 		.fail( function(){
@@ -91,7 +92,7 @@ var BodinAlign = function() {
 	 *	@param { dom }
 	 *  @param { obj } JSON version
 	 */
-	this._target = function( _target ) {
+	this.target = function( _target ) {
 		//------------------------------------------------------------
 		//  Get book and chapter
 		//------------------------------------------------------------
@@ -115,15 +116,15 @@ var BodinAlign = function() {
 		//------------------------------------------------------------
 		_target = _target.substr( at+1 , _target.length );
 		var index = _target.split('-');
-		var start = this._wordAndOccurence( index[0] );
-		var end = this._wordAndOccurence( index[1] );
+		var start = this.wordAndOccurence( index[0] );
+		var end = this.wordAndOccurence( index[1] );
 		//------------------------------------------------------------
 		//  Return target data JSON style
 		//------------------------------------------------------------
 		return { 'book': book, 'chapter': chapter, 'start': start, 'end': end }
 	}
 	
-	this._json = function( _data ) {
+	this.json = function( _data ) {
 		var self = this;
 		var json = []
 		jQuery( _data ).find('Annotation').each( function(){
@@ -133,7 +134,7 @@ var BodinAlign = function() {
 			//------------------------------------------------------------
 			var target = jQuery( annot ).find('hasTarget');
 			target = jQuery( target[0] ).attr('rdf:resource');
-			target = self._target( target );
+			target = self.target( target );
 			if ( target == undefined ) {
 				return true; // a continue in jQuery().each() land
 			}
@@ -142,7 +143,7 @@ var BodinAlign = function() {
 			//------------------------------------------------------------
 			var body = jQuery( annot ).find('hasBody');
 			body = jQuery( body[0] ).attr('rdf:resource');
-			body = self._target( body );
+			body = self.target( body );
 			if ( target == undefined ) {
 				return true; // a continue in jQuery().each() land
 			}
@@ -151,7 +152,7 @@ var BodinAlign = function() {
 		return json;
 	}
 	
-	this._wordAndOccurence = function( _string ) {
+	this.wordAndOccurence = function( _string ) {
 		var sep = _string.indexOf('[');
 		var word = _string.substr( 0 , sep );
 		var occurence = _string.substr( sep, _string.length-1 ).replace('[','').replace(']','');
@@ -166,7 +167,7 @@ var BodinAlign = function() {
 		//  Loop through the alignments and markup where appropriate
 		//------------------------------------------------------------
 		for ( var src in this.alignments ) {
-			var ids = this._xmlToIds( src );
+			var ids = this.xmlToIds( src );
 			if ( ids == undefined ) {
 				console.log( 'No ids specified for ' + src );
 				continue;
@@ -174,8 +175,8 @@ var BodinAlign = function() {
 			var id = 1;
 			for ( var j in this.alignments[src]['json'] ) {
 				var obj = this.alignments[src]['json'][j];
-				this._mark( ids['body'], id, obj['body'] );
-				this._mark( ids['target'], id, obj['target'] );
+				this.mark( ids['body'], id, obj['body'] );
+				this.mark( ids['target'], id, obj['target'] );
 				id++;
 			}
 		}
@@ -187,7 +188,7 @@ var BodinAlign = function() {
 	 *  @param { string } _src The path to the alignment xml
 	 *  return { obj }
 	 */
-	this._xmlToIds = function( _src ) {
+	this.xmlToIds = function( _src ) {
 		for ( var i in this.config ) {
 			if ( this.config[i]['src'] == _src ) {
 				return ( this.config[i]['ids'] );
@@ -202,7 +203,7 @@ var BodinAlign = function() {
 	 *  @param { int } _alignId The id of the alignment
 	 *  @param { obj } _obj 
 	 */
-	this._mark = function( _bodinId, _alignId, _obj ) {
+	this.mark = function( _bodinId, _alignId, _obj ) {
 		//------------------------------------------------------------
 		//  Get the selector
 		//------------------------------------------------------------
@@ -221,8 +222,8 @@ var BodinAlign = function() {
 		//------------------------------------------------------------
 		//  Wrap the passage in a span tag
 		//------------------------------------------------------------
-		var color = this._highlightColor( _alignId );
-		html = html.insertAt( ind, '<span id="align-'+( _alignId )+'" class="align" style="background-color:'+color+'">' );
+		var color_class = this.colorClass( this.colorId( _alignId ) );
+		html = html.insertAt( ind, '<span id="align-'+( _alignId )+'" class="align '+color_class+'">' );
 		positions = html.positions( end['word'], false, true, true );
 		ind = positions[ ( end['occurence']-1 ) ]+end['word'].length;
 		html = html.insertAt( ind, '</span>' );
@@ -230,7 +231,7 @@ var BodinAlign = function() {
 	}
 	
 	/*
-	this._mark = function( _bodinId, _alignId, _obj ) {
+	this.mark = function( _bodinId, _alignId, _obj ) {
 		var self = this;
 		//------------------------------------------------------------
 		//  Get the selector
@@ -247,7 +248,7 @@ var BodinAlign = function() {
 		//------------------------------------------------------------
 		//  Get a color
 		//------------------------------------------------------------
-		var color = this._highlightColor( _alignId );
+		var color = this.highlightColor( _alignId );
 		//------------------------------------------------------------
 		//  Retrieve text nodes
 		//------------------------------------------------------------
@@ -323,9 +324,43 @@ var BodinAlign = function() {
 	 *  @param { int } _id The alignment id
 	 *  @return { string } An rgba(255,0,0,0.25) string
 	 */
-	this._highlightColor = function( _id ) {
-		var color = this.palette.colors[  _id % this.palette.colors.length ];
-		return color.toAlpha( 0.15 );
+	this.highlightColor = function( _id ) {
+		return this.alphaColor( _id, 0.15 );
+	}
+	
+	/**
+	 *  Retrieve a highlight blink color
+	 *
+	 *  @param { int } _id The alignment id
+	 *  @return { string } An rgba(255,0,0,0.25) string
+	 */
+	this.highlightBlinkColor = function( _id ) {
+		return this.alphaColor( _id, 0.5);
+	}
+	
+	this.alphaColor = function( _id, _alpha ) {
+		var color = this.palette.colors[  this.colorId(_id) ];
+		return color.toAlpha( _alpha );
+	}
+	
+	this.colorId = function( _int ) {
+		return _int % this.palette.colors.length
+	}
+	
+	this.colorClass = function( _int ) {
+		return 'color_'+this.colorId(_int);
+	}
+	
+	/**
+	 *  Create palette styles
+	 */
+	this.paletteStyles = function() {
+		var rule = {};
+		for ( var i=0; i<this.palette.colors.length; i++ ) {
+			rule[ '.'+this.colorClass(i) ] = 'background-color:'+this.highlightColor(i);
+			rule[ '.'+this.colorClass(i)+'.blink' ] = 'background-color:'+this.highlightBlinkColor(i);
+			this.styler.add( rule );
+		}
 	}
 	
 	/**
@@ -337,6 +372,7 @@ var BodinAlign = function() {
 				return;
 			}
 		}
+		this.paletteStyles();
 		jQuery( window ).trigger( this.events['loaded'] );
 	}
 }

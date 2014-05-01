@@ -147,40 +147,15 @@
 	BodinUI.prototype.alphaBlink = function( _id ) {
 		var self = this;
 		var dom = jQuery( '#'+_id, self.elem );
-		var colors = self._alphaBlinkColors( dom );
-		if ( colors == undefined ) {
-			return;
-		}
 		var times = [];
 		self.blinkCounter = 0;
-		var ii = (self.config['blinkN']*2)+1;
+		var ii = (self.config['blinkN']*2);
 		for ( var i=1; i<=ii; i++ ) {
 			setTimeout( function() {
-				jQuery( dom ).css('background-color', colors[ self.blinkCounter%colors.length ] );
+				jQuery( dom ).toggleClass( 'blink' );
 				self.blinkCounter++;
 			}, i*self.config['blinkLength']*1000 );
 		}
-	}
-	
-	/**
-	 * Alpha blink.
-	 *
-	 * @param { string } _id The dom element you want to blink.
-	 * @return { array }
-	 */
-	BodinUI.prototype._alphaBlinkColors = function( _dom ) {
-		if ( _dom == undefined ) {
-			return undefined;
-		}
-		var color = jQuery( _dom ).css( 'background-color' );
-		if ( color == undefined ) {
-			return undefined;
-		}
-		var numString = color.substring( color.indexOf('(')+1, color.indexOf(')')-1 );
-		var numArray = numString.split(',');
-		numArray[3] = this.config['blinkAlpha'];
-		var newColor = 'rgba('+numArray.join(',')+')'
-		return [ color, newColor ];
 	}
 	
 	/**
