@@ -131,22 +131,30 @@
 	 */
 	BodinUI.prototype.align = function() {
 		var self = this;
-		jQuery( '.align', self.elem ).on( 'touchstart click', function( _e ) {
+		jQuery( '.align-start', self.elem ).on( 'touchstart click', function( _e ) {
 			_e.stopPropagation();
 			_e.preventDefault();
-			var id = jQuery( this ).attr('id')
-			jQuery( window ).trigger( self.events['align'], [ id ] );
+			var id = jQuery( this ).attr('data-alignId')
+			jQuery( window ).trigger( self.events['align'], [ 'align-start','data-alignId',id ] );
+		});
+		jQuery( '.align-end', self.elem ).on( 'touchstart click', function( _e ) {
+			_e.stopPropagation();
+			_e.preventDefault();
+			var id = jQuery( this ).attr('data-alignId')
+			jQuery( window ).trigger( self.events['align'], [ 'align-end','data-alignId',id ] );
 		});
 	}
 	
 	/**
-	 * Alpha blink.
-	 *
-	 * @param { string } _id The dom element you want to blink.
+	 * Alpha blink a specific element
+  	 *
+	 *  @param { string } _filter a class filter to make it perform
+	 *  @param { string } _key The element attribute key name
+	 *  @param { string } _val The element attribute key value 
 	 */
-	BodinUI.prototype.alphaBlink = function( _id ) {
+	BodinUI.prototype.filteredAlphaBlink = function( _filter, _key, _val) {
 		var self = this;
-		var dom = jQuery( '#'+_id, self.elem );
+		var dom = $( '.'+_filter + '[' + _key + "='" + _val + "']" , self.elem );
 		var colors = self._alphaBlinkColors( dom );
 		if ( colors == undefined ) {
 			return;
@@ -191,7 +199,10 @@
 	BodinUI.prototype.makeRoom = function() {
 		var count = jQuery( '.bodin' ).length
 		var styler = new Styler();
-		var percent = parseInt( 100/count );
+		//---------------------------------------------
+		// subtract 5% for the milestones
+		//---------------------------------------------
+		var percent = parseInt( (100 - (5*count))/count )
 		styler.add({
 			'.bodin': 'width: '+percent+'%'
 		});
@@ -215,6 +226,10 @@
 	BodinUI.prototype.milestones = function() {
 		var self = this;
 		var i = 0;
+		//--------------------------------------------------
+		// Why not just pull the milestones from the markup?
+		//--------------------------------------------------
+		/*
 		var stones = self.config['milestones'];
 		jQuery( 'p', self.elem ).each( function() {
 			var index = i % stones.length;
@@ -222,6 +237,13 @@
 			i++;
 			jQuery( this ).prepend( '<a href="" class="milestone" id="stone-'+i+'">' + stone + '</a>' );
 		});
+		*/
+		jQuery( '.tei_milestone').each ( function() {
+		  var stone = jQuery( this ).text().trim();
+		  jQuery( this ).attr("id",  "stone-" + stone);
+		  jQuery( this ).addClass('milestone');
+		});
+		
 		jQuery( '.milestone' ).on( 'touchstart click', function( _e ) {
 			_e.preventDefault();
 			jQuery( window ).trigger( self.events['milestone'], [ jQuery( this ).attr('id') ] );
@@ -245,7 +267,28 @@
 			scrollTop: current + scroll
 		}, 1000 );
 	}
-	
+
+	/**
+	*  Go to a particular element
+	*  with the a supplied attribute
+	*
+	*  @param { string } _filter a class filter to make it perform
+	*  @param { string } _key The element attribute key name
+	*  @param { string } _val The element attribute key value 
+	*/
+	BodinUI.prototype.filteredGoTo = function( _filter, _key, _val ) {
+		var self = this;
+		var pos = $( '.'+_filter + '[' + _key + "='" + _val + "']" , self.elem ).position();
+		if ( pos == undefined ) {
+			return;
+		}
+		var scroll = pos.top - self.config['scrollPad'];
+		var current = $( '.work', self.elem ).scrollTop();
+		$( '.work', self.elem ).animate ({
+			scrollTop: current + scroll
+		}, 1000 );
+	}
+
 	/**
 	* Build the nav.
 	*/

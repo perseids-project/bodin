@@ -99,3 +99,82 @@ So there are two spans wrapping all the text in this passage.  Things are fine i
 
 ### Proposed solutions.
 My explanation of the situation used pseudo-xml.  We can do something similar with real HTML.  Alignment tags could be spans &lt;span&gt; and anchors &lt;a&gt;, and the appropriate CSS and Javascript could make them functionally identical.  This works for a hanging overlap with 2 passages, but will this work for N passages?  I haven't thought that through all the way.
+
+## BMA Feedback 2014-05-01
+
+### Alignments
+I think we need to turn the alignment problem inside out a bit.
+
+First, I think the only solution to the problem of overlapping hierarchies is to
+higlight the tokens themselves and not try to use wrapping spans. This is also
+more consistent with the annotations themselves, which are at the level of the 
+token.
+
+Second, it has been my assumption that the dissemination process eventually will
+be responsible for applying annotations to the source texts as appropriate for
+the given display type being disseminated. For very simple annotations and 
+displays, this might not always be necessary, but for a complex UI like we are
+trying to do for Bodin, which applies overlapping alignments of various types 
+across multiple texts, on a very large text, I don't think we will be able to 
+get the performance we need by doing it client-side at runtime.  It also would 
+require the display UI to know details about the citation scheme, tokenization 
+algorithms, etc. as these are all needed in order to correctly apply the 
+annotations. (Eventually the annotations also need to carry provenance 
+information to make this information available to consumers).
+
+So, that said, here's what I've done so far:
+
+#### Dissemination Steps
+
+(Manual for now, but eventually should be automated through a workflow service)
+
+1. tokenized the XML using the same perseids tokenization services and configuration options that were used to prepare the texts for annotations. Prior to running through the tokenization service, I stripped the teiHeaders and deployed the stripped XML on perseids.org for access by URI. 
+    * `http://sosol.perseids.org/exist/rest/db/xq/tokenize.xquery?merging=false&splitting=false&uri=http%3A%2F%2Fperseids.org%2Fbodin_english.xml`
+    * `http://services.perseids.org/llt/tokenize?xml=true&merging=false&splitting=false&uri=http%3A%2F%2Fperseids.org%2Fbodin_latin.xml`
+2. The tokenized output is in the `bodin_lat.tok.xml` and `bodin_eng.tok.xml` in the tempXml folder. (note that I also removed all except chaps 1 and 2 for now for performance reasons -- pulling in the entire text killed the browser).
+3. Ran the `cts_annotate.xsl` (including modifications for bodin display expectations) 
+to 
+    1. transform the XML to HTML 
+    2. apply subreference identifiers matching the ctsurn subreference syntax to the tokens. This produced HTML markup for the word tokens that looks like:
+
+    `<span class="token text" data-ref="word[1]">word</span> <span class="token text" data-ref="another[1]>another</span><span class="token punc">.</span>`
+
+#### UI Changes
+
+1. the BodinAlign._mark method no longer tries to calculate the position of the words to highlight.
+Instead it :
+    * looks for elements with class 'token' that have a data-ref attribute matching the start and end
+      of the alignment range
+    * tries to find all intermediate token elements in the range
+        * but note that this isn't perfect still because it relies on siblings not being disrupted
+          by intervening markup. This is a problem in the annotation interface too and I need to find
+          a way to deal with it.
+    * applies styling to the token span
+    * uses an attribute to identify the number of overlapping alignments a word has
+    * inserts wrapping spans for each distinct alignment
+
+
+2. We can no longer use ids to identify distinct alignments as there are many words with the same id, so I added new filteredGoTo and filteredAlphaBlink methods to BodinUI that look for elements with specified key/value pairs, as filtered by a class.
+
+    *. For the moment I have made the click only active on the start and end elements of a range. What should probably happen though is that it is active on all the aligned words but looks for the start element for that alignment.
+
+    * it might also be nice to make it possible to select which overlapping alignment you want to view when a word has multiple
+
+### Pages and Milestones
+
+Because pages and milestones are not part of the citation scheme, we cannot have them as wrapping elements in the display. Also, since milestones can repeat in a text (in the case of Bodin they are only unique within page breaks) we can't use ids identify and trigger behavior on them.  
+
+I made a few changes to accomodate this, but haven't fully got the milestones working again as you had them before. In the end, since we didn't actually align on the milestones, I'm not sure we even want to have clicking on a milestone trigger navigation across displays, because I don't know if it will be accurate. This might be something we should check with Yannis.
+
+### Additional Notes:
+
+* the algorithms for applying the cts subreferences to the tokens needs a little work still. It needs
+to be able to peform well against an entire text and to apply the citation scheme to know where to restart numbering. The algorithm I have currently will fall down on the entire Bodin text.
+
+* Ultimately I think we will want some general ways to identify things about the citation scheme and markup that trigger certain functionality in the various UIs we support - but this is also part of a larger Perseus 5 discussion. 
+
+* I think I might have broken your index and options navigations. Haven't looked into why yet -- could just be a style thing caused by changes in the markup.
+
+* There is still more work I need to do on the cts_annotate.xslt transformation -- it ignores tags it doesn't know about for now, but should really try to do something with them, particularly if they are display related (like the hi@rend=italics tags).  This is related to the problem of finding siblings of the start/end elements because adding extra span tags around tokens for things like this break the sibling order. Probably I should check for and handle these when processing the w tags.
+
+
