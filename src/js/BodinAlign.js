@@ -249,52 +249,32 @@ var BodinAlign = function() {
 					break;
 				}
 				var sib = jQuery( sibs[i] );
-				if ( sib.hasClass('aligned') ) {
-					var num = parseInt( sib.attr('data-aligned') ) + 1;
-					sib.attr( 'data-aligned', num );
-					var start_class = '';
-					var end_class = '';
-					if ( i == 0 ) {
-						start_class = ' align-start';   
-					}
-					//------------------------------------------------------------
-					// Add a class to indicate its the end of the alignment
-					//------------------------------------------------------------
-					if ( sib.attr('data-ref') == end) {
-						end_class = ' align-end';
-					}
-					//------------------------------------------------------
-					// If we already have aligned this word, we need to add 
-					// another wrapping element for the next alignment
-					// make it an inner element so that it doesn't break
-					// with finding siblings for other alignments
-					//------------------------------------------------------
-					var elem = 	this.alignSpan( _alignId, start_class, end_class, color_class );
-					sib.wrapInner( elem.smoosh() );
+				var num = parseInt( sib.attr('data-aligned') ) + 1;
+				sib.attr( 'data-aligned', num );
+				var start_class = '';
+				var end_class = '';
+				if ( i == 0 ) {
+					start_class = ' align-start';
 				}
-				else {
-					sib.attr( 'data-alignId', ( _alignId ));
-					sib.addClass( 'aligned' );
-					sib.attr( 'data-aligned','1' );
-					sib.addClass( color_class );
-					//------------------------------------------------------------
-					//  Add a class to indicate its the start of the alignment
-					//------------------------------------------------------------
-					if ( i == 0 ) {
-						sib.addClass('align-start');
-					}
-					//------------------------------------------------------------
-					//  Add a class to indicate its the end of the alignment
-					//------------------------------------------------------------
-					if ( sib.attr('data-ref') == end ) {
-						sib.addClass('align-end');
-					}
+				//------------------------------------------------------------
+				// Add a class to indicate its the end of the alignment
+				//------------------------------------------------------------
+				if ( sib.attr('data-ref') == end ) {
+					end_class = ' align-end';
 				}
+				//------------------------------------------------------
+				// If we already have aligned this word, we need to add 
+				// another wrapping element for the next alignment
+				// make it an inner element so that it doesn't break
+				// with finding siblings for other alignments
+				//------------------------------------------------------
+				var elem = 	this.alignSpan( _alignId, start_class, end_class, color_class );
+				sib.wrapInner( elem.smoosh() );
 				
 				if ( sib.attr('data-ref') == end ) {
 					done = true;
 				}
-			} // end loop through siblings
+			}
 		}
 		//------------------------------------------------------
 		// we should probably handle the case where the matching
@@ -306,7 +286,6 @@ var BodinAlign = function() {
 		return '\
 			<span \
 				class="\
-					token\
 					aligned align-'+_alignId+ 
 					_start_class + 
 					_end_class + 
@@ -347,7 +326,7 @@ var BodinAlign = function() {
 	}
 	
 	this.colorClass = function( _int ) {
-		return 'color_'+this.colorId(_int);
+		return 'color-'+this.colorId(_int);
 	}
 	
 	/**

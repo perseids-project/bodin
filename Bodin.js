@@ -58,6 +58,16 @@ String.prototype.smoosh = function() {
 }
 
 /**
+ * Splice in a string at a specified index
+ *
+ * @param { string } _string
+ * @param { int } _index The position in the string
+ */
+String.prototype.splice = function( _string, _index ) {
+    return ( this.slice( 0, Math.abs( _index ) ) + _string + this.slice( Math.abs( _index )));
+};
+
+/**
  * Strip html tags
  */
 String.prototype.stripTags = function() {
@@ -1162,321 +1172,356 @@ Culuh.prototype.invert = function( _out ) {
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 ;( function( jQuery ) {
-	
-	/**
-	 * Holds default options, adds user defined options, and initializes the plugin
-	 *
-	 * @param { obj } _elem The DOM element where the plugin will be drawn
-	 * @param { obj } _config Key value pairs to hold the plugin's configuration
-	 * @param { string } _id The id of the DOM element
-	 */
-	function sidecart( _elem, _config, _id ) {
-		var self = this;
-		self.elem = _elem;
-		self.id = _id;
-		self.init( _elem, _config );
-	}
-	
-	/**
-	 * Holds default options, adds user defined options, and initializes the plugin
-	 *
-	 * @param { obj } _elem The DOM element where the plugin will be drawn
-	 * @param { obj } _config Key value pairs to hold the plugin's configuration
-	 */
-	sidecart.prototype.init = function( _elem, _config ) {
-		var self = this;
-		//------------------------------------------------------------
-		//	Mark your territory
-		//------------------------------------------------------------
-		jQuery( self.elem ).addClass('sidecart')
-		//------------------------------------------------------------
-		//	User options 
-		//------------------------------------------------------------
-		self.config = jQuery.extend({
-			side: 'right',
-			inside: false,
-			'bottom-space': 40
-		}, _config );
-		//------------------------------------------------------------
-		//  Get a styler object handy
-		//------------------------------------------------------------
-		self.styler = new Styler();
-		//------------------------------------------------------------
-		//  Start me up!
-		//------------------------------------------------------------
-		self.start();
-	}
-	
-	/**
-	 * Start up sidecart.
-	 */
-	sidecart.prototype.start = function() {
-		this.buildWrapper();
-		this.buildViews();
-		this.eventStart();
-		this.showFirst();
-		this.hide();
-	}
-	
-	/**
-	 * Build the application wrapper.
-	 */
-	sidecart.prototype.buildWrapper = function() {
-		//------------------------------------------------------------
-		//  Hide initially
-		//------------------------------------------------------------
-		jQuery( this.elem ).addClass('hidden');
-		//------------------------------------------------------------
-		//  Left side
-		//------------------------------------------------------------
-		switch ( this.config['side'] ) {
-			case 'left':
-				this.buildTabsLast();
-				jQuery( this.elem ).addClass('left');
-				break;
-			case 'top':
-				this.buildTabsLast();
-				jQuery( this.elem ).addClass('top');
-				break;
-			default: // right side
-				jQuery( this.elem ).append( '\
-					<div class="tabs"></div>\
-					<div class="inner">\
-						<div class="views"></div>\
-					</div>\
-				');
-		}
-		//------------------------------------------------------------
-		//  Inside parent?
-		//------------------------------------------------------------
-		this.fitToParent();
-	}
-	
-	/**
-	 * Fit sidecart inside parent.
-	 */
-	sidecart.prototype.fitToParent = function() {
-		if ( this.config['inside'] == true ) {
-			var parent = jQuery( this.elem ).parent();
-			var position = parent.position();
-			jQuery( this.elem ).css({ left: position.left });
-			if ( this.config['side'] == 'top' ) {
-				jQuery( this.elem ).width( parent.outerWidth() );
-				var height = parent.height()-jQuery( '.tabs', this.elem ).height()-this.config['bottom-space'];
-				var style = {};
-				style[this.id+' .inner'] = 'height:'+height+'px';
-				style[this.id+'.hidden .inner'] = 'height:0';
-				this.styler.add( style );
-			}
-		}
-	}
-	
-	/**
-	 * Build with tab after inner.
-	 */
-	sidecart.prototype.buildTabsLast = function() {
-		jQuery( this.elem ).append( '\
-			<div class="inner">\
-				<div class="views"></div>\
-			</div>\
-			<div class="tabs"></div>\
-		');
-	}
-	
-	/**
-	 * Build with tab before inner.
-	 */
-	sidecart.prototype.buildTabsFirst = function() {
-		jQuery( this.elem ).append( '\
-			<div class="tabs"></div>\
-			<div class="inner">\
-				<div class="views"></div>\
-			</div>\
-		');
-	}
-	
-	/**
-	 * Build all of the views.
-	 */
-	sidecart.prototype.buildViews = function() {
-		for ( var i=0, ii=this.config['views'].length; i<ii; i++ ) {
-			var view = this.config['views'][i];
-			this.buildView( view );
-		}
-	}
-	
-	/**
-	 * Build a single view.
-	 *
-	 * @param { Object } _view 		A single view config object.
-	 *								See constructor.
-	 */
-	sidecart.prototype.buildView = function( _view ) {
-		//------------------------------------------------------------
-		//  Build the view
-		//------------------------------------------------------------
-		jQuery( '.views', this.elem ).append('\
-			<div id="'+ _view.id +'" class="'+ _view.type +'"></div>\
-		');
-		//------------------------------------------------------------
-		//  Already in the dom?
-		//------------------------------------------------------------
-		if ( _view.src != undefined ) {
-			var src = jQuery( _view.src );
-			//------------------------------------------------------------
-			//  Move the source html
-			//------------------------------------------------------------
-			src.detach().appendTo( '#'+_view.id );
-		}
-		//------------------------------------------------------------
-		//  Passed as a text string?
-		//------------------------------------------------------------
-		else if ( _view.text != undefined ) {
-			jQuery( '#'+_view.id ).append( _view.text );
-		}
-		//------------------------------------------------------------
-		//  Build the link
-		//------------------------------------------------------------
-		var link = '<a href="#'+ _view.id +'">'+ _view.link +'</a>';
-		jQuery( '.tabs', this.elem ).append( link );
-		//------------------------------------------------------------
-		// Run view init function
-		//------------------------------------------------------------
-		_view['init']( this );
-	}
-	
-	/**
-	 * Start event listeners.
-	 */
-	sidecart.prototype.eventStart = function() {
-		this.tabClick();
-		this.resize();
-	}
-	
-	/**
-	 * Start window resize listener.
-	 */
-	sidecart.prototype.resize = function() {
-		var self = this;
-		jQuery( window ).resize( function() {
-			self.fitToParent();
-		})
-	}
-	
-	/**
-	 * Click a tab and things happen.
-	 */
-	sidecart.prototype.tabClick = function() {
-		var self = this;
-		jQuery( '.tabs a', self.elem ).on( 'touchstart click', function( _e ) {
-			_e.preventDefault();
-			var id = jQuery( this ).attr('href').replace('#','');
-			self.showView( id );
-		});
-	}
-	
-	/**
-	 * Slide cart in and out.
-	 */
-	sidecart.prototype.slide = function() {
-		if ( this.hidden() ) {
-			this.show();
-		}
-		else {
-			this.hide();
-		}
-	}
-	
-	/**
-	 * Check if sidecart is hidden.
-	 */
-	sidecart.prototype.hidden = function() {
-		return jQuery( this.elem ).hasClass('hidden')
-	}
-	
-	/**
-	 * Show the cart.
-	 */
-	sidecart.prototype.show = function() {
-		jQuery( this.elem ).removeClass('hidden');
-	}
-	
-	/**
-	 * Hide the cart.
-	 */
-	sidecart.prototype.hide = function() {
-		jQuery( this.elem ).addClass('hidden');
-	}
-	
-	/**
-	 * Hide all the views.
-	 */
-	sidecart.prototype.hideViews = function() {
-		jQuery( '.views ', this.elem ).children().hide();
-	}
-	
-	/**
-	 * Show a specific view and hide the others.
-	 *
-	 * @param { string } _id The id of the view.
-	 */
-	sidecart.prototype.showView = function( _id ) {
-		if ( _id !== this.last_tab ) {
-			this.last_tab = _id;
-			this.hideViews();
-			jQuery( '#'+_id, this.elem ).show();
-			jQuery( '.tabs a', this.elem ).removeClass('selected');
-			jQuery( '.tabs a[href="#'+_id+'"]', this.elem ).addClass('selected');
-			if ( this.hidden() ) {
-				this.slide();
-			}
-		}
-		else {
-			this.slide();
-		}
-		//------------------------------------------------------------
-		//  Run view refresh callback
-		//------------------------------------------------------------
-		this.viewRefresh( _id );
-	}
-	
-	/**
-	 * Show a specific view and hide the others.
-	 *
-	 * @param { string } _id The id of the view.
-	 */
-	sidecart.prototype.viewRefresh = function( _viewName ) {
-		for ( var i=0, ii=this.config['views'].length; i<ii; i++ ) {
-			var view = this.config['views'][i];
-			if ( view.id == _viewName && view.refresh != undefined ) {
-				view.refresh( this );
-			}
-		}
-	}
-	
-	/**
-	 * Show the first tab. 
-	 */
-	sidecart.prototype.showFirst = function() {
-		var self = this;
-		//------------------------------------------------------------
-		//  Grab the id of the first tab if no default is set.
-		//------------------------------------------------------------
-		var id = jQuery( '.tabs a', self.elem ).first().attr('href').replace('#','');
-		self.showView( id );
-	}
-	
-	//----------------
-	//	Extend JQuery 
-	//----------------
-	jQuery( document ).ready( function( jQuery ) {
-		jQuery.fn.sidecart = function( _config ) {
-			var id = jQuery( this ).selector;
-			return this.each( function() {
-				jQuery.data( this, id, new sidecart( this, _config, id ) );
-			});
-		};
-	})
+    
+    /**
+     * Holds default options, adds user defined options, and initializes the plugin
+     *
+     * @param { obj } _elem The DOM element where the plugin will be drawn
+     * @param { obj } _config Key value pairs to hold the plugin's configuration
+     * @param { string } _id The id of the DOM element
+     */
+    function sidecart( _elem, _config, _id ) {
+        var self = this;
+        self.elem = _elem;
+        self.id = _id;
+        self.init( _elem, _config );
+    }
+    
+    /**
+     * Holds default options, adds user defined options, and initializes the plugin
+     *
+     * @param { obj } _elem The DOM element where the plugin will be drawn
+     * @param { obj } _config Key value pairs to hold the plugin's configuration
+     */
+    sidecart.prototype.init = function( _elem, _config ) {
+        var self = this;
+        //------------------------------------------------------------
+        //  Mark your territory
+        //------------------------------------------------------------
+        jQuery( self.elem ).addClass('sidecart')
+        //------------------------------------------------------------
+        //  User options 
+        //------------------------------------------------------------
+        self.config = jQuery.extend({
+            side: 'right',
+            inside: false,
+            'bottom-space': 40,
+            theme: null,
+            'tab-pad': 2
+        }, _config );
+        //------------------------------------------------------------
+        //  Get a styler object handy
+        //------------------------------------------------------------
+        self.styler = new Styler();
+        //------------------------------------------------------------
+        //  Start me up!
+        //------------------------------------------------------------
+        self.start();
+    }
+    
+    /**
+     * Start up sidecart.
+     */
+    sidecart.prototype.start = function() {
+        this.theme();
+        this.buildWrapper();
+        this.buildViews();
+        this.resize();
+        this.hide();
+    }
+    
+    /**
+     *  Apply sidecart theme.
+     */
+    sidecart.prototype.theme = function() {
+        if ( this.config['theme'] != null ) {
+            jQuery( this.elem ).addClass( this.config['theme'] );
+        }
+    }
+    
+    /**
+     * Build the application wrapper.
+     */
+    sidecart.prototype.buildWrapper = function() {
+        //------------------------------------------------------------
+        //  Hide initially
+        //------------------------------------------------------------
+        jQuery( this.elem ).addClass('hidden');
+        //------------------------------------------------------------
+        //  Left side
+        //------------------------------------------------------------
+        switch ( this.config['side'] ) {
+            case 'left':
+                this.buildTabsLast();
+                jQuery( this.elem ).addClass('left');
+                break;
+            case 'top':
+                this.buildTabsLast();
+                jQuery( this.elem ).addClass('top');
+                break;
+            default: // right side
+                this.buildTabsFirst();
+        }
+        //------------------------------------------------------------
+        //  Inside parent?
+        //------------------------------------------------------------
+        this.fitToParent();
+    }
+    
+    /**
+     * Fit sidecart inside parent.
+     */
+    sidecart.prototype.fitToParent = function() {
+        if ( this.config['inside'] == true ) {
+            var parent = jQuery( this.elem ).parent();
+            var position = parent.position();
+            jQuery( this.elem ).css({ left: position.left });
+            if ( this.config['side'] == 'top' ) {
+                jQuery( this.elem ).width( parent.outerWidth() );
+                var height = parent.height()-jQuery( '.tabs', this.elem ).height()-this.config['bottom-space'];
+                var style = {};
+                style[this.id+' .inner'] = 'height:'+height+'px';
+                style[this.id+'.hidden .inner'] = 'height:0';
+                this.styler.add( style );
+            }
+        }
+    }
+    
+    /**
+     * Build with tab after inner.
+     */
+    sidecart.prototype.buildTabsLast = function() {
+        jQuery( this.elem ).append( '\
+            <div class="wrapper">\
+                <div class="inner">\
+                    <div class="views"></div>\
+                </div>\
+            </div>\
+            <div class="tabs"></div>\
+        ');
+    }
+    
+    /**
+     * Build with tab before inner.
+     */
+    sidecart.prototype.buildTabsFirst = function() {
+        jQuery( this.elem ).append( '\
+            <div class="tabs"></div>\
+            <div class="wrapper">\
+                <div class="inner">\
+                    <div class="views"></div>\
+                </div>\
+            </div>\
+        ');
+    }
+    
+    /**
+     * Build all of the views.
+     */
+    sidecart.prototype.buildViews = function() {
+        //------------------------------------------------------------
+        //  No views?  Get outta there.
+        //------------------------------------------------------------
+        if ( this.config['views'] == undefined ) {
+            return;
+        }
+        //------------------------------------------------------------
+        //  Build each view.
+        //------------------------------------------------------------
+        for ( var i=0, ii=this.config['views'].length; i<ii; i++ ) {
+            var view = this.config['views'][i];
+            this.buildView( view );
+        }
+    }
+    
+    /**
+     * Add a view.
+     */
+    sidecart.prototype.addView = function( _view ) {
+        if ( this.config['views'] == undefined ) {
+            this.config['views'] = [];
+        }
+        this.config['views'].push( _view );
+        this.buildView( _view );
+    }
+    
+    /**
+     * Build a single view.
+     *
+     * @param { Object } _view      A single view config object.
+     *                              See constructor.
+     */
+    sidecart.prototype.buildView = function( _view ) {
+        //------------------------------------------------------------
+        //  Build the view
+        //------------------------------------------------------------
+        jQuery( '.views', this.elem ).append('\
+            <div id="'+ _view.id +'" class="'+ _view.type +'"></div>\
+        ');
+        //------------------------------------------------------------
+        //  Already in the dom?
+        //------------------------------------------------------------
+        if ( _view.src != undefined && _view.src != '' ) {
+            var src = jQuery( _view.src );
+            //------------------------------------------------------------
+            //  Move the source html
+            //------------------------------------------------------------
+            src.detach().appendTo( '#'+_view.id );
+        }
+        //------------------------------------------------------------
+        //  Passed as a text string?
+        //------------------------------------------------------------
+        else if ( _view.text != undefined ) {
+            jQuery( '#'+_view.id ).append( _view.text );
+        }
+        //------------------------------------------------------------
+        //  Build the link
+        //------------------------------------------------------------
+        var link = '<a href="#'+ _view.id +'">'+ _view.link +'</a>';
+        jQuery( '.tabs', this.elem ).append( link );
+        //------------------------------------------------------------
+        //  Run view init function
+        //------------------------------------------------------------
+        if ( _view['init'] != undefined ) {
+            _view['init']( this );
+        }
+        //------------------------------------------------------------
+        //  View events
+        //------------------------------------------------------------
+        this.viewEvents( _view );
+        this.showView( _view.id );
+        this.hide();
+    }
+    
+    /**
+     * Start event listeners.
+     * @param { _obj } _view A view configuration object;
+     */
+    sidecart.prototype.viewEvents = function( _view ) {
+        this.tabClick( _view );
+    }
+    
+    /**
+     * Start window resize listener.
+     */
+    sidecart.prototype.resize = function() {
+        var self = this;
+        jQuery( window ).resize( function() {
+            self.fitToParent();
+        })
+    }
+    
+    /**
+     * Click a tab and things happen.
+     */
+    sidecart.prototype.tabClick = function( _view ) {
+        var self = this;
+        jQuery( '.tabs a[href="#'+_view.id+'"]', self.elem ).on( 'touchstart click', function( _e ) {
+            _e.preventDefault();
+            var id = jQuery( this ).attr('href').replace('#','');
+            self.showView( id );
+        });
+    }
+    
+    /**
+     * Slide cart in and out.
+     */
+    sidecart.prototype.slide = function() {
+        if ( this.hidden() ) {
+            this.show();
+        }
+        else {
+            this.hide();
+        }
+    }
+    
+    /**
+     * Check if sidecart is hidden.
+     */
+    sidecart.prototype.hidden = function() {
+        return jQuery( this.elem ).hasClass('hidden')
+    }
+    
+    /**
+     * Show the cart.
+     */
+    sidecart.prototype.show = function() {
+        jQuery( this.elem ).removeClass('hidden');
+    }
+    
+    /**
+     * Hide the cart.
+     */
+    sidecart.prototype.hide = function() {
+        jQuery( this.elem ).addClass('hidden');
+    }
+    
+    /**
+     * Hide all the views.
+     */
+    sidecart.prototype.hideViews = function() {
+        jQuery( '.views ', this.elem ).children().hide();
+    }
+    
+    /**
+     * Show a specific view and hide the others.
+     *
+     * @param { string } _id The id of the view.
+     */
+    sidecart.prototype.showView = function( _id ) {
+        if ( _id !== this.last_tab ) {
+            this.last_tab = _id;
+            this.hideViews();
+            jQuery( '#'+_id, this.elem ).show();
+            jQuery( '.tabs a', this.elem ).removeClass('selected');
+            jQuery( '.tabs a[href="#'+_id+'"]', this.elem ).addClass('selected');
+            if ( this.hidden() ) {
+                this.slide();
+            }
+        }
+        else {
+            this.slide();
+        }
+        //------------------------------------------------------------
+        //  Run view refresh callback
+        //------------------------------------------------------------
+        this.refreshView( _id );
+    }
+    
+    /**
+     * Show a specific view and hide the others.
+     *
+     * @param { string } _id The id of the view.
+     */
+    sidecart.prototype.refreshView = function( _viewName ) {
+        for ( var i=0, ii=this.config['views'].length; i<ii; i++ ) {
+            var view = this.config['views'][i];
+            if ( view.id == _viewName && view.refresh != undefined ) {
+                view.refresh( this );
+            }
+        }
+    }
+    
+    /**
+     * Show the first tab. 
+     */
+    sidecart.prototype.showFirst = function() {
+        var self = this;
+        var first = this.config['views'][0];
+        this.showView( first.id );
+    }
+    
+    //----------------
+    //  Extend JQuery 
+    //----------------
+    jQuery( document ).ready( function( jQuery ) {
+        jQuery.fn.sidecart = function( _config ) {
+            var id = jQuery( this ).selector;
+            return this.each( function() {
+                jQuery.data( this, id, new sidecart( this, _config, id ) );
+            });
+        };
+    })
 })( jQuery );
 /*!
  * Bodin
@@ -1582,6 +1627,7 @@ var BodinAlign = function() {
 	this.events = {
 		loaded: 'BodinAlign-LOADED'
 	};
+	this.styler = new Styler();
 	
 	/**
 	 *	Start it up!
@@ -1615,7 +1661,7 @@ var BodinAlign = function() {
 		//	Get each alignment xml
 		//------------------------------------------------------------
 		for ( var i in this.src ) {
-			this._get( i );
+			this.get( i );
 		}
 	}
 	
@@ -1624,13 +1670,13 @@ var BodinAlign = function() {
 	 *
 	 *	@param { string } _src URL to an XML document
 	 */
-	this._get = function( _src ) {
+	this.get = function( _src ) {
 		var self = this;
 		jQuery.get( _src )
 		.done( function( _data ){
 			self.alignments[ _src ]['xml'] = _data;
 			self.alignments[ _src ]['loaded'] = true;
-			self.alignments[ _src ]['json'] = self._json( _data );
+			self.alignments[ _src ]['json'] = self.json( _data );
 			self.loadCheck();
 		})
 		.fail( function(){
@@ -1643,7 +1689,7 @@ var BodinAlign = function() {
 	 *	@param { dom }
 	 *  @param { obj } JSON version
 	 */
-	this._target = function( _target ) {
+	this.target = function( _target ) {
 		//------------------------------------------------------------
 		//  Get book and chapter
 		//------------------------------------------------------------
@@ -1667,15 +1713,21 @@ var BodinAlign = function() {
 		//------------------------------------------------------------
 		_target = _target.substr( at+1 , _target.length );
 		var index = _target.split('-');
-		var start = this._wordAndOccurence( index[0] );
-		var end = this._wordAndOccurence( index[1] );
+//		var start = this.wordAndOccurence( index[0] );
+//		var end = this.wordAndOccurence( index[1] );
+		//------------------------------------------------------------
+		// This assumes that the html is already pre-processed with 
+		// word[occurrence] as the value of the data-ref attribute
+		//------------------------------------------------------------
+		var start = index[0];
+		var end = index[1];
 		//------------------------------------------------------------
 		//  Return target data JSON style
 		//------------------------------------------------------------
 		return { 'book': book, 'chapter': chapter, 'start': start, 'end': end }
 	}
 	
-	this._json = function( _data ) {
+	this.json = function( _data ) {
 		var self = this;
 		var json = []
 		jQuery( _data ).find('Annotation').each( function(){
@@ -1685,7 +1737,7 @@ var BodinAlign = function() {
 			//------------------------------------------------------------
 			var target = jQuery( annot ).find('hasTarget');
 			target = jQuery( target[0] ).attr('rdf:resource');
-			target = self._target( target );
+			target = self.target( target );
 			if ( target == undefined ) {
 				return true; // a continue in jQuery().each() land
 			}
@@ -1694,7 +1746,7 @@ var BodinAlign = function() {
 			//------------------------------------------------------------
 			var body = jQuery( annot ).find('hasBody');
 			body = jQuery( body[0] ).attr('rdf:resource');
-			body = self._target( body );
+			body = self.target( body );
 			if ( target == undefined ) {
 				return true; // a continue in jQuery().each() land
 			}
@@ -1703,7 +1755,7 @@ var BodinAlign = function() {
 		return json;
 	}
 	
-	this._wordAndOccurence = function( _string ) {
+	this.wordAndOccurence = function( _string ) {
 		var sep = _string.indexOf('[');
 		var word = _string.substr( 0 , sep );
 		var occurence = _string.substr( sep, _string.length-1 ).replace('[','').replace(']','');
@@ -1718,7 +1770,7 @@ var BodinAlign = function() {
 		//  Loop through the alignments and markup where appropriate
 		//------------------------------------------------------------
 		for ( var src in this.alignments ) {
-			var ids = this._xmlToIds( src );
+			var ids = this.xmlToIds( src );
 			if ( ids == undefined ) {
 				console.log( 'No ids specified for ' + src );
 				continue;
@@ -1726,8 +1778,8 @@ var BodinAlign = function() {
 			var id = 1;
 			for ( var j in this.alignments[src]['json'] ) {
 				var obj = this.alignments[src]['json'][j];
-				this._mark( ids['body'], id, obj['body'] );
-				this._mark( ids['target'], id, obj['target'] );
+				this.mark( ids['body'], id, obj['body'] );
+				this.mark( ids['target'], id, obj['target'] );
 				id++;
 			}
 		}
@@ -1739,7 +1791,7 @@ var BodinAlign = function() {
 	 *  @param { string } _src The path to the alignment xml
 	 *  return { obj }
 	 */
-	this._xmlToIds = function( _src ) {
+	this.xmlToIds = function( _src ) {
 		for ( var i in this.config ) {
 			if ( this.config[i]['src'] == _src ) {
 				return ( this.config[i]['ids'] );
@@ -1754,7 +1806,7 @@ var BodinAlign = function() {
 	 *  @param { int } _alignId The id of the alignment
 	 *  @param { obj } _obj 
 	 */
-	this._mark = function( _bodinId, _alignId, _obj ) {
+	this.mark = function( _bodinId, _alignId, _obj ) {
 		//------------------------------------------------------------
 		//  Get the selector
 		//------------------------------------------------------------
@@ -1764,109 +1816,81 @@ var BodinAlign = function() {
 		var select =  id+' '+book+' '+chapter;
 		var html = jQuery( select ).html();
 		//------------------------------------------------------------
-		//  Find the start and end positions
+		//  Find the start and end elements
 		//------------------------------------------------------------
 		var start = _obj['start'];
 		var end = _obj['end'];
-		var positions = html.positions( start['word'], false, true, true );
-		var ind = positions[ start['occurence']-1 ];
-		//------------------------------------------------------------
-		//  Wrap the passage in a span tag
-		//------------------------------------------------------------
-		var color = this._highlightColor( _alignId );
-		html = html.insertAt( ind, '<span id="'+( _alignId )+'" class="align" style="background-color:'+color+'">' );
-		positions = html.positions( end['word'], false, true, true );
-		ind = positions[ ( end['occurence']-1 ) ]+end['word'].length;
-		html = html.insertAt( ind, '</span>' );
-		jQuery( select ).html( html );
-	}
-	
-	/*
-	this._mark = function( _bodinId, _alignId, _obj ) {
-		var self = this;
-		//------------------------------------------------------------
-		//  Get the selector
-		//------------------------------------------------------------
-		var id = '#'+_bodinId;
-		var book = '#book-'+_obj['book'];
-		var chapter = '#chapter-'+_obj['chapter'];
-		var select =  id+' '+book+' '+chapter+' *';
-		//------------------------------------------------------------
-		//  Find the start and end positions
-		//------------------------------------------------------------
-		var start = _obj['start'];
-		var end = _obj['end'];
-		//------------------------------------------------------------
-		//  Get a color
-		//------------------------------------------------------------
-		var color = this._highlightColor( _alignId );
-		//------------------------------------------------------------
-		//  Retrieve text nodes
-		//------------------------------------------------------------
-		var startOccur = parseInt( start['occurence'] );
-		var endOccur = parseInt( end['occurence'] );
-		var textNodes = [];
+		var color_class = ' ' + this.colorClass( _alignId );
 		
-		jQuery( select ).each( function() {
-			var tag = jQuery( this ).get(0).tagName;
-			var cls = jQuery( this ).attr( 'class' );
-			//------------------------------------------------------------
-			//  Ignore tag?
-			//------------------------------------------------------------
-			if ( self.ignoreTag[ tag ] == true ) {
-				return 1;
-			}
-			if ( cls != undefined ) {
-				cls = cls.replace( '.', '' );
-				if ( self.ignoreClass[ cls ] == true ) {
-					return 1;
-				}
-			}
-			//------------------------------------------------------------
-			//  Store the DOM element and its words to rebuild later
-			//------------------------------------------------------------
-			var startFound = false;
-			var endFound = false;
-			var words = jQuery( this ).html().replace( /\n/g, " " ).split(" ");
-			for ( var i=0, ii=words.length; i<ii; i++ ) {
-				var check = words[i];
-				//------------------------------------------------------------
-				//  Skip over html tags
-				//------------------------------------------------------------
-				if ( check.indexOf( '<' ) == 0 ) {
-					while( check.indexOf( '>' ) == -1 && i<ii ) {
-						i++;
-					}
-					continue;
-				}
-				//------------------------------------------------------------
-				//  Clean up string to ensure accurate checks
-				//------------------------------------------------------------
-				check = check.stripTags().alphaOnly();
-				//------------------------------------------------------------
-				//  Check for word and occurence
-				//------------------------------------------------------------
-				if ( check == start['word'] && startFound == false ) {
-					if ( startOccur == 1 ) {
-						startFound = true;
-						words[i] = '<span id="align-'+( _alignId )+'" class="align" style="background-color:'+color+'">' + words[i];
-					}
-					startOccur--;
-				}
-				if ( check == end['word'] && endFound == false ) {
-					if ( endOccur == 1 ) {
-						endFound = true;
-						words[i] = words[i] + '</span>';
-					}
-					endOccur--;
-				}
-				if ( startFound == true && endFound == true ) {
+		//------------------------------------------------------------
+		//  TODO: Position calculation needs the citation structure
+		//  of the document -- Ideally this should be handled 
+		//  during pre-processing so our UI code doesn't 
+		//  need to do this.
+		//------------------------------------------------------------
+		//------------------------------------------------------------
+		//  Identify each word in the passage with the alignment id 
+		//------------------------------------------------------------
+		var start_elem = jQuery( "span.token.text[data-ref='" + start + "']" );
+		var end_elem = jQuery( "span.token.text[data-ref='" + end + "']" );
+		if ( start_elem && end_elem ) {
+			//-----------------------------------------------------------
+			// TODO: This breaks if the start and end of the range 
+			// aren't in the same display hierarchy. (e.g. If there are not
+			// citation-specific groupings that break up the hierarchy ).
+			//-----------------------------------------------------------
+			var sibs = $( start_elem ).nextAll('.token').addBack();
+			var done = false;
+			for ( var i=0; i<sibs.length; i++ ) {
+				if ( done ) {
 					break;
 				}
+				var sib = jQuery( sibs[i] );
+				var num = parseInt( sib.attr('data-aligned') ) + 1;
+				sib.attr( 'data-aligned', num );
+				var start_class = '';
+				var end_class = '';
+				if ( i == 0 ) {
+					start_class = ' align-start';
+				}
+				//------------------------------------------------------------
+				// Add a class to indicate its the end of the alignment
+				//------------------------------------------------------------
+				if ( sib.attr('data-ref') == end ) {
+					end_class = ' align-end';
+				}
+				//------------------------------------------------------
+				// If we already have aligned this word, we need to add 
+				// another wrapping element for the next alignment
+				// make it an inner element so that it doesn't break
+				// with finding siblings for other alignments
+				//------------------------------------------------------
+				var elem = 	this.alignSpan( _alignId, start_class, end_class, color_class );
+				sib.wrapInner( elem.smoosh() );
+				
+				if ( sib.attr('data-ref') == end ) {
+					done = true;
+				}
 			}
-			console.log( words.join(' ') );
-			jQuery( this ).html( words.join(' ') );
-		});
+		}
+		//------------------------------------------------------
+		// we should probably handle the case where the matching
+		// alignment couldn't be found and remove the highlights
+		//------------------------------------------------------
+	}
+	
+	this.alignSpan = function( _alignId, _start_class, _end_class, _color_class ) {
+		return '\
+			<span \
+				class="\
+					aligned align-'+_alignId+ 
+					_start_class + 
+					_end_class + 
+					_color_class + 
+				'" \
+				data-alignId="'+_alignId+'"\
+			>\
+			</span>';
 	}
 	
 	/**
@@ -1875,9 +1899,43 @@ var BodinAlign = function() {
 	 *  @param { int } _id The alignment id
 	 *  @return { string } An rgba(255,0,0,0.25) string
 	 */
-	this._highlightColor = function( _id ) {
-		var color = this.palette.colors[  _id % this.palette.colors.length ];
-		return color.toAlpha( 0.15 );
+	this.highlightColor = function( _id ) {
+		return this.alphaColor( _id, 0.15 );
+	}
+	
+	/**
+	 *  Retrieve a highlight blink color
+	 *
+	 *  @param { int } _id The alignment id
+	 *  @return { string } An rgba(255,0,0,0.25) string
+	 */
+	this.highlightBlinkColor = function( _id ) {
+		return this.alphaColor( _id, 0.5);
+	}
+	
+	this.alphaColor = function( _id, _alpha ) {
+		var color = this.palette.colors[  this.colorId(_id) ];
+		return color.toAlpha( _alpha );
+	}
+	
+	this.colorId = function( _int ) {
+		return _int % this.palette.colors.length
+	}
+	
+	this.colorClass = function( _int ) {
+		return 'color-'+this.colorId(_int);
+	}
+	
+	/**
+	 *  Create palette styles
+	 */
+	this.paletteStyles = function() {
+		var rule = {};
+		for ( var i=0; i<this.palette.colors.length; i++ ) {
+			rule[ '.'+this.colorClass(i) ] = 'background-color:'+this.highlightColor(i);
+			rule[ '.'+this.colorClass(i)+'.blink' ] = 'background-color:'+this.highlightBlinkColor(i);
+			this.styler.add( rule );
+		}
 	}
 	
 	/**
@@ -1889,6 +1947,7 @@ var BodinAlign = function() {
 				return;
 			}
 		}
+		this.paletteStyles();
 		jQuery( window ).trigger( this.events['loaded'] );
 	}
 }
@@ -1898,49 +1957,107 @@ var BodinAlign = function() {
 ;(function( jQuery ) {
 	
 	/**
-	 * Holds default options, adds user defined options, and initializes the plugin
+	 * Holds default config, adds user defined config, and initializes the plugin
 	 *
 	 * @param { obj } _elem The DOM element where the plugin will be drawn\
-	 * @param { obj } _options Key value pairs to hold the plugin's configuration
+	 * @param { obj } _config Key value pairs to hold the plugin's configuration
 	 * @param { string } _id The id of the DOM element
 	 */
-	function BodinUI( _elem, _options, _id ) {
+	function BodinUI( _elem, _config, _id ) {
 		var self = this;
 		self.elem = _elem;
 		self.id = _id;
-		self.init( _elem, _options );
+		self.init( _elem, _config );
 	}
 	
 	/**
-	 * Holds default options, adds user defined options, and initializes the plugin
+	 * Holds default config, adds user defined config, and initializes the plugin
 	 *
 	 * @param { obj } _elem The DOM element where the plugin will be drawn
-	 * @param { obj } _options Key value pairs to hold the plugin's configuration
+	 * @param { obj } _config Key value pairs to hold the plugin's configuration
 	 */
-	BodinUI.prototype.init = function( _elem, _options ) {
+	BodinUI.prototype.init = function( _elem, _config ) {
 		var self = this;
 		//------------------------------------------------------------
 		//	Mark your territory
 		//------------------------------------------------------------
 		jQuery( self.elem ).addClass('bodin');
 		//------------------------------------------------------------
-		//	User options 
+		//  Get the instance id
 		//------------------------------------------------------------
-		self.options = $.extend({
+		self.id = jQuery( self.elem ).attr('id');
+		//------------------------------------------------------------
+		//	User config 
+		//------------------------------------------------------------
+		self.config = $.extend({
 			scrollPad: 40,
-			blinkAlpha: .5
-		}, _options );
+			blinkAlpha: .5,
+			blinkLength: .5, // seconds
+			blinkN: 3
+		}, _config );
 		//------------------------------------------------------------
 		//	Events
 		//------------------------------------------------------------
 		self.events = {
 			milestone: 'BodinUI-MILESTONE',
-			align: 'BodinUI-ALIGN'
+			align: 'BodinUI-ALIGN',
+			switch_highlight: 'BodinUI-SWITCH_HIGHLIGHT'
 		};
+		//------------------------------------------------------------
+		//  Used for managing multiple alignment clicks
+		//------------------------------------------------------------
+		self.alignClick=0;
 		//------------------------------------------------------------
 		//	Start event listeners
 		//------------------------------------------------------------
 		self.start();
+	}
+	
+	/**
+	 * Returns the options
+	 */
+	BodinUI.prototype.optionsUI = function() {
+		var self = this;
+		return '\
+			<div class="switches">\
+			\
+				<!-- Highlights -->\
+				<h3>Highlights</h3>\
+				<div class="onoffswitch">\
+					<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="highlight_'+self.id+'" checked>\
+					<label class="onoffswitch-label" for="highlight_'+self.id+'">\
+						<div class="onoffswitch-inner"></div>\
+						<div class="onoffswitch-switch"></div>\
+					</label>\
+				</div>\
+			\
+			</div>'
+	}
+	
+	/**
+	 * Returns the options
+	 */
+	BodinUI.prototype.startOptionsUI = function() {
+		var self = this;
+		//------------------------------------------------------------
+		//  Start the switch click event handlers
+		//------------------------------------------------------------
+		jQuery( '.onoffswitch-label', self.elem ).on( 'touchstart click', function(_e) {
+			//------------------------------------------------------------
+			//  Switch
+			//------------------------------------------------------------
+			var id = jQuery( this ).attr('for');
+			var on_off = jQuery( '.onoffswitch input#'+id, self.elem );
+			var on = ( on_off.prop( 'checked' ) == true ) ? false : true; 
+			//------------------------------------------------------------
+			//  Events
+			//------------------------------------------------------------
+			switch ( id ) {
+				case 'highlight_'+self.id:
+					console.log( on );
+					break;
+			}
+		});
 	}
 	
 	/**
@@ -1953,7 +2070,7 @@ var BodinAlign = function() {
 		self.buildNav();
 		self.tooltips();
 		self.align();
-		if ( self.options['milestones'] != undefined ) {
+		if ( self.config['milestones'] != undefined ) {
 			self.milestones();
 		}
 		jQuery( window ).resize( function() {
@@ -1967,9 +2084,11 @@ var BodinAlign = function() {
 	 */
 	BodinUI.prototype.align = function() {
 		var self = this;
-		jQuery( '.align', self.elem ).on( 'touchstart click', function( _e ) {
+		jQuery( '.aligned', self.elem ).on( 'touchstart click', function( _e ) {
+			_e.stopPropagation();
 			_e.preventDefault();
-			jQuery( window ).trigger( self.events['align'], [ jQuery( this ).attr('id') ] );
+			var id = jQuery( this ).attr('data-alignId')
+			jQuery( window ).trigger( self.events['align'], [ 'aligned','data-alignId',id ] );
 		});
 	}
 	
@@ -1981,39 +2100,36 @@ var BodinAlign = function() {
 	BodinUI.prototype.alphaBlink = function( _id ) {
 		var self = this;
 		var dom = jQuery( '#'+_id, self.elem );
-		var colors = self._alphaBlinkColors( dom );
-		if ( colors == undefined ) {
-			return;
-		}
 		var times = [];
 		self.blinkCounter = 0;
-		for ( var i=1; i<=9; i++ ) {
+		var ii = (self.config['blinkN']*2);
+		for ( var i=1; i<=ii; i++ ) {
 			setTimeout( function() {
-				jQuery( dom ).css('background-color', colors[ self.blinkCounter%colors.length ] );
+				jQuery( dom ).toggleClass( 'blink' );
 				self.blinkCounter++;
-			}, i*500 );
+			}, i*self.config['blinkLength']*1000 );
 		}
 	}
 	
 	/**
-	 * Alpha blink.
-	 *
-	 * @param { string } _id The dom element you want to blink.
-	 * @return { array }
-	 */
-	BodinUI.prototype._alphaBlinkColors = function( _dom ) {
-		if ( _dom == undefined ) {
-			return undefined;
+	* Alpha blink a specific element
+	*
+	*  @param { string } _filter a class filter to make it perform
+	*  @param { string } _key The element attribute key name
+	*  @param { string } _val The element attribute key value 
+	*/
+	BodinUI.prototype.filteredAlphaBlink = function( _filter, _key, _val) {
+		var self = this;
+		var dom = $( '.'+_filter + '[' + _key + "='" + _val + "']" , self.elem );
+		var times = [];
+		self.blinkCounter = 0;
+		var ii = (self.config['blinkN']*2);
+		for ( var i=1; i<=ii; i++ ) {
+			setTimeout( function() {
+				jQuery( dom ).toggleClass( 'blink' );
+				self.blinkCounter++;
+			}, i*self.config['blinkLength']*1000 );
 		}
-		var color = jQuery( _dom ).css( 'background-color' );
-		if ( color == undefined ) {
-			return undefined;
-		}
-		var numString = color.substring( color.indexOf('(')+1, color.indexOf(')')-1 );
-		var numArray = numString.split(',');
-		numArray[3] = this.options['blinkAlpha'];
-		var newColor = 'rgba('+numArray.join(',')+')'
-		return [ color, newColor ];
 	}
 	
 	/**
@@ -2048,7 +2164,7 @@ var BodinAlign = function() {
 	BodinUI.prototype.milestones = function() {
 		var self = this;
 		var i = 0;
-		var stones = self.options['milestones'];
+		var stones = self.config['milestones'];
 		jQuery( 'p', self.elem ).each( function() {
 			var index = i % stones.length;
 			var stone = stones[index];
@@ -2072,7 +2188,28 @@ var BodinAlign = function() {
 		if ( pos == undefined ) {
 			return;
 		}
-		var scroll = pos.top - self.options['scrollPad'];
+		var scroll = pos.top - self.config['scrollPad'];
+		var current = $( '.work', self.elem ).scrollTop();
+		$( '.work', self.elem ).animate ({
+			scrollTop: current + scroll
+		}, 1000 );
+	}
+	
+	/**
+	*  Go to a particular element
+	*  with the a supplied attribute
+	*
+	*  @param { string } _filter a class filter to make it perform
+	*  @param { string } _key The element attribute key name
+	*  @param { string } _val The element attribute key value 
+	*/
+	BodinUI.prototype.filteredGoTo = function( _filter, _key, _val ) {
+		var self = this;
+		var pos = $( '.'+_filter + '[' + _key + "='" + _val + "']" , self.elem ).position();
+		if ( pos == undefined ) {
+			return;
+		}
+		var scroll = pos.top - self.config['scrollPad'];
 		var current = $( '.work', self.elem ).scrollTop();
 		$( '.work', self.elem ).animate ({
 			scrollTop: current + scroll
@@ -2145,9 +2282,17 @@ var BodinAlign = function() {
 				{
 					id: id+'-view-1',
 					type: 'nav',
-					link: 'index',
+					link: '&hearts; Index',
 					text: nav,
 					init: function() {},
+					refresh: function() {}
+				},
+				{
+					id: id+'-view-2',
+					type: 'options',
+					link: '&clubs; Options',
+					text: self.optionsUI(),
+					init: function() { self.startOptionsUI() },
 					refresh: function() {}
 				}
 			]
@@ -2181,10 +2326,10 @@ var BodinAlign = function() {
 	//	Extend JQuery 
 	//----------------
 	jQuery(document).ready( function( jQuery ) {
-		jQuery.fn.BodinUI = function( options ) {
+		jQuery.fn.BodinUI = function( config ) {
 			var id = jQuery(this).selector;
 			return this.each( function() {
-				jQuery.data( this, id, new BodinUI( this, options, id ) );
+				jQuery.data( this, id, new BodinUI( this, config, id ) );
 			});
 		};
 	})
@@ -2270,16 +2415,13 @@ Tooltipper.prototype.start = function() {
 	//------------------------------------------------------------
 	//  Click listener
 	//------------------------------------------------------------
-	jQuery( self.root + ' [rel~=tooltip]' ).bind( 'touchstart click', function( _e ) {
+	jQuery( self.root + ' [rel~=tooltip]' ).on( 'touchstart click', function( _e ) {
+		_e.stopPropagation();
 		_e.preventDefault();
 		//------------------------------------------------------------
 		//  Store reference to clicked element.
 		//------------------------------------------------------------
 		self.target = jQuery(this);
-		//------------------------------------------------------------
-		//  Remove existing tooltip
-		//------------------------------------------------------------
-		jQuery( self.root+' #tooltipper' ).remove();
 		//------------------------------------------------------------
 		//  Check for title
 		//------------------------------------------------------------
@@ -2295,6 +2437,15 @@ Tooltipper.prototype.start = function() {
 		//  Position it.
 		//------------------------------------------------------------
 		self.position();
+	});
+	//------------------------------------------------------------
+	//  Close the tooltip when appropriate
+	//------------------------------------------------------------
+	jQuery( window ).on( 'touchstart click', function( _e ) {
+		if ( _e.originalEvent.target == self.tooltip.get(0) ) {
+			return;
+		}
+		self.tooltip.remove();
 	});
 	//------------------------------------------------------------
 	//  Listen for events that require repositioning

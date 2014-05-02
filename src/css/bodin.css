@@ -39,21 +39,28 @@ body,html {
 }
 .bodin .token {
 	cursor: pointer;
-	/* Firefox */
+}
+.bodin .aligned {
+	margin: 0;
+	padding: 0;
 	-moz-transition: all .25s ease-in;
-	/* WebKit */
 	-webkit-transition: all .25s ease-in;
-	/* Opera */
 	-o-transition: all .25s ease-in;
-	/* Standard */
 	transition: all .25s ease-in;
+}
+.bodin .span {
+	margin: 0;
+	padding: 0;
 }
 .bodin .work {
 	height: 100%;
 	overflow-y: scroll;
+	overflow-x: hidden;
 	background-color: #F9F9F9;
-	padding: 80px;
+	padding: 50px;
+	box-sizing: border-box;
 }
+/*
 .bodin .page {
 	padding: 60px 80px 120px 80px;
 	margin-bottom: 5px;
@@ -61,21 +68,19 @@ body,html {
 	margin-left: auto;
 	margin-right: auto;
 }
+*/
 .bodin .options .switches {
 	width: 200px;
-}
-.bodin.slim .page{
-	padding: 60px 30px 120px 45px;
 }
 .bodin.slim .milestone {
 	margin-left: -18px;
 	margin-right: 8px;
 }
-.bodin .tei_pagebreak {
+.bodin .pagebreak {
 	width: 200%;
 	background-color: #222;
 	height: 3px;
-	margin-left: -100px;
+	margin: 100px 0 50px -100px;
 }
 
 #tooltipper {

@@ -362,7 +362,7 @@
     </xsl:template>
     
     <xsl:template match="tei:pb|pb">
-        <div class="page_n"><xsl:text></xsl:text><xsl:value-of select="@n"/><xsl:text></xsl:text></div><br class="tei_pagebreak" />
+        <div class="page_n"><xsl:text></xsl:text><xsl:value-of select="@n"/><xsl:text></xsl:text></div><br class="pagebreak" />
     </xsl:template>
     
     <xsl:template match="tei:seg|seg">

@@ -131,11 +131,11 @@
 	 */
 	BodinUI.prototype.align = function() {
 		var self = this;
-		jQuery( '.align', self.elem ).on( 'touchstart click', function( _e ) {
+		jQuery( '.aligned', self.elem ).on( 'touchstart click', function( _e ) {
 			_e.stopPropagation();
 			_e.preventDefault();
-			var id = jQuery( this ).attr('id')
-			jQuery( window ).trigger( self.events['align'], [ id ] );
+			var id = jQuery( this ).attr('data-alignId')
+			jQuery( window ).trigger( self.events['align'], [ 'aligned','data-alignId',id ] );
 		});
 	}
 	
