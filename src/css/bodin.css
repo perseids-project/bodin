@@ -21,11 +21,13 @@ body,html {
 	color: #FF5555;
 	vertical-align: top;
 	padding: 0;
-	display: inline-block;
+	/*display: inline-block;*/
 	font-size: 12px;
 	text-decoration: none;
-	margin-left: -25px;
-	margin-right: 15px;
+	margin-left: -5%;
+	padding-left: 0;
+	/*margin-right: 15px;*/
+	float:left;
 }
 .bodin a.note {
 	display: inline-block;
@@ -35,7 +37,7 @@ body,html {
 	line-height: 1;
 	text-decoration: none;
 }
-.bodin span.align {
+.bodin .token {
 	cursor: pointer;
 	/* Firefox */
 	-moz-transition: all .25s ease-in;
@@ -49,9 +51,10 @@ body,html {
 .bodin .work {
 	height: 100%;
 	overflow-y: scroll;
+	background-color: #F9F9F9;
+	padding: 80px;
 }
 .bodin .page {
-	background-color: #F9F9F9;
 	padding: 60px 80px 120px 80px;
 	margin-bottom: 5px;
 	max-width: 600px;
@@ -68,6 +71,13 @@ body,html {
 	margin-left: -18px;
 	margin-right: 8px;
 }
+.bodin .tei_pagebreak {
+	width: 200%;
+	background-color: #222;
+	height: 3px;
+	margin-left: -100px;
+}
+
 #tooltipper {
 	text-align: center;
 	color: #fff;
@@ -103,3 +113,4 @@ body,html {
 	left: auto;
 	margin: 0;
 }
+.align-start, .align-end {}

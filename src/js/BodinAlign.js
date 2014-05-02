@@ -116,8 +116,14 @@ var BodinAlign = function() {
 		//------------------------------------------------------------
 		_target = _target.substr( at+1 , _target.length );
 		var index = _target.split('-');
-		var start = this.wordAndOccurence( index[0] );
-		var end = this.wordAndOccurence( index[1] );
+//		var start = this.wordAndOccurence( index[0] );
+//		var end = this.wordAndOccurence( index[1] );
+		//------------------------------------------------------------
+		// This assumes that the html is already pre-processed with 
+		// word[occurrence] as the value of the data-ref attribute
+		//------------------------------------------------------------
+		var start = index[0];
+		var end = index[1];
 		//------------------------------------------------------------
 		//  Return target data JSON style
 		//------------------------------------------------------------
@@ -213,109 +219,102 @@ var BodinAlign = function() {
 		var select =  id+' '+book+' '+chapter;
 		var html = jQuery( select ).html();
 		//------------------------------------------------------------
-		//  Find the start and end positions
+		//  Find the start and end elements
 		//------------------------------------------------------------
 		var start = _obj['start'];
 		var end = _obj['end'];
-		var positions = html.positions( start['word'], false, true, true );
-		var ind = positions[ start['occurence']-1 ];
-		//------------------------------------------------------------
-		//  Wrap the passage in a span tag
-		//------------------------------------------------------------
-		var color_class = this.colorClass( this.colorId( _alignId ) );
-		html = html.insertAt( ind, '<span id="align-'+( _alignId )+'" class="align '+color_class+'">' );
-		positions = html.positions( end['word'], false, true, true );
-		ind = positions[ ( end['occurence']-1 ) ]+end['word'].length;
-		html = html.insertAt( ind, '</span>' );
-		jQuery( select ).html( html );
-	}
-	
-	/*
-	this.mark = function( _bodinId, _alignId, _obj ) {
-		var self = this;
-		//------------------------------------------------------------
-		//  Get the selector
-		//------------------------------------------------------------
-		var id = '#'+_bodinId;
-		var book = '#book-'+_obj['book'];
-		var chapter = '#chapter-'+_obj['chapter'];
-		var select =  id+' '+book+' '+chapter+' *';
-		//------------------------------------------------------------
-		//  Find the start and end positions
-		//------------------------------------------------------------
-		var start = _obj['start'];
-		var end = _obj['end'];
-		//------------------------------------------------------------
-		//  Get a color
-		//------------------------------------------------------------
-		var color = this.highlightColor( _alignId );
-		//------------------------------------------------------------
-		//  Retrieve text nodes
-		//------------------------------------------------------------
-		var startOccur = parseInt( start['occurence'] );
-		var endOccur = parseInt( end['occurence'] );
-		var textNodes = [];
+		var color_class = ' ' + this.colorClass( _alignId );
 		
-		jQuery( select ).each( function() {
-			var tag = jQuery( this ).get(0).tagName;
-			var cls = jQuery( this ).attr( 'class' );
-			//------------------------------------------------------------
-			//  Ignore tag?
-			//------------------------------------------------------------
-			if ( self.ignoreTag[ tag ] == true ) {
-				return 1;
-			}
-			if ( cls != undefined ) {
-				cls = cls.replace( '.', '' );
-				if ( self.ignoreClass[ cls ] == true ) {
-					return 1;
-				}
-			}
-			//------------------------------------------------------------
-			//  Store the DOM element and its words to rebuild later
-			//------------------------------------------------------------
-			var startFound = false;
-			var endFound = false;
-			var words = jQuery( this ).html().replace( /\n/g, " " ).split(" ");
-			for ( var i=0, ii=words.length; i<ii; i++ ) {
-				var check = words[i];
-				//------------------------------------------------------------
-				//  Skip over html tags
-				//------------------------------------------------------------
-				if ( check.indexOf( '<' ) == 0 ) {
-					while( check.indexOf( '>' ) == -1 && i<ii ) {
-						i++;
-					}
-					continue;
-				}
-				//------------------------------------------------------------
-				//  Clean up string to ensure accurate checks
-				//------------------------------------------------------------
-				check = check.stripTags().alphaOnly();
-				//------------------------------------------------------------
-				//  Check for word and occurence
-				//------------------------------------------------------------
-				if ( check == start['word'] && startFound == false ) {
-					if ( startOccur == 1 ) {
-						startFound = true;
-						words[i] = '<span id="align-'+( _alignId )+'" class="align" style="background-color:'+color+'">' + words[i];
-					}
-					startOccur--;
-				}
-				if ( check == end['word'] && endFound == false ) {
-					if ( endOccur == 1 ) {
-						endFound = true;
-						words[i] = words[i] + '</span>';
-					}
-					endOccur--;
-				}
-				if ( startFound == true && endFound == true ) {
+		//------------------------------------------------------------
+		//  TODO: Position calculation needs the citation structure
+		//  of the document -- Ideally this should be handled 
+		//  during pre-processing so our UI code doesn't 
+		//  need to do this.
+		//------------------------------------------------------------
+		//------------------------------------------------------------
+		//  Identify each word in the passage with the alignment id 
+		//------------------------------------------------------------
+		var start_elem = jQuery( "span.token.text[data-ref='" + start + "']" );
+		var end_elem = jQuery( "span.token.text[data-ref='" + end + "']" );
+		if ( start_elem && end_elem ) {
+			//-----------------------------------------------------------
+			// TODO: This breaks if the start and end of the range 
+			// aren't in the same display hierarchy. (e.g. If there are not
+			// citation-specific groupings that break up the hierarchy ).
+			//-----------------------------------------------------------
+			var sibs = $( start_elem ).nextAll('.token').addBack();
+			var done = false;
+			for ( var i=0; i<sibs.length; i++ ) {
+				if ( done ) {
 					break;
 				}
-			}
-			console.log( words.join(' ') );
-			jQuery( this ).html( words.join(' ') );
-		});
+				var sib = jQuery( sibs[i] );
+				if ( sib.hasClass('aligned') ) {
+					var num = parseInt( sib.attr('data-aligned') ) + 1;
+					sib.attr( 'data-aligned', num );
+					var start_class = '';
+					var end_class = '';
+					if ( i == 0 ) {
+						start_class = ' align-start';   
+					}
+					//------------------------------------------------------------
+					// Add a class to indicate its the end of the alignment
+					//------------------------------------------------------------
+					if ( sib.attr('data-ref') == end) {
+						end_class = ' align-end';
+					}
+					//------------------------------------------------------
+					// If we already have aligned this word, we need to add 
+					// another wrapping element for the next alignment
+					// make it an inner element so that it doesn't break
+					// with finding siblings for other alignments
+					//------------------------------------------------------
+					var elem = 	this.alignSpan( _alignId, start_class, end_class, color_class );
+					sib.wrapInner( elem.smoosh() );
+				}
+				else {
+					sib.attr( 'data-alignId', ( _alignId ));
+					sib.addClass( 'aligned' );
+					sib.attr( 'data-aligned','1' );
+					sib.addClass( color_class );
+					//------------------------------------------------------------
+					//  Add a class to indicate its the start of the alignment
+					//------------------------------------------------------------
+					if ( i == 0 ) {
+						sib.addClass('align-start');
+					}
+					//------------------------------------------------------------
+					//  Add a class to indicate its the end of the alignment
+					//------------------------------------------------------------
+					if ( sib.attr('data-ref') == end ) {
+						sib.addClass('align-end');
+					}
+				}
+				
+				if ( sib.attr('data-ref') == end ) {
+					done = true;
+				}
+			} // end loop through siblings
+		}
+		//------------------------------------------------------
+		// we should probably handle the case where the matching
+		// alignment couldn't be found and remove the highlights
+		//------------------------------------------------------
+	}
+	
+	this.alignSpan = function( _alignId, _start_class, _end_class, _color_class ) {
+		return '\
+			<span \
+				class="\
+					token\
+					aligned align-'+_alignId+ 
+					_start_class + 
+					_end_class + 
+					_color_class + 
+				'" \
+				data-alignId="'+_alignId+'"\
+			>\
+			</span>';
 	}
 	
 	/**

@@ -3,7 +3,7 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:tei="http://www.tei-c.org/ns/1.0"
     exclude-result-prefixes="xs"
-    version="1.0">
+    version="2.0">
     
     <xsl:output method="xml" xml:space="default"/>
     
@@ -17,17 +17,28 @@
     <!-- add cts subref values to w tokens -->
     <xsl:template match="tei:w">
         <xsl:variable name="thistext" select="text()"/>
+        <xsl:variable name="path" select="saxon:path()" xmlns:saxon="http://saxon.sf.net/"></xsl:variable>        
+        <xsl:variable name="parent" xmlns:saxon="http://saxon.sf.net/" select="ancestor::*[matches(saxon:path(),'/TEI/text\[[\d]+\]/body\[[\d]+\]/div\[[\d]+\]/div\[[\d]+\]/div\[[\d]+\]$')]"/>
+        <xsl:variable name="n" select="xs:string($parent/@n)"/>
         <xsl:element name="span">
-            <xsl:if test="not(ancestor::tei:note) and not(ancestor::tei:head) and not(ancestor::tei:speaker)">
-                <xsl:variable name="subref" select="count(preceding::tei:w[text() = $thistext])+1"></xsl:variable>
-                <xsl:attribute name="data-ref"><xsl:value-of select="concat($thistext,'[',$subref,']')"/></xsl:attribute>
-                <xsl:attribute name="class">token text</xsl:attribute>
-            </xsl:if>
+            <xsl:choose>
+                <!-- limit this to chapter 1 for now  need a better performing algorithm going forward -->
+                <xsl:when test="ancestor::tei:div[@subtype='chapter' and @n='1' and ancestor::tei:div[@subtype='book' and @n='1']] and not(ancestor::tei:note) and not(ancestor::tei:head) and not(ancestor::tei:speaker)">
+                    <!--ancestor::*[matches(saxon:path(),concat('/TEI/text\[[\d]+\]/body\[[\d]+\]/div\[[\d]+\]/div\[[\d]+\]/div\[', $n ,'\]'))] and-->
+                    <xsl:variable name="subref" xmlns:saxon="http://saxon.sf.net/"    
+                        select="count(preceding::tei:w[
+                        text() = $thistext])+1"></xsl:variable>
+                    <xsl:attribute name="data-ref"><xsl:value-of select="concat($thistext,'[',$subref,']')"/></xsl:attribute>
+                </xsl:when>
+            </xsl:choose>
+            <xsl:attribute name="class">token text</xsl:attribute>                    
             <xsl:apply-templates select="@*"/>
             <xsl:apply-templates select="node()"/>
         </xsl:element>
         <!-- add spaces back -->
-        <xsl:if test="local-name(following-sibling::*[1]) = 'w'">
+        <xsl:if test="local-name(following-sibling::*[1]) = 'w' or 
+            following-sibling::*[1][local-name(.) = 'choice' and descendant::tei:w] or
+            ancestor::tei:choice[following-sibling::*[1][descendant::tei:w] or local-name(following-sibling::*[1]) = 'w']">
             <xsl:text> </xsl:text>
         </xsl:if>
     </xsl:template>
@@ -80,11 +91,11 @@
         <xsl:choose>
             <xsl:when test="@n">
                 <xsl:variable name="n" select="@n"/>
-                <div class="tei_section">
+                <div class="{@subtype}">
                     <!-- hack to avoid repeating divs for ranges -->
                     <xsl:if test="not(preceding-sibling::tei:div[@n=$n]) and
                         not(preceding-sibling::div[@n=$n])">
-                        <span class="tei_sectionNum"><xsl:value-of select="@type"/><xsl:text> </xsl:text><xsl:value-of select="@subtype"/><xsl:text> </xsl:text><xsl:value-of select="@n"/></span>
+                        <!--span class="tei_sectionNum"><xsl:value-of select="@type"/><xsl:text> </xsl:text><xsl:value-of select="@subtype"/><xsl:text> </xsl:text><xsl:value-of select="@n"/></span-->
                     </xsl:if>
                     <xsl:apply-templates/>
                         
@@ -272,9 +283,23 @@
         </span>
     </xsl:template>
     <xsl:template match="tei:choice|choice">
-        <span class="tei_choice">(<xsl:apply-templates select="tei:sic|sic"/><xsl:apply-templates select="tei:orig|orig"/>
-            <xsl:apply-templates select="tei:corr|corr"/>)</span>
+        <xsl:choose>
+            <xsl:when test="tei:corr[text()]|corr[text()]">
+            <span class="tei_choice">(<xsl:apply-templates select="tei:sic|sic"/><xsl:apply-templates select="tei:orig|orig"/>
+                <xsl:apply-templates select="tei:corr|corr"/>)</span>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:apply-templates select="tei:sic|sic" mode="nocorr"/>
+            </xsl:otherwise>
+        </xsl:choose>
+        
     </xsl:template>
+    
+    <xsl:template match="tei:sic|sic" mode="nocorr">
+        <span class="tei_sic"><xsl:apply-templates/></span>
+        <!-- <xsl:if test="current()/following-sibling::tei:corr">/</xsl:if> -->
+    </xsl:template>
+    
     <xsl:template match="tei:sic|sic">
         <span class="tei_sic"><xsl:apply-templates/>[sic]</span>
         <!-- <xsl:if test="current()/following-sibling::tei:corr">/</xsl:if> -->
@@ -287,6 +312,7 @@
         <span class="tei_corr">&#160;&#160;/&#160;&#160;<xsl:apply-templates/></span>
         <!-- <xsl:if test="current()/following-sibling::tei:sic">/</xsl:if> -->
     </xsl:template>
+    
     <xsl:template match="tei:del|del">
         <span class="tei_del">
             <xsl:apply-templates/>
@@ -336,10 +362,14 @@
     </xsl:template>
     
     <xsl:template match="tei:pb|pb">
-        <div class="tei_pagebreak"><xsl:text>[pp. </xsl:text><xsl:value-of select="@n"/><xsl:text>]</xsl:text></div><br/>
+        <div class="page_n"><xsl:text></xsl:text><xsl:value-of select="@n"/><xsl:text></xsl:text></div><br class="tei_pagebreak" />
     </xsl:template>
     
     <xsl:template match="tei:seg|seg">
+        <xsl:apply-templates/>
+    </xsl:template>
+    
+    <xsl:template match="tei:text|text">
         <xsl:apply-templates/>
     </xsl:template>
     
@@ -349,21 +379,27 @@
             <xsl:apply-templates select="@*|node()"/>
         </xsl:element>
     </xsl:template>
-    <!-- Default: replicate unrecognized markup -->
-    <xsl:template match="@*" priority="-1">
-        <xsl:copy/>
+    
+    <xsl:template match="tei:TEI|TEI">
+        <xsl:element name="div">
+            <xsl:attribute name="class">work</xsl:attribute>
+            <xsl:apply-templates select="@*|node()"/>
+        </xsl:element>
     </xsl:template>
     
-    <!-- Default: replicate unrecognized markup -->
+    <!-- Default: ignore unrecognized markup attributes -->
+    <xsl:template match="@*" priority="-1">
+        <!--xsl:copy/-->
+    </xsl:template>
+    
+    <!-- Default: keep text in unrecognized markup -->
     <xsl:template match="node()" priority="-1">
         <xsl:choose>
             <xsl:when test="self::text()">
                 <xsl:copy/>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:element name="{local-name(.)}">
                     <xsl:apply-templates select="@*|node()"/>
-                </xsl:element>
             </xsl:otherwise>
         </xsl:choose>
         

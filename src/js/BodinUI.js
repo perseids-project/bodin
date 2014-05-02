@@ -159,6 +159,27 @@
 	}
 	
 	/**
+	* Alpha blink a specific element
+	*
+	*  @param { string } _filter a class filter to make it perform
+	*  @param { string } _key The element attribute key name
+	*  @param { string } _val The element attribute key value 
+	*/
+	BodinUI.prototype.filteredAlphaBlink = function( _filter, _key, _val) {
+		var self = this;
+		var dom = $( '.'+_filter + '[' + _key + "='" + _val + "']" , self.elem );
+		var times = [];
+		self.blinkCounter = 0;
+		var ii = (self.config['blinkN']*2);
+		for ( var i=1; i<=ii; i++ ) {
+			setTimeout( function() {
+				jQuery( dom ).toggleClass( 'blink' );
+				self.blinkCounter++;
+			}, i*self.config['blinkLength']*1000 );
+		}
+	}
+	
+	/**
 	 * Organize instances of bodin into columns
 	 *
 	 * @param {int } _count The number of instances.
@@ -211,6 +232,27 @@
 	BodinUI.prototype.goTo = function( _id ) {
 		var self = this;
 		var pos = $( '#'+_id , self.elem ).position();
+		if ( pos == undefined ) {
+			return;
+		}
+		var scroll = pos.top - self.config['scrollPad'];
+		var current = $( '.work', self.elem ).scrollTop();
+		$( '.work', self.elem ).animate ({
+			scrollTop: current + scroll
+		}, 1000 );
+	}
+	
+	/**
+	*  Go to a particular element
+	*  with the a supplied attribute
+	*
+	*  @param { string } _filter a class filter to make it perform
+	*  @param { string } _key The element attribute key name
+	*  @param { string } _val The element attribute key value 
+	*/
+	BodinUI.prototype.filteredGoTo = function( _filter, _key, _val ) {
+		var self = this;
+		var pos = $( '.'+_filter + '[' + _key + "='" + _val + "']" , self.elem ).position();
 		if ( pos == undefined ) {
 			return;
 		}
