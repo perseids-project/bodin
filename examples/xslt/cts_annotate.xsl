@@ -6,6 +6,13 @@
     version="2.0">
     
     <xsl:output method="xml" xml:space="default"/>
+    <xsl:include href="make_cite.xsl"/>
+    <xsl:param name="e_schemes">
+        <scheme>
+            <tei:div cite_att='n' cite_xpath='^.*text\[1\]/body\[1\]/div\[[\d]+\]/div\[[\d]+\]$'/>
+            <tei:div cite_att='n' cite_xpath='^.*text\[1\]/body\[1\]/div\[[\d]+\]/div\[[\d]+\]/div\[[\d]+\]$'/>                        
+        </scheme>
+    </xsl:param>
     
     <xsl:template match="/">
         <xsl:apply-templates select="//tei|//TEI|//tei:tei|//tei:TEI"/>
@@ -21,6 +28,13 @@
         <xsl:variable name="parent" xmlns:saxon="http://saxon.sf.net/" select="ancestor::*[matches(saxon:path(),'/TEI/text\[[\d]+\]/body\[[\d]+\]/div\[[\d]+\]/div\[[\d]+\]/div\[[\d]+\]$')]"/>
         <xsl:variable name="n" select="xs:string($parent/@n)"/>
         <xsl:element name="span">
+            <xsl:attribute name="data-cite">
+                <xsl:call-template name="make_cite">
+                    <xsl:with-param name="a_node" select="."></xsl:with-param>
+                    <xsl:with-param name="a_schemes" select="$e_schemes/*"></xsl:with-param>
+                    <xsl:with-param name="a_parts" select="()"></xsl:with-param>
+                </xsl:call-template>
+            </xsl:attribute>
             <xsl:choose>
                 <!-- limit this to chapter 1 for now  need a better performing algorithm going forward -->
                 <xsl:when test="ancestor::tei:div[@subtype='chapter' and @n='1' and ancestor::tei:div[@subtype='book' and @n='1']] and not(ancestor::tei:note) and not(ancestor::tei:head) and not(ancestor::tei:speaker)">
@@ -365,6 +379,12 @@
         <div class="page_n"><xsl:text></xsl:text><xsl:value-of select="@n"/><xsl:text></xsl:text></div><br class="pagebreak" />
     </xsl:template>
     
+    <xsl:template match="tei:hi|hi">
+        <xsl:element name="span">
+            <xsl:attribute name="class" select="concat('rend-',@rend)"/>
+            <xsl:apply-templates select="@*|node()"/>
+        </xsl:element>
+    </xsl:template>
     <xsl:template match="tei:seg|seg">
         <xsl:apply-templates/>
     </xsl:template>

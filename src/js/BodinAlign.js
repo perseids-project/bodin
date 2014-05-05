@@ -111,6 +111,7 @@ var BodinAlign = function() {
 		var split = sub.split('.');
 		var book = parseInt( split[0] );
 		var chapter = parseInt( split[1] );
+		var cite = sub;
 		//------------------------------------------------------------
 		//  Get the word and occurence
 		//------------------------------------------------------------
@@ -127,7 +128,7 @@ var BodinAlign = function() {
 		//------------------------------------------------------------
 		//  Return target data JSON style
 		//------------------------------------------------------------
-		return { 'book': book, 'chapter': chapter, 'start': start, 'end': end }
+		return { 'book': book, 'chapter': chapter, 'start': start, 'end': end, 'cite' : cite }
 	}
 	
 	this.json = function( _data ) {
@@ -211,67 +212,68 @@ var BodinAlign = function() {
 	 */
 	this.mark = function( _bodinId, _alignId, _obj ) {
 		//------------------------------------------------------------
-		//  Get the selector
+		//  Get the text selector
 		//------------------------------------------------------------
 		var id = '#'+_bodinId;
-		var book = '#book-'+_obj['book'];
-		var chapter = '#chapter-'+_obj['chapter'];
-		var select =  id+' '+book+' '+chapter;
-		var html = jQuery( select ).html();
+
+        //------------------------------------------------------------
+		//  Get the tokens from the text
 		//------------------------------------------------------------
-		//  Find the start and end elements
+        var tokens = jQuery(id + " .token[data-cite='" + _obj['cite'] + "']");
+        
 		//------------------------------------------------------------
-		var start = _obj['start'];
-		var end = _obj['end'];
+		//  Get the color class for this alignment
+		//------------------------------------------------------------
 		var color_class = ' ' + this.colorClass( _alignId );
 		
-		//------------------------------------------------------------
-		//  TODO: Position calculation needs the citation structure
-		//  of the document -- Ideally this should be handled 
-		//  during pre-processing so our UI code doesn't 
-		//  need to do this.
-		//------------------------------------------------------------
+	
 		//------------------------------------------------------------
 		//  Identify each word in the passage with the alignment id 
 		//------------------------------------------------------------
-		var start_elem = jQuery( "span.token.text[data-ref='" + start + "']" );
-		var end_elem = jQuery( "span.token.text[data-ref='" + end + "']" );
-		if ( start_elem && end_elem ) {
+		if ( tokens.length > 0) {
 			//-----------------------------------------------------------
 			// TODO: This breaks if the start and end of the range 
 			// aren't in the same display hierarchy. (e.g. If there are not
 			// citation-specific groupings that break up the hierarchy ).
 			//-----------------------------------------------------------
-			var sibs = $( start_elem ).nextAll('.token').addBack();
+			
+			var sibs = tokens;
 			var done = false;
+			var started = false;
 			for ( var i=0; i<sibs.length; i++ ) {
 				if ( done ) {
 					break;
 				}
 				var sib = jQuery( sibs[i] );
+				var start_class = '';
+
+				if ( ! started ) { 
+				    if (sib.attr('data-ref') == _obj['start']) {
+					   start_class = ' align-start';
+					   started = true;
+				    } 
+				    else {
+				        continue;
+				    }
+				}
 				var num = parseInt( sib.attr('data-aligned') ) + 1;
 				sib.attr( 'data-aligned', num );
-				var start_class = '';
 				var end_class = '';
-				if ( i == 0 ) {
-					start_class = ' align-start';
-				}
 				//------------------------------------------------------------
 				// Add a class to indicate its the end of the alignment
 				//------------------------------------------------------------
-				if ( sib.attr('data-ref') == end ) {
+				if ( sib.attr('data-ref') == _obj['end'] ) {
 					end_class = ' align-end';
 				}
 				//------------------------------------------------------
-				// If we already have aligned this word, we need to add 
-				// another wrapping element for the next alignment
-				// make it an inner element so that it doesn't break
-				// with finding siblings for other alignments
+				// Add a wrapping element on the token to hold alignment
+				// info and make it an inner element so that the original 
+				// token element remains the outermost element
 				//------------------------------------------------------
 				var elem = 	this.alignSpan( _alignId, start_class, end_class, color_class );
 				sib.wrapInner( elem.smoosh() );
 				
-				if ( sib.attr('data-ref') == end ) {
+				if ( sib.attr('data-ref') == _obj['end'] ) {
 					done = true;
 				}
 			}

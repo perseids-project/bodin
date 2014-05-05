@@ -119,3 +119,7 @@ body,html {
 	margin: 0;
 }
 .align-start, .align-end {}
+
+.rend-italic {
+    font-style: italic;
+}
