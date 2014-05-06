@@ -18,7 +18,6 @@ body,html {
     margin: 0;
 }
 .bodin .milestone {
-    cursor: pointer;
     color: #FF5555;
     vertical-align: top;
     padding: 0;
@@ -29,9 +28,6 @@ body,html {
     padding-left: 0;
     /*margin-right: 15px;*/
     float:left;
-}
-.bodin div.stone-clear {
-	margin-bottom: 30px;
 }
 .bodin a.note {
     display: inline-block;
@@ -44,7 +40,7 @@ body,html {
 .bodin .token {
     cursor: pointer;
 }
-.bodin .align {
+.bodin .aligned {
     margin: 0;
     padding: 0;
     -moz-transition: all .25s ease-in;
@@ -56,7 +52,7 @@ body,html {
     margin: 0;
     padding: 0;
 }
-.bodin #tei_body {
+.bodin .work {
     height: 100%;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -80,20 +76,11 @@ body,html {
     margin-left: -18px;
     margin-right: 8px;
 }
-.bodin hr {
+.bodin .pagebreak {
     width: 200%;
-    border: 2px solid #333;
-    margin-left: -50%;
-    margin-top: 45px;
-}
-.bodin hr:nth-child(1) {
-    margin: 0;
-    border: none;
-}
-.bodin .page_n {
-    margin: 20px 0;
-    text-align: right;
-    color: #666;
+    background-color: #222;
+    height: 3px;
+    margin: 100px 0 50px -100px;
 }
 
 #tooltipper {
@@ -132,9 +119,11 @@ body,html {
     margin: 0;
 }
 .align-start, .align-end {}
+
 .rend-italic {
     font-style: italic;
 }
+
 /**
  * These are provisional ... Adam will make it better
  */
@@ -142,6 +131,8 @@ body,html {
     text-decoration: underline;
     color: blue;
 }
+
+
 #external_annotation {
     position: fixed;
     top: 10px;

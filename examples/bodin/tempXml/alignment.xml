@@ -1,5 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:oac="http://www.openannotation.org/ns/" xmlns:cnt="http://www.w3.org/2008/content#">
+  <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/1015/1449/1456/142/9">
+    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1449/urn:cts:pdlpsci:bodin.livrep.perseus-lat1:1.1@cùm[4]-collocauit[1]"/>
+    <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://perseids.org/annotsrc/urn:cts:greekLit:tlg0086.tlg010.perseus-eng1:1177a-1178a@since[1]-superior[1]"/>
+    <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="oa:linking"/>
+    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
+      <Person xmlns="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/sosol/users/Will"/>
+    </annotatedBy>
+    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-02-27T15:56:51+00:00</annotatedAt>
+  </Annotation>
   <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/1016/1451/1455/138/2">
     <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1451/urn:cts:pdlpsci:bodin.livrep.perseus-lat1:1.1@Respvblica[1]-posuimus[1]"/>
     <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1453/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@A[1]-place[1]"/>

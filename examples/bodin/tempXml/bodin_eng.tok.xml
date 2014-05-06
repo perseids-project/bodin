@@ -1,6 +1,6 @@
 <doc>
     <TEI xmlns="http://www.tei-c.org/ns/1.0">
-   <text n="urn:cts:psci:bodin.livrep.perseus-eng1" xml:lang="eng">
+   <text n="urn:cts:pdlpsci:bodin.livrep.perseus-eng1" xml:lang="eng">
       <body>
                 <div type="edition">
                     <div n="1" type="textpart" subtype="book">
@@ -167,7 +167,7 @@
                                 <w n="1">haue</w> <w n="3">otherwise</w> <w n="5">obtained</w>
                                 <pc n="6">.</pc> <w n="8">Of</w> <w n="10">the</w> <w n="12">first</w> <w n="14">whereof</w> <w n="16">we</w>
                                 <note place="marg" anchored="true">A notable
-                        exāple of fauour, extended vnto an offender, submitting himself vnto his
+                        exāple of fauour, extended vnto an offender, submitting himself vnto his
                         Prince.</note>
                                 <w n="1">haue</w> <w n="3">examples</w> <w n="5">enow</w>
                                 <pc n="6">,</pc> <w n="8">but</w> <w n="10">none</w> <w n="12">more</w> <w n="14">memorable</w> <w n="16">than</w> <w n="18">that</w> <w n="20">of</w>
@@ -544,7 +544,7 @@
                                 <pc n="20">,</pc> <w n="22">and</w> <w n="24">of</w> <w n="26">a</w> <w n="28">whole</w>
                                 <w n="1">Citie</w>
                                 <pc n="2">,</pc>
-                                <note place="marg" anchored="true">The chief fellcitie of one citisē▪ and of a Citie
+                                <note place="marg" anchored="true">The chief fellcitie of one citisē▪ and of a Citie
                         or common weale all one; and wherein it consisteth.</note>
                                 <w n="1">be</w> <w n="3">all</w> <w n="5">one</w> <w n="7">and</w>
                                 <w n="1">the</w> <w n="3">selfe</w> <w n="5">same</w>
@@ -808,7 +808,7 @@
                                 <pc n="27">,</pc>
                                 <w n="1">and</w> <w n="3">seeketh</w> <w n="5">after</w> <w n="7">their</w> <w n="9">friendship</w>
                                 <pc n="10">:</pc> <w n="12">and</w> <w n="14">afterwards</w> <w n="16">when</w> <w n="18">he</w> <w n="20">feeleth</w> <w n="22">himself</w>
-                                <w n="1">cleane</w> <w n="3">&amp;</w> <w n="5">free</w> <w n="7">frō</w> <w n="9">those</w> <w n="11">perturbations</w> <w n="13">and</w> <w n="15">passions</w> <w n="17">which</w> <w n="19">trouble</w> <w n="21">and</w>
+                                <w n="1">cleane</w> <w n="3">&amp;</w> <w n="5">free</w> <w n="7">frō</w> <w n="9">those</w> <w n="11">perturbations</w> <w n="13">and</w> <w n="15">passions</w> <w n="17">which</w> <w n="19">trouble</w> <w n="21">and</w>
                                 <w n="1">molest</w> <w n="3">the</w> <w n="5">mind</w>
                                 <pc n="6">;</pc> <w n="8">and</w> <w n="10">hath</w> <w n="12">not</w> <w n="14">set</w> <w n="16">his</w> <w n="18">whole</w> <w n="20">hope</w> <w n="22">vpon</w> <w n="24">his</w> <w n="26">vaine</w> <w n="28">pelfe</w>
                                 <pc n="29">,</pc> <w n="31">hee</w> <w n="33">at</w>
@@ -932,7 +932,7 @@
                                 <pc n="14">,</pc> <w n="16">abounding</w> <w n="18">with</w> <w n="20">a</w> <w n="22">multitude</w> <w n="24">of</w> <w n="26">such</w>
                                 <w n="1">citisens</w>
                                 <pc n="2">,</pc> <w n="4">although</w>
-                                <note place="marg" anchored="true">A small commōweale may yet be
+                                <note place="marg" anchored="true">A small commōweale may yet be
                         happie.</note>
                                 <w n="1">it</w> <w n="3">contented</w> <w n="5">with</w> <w n="7">strait</w> <w n="9">bounds</w>
                                 <pc n="10">,</pc> <w n="12">contemne</w> <w n="14">the</w> <w n="16">proud</w> <w n="18">wealth</w>
@@ -1200,7 +1200,7 @@
                                 <w n="1">more</w> <w n="3">happie</w>
                                 <pc n="4">.</pc> <w n="6">For</w> <w n="8">as</w> <w n="10">we</w> <w n="12">see</w> <w n="14">in</w> <w n="16">particuler</w>
                                 <note place="marg" anchored="true">A fit
-                        comparisō.</note>
+                        comparisō.</note>
                                 <w n="1">men</w>
                                 <pc n="2">,</pc> <w n="4">many</w> <w n="6">degrees</w> <w n="8">of</w> <w n="10">worldly</w> <w n="12">calamitie</w> <w n="14">or</w> <w n="16">blisse</w>
                                 <pc n="17">,</pc>
@@ -1557,7 +1557,7 @@
                                 <w n="1">But</w> <w n="3">what</w> <w n="5">should</w> <w n="7">let</w> (<w n="9">may</w> <w n="11">some</w> <w n="13">man</w> <w n="15">say</w>) <w n="17">three</w> <w n="19">Colleges</w>
                                 <pc n="20">,</pc> <w n="22">or</w>
                                 <w n="1">many</w> <w n="3">other</w> <w n="5">particular</w> <w n="7">assemblies</w> <w n="9">without</w> <w n="11">a</w> <w n="13">familie</w> <w n="15">to</w> <w n="17">make</w> <w n="19">a</w> <w n="21">Citie</w>
-                                <pc n="22">,</pc> <w n="24">or</w> <w n="26">Cōmon</w>
+                                <pc n="22">,</pc> <w n="24">or</w> <w n="26">Cōmon</w>
                                 <w n="1">weale</w>
                                 <pc n="2">,</pc> <w n="4">if</w> <w n="6">they</w> <w n="8">be</w> <w n="10">gouerned</w> <w n="12">by</w> <w n="14">one</w> <w n="16">soueraigne</w> <w n="18">commaund</w>? <w n="20">Truly</w> <w n="22">it</w> <w n="24">maketh</w> <w n="26">a</w> <w n="28">good</w>
                                 <w n="1">show</w>
@@ -1616,7 +1616,7 @@
                                 <pc n="2">.</pc> <w n="4">And</w> <w n="6">not</w>
                                 <milestone n="F" unit="unspec"/>
                                 <note place="marg" anchored="true">It is not the greatnes of the number that maketh the
-                        Commōweale, but the vnion of the people vnder one soueraigne
+                        Commōweale, but the vnion of the people vnder one soueraigne
                         commaund.</note>
                                 <w n="1">to</w> <w n="3">depart</w> <w n="5">from</w> <w n="7">our</w> <w n="9">similitude</w>
                                 <pc n="10">:</pc> <w n="12">as</w> <w n="14">a</w> <w n="16">ship</w> <w n="18">may</w> <w n="20">be</w> <w n="22">quite</w>
@@ -1724,7 +1724,7 @@
                                 <note place="marg" anchored="true">
                         
                         <hi rend="italic">Plut. in Emili.</hi> The greatest &amp; best peopled citie
-                        no more a cōmon weale than the least.</note>
+                        no more a cōmon weale than the least.</note>
                                 <w n="1">Citie</w> <w n="3">or</w> <w n="5">Monarchie</w>
                                 <pc n="6">,</pc> <w n="8">and</w> <w n="10">the</w>
                                 <w n="1">best</w> <w n="3">peopled</w> <w n="5">that</w> <w n="7">is</w> <w n="9">vpon</w> <w n="11">the</w> <w n="13">face</w> <w n="15">of</w> <w n="17">the</w> <w n="19">earth</w>
@@ -1758,7 +1758,7 @@
                                 <w n="1">neuer</w> <w n="3">any</w>) <w n="5">should</w> <w n="7">not</w>
                                 <note place="marg" anchored="true">The multitude of people no binderance
                         to the vnitie of a common weale▪ so that they be vnder one soueraigne
-                        commād.</note>
+                        commād.</note>
                                 <w n="1">deserue</w> <w n="3">the</w> <w n="5">name</w> <w n="7">of</w> <w n="9">a</w> <w n="11">Commonweale</w>
                                 <pc n="12">,</pc> <w n="14">which</w> <w n="16">at</w> <w n="18">the</w> <w n="20">foundation</w>
                                 <w n="1">thereof</w> <w n="3">had</w> <w n="5">not</w> <w n="7">aboue</w> <w n="9">3000</w> <w n="11">citisens</w>

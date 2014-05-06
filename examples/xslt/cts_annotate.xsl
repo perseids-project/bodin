@@ -3,10 +3,12 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:tei="http://www.tei-c.org/ns/1.0"
     exclude-result-prefixes="xs"
-    version="2.0">
+    version="1.0">
     
     <xsl:output method="xml" xml:space="default"/>
     
+    <xsl:param name="e_cite"/>
+   
     <xsl:template match="/">
         <xsl:apply-templates select="//tei|//TEI|//tei:tei|//tei:TEI"/>
     </xsl:template>
@@ -15,23 +17,21 @@
     <!-- ********************************************************** -->
     
     <!-- add cts subref values to w tokens -->
-    <xsl:template match="tei:w">
+    <xsl:template match="tei:w|w">
         <xsl:variable name="thistext" select="text()"/>
-        <xsl:variable name="path" select="saxon:path()" xmlns:saxon="http://saxon.sf.net/"></xsl:variable>        
-        <xsl:variable name="parent" xmlns:saxon="http://saxon.sf.net/" select="ancestor::*[matches(saxon:path(),'/TEI/text\[[\d]+\]/body\[[\d]+\]/div\[[\d]+\]/div\[[\d]+\]/div\[[\d]+\]$')]"/>
-        <xsl:variable name="n" select="xs:string($parent/@n)"/>
         <xsl:element name="span">
-            <xsl:choose>
-                <!-- limit this to chapter 1 for now  need a better performing algorithm going forward -->
-                <xsl:when test="ancestor::tei:div[@subtype='chapter' and @n='1' and ancestor::tei:div[@subtype='book' and @n='1']] and not(ancestor::tei:note) and not(ancestor::tei:head) and not(ancestor::tei:speaker)">
-                    <!--ancestor::*[matches(saxon:path(),concat('/TEI/text\[[\d]+\]/body\[[\d]+\]/div\[[\d]+\]/div\[[\d]+\]/div\[', $n ,'\]'))] and-->
-                    <xsl:variable name="subref" xmlns:saxon="http://saxon.sf.net/"    
-                        select="count(preceding::tei:w[
-                        text() = $thistext])+1"></xsl:variable>
-                    <xsl:attribute name="data-ref"><xsl:value-of select="concat($thistext,'[',$subref,']')"/></xsl:attribute>
+            <xsl:if test="not(ancestor::tei:note) and not(ancestor::tei:head) and not(ancestor::tei:speaker)">
+                <xsl:variable name="subref" select="count(preceding::tei:w[text() = $thistext])+1"></xsl:variable>
+                <xsl:attribute name="data-ref"><xsl:value-of select="concat($thistext,'[',$subref,']')"/></xsl:attribute>
+                <xsl:attribute name="class">token text</xsl:attribute>
+            </xsl:if>
+           <xsl:choose> 
+                <!-- if we were given a citation then just apply it to all the words -->
+                <xsl:when test="$e_cite">
+                    <xsl:attribute name="data-cite"><xsl:value-of select="$e_cite"/></xsl:attribute>
                 </xsl:when>
-            </xsl:choose>
-            <xsl:attribute name="class">token text</xsl:attribute>                    
+                <xsl:otherwise/>
+           </xsl:choose>
             <xsl:apply-templates select="@*"/>
             <xsl:apply-templates select="node()"/>
         </xsl:element>
@@ -39,21 +39,6 @@
         <xsl:if test="local-name(following-sibling::*[1]) = 'w' or 
             following-sibling::*[1][local-name(.) = 'choice' and descendant::tei:w] or
             ancestor::tei:choice[following-sibling::*[1][descendant::tei:w] or local-name(following-sibling::*[1]) = 'w']">
-            <xsl:text> </xsl:text>
-        </xsl:if>
-    </xsl:template>
-    
-    <xsl:template match="w">
-        <xsl:variable name="thistext" select="text()"/>
-        <xsl:element name="span">
-            <xsl:variable name="subref" select="count(preceding::w[text() = $thistext])+1"></xsl:variable>
-            <xsl:attribute name="data-ref"><xsl:value-of select="concat($thistext,'[',$subref,']')"/></xsl:attribute>
-            <xsl:attribute name="class">text</xsl:attribute>
-            <xsl:apply-templates select="@*"/>
-            <xsl:apply-templates select="node()"/>
-        </xsl:element>
-        <!-- add spaces back -->
-        <xsl:if test="following-sibling::w">
             <xsl:text> </xsl:text>
         </xsl:if>
     </xsl:template>
@@ -91,7 +76,7 @@
         <xsl:choose>
             <xsl:when test="@n">
                 <xsl:variable name="n" select="@n"/>
-                <div id="{@subtype}-{@n}" class="{@subtype}">
+                <div class="{@subtype}">
                     <!-- hack to avoid repeating divs for ranges -->
                     <xsl:if test="not(preceding-sibling::tei:div[@n=$n]) and
                         not(preceding-sibling::div[@n=$n])">
@@ -274,8 +259,8 @@
     </xsl:template>
     <xsl:template match="tei:note|note">
         <!-- <span class="note">
-            <xsl:apply-templates/>
-            </span> -->
+			<xsl:apply-templates/>
+			</span> -->
     </xsl:template>
     <xsl:template match="tei:add|add">
         <span class="tei_addedText">
@@ -353,23 +338,24 @@
     </xsl:template>
     
     <xsl:template match="tei:milestone|milestone">
-        <xsl:variable name="n" select="@n"/>
         <xsl:choose>
             <xsl:when test="@unit='para'"/>
             <xsl:otherwise>
-                <div class="stone-clear"></div>
-                <a class="milestone {@unit}" id="stone-{@n}">
-                    <xsl:value-of select="@n"/>
-                </a>
+                <span class="tei_milestone"><xsl:attribute name="class">tei_milestone <xsl:value-of select="@unit"/></xsl:attribute><xsl:value-of select="@n"/></span>                
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
     
     <xsl:template match="tei:pb|pb">
-        <hr class="pagebreak" />
-        <div class="page_n"><xsl:text></xsl:text><xsl:value-of select="@n"/><xsl:text></xsl:text></div>
+        <div class="page_n"><xsl:text></xsl:text><xsl:value-of select="@n"/><xsl:text></xsl:text></div><br class="pagebreak" />
     </xsl:template>
     
+    <xsl:template match="tei:hi|hi">
+        <xsl:element name="span">
+            <xsl:attribute name="class"><xsl:value-of select="concat('rend-',@rend)"/></xsl:attribute> 
+            <xsl:apply-templates select="@*|node()"/>
+        </xsl:element>
+    </xsl:template>
     <xsl:template match="tei:seg|seg">
         <xsl:apply-templates/>
     </xsl:template>
@@ -385,12 +371,7 @@
         </xsl:element>
     </xsl:template>
     
-    <xsl:template match="tei:TEI|TEI">
-        <xsl:element name="div">
-            <xsl:attribute name="class">work</xsl:attribute>
-            <xsl:apply-templates select="@*|node()"/>
-        </xsl:element>
-    </xsl:template>
+    
     
     <!-- Default: ignore unrecognized markup attributes -->
     <xsl:template match="@*" priority="-1">

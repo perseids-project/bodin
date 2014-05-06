@@ -13,6 +13,7 @@
 		<div class="bodin" src="tempHtml/english.html" id="english"></div>
 		<div class="sidecart" id="master_options"></div>
 		<div id="control_view"><p>Master options.</p></div>
+		<div id="external_annotation"></div>
 	
 	
 	<!-- Load Javascript -->
@@ -26,87 +27,100 @@
 	<script type="text/javascript" src="../../third_party/sidecart/src/js/sidecart.js"></script>
 	<script type="text/javascript" src="../../src/js/Bodin.js"></script>
 	<script type="text/javascript" src="../../src/js/BodinAlign.js"></script>
+	<script type="text/javascript" src="../../src/js/BodinExternal.js"></script>
 	<script type="text/javascript" src="../../src/js/BodinUI.js"></script>
 	<script type="text/javascript" src="../../src/js/TeiToBodin.js"></script>
 	<script type="text/javascript" src="../../src/js/Tooltipper.js"></script>
 	<script type="text/javascript">
 	
-	jQuery( document ).ready( function() {
-		jQuery( '#master_options' ).sidecart({
-			side: 'right',
-			theme: 'red',
-			views: [
-				{
-					id: 'master',
-					type: 'controls',
-					link: '&clubs; Master Options',
-					src: '#control_view',
-					init: function() {},
-					refresh: function() {}
+		jQuery( document ).ready( function() {
+			jQuery( '#master_options' ).sidecart({
+				side: 'right',
+				theme: 'red',
+				views: [
+					{
+						id: 'master',
+						type: 'controls',
+						link: '&clubs; Master Options',
+						src: '#control_view',
+						init: function() {},
+						refresh: function() {}
+					}
+				]
+			});
+			//------------------------------------------------------------
+			// initialize the external_annotation div 
+			//------------------------------------------------------------
+			jQuery( '#external_annotation').BodinExternal({
+				xslt_path: "../xslt/cts_annotate.xsl",
+				tokenizer: "http://sosol.perseids.org/exist/rest/db/xq/tokenize.xquery?merging=false&splitting=false&uri="
+			}).data('#external_annotation');
+			jQuery( '#external_annotation' ).click(function() { jQuery(this).toggle() });
+			//------------------------------------------------------------
+			//  Once Bodin texts are loaded get the alignment XML
+			//------------------------------------------------------------
+			jQuery( window ).on( 'Bodin-LOADED', function() {
+				bodinAlign.start([
+					{ 
+						src: 'tempXml/alignment.xml', 
+						ids: { body: 'english', target: 'latin' }
+					}
+				]);
+			});
+			//------------------------------------------------------------
+			//  Start up the UI once alignment XML is loaded
+			//------------------------------------------------------------
+			jQuery( window ).on( 'BodinAlign-LOADED', function() {
+				//------------------------------------------------------------
+				//  Markup translation alignment
+				//------------------------------------------------------------
+				bodinAlign.apply();
+				//------------------------------------------------------------
+				//  This sneaky bit of jQuery put's all Bodin instances
+				//  in an array so I can easily
+				//------------------------------------------------------------
+				jQuery( '.bodin' ).each( function() {
+					var id = jQuery( this ).attr('id');
+					bodins.push(
+						jQuery( '#'+id ).BodinUI({
+							milestones: [ 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J' ]
+						}).data( '#'+id )
+					);
+				})
+			});
+			//------------------------------------------------------------
+			//  When a milestone is clicked in any instance all instances
+			//  will scroll to that milestone
+			//------------------------------------------------------------
+			jQuery( window ).on( 'BodinUI-MILESTONE', function( _e, _id ) {
+				for ( var i in bodins ) {
+					bodins[i].goTo( _id );
 				}
-			]
-		});
-		//------------------------------------------------------------
-		//  Once Bodin texts are loaded get the alignment XML
-		//------------------------------------------------------------
-		jQuery( window ).on( 'Bodin-LOADED', function() {
-			bodinAlign.start([
-				{ 
-					src: 'tempXml/alignment.xml', 
-					ids: { body: 'english', target: 'latin' }
+			});
+			jQuery( window ).on( 'BodinUI-ALIGN', function( _e, _filter, _key, _value ) {
+				for ( var i in bodins ) {
+					bodins[i].filteredGoTo( _filter, _key, _value );
+					bodins[i].filteredAlphaBlink( _filter, _key, _value );
 				}
-			]);
-		});
-		//------------------------------------------------------------
-		//  Start up the UI once alignment XML is loaded
-		//------------------------------------------------------------
-		jQuery( window ).on( 'BodinAlign-LOADED', function() {
+			});
+			jQuery( window ).on( 'BodinUI-EXTERNAL', function( _e, _uri, _target, _motivation) {
+				// create a window for the annotation contents if we don't
+				jQuery( window ).trigger( 'BodinExternal-LOADTEXT', [ _uri, _target, _motivation ] );
+			});
 			//------------------------------------------------------------
-			//  Markup translation alignment
+			//  Get a BodinAlign object.
 			//------------------------------------------------------------
-			bodinAlign.apply();
+			var bodinAlign = new BodinAlign();
 			//------------------------------------------------------------
-			//  This sneaky bit of jQuery put's all Bodin instances
-			//  in an array so I can easily
+			//  Store all of your bodin instances
 			//------------------------------------------------------------
-			jQuery( '.bodin' ).each( function() {
-				var id = jQuery( this ).attr('id');
-				bodins.push(
-					jQuery( '#'+id ).BodinUI({
-						milestones: [ 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J' ]
-					}).data( '#'+id )
-				);
-			})
+			bodins = [];
+			//------------------------------------------------------------
+			//  Start it all up.
+			//------------------------------------------------------------
+			var bodin = new Bodin();
+			bodin.start( '.bodin' );
 		});
-		//------------------------------------------------------------
-		//  When a milestone is clicked in any instance all instances
-		//  will scroll to that milestone
-		//------------------------------------------------------------
-		jQuery( window ).on( 'BodinUI-MILESTONE', function( _e, _id ) {
-			for ( var i in bodins ) {
-				bodins[i].goTo( _id );
-			}
-		});
-		jQuery( window ).on( 'BodinUI-ALIGN', function( _e, _filter, _key, _value ) {
-			for ( var i in bodins ) {
-				bodins[i].filteredGoTo( _filter, _key, _value );
-				bodins[i].filteredAlphaBlink( 'aligned', _key, _value );
-			}
-		});
-		//------------------------------------------------------------
-		//  Get a BodinAlign object.
-		//------------------------------------------------------------
-		var bodinAlign = new BodinAlign();
-		//------------------------------------------------------------
-		//  Store all of your bodin instances
-		//------------------------------------------------------------
-		bodins = [];
-		//------------------------------------------------------------
-		//  Start it all up.
-		//------------------------------------------------------------
-		var bodin = new Bodin();
-		bodin.start( '.bodin' );
-	});
 	</script>
 	</body>
 </html>

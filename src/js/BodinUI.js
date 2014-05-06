@@ -48,7 +48,8 @@
 		self.events = {
 			milestone: 'BodinUI-MILESTONE',
 			align: 'BodinUI-ALIGN',
-			switch_highlight: 'BodinUI-SWITCH_HIGHLIGHT'
+			switch_highlight: 'BodinUI-SWITCH_HIGHLIGHT',
+			get_external: 'BodinUI-EXTERNAL'
 		};
 		//------------------------------------------------------------
 		//  Used for managing multiple alignment clicks
@@ -129,11 +130,19 @@
 	 */
 	BodinUI.prototype.align = function() {
 		var self = this;
-		jQuery( '.aligned', self.elem ).on( 'touchstart click', function( _e ) {
+		jQuery( '.align', self.elem ).on( 'touchstart click', function( _e ) {
 			_e.stopPropagation();
 			_e.preventDefault();
 			var id = jQuery( this ).attr('data-alignId')
-			jQuery( window ).trigger( self.events['align'], [ 'aligned','data-alignId',id ] );
+			jQuery( window ).trigger( self.events['align'], [ 'align','data-alignId',id ] );
+		});
+		jQuery( '.external', self.elem ).on( 'touchstart click', function( _e ) {
+			_e.stopPropagation();
+			_e.preventDefault();
+			var id = jQuery( this ).attr('data-alignId')
+			var uri = jQuery ( this ).attr('data-alignUri');
+			var motivation = jQuery ( this ).attr('data-motivation');
+			jQuery( window ).trigger( self.events['get_external'], [ uri, id, motivation ] );
 		});
 	}
 	
