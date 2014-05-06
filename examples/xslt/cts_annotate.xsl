@@ -91,7 +91,7 @@
         <xsl:choose>
             <xsl:when test="@n">
                 <xsl:variable name="n" select="@n"/>
-                <div class="{@subtype}">
+                <div id="{@subtype}-{@n}" class="{@subtype}">
                     <!-- hack to avoid repeating divs for ranges -->
                     <xsl:if test="not(preceding-sibling::tei:div[@n=$n]) and
                         not(preceding-sibling::div[@n=$n])">
