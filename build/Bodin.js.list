@@ -9,4 +9,5 @@ src/js/Bodin.js
 src/js/BodinAlign.js
 src/js/BodinUI.js
 src/js/TeiToBodin.js
+src/js/BodinExternal.js
 src/js/Tooltipper.js
