@@ -1,6 +1,6 @@
 <doc>
     <TEI xmlns="http://www.tei-c.org/ns/1.0">
-   <text n="urn:cts:psci:bodin.livrep.perseus-eng1" xml:lang="eng">
+   <text n="urn:cts:pdlpsci:bodin.livrep.perseus-eng1" xml:lang="eng">
       <body>
                 <div type="edition">
                     <div n="1" type="textpart" subtype="book">

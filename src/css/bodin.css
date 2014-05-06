@@ -123,3 +123,24 @@ body,html {
 .rend-italic {
     font-style: italic;
 }
+
+/**
+ * These are provisional ... Adam will make it better
+ */
+.external {
+    text-decoration: underline;
+    color: blue;
+}
+
+
+#external_annotation {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    height: 400px;
+    width: 400px;
+    display:none;
+    background-color: white;
+    color: black;
+    overflow: scroll;
+}

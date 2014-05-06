@@ -13,6 +13,7 @@
 		<div class="bodin" src="tempHtml/english.html" id="english"></div>
 		<div class="sidecart" id="master_options"></div>
 		<div id="control_view"><p>Master options.</p></div>
+		<div id="external_annotation"></div>
 	
 	
 	<!-- Load Javascript -->
@@ -26,6 +27,7 @@
 	<script type="text/javascript" src="../../third_party/sidecart/src/js/sidecart.js"></script>
 	<script type="text/javascript" src="../../src/js/Bodin.js"></script>
 	<script type="text/javascript" src="../../src/js/BodinAlign.js"></script>
+	<script type="text/javascript" src="../../src/js/BodinExternal.js"></script>
 	<script type="text/javascript" src="../../src/js/BodinUI.js"></script>
 	<script type="text/javascript" src="../../src/js/TeiToBodin.js"></script>
 	<script type="text/javascript" src="../../src/js/Tooltipper.js"></script>
@@ -46,6 +48,17 @@
 				}
 			]
 		});
+		
+		//------------------------------------------------------------
+		// initialize the external_annotation div 
+		//------------------------------------------------------------
+		jQuery( '#external_annotation').BodinExternal({
+			xslt_path: "../xslt/cts_annotate.xsl",
+			tokenizer: "http://sosol.perseids.org/exist/rest/db/xq/tokenize.xquery?merging=false&splitting=false&uri="
+		}).data('#external_annotation');
+		
+		jQuery( '#external_annotation' ).click(function() { jQuery(this).toggle() });
+		
 		//------------------------------------------------------------
 		//  Once Bodin texts are loaded get the alignment XML
 		//------------------------------------------------------------
@@ -90,9 +103,14 @@
 		jQuery( window ).on( 'BodinUI-ALIGN', function( _e, _filter, _key, _value ) {
 			for ( var i in bodins ) {
 				bodins[i].filteredGoTo( _filter, _key, _value );
-				bodins[i].filteredAlphaBlink( 'aligned', _key, _value );
+				bodins[i].filteredAlphaBlink( _filter, _key, _value );
 			}
 		});
+		jQuery( window ).on( 'BodinUI-EXTERNAL', function( _e, _uri, _target, _motivation) {
+			// create a window for the annotation contents if we don't
+			jQuery( window ).trigger( 'BodinExternal-LOADTEXT', [ _uri, _target, _motivation ] );
+		});
+		
 		//------------------------------------------------------------
 		//  Get a BodinAlign object.
 		//------------------------------------------------------------
