@@ -33,6 +33,20 @@ jQuery.fn.cursorToEnd = function() {
 };
 
 /**
+ *  Remove whitespace
+ *  Copied from
+ *  http://stackoverflow.com/questions/1539367/remove-whitespace-and-line-breaks-between-html-elements-using-jquery
+ */
+jQuery.fn.noSpace = function() {
+	textNodes = this.contents().filter(
+		function() { 
+			return ( this.nodeType == 3 && !/\S/.test( this.nodeValue ) );
+		}
+	).remove();
+	return this;
+}
+
+/**
  *  Get an element's html
  */
 jQuery.fn.myHtml = function() {
@@ -665,6 +679,15 @@ Palette.prototype.load = function( _name ) {
 }
 
 /**
+ * Get a color from the palette modulo style.
+ *
+ * @param { int } _int The index of color that you want.
+ */
+Palette.prototype.at = function( _int ) {
+	return this.colors[ _int % this.colors.length ];
+}
+
+/**
  * Reset the palette
  */
 Palette.prototype.reset = function() {
@@ -1207,7 +1230,8 @@ Culuh.prototype.invert = function( _out ) {
             inside: false,
             'bottom-space': 40,
             theme: null,
-            'tab-pad': 2
+            'tab-pad': 2,
+            'anim-length': .25
         }, _config );
         //------------------------------------------------------------
         //  Get a styler object handy
@@ -1439,7 +1463,7 @@ Culuh.prototype.invert = function( _out ) {
      * Check if sidecart is hidden.
      */
     sidecart.prototype.hidden = function() {
-        return jQuery( this.elem ).hasClass('hidden')
+        return jQuery( this.elem ).hasClass('hidden');
     }
     
     /**
@@ -1447,13 +1471,18 @@ Culuh.prototype.invert = function( _out ) {
      */
     sidecart.prototype.show = function() {
         jQuery( this.elem ).removeClass('hidden');
+        jQuery( this.elem ).removeClass('wayback');
     }
     
     /**
      * Hide the cart.
      */
     sidecart.prototype.hide = function() {
-        jQuery( this.elem ).addClass('hidden');
+        var self = this;
+        jQuery( self.elem ).addClass('hidden');
+        setTimeout( function(){
+            jQuery( self.elem ).addClass('wayback');
+        }, self.config['anim-length']*1000 );
     }
     
     /**
@@ -1612,20 +1641,10 @@ var BodinAlign = function() {
 	this.src = {};
 	this.alignments = {};
 	this.config = null;
-	//------------------------------------------------------------
-	//  Ignore node lookup... see _mark()
-	//------------------------------------------------------------
-	this.ignoreTag = { 
-		H1: true, 
-		H2: true 
-	};
-	this.ignoreClass = {
-		note: true,
-		milestone: true
-	}
 	this.palette = new Palette( 'secondary' );
 	this.events = {
-		loaded: 'BodinAlign-LOADED'
+		loaded: 'BodinAlign-LOADED',
+		aligned: 'BodinAlign-ALIGNED'
 	};
 	this.styler = new Styler();
 	
@@ -1783,6 +1802,10 @@ var BodinAlign = function() {
 				id++;
 			}
 		}
+		//------------------------------------------------------------
+		//  Announce alignment is complete
+		//------------------------------------------------------------
+		jQuery( window ).trigger( this.events['aligned'] );
 	}
 	
 	/**
@@ -2070,9 +2093,7 @@ var BodinAlign = function() {
 		self.buildNav();
 		self.tooltips();
 		self.align();
-		if ( self.config['milestones'] != undefined ) {
-			self.milestones();
-		}
+		self.milestonesTouch();
 		jQuery( window ).resize( function() {
 			self.sizeCheck();
 		});
@@ -2102,7 +2123,7 @@ var BodinAlign = function() {
 		var dom = jQuery( '#'+_id, self.elem );
 		var times = [];
 		self.blinkCounter = 0;
-		var ii = (self.config['blinkN']*2);
+		var ii = ( self.config['blinkN']*2 );
 		for ( var i=1; i<=ii; i++ ) {
 			setTimeout( function() {
 				jQuery( dom ).toggleClass( 'blink' );
@@ -2160,7 +2181,6 @@ var BodinAlign = function() {
 	
 	/**
 	* Build milestones
-	*/
 	BodinUI.prototype.milestones = function() {
 		var self = this;
 		var i = 0;
@@ -2172,6 +2192,18 @@ var BodinAlign = function() {
 			jQuery( this ).prepend( '<a href="" class="milestone" id="stone-'+i+'">' + stone + '</a>' );
 		});
 		jQuery( '.milestone' ).on( 'touchstart click', function( _e ) {
+			_e.preventDefault();
+			jQuery( window ).trigger( self.events['milestone'], [ jQuery( this ).attr('id') ] );
+		});
+	}
+	*/
+	
+	/**
+	* Milestones touch
+	*/
+	BodinUI.prototype.milestonesTouch = function() {
+		var self = this;
+		jQuery( '.milestone', self.elem ).on( 'touchstart click', function( _e ) {
 			_e.preventDefault();
 			jQuery( window ).trigger( self.events['milestone'], [ jQuery( this ).attr('id') ] );
 		});
@@ -2231,45 +2263,19 @@ var BodinAlign = function() {
 		//  TODO I could make this a recursive function...
 		//  Is it worth it?
 		//------------------------------------------------------------
-		//------------------------------------------------------------
-		//  Edition
-		//------------------------------------------------------------
-		var edition = 1;
-		jQuery( '.edition', self.elem ).each( function() {
+		var chapter = 1;
+		jQuery( '.chapter', self.elem ).each( function() {
+			//------------------------------------------------------------
+			//   What are you going to use as a chapter title?
+			//------------------------------------------------------------
+			var title = jQuery( 'h3', this ).text();
+			var text = 'Chapter -- '+chapter;
+			if ( title != '' ) {
+				text = '<div>'+title+'</div>';
+			}
 			var id = jQuery( this ).attr('id');
-			nav += '<li><a href="#'+id+'">Edition -- '+edition+'</a></li>';
-			nav += '<ul>';
-			edition++;
-			//------------------------------------------------------------
-			//  Book
-			//------------------------------------------------------------
-			var book = 1;
-			jQuery( '.book', this ).each( function() {
-				var id = jQuery( this ).attr('id');
-				nav += '<li><a href="#'+id+'">Book -- '+book+'</a></li>';
-				nav += '<ul>';
-				book++
-				//------------------------------------------------------------
-				//  Chapter
-				//------------------------------------------------------------
-				var chapter = 1;
-				jQuery( '.chapter', this ).each( function() {
-					//------------------------------------------------------------
-					//   What are you going to use as a chapter title?
-					//------------------------------------------------------------
-					var title = jQuery( 'h1', this ).text();
-					var subtitle = jQuery( 'h2', this ).text();
-					var text = 'Chapter -- '+chapter;
-					if ( title != '' ) {
-						text = '<div>'+title+'</div><div>'+subtitle+'</div>';
-					}
-					var id = jQuery( this ).attr('id');
-					nav += '<li><a href="#'+id+'">'+text+'</a></li>';
-					chapter++;
-				});
-				nav += '</ul>';
-			});
-			nav += '</ul>';
+			nav += '<li><a href="#'+id+'">'+text+'</a></li>';
+			chapter++;
 		});
 		nav += '</ul>';
 		//------------------------------------------------------------

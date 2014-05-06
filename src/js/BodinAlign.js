@@ -15,20 +15,10 @@ var BodinAlign = function() {
 	this.src = {};
 	this.alignments = {};
 	this.config = null;
-	//------------------------------------------------------------
-	//  Ignore node lookup... see _mark()
-	//------------------------------------------------------------
-	this.ignoreTag = { 
-		H1: true, 
-		H2: true 
-	};
-	this.ignoreClass = {
-		note: true,
-		milestone: true
-	}
 	this.palette = new Palette( 'secondary' );
 	this.events = {
-		loaded: 'BodinAlign-LOADED'
+		loaded: 'BodinAlign-LOADED',
+		aligned: 'BodinAlign-ALIGNED'
 	};
 	this.styler = new Styler();
 	
@@ -186,6 +176,10 @@ var BodinAlign = function() {
 				id++;
 			}
 		}
+		//------------------------------------------------------------
+		//  Announce alignment is complete
+		//------------------------------------------------------------
+		jQuery( window ).trigger( this.events['aligned'] );
 	}
 	
 	/**

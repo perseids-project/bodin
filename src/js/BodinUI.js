@@ -117,9 +117,7 @@
 		self.buildNav();
 		self.tooltips();
 		self.align();
-		if ( self.config['milestones'] != undefined ) {
-			self.milestones();
-		}
+		self.milestonesTouch();
 		jQuery( window ).resize( function() {
 			self.sizeCheck();
 		});
@@ -149,7 +147,7 @@
 		var dom = jQuery( '#'+_id, self.elem );
 		var times = [];
 		self.blinkCounter = 0;
-		var ii = (self.config['blinkN']*2);
+		var ii = ( self.config['blinkN']*2 );
 		for ( var i=1; i<=ii; i++ ) {
 			setTimeout( function() {
 				jQuery( dom ).toggleClass( 'blink' );
@@ -207,7 +205,6 @@
 	
 	/**
 	* Build milestones
-	*/
 	BodinUI.prototype.milestones = function() {
 		var self = this;
 		var i = 0;
@@ -219,6 +216,18 @@
 			jQuery( this ).prepend( '<a href="" class="milestone" id="stone-'+i+'">' + stone + '</a>' );
 		});
 		jQuery( '.milestone' ).on( 'touchstart click', function( _e ) {
+			_e.preventDefault();
+			jQuery( window ).trigger( self.events['milestone'], [ jQuery( this ).attr('id') ] );
+		});
+	}
+	*/
+	
+	/**
+	* Milestones touch
+	*/
+	BodinUI.prototype.milestonesTouch = function() {
+		var self = this;
+		jQuery( '.milestone', self.elem ).on( 'touchstart click', function( _e ) {
 			_e.preventDefault();
 			jQuery( window ).trigger( self.events['milestone'], [ jQuery( this ).attr('id') ] );
 		});
@@ -278,45 +287,19 @@
 		//  TODO I could make this a recursive function...
 		//  Is it worth it?
 		//------------------------------------------------------------
-		//------------------------------------------------------------
-		//  Edition
-		//------------------------------------------------------------
-		var edition = 1;
-		jQuery( '.edition', self.elem ).each( function() {
+		var chapter = 1;
+		jQuery( '.chapter', self.elem ).each( function() {
+			//------------------------------------------------------------
+			//   What are you going to use as a chapter title?
+			//------------------------------------------------------------
+			var title = jQuery( 'h3', this ).text();
+			var text = 'Chapter -- '+chapter;
+			if ( title != '' ) {
+				text = '<div>'+title+'</div>';
+			}
 			var id = jQuery( this ).attr('id');
-			nav += '<li><a href="#'+id+'">Edition -- '+edition+'</a></li>';
-			nav += '<ul>';
-			edition++;
-			//------------------------------------------------------------
-			//  Book
-			//------------------------------------------------------------
-			var book = 1;
-			jQuery( '.book', this ).each( function() {
-				var id = jQuery( this ).attr('id');
-				nav += '<li><a href="#'+id+'">Book -- '+book+'</a></li>';
-				nav += '<ul>';
-				book++
-				//------------------------------------------------------------
-				//  Chapter
-				//------------------------------------------------------------
-				var chapter = 1;
-				jQuery( '.chapter', this ).each( function() {
-					//------------------------------------------------------------
-					//   What are you going to use as a chapter title?
-					//------------------------------------------------------------
-					var title = jQuery( 'h1', this ).text();
-					var subtitle = jQuery( 'h2', this ).text();
-					var text = 'Chapter -- '+chapter;
-					if ( title != '' ) {
-						text = '<div>'+title+'</div><div>'+subtitle+'</div>';
-					}
-					var id = jQuery( this ).attr('id');
-					nav += '<li><a href="#'+id+'">'+text+'</a></li>';
-					chapter++;
-				});
-				nav += '</ul>';
-			});
-			nav += '</ul>';
+			nav += '<li><a href="#'+id+'">'+text+'</a></li>';
+			chapter++;
 		});
 		nav += '</ul>';
 		//------------------------------------------------------------

@@ -274,8 +274,8 @@
     </xsl:template>
     <xsl:template match="tei:note|note">
         <!-- <span class="note">
-			<xsl:apply-templates/>
-			</span> -->
+            <xsl:apply-templates/>
+            </span> -->
     </xsl:template>
     <xsl:template match="tei:add|add">
         <span class="tei_addedText">
@@ -356,13 +356,18 @@
         <xsl:choose>
             <xsl:when test="@unit='para'"/>
             <xsl:otherwise>
-                <span class="tei_milestone"><xsl:attribute name="class">tei_milestone <xsl:value-of select="@unit"/></xsl:attribute><xsl:value-of select="@n"/></span>                
+                <a>
+                    <xsl:attribute name="class">milestone <xsl:value-of select="@unit"/></xsl:attribute>
+                    <xsl:attribute name="id">id-<xsl:value-of select="@unit"/></xsl:attribute>
+                    <xsl:value-of select="@n"/>
+                </a>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
     
     <xsl:template match="tei:pb|pb">
-        <div class="page_n"><xsl:text></xsl:text><xsl:value-of select="@n"/><xsl:text></xsl:text></div><br class="pagebreak" />
+        <hr class="pagebreak" />
+        <div class="page_n"><xsl:text></xsl:text><xsl:value-of select="@n"/><xsl:text></xsl:text></div>
     </xsl:template>
     
     <xsl:template match="tei:seg|seg">
