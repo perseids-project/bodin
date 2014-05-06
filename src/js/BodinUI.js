@@ -229,6 +229,7 @@
 		var self = this;
 		jQuery( '.milestone', self.elem ).on( 'touchstart click', function( _e ) {
 			_e.preventDefault();
+			console.log( jQuery( this ).prevAll( '.page_n' ) );
 			jQuery( window ).trigger( self.events['milestone'], [ jQuery( this ).attr('id') ] );
 		});
 	}
@@ -293,9 +294,12 @@
 			//   What are you going to use as a chapter title?
 			//------------------------------------------------------------
 			var title = jQuery( 'h3', this ).text();
-			var text = 'Chapter -- '+chapter;
-			if ( title != '' ) {
-				text = '<div>'+title+'</div>';
+			var text = '<div>'+title+'</div>';
+			//------------------------------------------------------------
+			//  If no title is found just do this...
+			//------------------------------------------------------------
+			if ( title == '' ) {
+				text = 'Chapter -- '+chapter;
 			}
 			var id = jQuery( this ).attr('id');
 			nav += '<li><a href="#'+id+'">'+text+'</a></li>';

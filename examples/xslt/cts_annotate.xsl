@@ -353,12 +353,12 @@
     </xsl:template>
     
     <xsl:template match="tei:milestone|milestone">
+        <xsl:variable name="n" select="@n"/>
         <xsl:choose>
             <xsl:when test="@unit='para'"/>
             <xsl:otherwise>
-                <a>
-                    <xsl:attribute name="class">milestone <xsl:value-of select="@unit"/></xsl:attribute>
-                    <xsl:attribute name="id">id-<xsl:value-of select="@unit"/></xsl:attribute>
+                <div class="stone-clear"></div>
+                <a class="milestone {@unit}" id="stone-{@n}">
                     <xsl:value-of select="@n"/>
                 </a>
             </xsl:otherwise>
