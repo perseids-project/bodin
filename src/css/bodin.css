@@ -1,122 +1,135 @@
 body,html {
-	margin: 0;
-	padding: 0;
-	background-color: #222;
+    margin: 0;
+    padding: 0;
+    background-color: #222;
 }
 .bodin {
-	color: #222;
-	letter-spacing: .02em;
-	line-height: 1.5em;
-	padding: 2px;
-	background-color: #222;
-	width: 100%;
-	box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	display: block;
-	float: left;
-	margin: 0;
+    color: #222;
+    letter-spacing: .02em;
+    line-height: 1.5em;
+    padding: 2px;
+    background-color: #222;
+    width: 100%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    display: block;
+    float: left;
+    margin: 0;
 }
 .bodin .milestone {
-	color: #FF5555;
-	vertical-align: top;
-	padding: 0;
-	/*display: inline-block;*/
-	font-size: 12px;
-	text-decoration: none;
-	margin-left: -5%;
-	padding-left: 0;
-	/*margin-right: 15px;*/
-	float:left;
+    cursor: pointer;
+    color: #FF5555;
+    vertical-align: top;
+    padding: 0;
+    /*display: inline-block;*/
+    font-size: 12px;
+    text-decoration: none;
+    margin-left: -5%;
+    padding-left: 0;
+    /*margin-right: 15px;*/
+    float:left;
+}
+.bodin div.stone-clear {
+	margin-bottom: 30px;
 }
 .bodin a.note {
-	display: inline-block;
-	color: #FF0000;
-	vertical-align: super;
-	font-size: 75%;
-	line-height: 1;
-	text-decoration: none;
+    display: inline-block;
+    color: #FF0000;
+    vertical-align: super;
+    font-size: 75%;
+    line-height: 1;
+    text-decoration: none;
 }
 .bodin .token {
-	cursor: pointer;
+    cursor: pointer;
 }
 .bodin .aligned {
-	margin: 0;
-	padding: 0;
-	-moz-transition: all .25s ease-in;
-	-webkit-transition: all .25s ease-in;
-	-o-transition: all .25s ease-in;
-	transition: all .25s ease-in;
+    margin: 0;
+    padding: 0;
+    -moz-transition: all .25s ease-in;
+    -webkit-transition: all .25s ease-in;
+    -o-transition: all .25s ease-in;
+    transition: all .25s ease-in;
 }
 .bodin .span {
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
 }
 .bodin .work {
-	height: 100%;
-	overflow-y: scroll;
-	overflow-x: hidden;
-	background-color: #F9F9F9;
-	padding: 50px;
-	box-sizing: border-box;
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background-color: #F9F9F9;
+    padding: 50px;
+    box-sizing: border-box;
 }
 /*
 .bodin .page {
-	padding: 60px 80px 120px 80px;
-	margin-bottom: 5px;
-	max-width: 600px;
-	margin-left: auto;
-	margin-right: auto;
+    padding: 60px 80px 120px 80px;
+    margin-bottom: 5px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 */
 .bodin .options .switches {
-	width: 200px;
+    width: 200px;
 }
 .bodin.slim .milestone {
-	margin-left: -18px;
-	margin-right: 8px;
+    margin-left: -18px;
+    margin-right: 8px;
 }
-.bodin .pagebreak {
-	width: 200%;
-	background-color: #222;
-	height: 3px;
-	margin: 100px 0 50px -100px;
+.bodin hr {
+    width: 200%;
+    border: 2px solid #333;
+    margin-left: -50%;
+    margin-top: 45px;
+}
+.bodin hr:nth-child(1) {
+    margin: 0;
+    border: none;
+}
+.bodin .page_n {
+    margin: 20px 0;
+    text-align: right;
+    color: #666;
 }
 
 #tooltipper {
-	text-align: center;
-	color: #fff;
-	background: #111;
-	position: absolute;
-	z-index: 100;
-	padding: 15px;
+    text-align: center;
+    color: #fff;
+    background: #111;
+    position: absolute;
+    z-index: 100;
+    padding: 15px;
 }
 #tooltipper:after {
-	width: 0;
-	height: 0;
-	border-left: 10px solid transparent;
-	border-right: 10px solid transparent;
-	border-top: 10px solid #111;
-	content: '';
-	position: absolute;
-	left: 50%;
-	bottom: -10px;
-	margin-left: -10px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #111;
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+    margin-left: -10px;
 }
 #tooltipper.top:after {
-	border-top-color: transparent;
-	border-bottom: 10px solid #111;
-	top: -20px;
-	bottom: auto;
+    border-top-color: transparent;
+    border-bottom: 10px solid #111;
+    top: -20px;
+    bottom: auto;
 }
 #tooltipper.left:after {
-	left: 10px;
-	margin: 0;
+    left: 10px;
+    margin: 0;
 }
 #tooltipper.right:after {
-	right: 10px;
-	left: auto;
-	margin: 0;
+    right: 10px;
+    left: auto;
+    margin: 0;
 }
 .align-start, .align-end {}
 

@@ -18,14 +18,6 @@ var BodinAlign = function() {
     //------------------------------------------------------------
     //  Ignore node lookup... see _mark()
     //------------------------------------------------------------
-    this.ignoreTag = { 
-        H1: true, 
-        H2: true 
-    };
-    this.ignoreClass = {
-        note: true,
-        milestone: true
-    }
     this.palette = new Palette( 'secondary' );
     this.events = {
         loaded: 'BodinAlign-LOADED'
