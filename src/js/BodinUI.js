@@ -118,7 +118,7 @@
 		self.buildNav();
 		self.tooltips();
 		self.align();
-		self.milestonesTouch();
+
 		jQuery( window ).resize( function() {
 			self.sizeCheck();
 		});
@@ -156,7 +156,7 @@
 		var dom = jQuery( '#'+_id, self.elem );
 		var times = [];
 		self.blinkCounter = 0;
-		var ii = ( self.config['blinkN']*2 );
+		var ii = (self.config['blinkN']*2);
 		for ( var i=1; i<=ii; i++ ) {
 			setTimeout( function() {
 				jQuery( dom ).toggleClass( 'blink' );

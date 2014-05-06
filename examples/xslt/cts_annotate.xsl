@@ -76,7 +76,7 @@
         <xsl:choose>
             <xsl:when test="@n">
                 <xsl:variable name="n" select="@n"/>
-                <div class="{@subtype}">
+                <div id="{@subtype}-{@n}" class="{@subtype}">
                     <!-- hack to avoid repeating divs for ranges -->
                     <xsl:if test="not(preceding-sibling::tei:div[@n=$n]) and
                         not(preceding-sibling::div[@n=$n])">
@@ -259,8 +259,8 @@
     </xsl:template>
     <xsl:template match="tei:note|note">
         <!-- <span class="note">
-			<xsl:apply-templates/>
-			</span> -->
+            <xsl:apply-templates/>
+            </span> -->
     </xsl:template>
     <xsl:template match="tei:add|add">
         <span class="tei_addedText">
@@ -338,17 +338,22 @@
     </xsl:template>
     
     <xsl:template match="tei:milestone|milestone">
-        <xsl:choose>
-            <xsl:when test="@unit='para'"/>
-            <xsl:otherwise>
-                <span class="tei_milestone"><xsl:attribute name="class">tei_milestone <xsl:value-of select="@unit"/></xsl:attribute><xsl:value-of select="@n"/></span>                
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
+            <xsl:variable name="n" select="@n"/>
+            <xsl:choose>
+                <xsl:when test="@unit='para'"/>
+                <xsl:otherwise>
+                    <div class="stone-clear"></div>
+                    <a class="milestone {@unit}" id="stone-{@n}">
+                        <xsl:value-of select="@n"/>
+                    </a>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:template>
     
-    <xsl:template match="tei:pb|pb">
-        <div class="page_n"><xsl:text></xsl:text><xsl:value-of select="@n"/><xsl:text></xsl:text></div><br class="pagebreak" />
-    </xsl:template>
+        <xsl:template match="tei:pb|pb">
+            <hr class="pagebreak" />
+            <div class="page_n"><xsl:text></xsl:text><xsl:value-of select="@n"/><xsl:text></xsl:text></div>
+        </xsl:template>
     
     <xsl:template match="tei:hi|hi">
         <xsl:element name="span">
