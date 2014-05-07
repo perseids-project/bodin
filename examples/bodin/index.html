@@ -84,11 +84,9 @@
 				jQuery( '.bodin' ).each( function() {
 					var id = jQuery( this ).attr('id');
 					bodins.push(
-						jQuery( '#'+id ).BodinUI({
-							milestones: [ 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J' ]
-						}).data( '#'+id )
+						jQuery( '#'+id ).BodinUI().data( '#'+id )
 					);
-				})
+				});
 			});
 			//------------------------------------------------------------
 			//  When a milestone is clicked in any instance all instances

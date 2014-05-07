@@ -1936,7 +1936,7 @@ var BodinAlign = function() {
                      // info and make it an inner element so that the original 
                      // token element remains the outermost element
                      //------------------------------------------------------
-                     var classes = [annotation_type, annotation_type + '-' + _alignId, end_class, start_class, color_class ].join(' ');
+                     var classes = [annotation_type, annotation_type + '-' + _alignId, end_class, start_class, color_class, 'active' ].join(' ');
                      var elem =     this.alignSpan( _alignId, classes, _uri, _motivation);
                      sib.wrapInner( elem.smoosh() );
                      
@@ -2003,7 +2003,7 @@ var BodinAlign = function() {
     this.paletteStyles = function() {
         var rule = {};
         for ( var i=0; i<this.palette.colors.length; i++ ) {
-            rule[ '.'+this.colorClass(i) ] = 'background-color:'+this.highlightColor(i);
+            rule[ '.active.'+this.colorClass(i) ] = 'background-color:'+this.highlightColor(i);
             rule[ '.'+this.colorClass(i)+'.blink' ] = 'background-color:'+this.highlightBlinkColor(i);
             this.styler.add( rule );
         }
@@ -2143,9 +2143,16 @@ var BodinAlign = function() {
 			//------------------------------------------------------------
 			switch ( id ) {
 				case 'highlight_'+self.id:
-					console.log( on );
+					jQuery( '.align', self.elem ).toggleClass('active');
+					jQuery( '.external', self.elem ).toggleClass('active');
 					break;
 			}
+			//------------------------------------------------------------
+			//  Close the window
+			//------------------------------------------------------------
+			setTimeout( function(){
+				self.sidecart.hide();
+			}, .25*1000 );
 		});
 	}
 	
@@ -2172,12 +2179,24 @@ var BodinAlign = function() {
 		jQuery( '.align', self.elem ).on( 'touchstart click', function( _e ) {
 			_e.stopPropagation();
 			_e.preventDefault();
+			//------------------------------------------------------------
+			//  If the alignments are not active just exit.
+			//------------------------------------------------------------
+			if ( jQuery( this ).hasClass( 'active') == false ) {
+				return;
+			}
 			var id = jQuery( this ).attr('data-alignId')
 			jQuery( window ).trigger( self.events['align'], [ 'align','data-alignId',id ] );
 		});
 		jQuery( '.external', self.elem ).on( 'touchstart click', function( _e ) {
 			_e.stopPropagation();
 			_e.preventDefault();
+			//------------------------------------------------------------
+			//  If the alignments are not active just exit.
+			//------------------------------------------------------------
+			if ( jQuery( this ).hasClass( 'active') == false ) {
+				return;
+			}
 			var id = jQuery( this ).attr('data-alignId')
 			var uri = jQuery ( this ).attr('data-alignUri');
 			var motivation = jQuery ( this ).attr('data-motivation');
