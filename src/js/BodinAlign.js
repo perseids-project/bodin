@@ -310,7 +310,7 @@ var BodinAlign = function() {
                      // info and make it an inner element so that the original 
                      // token element remains the outermost element
                      //------------------------------------------------------
-                     var classes = [annotation_type, annotation_type + '-' + _alignId, end_class, start_class, color_class ].join(' ');
+                     var classes = [annotation_type, annotation_type + '-' + _alignId, end_class, start_class, color_class, 'active' ].join(' ');
                      var elem =     this.alignSpan( _alignId, classes, _uri, _motivation);
                      sib.wrapInner( elem.smoosh() );
                      
@@ -377,7 +377,7 @@ var BodinAlign = function() {
     this.paletteStyles = function() {
         var rule = {};
         for ( var i=0; i<this.palette.colors.length; i++ ) {
-            rule[ '.'+this.colorClass(i) ] = 'background-color:'+this.highlightColor(i);
+            rule[ '.active.'+this.colorClass(i) ] = 'background-color:'+this.highlightColor(i);
             rule[ '.'+this.colorClass(i)+'.blink' ] = 'background-color:'+this.highlightBlinkColor(i);
             this.styler.add( rule );
         }

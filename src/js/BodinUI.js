@@ -102,9 +102,16 @@
 			//------------------------------------------------------------
 			switch ( id ) {
 				case 'highlight_'+self.id:
-					console.log( on );
+					jQuery( '.align', self.elem ).toggleClass('active');
+					jQuery( '.external', self.elem ).toggleClass('active');
 					break;
 			}
+			//------------------------------------------------------------
+			//  Close the window
+			//------------------------------------------------------------
+			setTimeout( function(){
+				self.sidecart.hide();
+			}, .25*1000 );
 		});
 	}
 	
@@ -131,12 +138,24 @@
 		jQuery( '.align', self.elem ).on( 'touchstart click', function( _e ) {
 			_e.stopPropagation();
 			_e.preventDefault();
+			//------------------------------------------------------------
+			//  If the alignments are not active just exit.
+			//------------------------------------------------------------
+			if ( jQuery( this ).hasClass( 'active') == false ) {
+				return;
+			}
 			var id = jQuery( this ).attr('data-alignId')
 			jQuery( window ).trigger( self.events['align'], [ 'align','data-alignId',id ] );
 		});
 		jQuery( '.external', self.elem ).on( 'touchstart click', function( _e ) {
 			_e.stopPropagation();
 			_e.preventDefault();
+			//------------------------------------------------------------
+			//  If the alignments are not active just exit.
+			//------------------------------------------------------------
+			if ( jQuery( this ).hasClass( 'active') == false ) {
+				return;
+			}
 			var id = jQuery( this ).attr('data-alignId')
 			var uri = jQuery ( this ).attr('data-alignUri');
 			var motivation = jQuery ( this ).attr('data-motivation');
