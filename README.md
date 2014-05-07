@@ -4,7 +4,7 @@ It's named after Jean Bodin, the French political philosopher, whose translated 
 
 # Features
 * Supports TEI CTS texts.
-* Multicolumnar display of texts.  The only limit to number of texts displayed is memory and monitory resolution.
+* Multicolumnar display of texts.  The only limit to number of texts displayed is memory and monitor resolution.
 * Easy navigation of aligned text.
 * Builds index to easily find chapters.
 
