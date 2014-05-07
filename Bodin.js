@@ -2605,8 +2605,6 @@ var BodinAlign = function() {
     * @param { array } _subrefs An array of _subref objects
     */
     BodinExternal.prototype.buildUri = function( _urn, _uri, _subref, _subrefs ) {
-        console.log( _subref );
-        console.log( _subrefs );
         if ( _urn != '' && ! _uri.match(/^http:\/\/data\.perseus\.org/ ) ) {
             var link_uri = 'http://data.perseus.org/';
             if ( _subref ) {
@@ -2709,6 +2707,10 @@ var BodinAlign = function() {
                     if ( subref != undefined ) {
                         bodin_align.mark( self.id, _target, subrefs, _motivation, null );
                     }
+                    //------------------------------------------------------------
+                    //  Add bodin class for the style.
+                    //------------------------------------------------------------
+                    jQuery( self.elem ).addClass( 'bodin' );
                     id.show();
                     return;
                 }

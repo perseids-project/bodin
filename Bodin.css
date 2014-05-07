@@ -463,7 +463,7 @@ body,html {
 }
 #external_annotation {
 	box-sizing: border-box;
-	padding: 100px 50px;
+	padding: 100px;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -472,14 +472,4 @@ body,html {
 	display: none;
 	background-color: #EEE;
 	overflow: scroll;
-/*    position: fixed;
-    top: 10px;
-    left: 10px;
-    height: 400px;
-    width: 400px;
-    display:none;
-    background-color: white;
-    color: black;
-    overflow: scroll;
-*/
 }
