@@ -97,14 +97,19 @@
 					bodins[i].goTo( _id );
 				}
 			});
+			//------------------------------------------------------------
+			//  When an alignment passage is click start scrolling.
+			//------------------------------------------------------------
 			jQuery( window ).on( 'BodinUI-ALIGN', function( _e, _filter, _key, _value ) {
 				for ( var i in bodins ) {
 					bodins[i].filteredGoTo( _filter, _key, _value );
 					bodins[i].filteredAlphaBlink( _filter, _key, _value );
 				}
 			});
+			//------------------------------------------------------------
+			//  Create a window for the annotation contents if we don't
+			//------------------------------------------------------------
 			jQuery( window ).on( 'BodinUI-EXTERNAL', function( _e, _uri, _target, _motivation) {
-				// create a window for the annotation contents if we don't
 				jQuery( window ).trigger( 'BodinExternal-LOADTEXT', [ _uri, _target, _motivation ] );
 			});
 			//------------------------------------------------------------

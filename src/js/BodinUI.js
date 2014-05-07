@@ -49,7 +49,7 @@
 			milestone: 'BodinUI-MILESTONE',
 			align: 'BodinUI-ALIGN',
 			switch_highlight: 'BodinUI-SWITCH_HIGHLIGHT',
-			get_external: 'BodinUI-EXTERNAL'
+			'external': 'BodinUI-EXTERNAL'
 		};
 		//------------------------------------------------------------
 		//  Used for managing multiple alignment clicks
@@ -118,11 +118,9 @@
 		self.buildNav();
 		self.tooltips();
 		self.align();
-
 		jQuery( window ).resize( function() {
 			self.sizeCheck();
 		});
-		
 	}
 	
 	/**
@@ -142,7 +140,7 @@
 			var id = jQuery( this ).attr('data-alignId')
 			var uri = jQuery ( this ).attr('data-alignUri');
 			var motivation = jQuery ( this ).attr('data-motivation');
-			jQuery( window ).trigger( self.events['get_external'], [ uri, id, motivation ] );
+			jQuery( window ).trigger( self.events['external'], [ uri, id, motivation ] );
 		});
 	}
 	
