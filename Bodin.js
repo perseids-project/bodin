@@ -2090,7 +2090,7 @@ var BodinAlign = function() {
 			milestone: 'BodinUI-MILESTONE',
 			align: 'BodinUI-ALIGN',
 			switch_highlight: 'BodinUI-SWITCH_HIGHLIGHT',
-			get_external: 'BodinUI-EXTERNAL'
+			'external': 'BodinUI-EXTERNAL'
 		};
 		//------------------------------------------------------------
 		//  Used for managing multiple alignment clicks
@@ -2159,11 +2159,9 @@ var BodinAlign = function() {
 		self.buildNav();
 		self.tooltips();
 		self.align();
-
 		jQuery( window ).resize( function() {
 			self.sizeCheck();
 		});
-		
 	}
 	
 	/**
@@ -2183,7 +2181,7 @@ var BodinAlign = function() {
 			var id = jQuery( this ).attr('data-alignId')
 			var uri = jQuery ( this ).attr('data-alignUri');
 			var motivation = jQuery ( this ).attr('data-motivation');
-			jQuery( window ).trigger( self.events['get_external'], [ uri, id, motivation ] );
+			jQuery( window ).trigger( self.events['external'], [ uri, id, motivation ] );
 		});
 	}
 	
@@ -2488,7 +2486,7 @@ var BodinAlign = function() {
  * Currently works only with CTS-enabled annotiation body URIs
  */
 ;(function( jQuery ) {
-/**
+    /**
      * Holds default config, adds user defined config, and initializes the plugin
      *
      * @param { obj } _elem The DOM element where the plugin will be drawn\
@@ -2512,45 +2510,44 @@ var BodinAlign = function() {
      *                                   }
      */
     BodinExternal.prototype.init = function( _elem, _config ) {
-       var self = this;
-       
-       //------------------------------------------------------------
-       //    Mark your territory
-       //------------------------------------------------------------
-       jQuery( self.elem ).addClass('bodin-external');
-       
-       //------------------------------------------------------------
-       //  Get the instance id
-       //------------------------------------------------------------
-       self.id = jQuery( self.elem ).attr('id');
-       
-       //------------------------------------------------------------
-       //    User config 
-       //------------------------------------------------------------
-        self.config = $.extend({
-        }, _config );
+        var self = this;
         
         //------------------------------------------------------------
-        //    Events
+        //    Mark your territory
         //------------------------------------------------------------
-        self.events = {
-            load: 'BodinExternal-LOADTEXT',
-            load_done: 'BodinExternal-TEXTLOADED'
-        };
+        jQuery( self.elem ).addClass('bodin-external');
+        
         //------------------------------------------------------------
-        //    Start event listeners
+        //  Get the instance id
         //------------------------------------------------------------
-        self.start();
-    }
+        self.id = jQuery( self.elem ).attr('id');
+        
+        //------------------------------------------------------------
+        //    User config 
+        //------------------------------------------------------------
+         self.config = $.extend({}, _config );
+         
+         //------------------------------------------------------------
+         //    Events
+         //------------------------------------------------------------
+         self.events = {
+            loadtext: 'BodinExternal-LOADTEXT',
+            textloaded: 'BodinExternal-TEXTLOADED'
+         };
+         //------------------------------------------------------------
+         //    Start event listeners
+         //------------------------------------------------------------
+         self.start();
+     }
     
     /**
      * Start the interface
      * Loads the XSLT and sets up event listeners
      */
     BodinExternal.prototype.start = function() {
-       var self = this;
-       self.loadXslt(self.config.xslt_path);
-       self.listen();
+        var self = this;
+        self.loadXslt(self.config.xslt_path);
+        self.listen();
     }
     
     /**
@@ -2559,18 +2556,20 @@ var BodinAlign = function() {
      * @param {string} _xsltPath path to XSLT file for
      *                 annotation transform
      */
-    BodinExternal.prototype.loadXslt = function(_xsltPath) {
+    BodinExternal.prototype.loadXslt = function( _xsltPath ) {
        var self = this;
        jQuery.ajax({
            dataType: "xml",
            url: _xsltPath,
            async: false
-        }).done( 
-            function(_data) {
+        })
+        .done( 
+            function( _data ) {
                 self.passageTransform = new XSLTProcessor();
-                self.passageTransform.importStylesheet(_data);   
-        }).fail(
-            function(jqXHR, textStatus, errorThrown) { 
+                self.passageTransform.importStylesheet( _data );
+        }).
+        fail(
+            function( jqXHR, textStatus, errorThrown ) { 
                 var msg = "Can't get Passage XSLT";
                 alert(msg);
                 throw(msg);
@@ -2585,9 +2584,42 @@ var BodinAlign = function() {
      */
     BodinExternal.prototype.listen = function() {
        var self=this;
-       jQuery( window ).on( self.events.load, function( _e, _uri, _target, _motivation) {
+       jQuery( window ).on( self.events['loadtext'], function( _e, _uri, _target, _motivation ) {
            self.loadText( _e, _uri, _target, _motivation );
        });
+    }
+    
+    /**
+    * Build a uri to a perseus data record
+    * 
+    * @param { string } _urn
+    * @param { string } _uri
+    * @param { object } _subref
+    *       Object {
+    *           work: "urn:cts:greekLit:tlg0086.tlg010.perseus-eng1", 
+    *           start: "since[1]", 
+    *           end: "superior[1]", 
+    *           cite: "1177a-1178a", 
+    *           uri: null
+    *       }
+    * @param { array } _subrefs An array of _subref objects
+    */
+    BodinExternal.prototype.buildUri = function( _urn, _uri, _subref, _subrefs ) {
+        console.log( _subref );
+        console.log( _subrefs );
+        if ( _urn != '' && ! _uri.match(/^http:\/\/data\.perseus\.org/ ) ) {
+            var link_uri = 'http://data.perseus.org/';
+            if ( _subref ) {
+                link_uri = link_uri + 'citations/';
+            } 
+            else {
+                link_uri = link_uri + 'texts/';
+            }
+            return link_uri + _urn + ':' + _subrefs[0].cite;
+        } 
+        else {
+            return _uri;
+        }
     }
     
     /**
@@ -2598,7 +2630,7 @@ var BodinAlign = function() {
      * @param {string} _target the identifier for the html element containing the target of the annotation
      * @param {string} _motivation the motivation for the annotation
      */
-    BodinExternal.prototype.loadText = function(_e, _uri, _target, _motivation) {
+    BodinExternal.prototype.loadText = function( _e, _uri, _target, _motivation ) {
        var self = this;
        var uris = _uri.split(/ /);
        var id = jQuery( self.elem );
@@ -2612,72 +2644,94 @@ var BodinAlign = function() {
        //------------------------------------------------------------
        var uri_no_subref = uris[0];
        var subref_index = uri_no_subref.indexOf('@');
-       if (subref_index != -1) {
-           uri_no_subref = uris[0].substr(0,subref_index);    
+       if ( subref_index != -1 ) {
+           uri_no_subref = uris[0].substr( 0, subref_index );
        }
        var bodin_align = new BodinAlign();
-       var urn = bodin_align.getUrn(uris[0]);
+       var urn = bodin_align.getUrn( uris[0] );
        var subrefs = [];
-       for (var i=0; i<uris.length; i++) {
-           var subref = bodin_align.target(uris[i],urn);
-           if (subref) {
-               subrefs.push(subref);
+       var subref = null;
+       for ( var i=0; i<uris.length; i++ ) {
+           subref = bodin_align.target( uris[i], urn );
+           if ( subref != undefined ) {
+               subrefs.push( subref );
            }
        }
        
-       var request_url = tokenizer_url + encodeURIComponent(uri_no_subref);
-       jQuery.get(request_url).done(
-           function(_data) {
-               if (self.passageTransform != null) {
-                   if (subrefs.length > 0) {
-                       self.passageTransform.setParameter(null,"e_cite",subrefs[0].cite);
-                   }
-                   var content = self.passageTransform.transformToDocument(_data);
-                   if (content) {
-                        var div = jQuery("div#tei_body",content);
-                        if (div.length > 0) {
-                           
-                            var link_uri;
-                            if (urn != '' && ! _uri.match(/^http:\/\/data\.perseus\.org/)) {
-                                link_uri = 'http://data.perseus.org/';
-                                if (subref) {
-                                    link_uri = link_uri + 'citations/';
-                                } else {
-                                    link_uri = link_uri + 'texts/';
-                                }
-                                link_uri = link_uri + urn + ':' + subrefs[0].cite;
-                            } else {
-                                link_uri = _uri;
-                            }
-    
-                            jQuery( self.elem ).html($(div).html()).
-                                prepend('<div><a href="' + link_uri +'" target="_blank">' + link_uri + '</a></div>').
-                                prepend('<h2>' + _motivation + '</h2>');
-                            if (subref) {
-                                bodin_align.mark(self.id,_target,subrefs,_motivation,null);
-                            }
-                        } else {
-                            jQuery( self.elem ).html('<div class="error">Unable to transform the requested text.</div>')
-                        }
-                      } else {
-                        jQuery( self.elem ).html(_data);
+       //------------------------------------------------------------
+       //  Ajax call
+       //------------------------------------------------------------
+       var request_url = tokenizer_url + encodeURIComponent( uri_no_subref );
+       jQuery.get( request_url ).done(
+           function( _data ) {
+                //------------------------------------------------------------
+                //  If the data doesn't need to be passed through XSLT just
+                //  display the data raw.
+                //------------------------------------------------------------
+                if ( self.passageTransform == null ) {
+                    jQuery( self.elem ).html( _data );
+                    id.show();
+                    return
+                }
+                //------------------------------------------------------------
+                //  So you need to do some XSLT processing.
+                //------------------------------------------------------------
+                if ( subrefs.length > 0 ) {
+                    self.passageTransform.setParameter( null,"e_cite", subrefs[0].cite );
+                }
+                var content = self.passageTransform.transformToDocument( _data );
+                //------------------------------------------------------------
+                //  No content after XSLT processing?  Show an error message.
+                //------------------------------------------------------------
+                if ( content == undefined ) {
+                    jQuery( self.elem ).html( '<div class="error">Unable to transform the requested text.</div>' )
+                    id.show();
+                    return
+                }
+                //------------------------------------------------------------
+                //  You have some content that needs to be aligned.
+                //------------------------------------------------------------
+                var div = jQuery( "div#tei_body", content );
+                if ( div.length > 0 ) {
+                    //------------------------------------------------------------
+                    //  Build the URI
+                    //------------------------------------------------------------
+                    var link_uri = self.buildUri( urn, _uri, subref, subrefs );
+                    //------------------------------------------------------------
+                    //  Add the HTML
+                    //------------------------------------------------------------
+                    jQuery( self.elem ).html( $(div).html() ).
+                        prepend('<div><a href="' + link_uri +'" target="_blank">' + link_uri + '</a></div>').
+                        prepend('<h2>' + _motivation + '</h2>');
+                    //------------------------------------------------------------
+                    //  Mark the aligned passages
+                    //------------------------------------------------------------
+                    if ( subref != undefined ) {
+                        bodin_align.mark( self.id, _target, subrefs, _motivation, null );
                     }
-                } else {
-                    jQuery( self.elem ).html(_data);
+                    id.show();
+                    return;
                 }
+                //------------------------------------------------------------
+                //  If you've made it this far something unusual probably
+                //  happend. You'll get the raw data returned.
+                //------------------------------------------------------------
+                jQuery( self.elem ).html( _data );
                 id.show();
-              }).fail(
+                return
+            })
+            .fail(
                 function() {
-                  jQuery( self.elem ).html('<div class="error">Unable to load the requested text.</div>');
-                  id.show();
+                    jQuery( self.elem ).html('<div class="error">Unable to load the requested text.</div>');
+                    id.show();
                 }
-              );
+            );
     }
           
     //----------------
     //    Extend JQuery 
     //----------------
-    jQuery(document).ready( function( jQuery ) {
+    jQuery( document ).ready( function( jQuery ) {
         jQuery.fn.BodinExternal = function( config ) {
             var id = jQuery(this).selector;
             return this.each( function() {

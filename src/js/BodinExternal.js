@@ -50,8 +50,8 @@
          //    Events
          //------------------------------------------------------------
          self.events = {
-            load: 'BodinExternal-LOADTEXT',
-            load_done: 'BodinExternal-TEXTLOADED'
+            loadtext: 'BodinExternal-LOADTEXT',
+            textloaded: 'BodinExternal-TEXTLOADED'
          };
          //------------------------------------------------------------
          //    Start event listeners
@@ -103,15 +103,29 @@
      */
     BodinExternal.prototype.listen = function() {
        var self=this;
-       jQuery( window ).on( self.events.load, function( _e, _uri, _target, _motivation ) {
+       jQuery( window ).on( self.events['loadtext'], function( _e, _uri, _target, _motivation ) {
            self.loadText( _e, _uri, _target, _motivation );
        });
     }
     
-    //------------------------------------------------------------
-    //  TODO breakout relevant section from loadText()
-    //------------------------------------------------------------
+    /**
+    * Build a uri to a perseus data record
+    * 
+    * @param { string } _urn
+    * @param { string } _uri
+    * @param { object } _subref
+    *       Object {
+    *           work: "urn:cts:greekLit:tlg0086.tlg010.perseus-eng1", 
+    *           start: "since[1]", 
+    *           end: "superior[1]", 
+    *           cite: "1177a-1178a", 
+    *           uri: null
+    *       }
+    * @param { array } _subrefs An array of _subref objects
+    */
     BodinExternal.prototype.buildUri = function( _urn, _uri, _subref, _subrefs ) {
+        console.log( _subref );
+        console.log( _subrefs );
         if ( _urn != '' && ! _uri.match(/^http:\/\/data\.perseus\.org/ ) ) {
             var link_uri = 'http://data.perseus.org/';
             if ( _subref ) {
