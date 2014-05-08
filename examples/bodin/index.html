@@ -66,6 +66,10 @@
 					{ 
 						src: 'tempXml/alignment.xml', 
 						ids: { body: 'english', target: 'latin' }
+					},
+					{ 
+						src: 'tempXml/commentary.xml', 
+						ids: { body: 'french', target: 'english' }
 					}
 				]);
 			});
@@ -110,8 +114,12 @@
 			//  Create a window for the annotation contents if we don't
 			//------------------------------------------------------------
 			jQuery( window ).on( 'BodinUI-EXTERNAL', function( _e, _uri, _target, _motivation) {
-				jQuery( window ).trigger( 'BodinExternal-LOADTEXT', [ _uri, _target, _motivation ] );
+				jQuery( window ).trigger( 'BodinExternal-LOADTEXT', [ _uri, _target, _motivation, null ] );
 			});
+			jQuery( window ).on( 'BodinUI-INLINE', function( _e, _target, _motivation, _src) {
+				jQuery( window ).trigger( 'BodinExternal-LOADINLINE', [ _target, _motivation, _src ] );
+			});
+
 			//------------------------------------------------------------
 			//  Get a BodinAlign object.
 			//------------------------------------------------------------
