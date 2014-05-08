@@ -83,6 +83,14 @@
 			</div>'
 	}
 	
+	BodinUI.prototype.alignIds = function() {
+		var ids = {};
+		jQuery( '.align', self.elem ).each( function(){
+			ids[ jQuery( this ).attr( 'data-alignid' ) ] = 1;
+		});
+		console.log( ids );
+	}
+	
 	/**
 	 * Returns the options
 	 */
@@ -96,17 +104,24 @@
 			//  Switch
 			//------------------------------------------------------------
 			var id = jQuery( this ).attr('for');
-			var on_off = jQuery( '.onoffswitch input#'+id, self.elem );
+			var on_off = jQuery( '.onoffswitch input#' + id, self.elem );
 			var on = ( on_off.prop( 'checked' ) == true ) ? false : true; 
 			//------------------------------------------------------------
 			//  Events
 			//------------------------------------------------------------
-			console.log( id );
 			switch ( id ) {
-				case 'highlight_'+self.id:
-					jQuery( '.align', self.elem ).toggleClass('active');
-					jQuery( '.external', self.elem ).toggleClass('active');
-					jQuery( ' .inline', self.elem ).toggleClass('active');
+				case 'highlight_' + self.id:
+					//------------------------------------------------------------
+					//  Grab ids to deactivate corresponding bodin instances
+					//------------------------------------------------------------
+					var align = jQuery( '.align', self.elem );
+					var ids = {};
+					align.each( function() {
+						ids[ jQuery( this ).attr( 'data-alignid' ) ] = 1;
+					});
+					self.deactivateIds( ids );
+					jQuery( '.external', self.elem ).toggleClass( 'active' );
+					jQuery( ' .inline', self.elem ).toggleClass( 'active' );
 					break;
 			}
 			//------------------------------------------------------------
@@ -116,6 +131,12 @@
 				self.sidecart.hide();
 			}, .25*1000 );
 		});
+	}
+	
+	BodinUI.prototype.deactivateIds = function( _ids ) {
+		for ( var id in _ids ) {
+			jQuery( '.align[ data-alignid = "' + id + '"]' ).toggleClass( 'active' );
+		}
 	}
 	
 	/**
@@ -208,7 +229,7 @@
 	*/
 	BodinUI.prototype.filteredAlphaBlink = function( _filter, _key, _val) {
 		var self = this;
-		var dom = $( '.'+_filter + '[' + _key + "='" + _val + "']" , self.elem );
+		var dom = jQuery( '.'+_filter + '[' + _key + "='" + _val + "']" , self.elem );
 		var times = [];
 		self.blinkCounter = 0;
 		var ii = (self.config['blinkN']*2);
@@ -247,25 +268,6 @@
 	}
 	
 	/**
-	* Build milestones
-	BodinUI.prototype.milestones = function() {
-		var self = this;
-		var i = 0;
-		var stones = self.config['milestones'];
-		jQuery( 'p', self.elem ).each( function() {
-			var index = i % stones.length;
-			var stone = stones[index];
-			i++;
-			jQuery( this ).prepend( '<a href="" class="milestone" id="stone-'+i+'">' + stone + '</a>' );
-		});
-		jQuery( '.milestone' ).on( 'touchstart click', function( _e ) {
-			_e.preventDefault();
-			jQuery( window ).trigger( self.events['milestone'], [ jQuery( this ).attr('id') ] );
-		});
-	}
-	*/
-	
-	/**
 	* Milestones touch
 	*/
 	BodinUI.prototype.milestonesTouch = function() {
@@ -284,13 +286,13 @@
 	*/
 	BodinUI.prototype.goTo = function( _id ) {
 		var self = this;
-		var pos = $( '#'+_id , self.elem ).position();
+		var pos = jQuery( '#'+_id , self.elem ).position();
 		if ( pos == undefined ) {
 			return;
 		}
 		var scroll = pos.top - self.config['scrollPad'];
-		var current = $( '.work', self.elem ).scrollTop();
-		$( '.work', self.elem ).animate ({
+		var current = jQuery( '.work', self.elem ).scrollTop();
+		jQuery( '.work', self.elem ).animate ({
 			scrollTop: current + scroll
 		}, 1000 );
 	}
@@ -305,13 +307,14 @@
 	*/
 	BodinUI.prototype.filteredGoTo = function( _filter, _key, _val ) {
 		var self = this;
-		var pos = $( '.'+_filter + '[' + _key + "='" + _val + "']" , self.elem ).position();
+		var pos = jQuery( '.'+_filter + '[' + _key + "='" + _val + "']" , self.elem ).position();
+		console.log( pos );
 		if ( pos == undefined ) {
 			return;
 		}
 		var scroll = pos.top - self.config['scrollPad'];
-		var current = $( '.work', self.elem ).scrollTop();
-		$( '.work', self.elem ).animate ({
+		var current = jQuery( '.work', self.elem ).scrollTop();
+		jQuery( '.work', self.elem ).animate ({
 			scrollTop: current + scroll
 		}, 1000 );
 	}
@@ -380,6 +383,10 @@
 		self.navEvents();
 	}
 	
+	
+	/**
+	* Start the index navigation events
+	*/
 	BodinUI.prototype.navEvents = function() {
 		var self = this;
 		var id = jQuery( self.elem ).attr('id');
@@ -395,16 +402,16 @@
 	* Start the tooltips
 	*/
 	BodinUI.prototype.tooltips = function() {
-		var id = jQuery( this.elem ).attr('id');
+		var id = jQuery( this.elem ).attr( 'id' );
 		new Tooltipper( '#'+id+' .work' );
 	}
 	
 	//----------------
 	//	Extend JQuery 
 	//----------------
-	jQuery(document).ready( function( jQuery ) {
+	jQuery( document ).ready( function( jQuery ) {
 		jQuery.fn.BodinUI = function( config ) {
-			var id = jQuery(this).selector;
+			var id = jQuery( this ).selector;
 			return this.each( function() {
 				jQuery.data( this, id, new BodinUI( this, config, id ) );
 			});
