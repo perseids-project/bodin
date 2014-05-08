@@ -138,6 +138,8 @@
 	 */
 	BodinUI.prototype.align = function() {
 		var self = this;
+		console.log( self.elem );
+		console.log( jQuery( '.align', self.elem ).length );
 		jQuery( '.align', self.elem ).on( 'touchstart click', function( _e ) {
 			_e.stopPropagation();
 			_e.preventDefault();
@@ -395,16 +397,16 @@
 	* Start the tooltips
 	*/
 	BodinUI.prototype.tooltips = function() {
-		var id = jQuery( this.elem ).attr('id');
+		var id = jQuery( this.elem ).attr( 'id' );
 		new Tooltipper( '#'+id+' .work' );
 	}
 	
 	//----------------
 	//	Extend JQuery 
 	//----------------
-	jQuery(document).ready( function( jQuery ) {
+	jQuery( document ).ready( function( jQuery ) {
 		jQuery.fn.BodinUI = function( config ) {
-			var id = jQuery(this).selector;
+			var id = jQuery( this ).selector;
 			return this.each( function() {
 				jQuery.data( this, id, new BodinUI( this, config, id ) );
 			});

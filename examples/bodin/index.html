@@ -12,7 +12,7 @@
 		<div class="bodin" src="tempHtml/french.html" id="french"></div>
 		<div class="bodin" src="tempHtml/english.html" id="english"></div>
 		<div class="sidecart" id="master_options"></div>
-		<div id="control_view"><p>Master options.</p></div>
+		<!--<div id="control_view"><p>Master options.</p></div>-->
 		<div id="external_annotation"></div>
 	
 	
@@ -64,8 +64,12 @@
 			jQuery( window ).on( 'Bodin-LOADED', function() {
 				bodinAlign.start([
 					{ 
-						src: 'tempXml/alignment.xml', 
+						src: 'tempXml/eng_lat_alignment.xml', 
 						ids: { body: 'english', target: 'latin' }
+					},
+					{ 
+						src: 'tempXml/eng_fre_alignment.xml', 
+						ids: { body: 'english', target: 'french' }
 					},
 					{ 
 						src: 'tempXml/commentary.xml', 

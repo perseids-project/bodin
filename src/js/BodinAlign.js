@@ -15,6 +15,7 @@ var BodinAlign = function() {
     this.src = {};
     this.alignments = {};
     this.config = null;
+    this.count = 0;
     //------------------------------------------------------------
     //  Ignore node lookup... see _mark()
     //------------------------------------------------------------
@@ -42,33 +43,34 @@ var BodinAlign = function() {
      */
     this.start = function( _config ) {
         //------------------------------------------------------------
-        //    Store the config for later use
+        // Store the config for later use
         //------------------------------------------------------------
         this.config = _config;
         //------------------------------------------------------------
-        //    Get the unique alignment source
+        // Get the unique alignment source
         //------------------------------------------------------------
         for ( var i in _config ) {
             this.src[ _config[i]['src'] ] = 1;
         }
         //------------------------------------------------------------
-        //    Create a container
+        // Create a container
         //------------------------------------------------------------
         for ( var i in this.src ) {
             this.alignments[ i ] = { loaded: false };
         }
         //------------------------------------------------------------
-        //    Get each alignment xml
+        // Get each alignment xml
         //------------------------------------------------------------
         for ( var i in this.src ) {
+            this.count++;
             this.get( i );
         }
     }
     
     /**
-     *    Retrieve an alignment xml document
+     *  Retrieve an alignment xml document
      *
-     *    @param { string } _src URL to an XML document
+     *  @param { string } _src URL to an XML document
      */
     this.get = function( _src ) {
         var self = this;
@@ -85,35 +87,36 @@ var BodinAlign = function() {
     }
     
     /**
-     *    Extract target data from XML
-     *    @param { dom }
+     *  Extract target data from XML
+     *
+     *  @param { dom }
      *  @param { obj } JSON version
      */
     this.target = function( _target, _bodinTarget ) {
-        var targetUrn = this.getUrn(_target);
-        var uri = (targetUrn == _bodinTarget) ?  null :  _target;
-        var colon = _target.lastIndexOf(':')+1;
-        
+        var targetUrn = this.getUrn( _target );
+        var uri = ( targetUrn == _bodinTarget ) ?  null :  _target;
+        var colon = _target.lastIndexOf( ':' ) + 1;
         //------------------------------------------------------------
         //  Get passage
         //------------------------------------------------------------
         var cite;
         var start;
         var end;
-        
         //------------------------------------------------------------
         //  Pull the passage and subref from the target
         //------------------------------------------------------------
         var at = _target.indexOf('@');
         if ( at == -1 ) {
-            if (targetUrn == _bodinTarget) {
-                // if the target is for one of the bodin texts
-                // we don't want to process alignments without subreferences
+            //------------------------------------------------------------
+            //  If the target is for one of the bodin texts
+            //  we don't want to process alignments without subreferences
+            //------------------------------------------------------------
+            if ( targetUrn == _bodinTarget ) {
                 return undefined;
-            } else {
-                cite = _target.substr( colon );
-            }
-        } else {
+            } 
+            cite = _target.substr( colon );
+        } 
+        else {
             cite = _target.substr( colon, at-colon );
             //------------------------------------------------------------
             //  Get the word and occurence
@@ -154,12 +157,11 @@ var BodinAlign = function() {
                     var target = this;
                     target = jQuery( target ).attr('rdf:resource');
                     target = self.target( target, target_workid );
-                    if (target) {
-                        targets.push(target);
+                    if ( target ) {
+                        targets.push( target );
                     }
                 }
             );
-            
             if ( targets.length == 0 ) {
                 return true; // a continue in jQuery().each() land
             }
@@ -168,44 +170,35 @@ var BodinAlign = function() {
            //------------------------------------------------------------
            var bodies = [];
            var bodyText = null;
-           jQuery( annot ).find('hasBody').each(
+           jQuery( annot ).find( 'hasBody' ).each(
                function() {
-                   var body = this;
-                   var body_uri = jQuery( body ).attr('rdf:resource');
-                   if (body_uri) {
-                       body = self.target( body_uri, body_workid );
-                       if (body) {
-                           bodies.push(body);
-                       }
-                   } else {
-                       var chars = jQuery( body ).find('chars');
-                       if ( chars.length > 0 ) {
-                           bodyText = jQuery( chars[0] ) .html();
-                       }
-                   }
+                    var body = this;
+                    var body_uri = jQuery( body ).attr( 'rdf:resource' );
+                    if ( body_uri ) {
+                        body = self.target( body_uri, body_workid );
+                        if ( body ) {
+                            bodies.push( body );
+                        }
+                    }
+                    else {
+                        var chars = jQuery( body ).find( 'chars' );
+                        if ( chars.length > 0 ) {
+                            bodyText = jQuery( chars[0] ) .html();
+                        }
+                    }
                }
            );
            if ( bodies.length == 0 && bodyText == null) {
                return true; // a continue in jQuery().each() land
            }
-           
            //------------------------------------------------------------
            // Get the motivation
            //------------------------------------------------------------
-           var motivation = jQuery( annot ).find('motivatedBy');
-           motivation = jQuery( motivation[0] ).attr('rdf:resource');
-           
-         
+           var motivation = jQuery( annot ).find( 'motivatedBy' );
+           motivation = jQuery( motivation[0] ).attr( 'rdf:resource' );
            json.push({ target: targets, body: bodies, bodyText: bodyText, motivation: motivation });
         });
         return json;
-    }
-    
-    this.wordAndOccurence = function( _string ) {
-        var sep = _string.indexOf('[');
-        var word = _string.substr( 0 , sep );
-        var occurence = _string.substr( sep, _string.length-1 ).replace('[','').replace(']','');
-        return { 'word': word, 'occurence': occurence }
     }
     
     /**
@@ -226,8 +219,8 @@ var BodinAlign = function() {
                 var obj = this.alignments[src]['json'][j];
                 var uris = [];
                 for (var k = 0; k< obj.body.length; k++) {
-                    if (obj.body[k].uri) {
-                        uris.push(obj.body[k].uri);
+                    if ( obj.body[k].uri) {
+                        uris.push( obj.body[k].uri );
                     }
                 }
                 if ( uris.length == 0 && obj.bodyText == null) {
@@ -266,12 +259,10 @@ var BodinAlign = function() {
         //  Get the text selector
         //------------------------------------------------------------
         var id = '#'+_bodinId;
-                
         //------------------------------------------------------------
         //  Get the tokens from the text
         //------------------------------------------------------------
         var tokens = jQuery(id + " .token[data-cite='" + _obj[0]['cite'] + "']");
-        
         //------------------------------------------------------------
         //  Get the color class for this alignment
         //------------------------------------------------------------
@@ -280,12 +271,12 @@ var BodinAlign = function() {
         if ( _body != null ) {
             if ( _body.uris != null && _body.uris.length > 0 ) {
                 annotation_type = this.annotation_classes.external;
-            } else if ( _body.text != null ) {
+            } 
+            else if ( _body.text != null ) {
                 annotation_type = this.annotation_classes.inline;
                 color_class = '';
             } 
         }
-    
         //------------------------------------------------------------
         //  Identify each word in the passage with the alignment id 
         //------------------------------------------------------------
@@ -293,53 +284,50 @@ var BodinAlign = function() {
             for ( var j=0; j<_obj.length; j++ ) {
                 var start = _obj[j]['start'];
                 var end = _obj[j]['end'];
-                 var sibs = tokens;
-                 var done = false;
-                 var started = false;
-                 for ( var i=0; i<sibs.length; i++ ) {
-                     if ( done ) {
-                         break;
-                     }
-                     var sib = jQuery( sibs[i] );
-                     var start_class = '';
-     
-                     if ( ! started ) { 
-                         if (sib.attr('data-ref') == start) {
-                            start_class = annotation_type + '-start';
-                            started = true;
-                         } 
-                         else {
-                             continue;
-                         }
-                     }
-                     var end_class = '';
-                     //------------------------------------------------------------
-                     // Add a class to indicate its the end of the alignment
-                     //------------------------------------------------------------
-                     if ( sib.attr('data-ref') == end ) {
-                         end_class = annotation_type + '-end';
-                     }
-                     //------------------------------------------------------
-                     // Add a wrapping element on the token to hold alignment
-                     // info and make it an inner element so that the original 
-                     // token element remains the outermost element
-                     //------------------------------------------------------
-                     var classes = [annotation_type, annotation_type + '-' + _alignId, end_class, start_class, color_class, 'active' ].join(' ');
-                     var elem =     this.alignSpan( _alignId, classes, _body, _motivation);
-                     sib.wrapInner( elem.smoosh() );
-                     
-                     if ( sib.attr('data-ref') == end ) {
-                         if ( annotation_type == this.annotation_classes.inline ) {
-                             sib.after(
-                                '<span class="inline-widget active" data-alignId="' + 
-                                    _alignId + 
-                                    '" data-motivation="' + _motivation + '"' + 
-                                    'data-source="' + _body.src + '">C</span>')
-                         }
-                         done = true;
-                     }
-                 }
-             }
+                var sibs = tokens;
+                var done = false;
+                var started = false;
+                for ( var i=0; i<sibs.length; i++ ) {
+                    if ( done ) {
+                        break;
+                    }
+                    var sib = jQuery( sibs[i] );
+                    var start_class = '';
+                    
+                    if ( ! started ) { 
+                        if ( sib.attr('data-ref') == start ) {
+                           start_class = annotation_type + '-start';
+                           started = true;
+                        } 
+                        else {
+                            continue;
+                        }
+                    }
+                    var end_class = '';
+                    //------------------------------------------------------------
+                    // Add a class to indicate its the end of the alignment
+                    //------------------------------------------------------------
+                    if ( sib.attr('data-ref') == end ) {
+                        end_class = annotation_type + '-end';
+                    }
+                    //------------------------------------------------------
+                    // Add a wrapping element on the token to hold alignment
+                    // info and make it an inner element so that the original 
+                    // token element remains the outermost element
+                    //------------------------------------------------------
+                    var classes = [ annotation_type, annotation_type + '-' + _alignId, end_class, start_class, color_class, 'active' ].join(' ');
+                    var elem = this.alignSpan( _alignId, classes, _body, _motivation);
+                    sib.wrapInner( elem.smoosh() );
+                    
+                    if ( sib.attr('data-ref') == end ) {
+                        if ( annotation_type == this.annotation_classes.inline ) {
+                            var elem = this.commentSpan( _alignId, _motivation, _body );
+                            sib.after( elem.smoosh() );
+                        }
+                        done = true;
+                    }
+                }
+            }
         }
         //------------------------------------------------------
         // we should probably handle the case where the matching
@@ -347,16 +335,26 @@ var BodinAlign = function() {
         //------------------------------------------------------
     }
     
-    this.alignSpan = function( _alignId, _classes, _body, _motivation ) {
-       var uris = ( _body != null && _body.uris != null ) ? _body.uris.join(' ') : '';  
-       return '\
+    this.commentSpan = function( _alignId, _motivation, _body ) {
+        return '\
             <span \
-                class="' +
-                    _classes +
-                '" data-motivation="' + _motivation + '"\
-                data-alignUri="' + uris + '" data-alignId="'+_alignId+'"\
-            >\
-            </span>';
+                class="inline-widget active" \
+                data-alignId="' + _alignId + '-' + this.count + '" \
+                data-motivation="' + _motivation + '" \
+                data-source="' + _body.src + '" \
+            >C</span>';
+    }
+    
+    this.alignSpan = function( _alignId, _classes, _body, _motivation ) {
+        var uris = ( _body != null && _body.uris != null ) ? _body.uris.join(' ') : '';
+        return '\
+             <span \
+                 class="' + _classes + '" \
+                 data-motivation="' + _motivation + '" \
+                 data-alignUri="' + uris + '" \
+                 data-alignId="'+ _alignId + '-' + this.count + '" \
+             >\
+             </span>';
     }
     
     /**
@@ -408,12 +406,21 @@ var BodinAlign = function() {
      *  Trigger loaded event when each alignment is loaded
      */
     this.loadCheck = function() {
-        for ( var i in this.xml ) {
+        //------------------------------------------------------------
+        //  Make sure all the alignments are loaded.
+        //------------------------------------------------------------
+        for ( var i in this.alignments ) {
             if ( this.alignments[i]['loaded'] != true ) {
                 return;
             }
         }
+        //------------------------------------------------------------
+        //  Set the palette style.
+        //------------------------------------------------------------
         this.paletteStyles();
+        //------------------------------------------------------------
+        //  Trigger the loaded event.
+        //------------------------------------------------------------
         jQuery( window ).trigger( this.events['loaded'] );
     }
     
