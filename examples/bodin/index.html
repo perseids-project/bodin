@@ -9,8 +9,8 @@
 	</head>
 	<body>
 		<div class="bodin" src="tempHtml/latin.html" id="latin"></div>
-		<div class="bodin" src="tempHtml/french.html" id="french"></div>
 		<div class="bodin" src="tempHtml/english.html" id="english"></div>
+		<div class="bodin" src="tempHtml/french.html" id="french"></div>
 		<div class="sidecart" id="master_options"></div>
 		<!--<div id="control_view"><p>Master options.</p></div>-->
 		<div id="external_annotation"></div>
@@ -109,6 +109,7 @@
 			//  When an alignment passage is click start scrolling.
 			//------------------------------------------------------------
 			jQuery( window ).on( 'BodinUI-ALIGN', function( _e, _filter, _key, _value ) {
+				console.log( _value );
 				for ( var i in bodins ) {
 					bodins[i].filteredGoTo( _filter, _key, _value );
 					bodins[i].filteredAlphaBlink( _filter, _key, _value );
