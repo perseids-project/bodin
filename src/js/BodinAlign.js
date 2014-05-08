@@ -326,7 +326,7 @@ var BodinAlign = function() {
                     
                     if ( sib.attr('data-ref') == end ) {
                         if ( annotation_type == this.annotation_classes.inline ) {
-                            var elem = this.commentSpan( _srcId+'-'+_alignId, _motivation, _body );
+                            var elem = this.commentSpan( _srcId+'-'+_alignId, classes, _motivation, _body );
                             sib.after( elem.smoosh() );
                         }
                         done = true;
@@ -340,10 +340,10 @@ var BodinAlign = function() {
         //------------------------------------------------------
     }
     
-    this.commentSpan = function( _alignId, _motivation, _body ) {
+    this.commentSpan = function( _alignId, _classes, _motivation, _body ) {
         return '\
             <span \
-                class="inline-widget active" \
+                class="inline-widget' + _classes + '"\
                 data-alignId="' + _alignId + '" \
                 data-motivation="' + _motivation + '" \
                 data-source="' + _body.src + '" \
