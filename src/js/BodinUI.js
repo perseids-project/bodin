@@ -101,6 +101,7 @@
 			//------------------------------------------------------------
 			//  Events
 			//------------------------------------------------------------
+			console.log( id );
 			switch ( id ) {
 				case 'highlight_'+self.id:
 					jQuery( '.align', self.elem ).toggleClass('active');

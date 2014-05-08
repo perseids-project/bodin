@@ -57,7 +57,7 @@
 				xslt_path: "../xslt/cts_annotate.xsl",
 				tokenizer: "http://sosol.perseids.org/exist/rest/db/xq/tokenize.xquery?merging=false&splitting=false&uri="
 			}).data('#external_annotation');
-			jQuery( '#external_annotation' ).click(function() { jQuery(this).toggle() });
+			jQuery( '#external_annotation' ).click( function() { jQuery(this).toggle() } );
 			//------------------------------------------------------------
 			//  Once Bodin texts are loaded get the alignment XML
 			//------------------------------------------------------------
@@ -87,9 +87,9 @@
 				//------------------------------------------------------------
 				jQuery( '.bodin' ).each( function() {
 					var id = jQuery( this ).attr('id');
-					bodins.push(
-						jQuery( '#'+id ).BodinUI().data( '#'+id )
-					);
+					if ( bodins[id] == undefined ) {
+						bodins[id] = jQuery( '#'+id ).BodinUI().data( '#'+id )
+					}
 				});
 			});
 			//------------------------------------------------------------
@@ -127,7 +127,7 @@
 			//------------------------------------------------------------
 			//  Store all of your bodin instances
 			//------------------------------------------------------------
-			bodins = [];
+			bodins = {};
 			//------------------------------------------------------------
 			//  Start it all up.
 			//------------------------------------------------------------
