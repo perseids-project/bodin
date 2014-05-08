@@ -24,7 +24,8 @@ var BodinAlign = function() {
     };
     this.annotation_classes = {
         align: 'align',
-        external: 'external'
+        external: 'external',
+        inline: 'inline'
     }
     this.styler = new Styler();
     
@@ -166,17 +167,25 @@ var BodinAlign = function() {
            //  Get the body
            //------------------------------------------------------------
            var bodies = [];
+           var bodyText = null;
            jQuery( annot ).find('hasBody').each(
                function() {
-                  var body = this;
-                  body = jQuery( body ).attr('rdf:resource');
-                  body = self.target( body, body_workid );
-                  if (body) {
-                      bodies.push(body);
-                  }
+                   var body = this;
+                   var body_uri = jQuery( body ).attr('rdf:resource');
+                   if (body_uri) {
+                       body = self.target( body_uri, body_workid );
+                       if (body) {
+                           bodies.push(body);
+                       }
+                   } else {
+                       var chars = jQuery( body ).find('chars');
+                       if ( chars.length > 0 ) {
+                           bodyText = jQuery( chars[0] ) .html();
+                       }
+                   }
                }
            );
-           if ( bodies.length == 0 ) {
+           if ( bodies.length == 0 && bodyText == null) {
                return true; // a continue in jQuery().each() land
            }
            
@@ -187,7 +196,7 @@ var BodinAlign = function() {
            motivation = jQuery( motivation[0] ).attr('rdf:resource');
            
          
-           json.push({ target: targets, body: bodies, motivation: motivation  });
+           json.push({ target: targets, body: bodies, bodyText: bodyText, motivation: motivation });
         });
         return json;
     }
@@ -221,10 +230,10 @@ var BodinAlign = function() {
                         uris.push(obj.body[k].uri);
                     }
                 }
-                if ( uris.length == 0) {
+                if ( uris.length == 0 && obj.bodyText == null) {
                     this.mark( ids['body'], id, obj['body'], null, null );
                 }
-                this.mark( ids['target'], id, obj['target'], obj['motivation'], uris);                    
+                this.mark( ids['target'], id, obj['target'], obj['motivation'], { uris: uris, text: obj.bodyText, src: src });                    
                 id++;
             }
         }
@@ -250,9 +259,9 @@ var BodinAlign = function() {
      *  @param { string } _bodinId The id of the bodin instance
      *  @param { int } _alignId The id of the alignment
      *  @param { obj } _obj 
-     *  @param { string } _uri
+     *  @param { obj } _body object with either uris:[] or text:string
      */
-    this.mark = function( _bodinId, _alignId, _obj, _motivation, _uri ) {
+    this.mark = function( _bodinId, _alignId, _obj, _motivation, _body ) {
         //------------------------------------------------------------
         //  Get the text selector
         //------------------------------------------------------------
@@ -267,9 +276,14 @@ var BodinAlign = function() {
         //  Get the color class for this alignment
         //------------------------------------------------------------
         var color_class = this.colorClass( _alignId );
-        var annotation_type = this.annotation_classes.external;
-        if (_uri == null || _uri.length == 0) {
-          annotation_type = this.annotation_classes.align;
+        var annotation_type = this.annotation_classes.align;
+        if ( _body != null ) {
+            if ( _body.uris != null && _body.uris.length > 0 ) {
+                annotation_type = this.annotation_classes.external;
+            } else if ( _body.text != null ) {
+                annotation_type = this.annotation_classes.inline;
+                color_class = '';
+            } 
         }
     
         //------------------------------------------------------------
@@ -311,10 +325,17 @@ var BodinAlign = function() {
                      // token element remains the outermost element
                      //------------------------------------------------------
                      var classes = [annotation_type, annotation_type + '-' + _alignId, end_class, start_class, color_class, 'active' ].join(' ');
-                     var elem =     this.alignSpan( _alignId, classes, _uri, _motivation);
+                     var elem =     this.alignSpan( _alignId, classes, _body, _motivation);
                      sib.wrapInner( elem.smoosh() );
                      
                      if ( sib.attr('data-ref') == end ) {
+                         if ( annotation_type == this.annotation_classes.inline ) {
+                             sib.after(
+                                '<span class="inline-widget active" data-alignId="' + 
+                                    _alignId + 
+                                    '" data-motivation="' + _motivation + '"' + 
+                                    'data-source="' + _body.src + '">C</span>')
+                         }
                          done = true;
                      }
                  }
@@ -326,8 +347,8 @@ var BodinAlign = function() {
         //------------------------------------------------------
     }
     
-    this.alignSpan = function( _alignId, _classes, _uri, _motivation ) {
-       var uris = _uri != null ? _uri.join(' ') : '';  
+    this.alignSpan = function( _alignId, _classes, _body, _motivation ) {
+       var uris = ( _body != null && _body.uris != null ) ? _body.uris.join(' ') : '';  
        return '\
             <span \
                 class="' +

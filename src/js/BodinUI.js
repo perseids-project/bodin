@@ -49,7 +49,8 @@
 			milestone: 'BodinUI-MILESTONE',
 			align: 'BodinUI-ALIGN',
 			switch_highlight: 'BodinUI-SWITCH_HIGHLIGHT',
-			'external': 'BodinUI-EXTERNAL'
+			external: 'BodinUI-EXTERNAL',
+			inline: 'BodinUI-INLINE'
 		};
 		//------------------------------------------------------------
 		//  Used for managing multiple alignment clicks
@@ -104,6 +105,7 @@
 				case 'highlight_'+self.id:
 					jQuery( '.align', self.elem ).toggleClass('active');
 					jQuery( '.external', self.elem ).toggleClass('active');
+					jQuery( ' .inline', self.elem ).toggleClass('active');
 					break;
 			}
 			//------------------------------------------------------------
@@ -160,6 +162,20 @@
 			var uri = jQuery ( this ).attr('data-alignUri');
 			var motivation = jQuery ( this ).attr('data-motivation');
 			jQuery( window ).trigger( self.events['external'], [ uri, id, motivation ] );
+		});
+		jQuery( '.inline-widget', self.elem ).on( 'touchstart click', function( _e ) {
+			_e.stopPropagation();
+			_e.preventDefault();
+			//------------------------------------------------------------
+			//  If the alignments are not active just exit.
+			//------------------------------------------------------------
+			if ( jQuery( this ).hasClass( 'active') == false ) {
+				return;
+			}
+			var id = jQuery( this ).attr('data-alignId')
+			var motivation = jQuery ( this ).attr('data-motivation');
+			var src = jQuery( this ).attr('data-source');
+			jQuery( window ).trigger( self.events['inline'], [ id, motivation, src ] );
 		});
 	}
 	

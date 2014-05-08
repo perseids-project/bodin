@@ -51,6 +51,7 @@
          //------------------------------------------------------------
          self.events = {
             loadtext: 'BodinExternal-LOADTEXT',
+            loadinline: 'BodinExternal-LOADINLINE',
             textloaded: 'BodinExternal-TEXTLOADED'
          };
          //------------------------------------------------------------
@@ -106,6 +107,9 @@
        jQuery( window ).on( self.events['loadtext'], function( _e, _uri, _target, _motivation ) {
            self.loadText( _e, _uri, _target, _motivation );
        });
+       jQuery( window ).on( self.events['loadinline'], function( _e, _target, _motivation, _src ) {
+           self.loadInlineText( _e, _target, _motivation, _src );
+       });
     }
     
     /**
@@ -139,6 +143,33 @@
         }
     }
     
+    /**
+     * Load inline annotation text
+     * 
+     * @param {string} _target the identifier for the html element containing the target of the annotation
+     * @param {string} _motivation the motivation for the annotation
+     * @param {string} _source the annotation source
+     */
+    BodinExternal.prototype.loadInlineText = function( _e, _target, _motivation, _src ) {
+        var self = this;
+        var id = jQuery( self.elem );
+        var bodin_align = new BodinAlign();
+        var text = bodin_align.alignments[_src]['json'][_target].bodyText;
+        if (text != null) {
+            //------------------------------------------------------------
+            //  Add the HTML
+            //------------------------------------------------------------
+            jQuery( self.elem ).html( text ).
+                prepend('<h2>' + _motivation + '</h2>');
+            
+            //------------------------------------------------------------
+            //  Add bodin class for the style.
+            //------------------------------------------------------------
+            jQuery( self.elem ).addClass( 'bodin' );
+            id.show();
+        }
+        return;
+    }
     /**
      * Load external annotation text
      * 
