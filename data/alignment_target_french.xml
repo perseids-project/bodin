@@ -112,7 +112,7 @@
     <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-01T15:17:28+00:00</annotatedAt>
   </Annotation>
   <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/19">
-    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1@C[1]-pourquoy[1]"/>
+    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1@C'est[1]-pourquoy[1]"/>
     <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1@ils[1]-vaincus[1]"/>
     <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1396/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@For[3]-cause[1]"/>
     <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1396/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@for[8]-enioy[2]"/>
@@ -238,7 +238,7 @@
     <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-04T14:58:52+00:00</annotatedAt>
   </Annotation>
   <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/30">
-    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1@C[2]-viure[2]"/>
+    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1@C'est[2]-viure[2]"/>
     <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1396/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@And[4]-together[4]"/>
     <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="oa:linking_translation"/>
     <annotatedBy xmlns="http://www.w3.org/ns/oa#">
@@ -303,7 +303,7 @@
   </Annotation>
   <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/35">
     <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1@auquel[2]-Prouence[1]"/>
-    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1@qu[20]-exception[1]"/>
+    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1@qu'il[16]-exception[1]"/>
     <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1396/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@vnto[20]-fallen[2]"/>
     <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1396/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@which[26]-exception[1]"/>
     <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="oa:linking_translation"/>
