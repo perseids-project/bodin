@@ -4,10 +4,16 @@
 		<link href="../../src/css/onoffswitch.css" rel="stylesheet" type="text/css" />
 		<link href="../../third_party/sidecart/src/css/sidecart.css" rel="stylesheet" type="text/css" />
 		<link href="../../src/css/bodin.css" rel="stylesheet" type="text/css" />
+		<link href="../../src/css/popup.css" rel="stylesheet" type="text/css" />
 		<!-- End Load CSS -->
 		<title>bodin</title>
 	</head>
 	<body>
+		<div class="overlay">
+			<div class="popup" id="welcome">
+				<p>Bodin is loading...</p>
+			</div>
+		</div>
 		<div class="bodin" src="tempHtml/latin.html" id="latin"></div>
 		<div class="bodin" src="tempHtml/english.html" id="english"></div>
 		<div class="bodin" src="tempHtml/french.html" id="french"></div>
@@ -95,6 +101,11 @@
 						bodins[id] = jQuery( '#'+id ).BodinUI().data( '#'+id )
 					}
 				});
+				//------------------------------------------------------------
+				//  Hide the load screen
+				//------------------------------------------------------------
+				jQuery('#welcome').hide();
+				jQuery('.overlay').hide();
 			});
 			//------------------------------------------------------------
 			//  When a milestone is clicked in any instance all instances
@@ -109,7 +120,6 @@
 			//  When an alignment passage is click start scrolling.
 			//------------------------------------------------------------
 			jQuery( window ).on( 'BodinUI-ALIGN', function( _e, _filter, _key, _value ) {
-				console.log( _value );
 				for ( var i in bodins ) {
 					bodins[i].filteredGoTo( _filter, _key, _value );
 					bodins[i].filteredAlphaBlink( _filter, _key, _value );

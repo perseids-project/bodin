@@ -79,6 +79,24 @@
 						<div class="onoffswitch-switch"></div>\
 					</label>\
 				</div>\
+				<!-- External -->\
+				<h3>External Only</h3>\
+				<div class="onoffswitch">\
+					<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="external'+self.id+'" checked>\
+					<label class="onoffswitch-label" for="external'+self.id+'">\
+						<div class="onoffswitch-inner"></div>\
+						<div class="onoffswitch-switch"></div>\
+					</label>\
+				</div>\
+				<!-- Commentaries -->\
+				<h3>Commentaries Only</h3>\
+				<div class="onoffswitch">\
+					<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="commentaries'+self.id+'" checked>\
+					<label class="onoffswitch-label" for="commentaries'+self.id+'">\
+						<div class="onoffswitch-inner"></div>\
+						<div class="onoffswitch-switch"></div>\
+					</label>\
+				</div>\
 			\
 			</div>'
 	}
@@ -362,7 +380,7 @@
 				{
 					id: id+'-view-1',
 					type: 'nav',
-					link: '&hearts; Index',
+					link: '&hearts; Chapters',
 					text: nav,
 					init: function() {},
 					refresh: function() {}
