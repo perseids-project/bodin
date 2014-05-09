@@ -383,6 +383,10 @@
 		self.navEvents();
 	}
 	
+	
+	/**
+	* Start the index navigation events
+	*/
 	BodinUI.prototype.navEvents = function() {
 		var self = this;
 		var id = jQuery( self.elem ).attr('id');
