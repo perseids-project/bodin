@@ -1,0 +1,293 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/"
+  xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:oac="http://www.openannotation.org/ns/"
+  xmlns:cnt="http://www.w3.org/2008/content#">
+  <Annotation xmlns="http://www.w3.org/ns/oa#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    rdf:about="http://data.perseus.org/collections/urn:cite:perseus:pdlcomm.5.1">
+    <hasTarget xmlns="http://www.w3.org/ns/oa#"
+      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+      rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1707/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@For[13]-contemplation[7]"/>
+    <hasBody xmlns="http://www.w3.org/ns/oa#">
+      <ContentAsText xmlns="http://www.w3.org/2008/content#"
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        rdf:about="http://data.perseus.org/collections/urn:cite:perseus:pdlcomm.5.1/commentary">
+        <type xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+          xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+          rdf:resource="http://purl.org/dc/dcmitype/Text"/>
+        <format xmlns="http://purl.org/dc/elements/1.1/">text/plain</format>
+        <language xmlns="http://purl.org/dc/elements/1.1/">eng</language>
+        <chars xmlns="http://www.w3.org/2008/content#">Aristotle’s Nicomachean Ethics (1177a)- “But
+          if happiness consists in activity in accordance with virtue, it is reasonable that it
+          should be activity in accordance with the highest virtue; and this will be the virtue of
+          the best part of us. Whether then this be the intellect, or whatever else it be that is
+          thought to rule and lead us by nature, and to have cognizance of what is noble and divine,
+          either as being itself also actually divine, or as being relatively the divinest part of
+          us, it is the activity of this part of us in accordance with the virtue proper to it that
+          will constitute perfect happiness; and it has been stated already2 that this activity is
+          the activity of contemplation. [2] And that happiness consists in contemplation may be
+          accepted as agreeing both with the results already reached and with the truth. For
+          contemplation is at once the highest form of activity (since the intellect is the highest
+          thing in us, and the objects with which the intellect deals are the highest things that
+          can be know), and also it is the most continuous, for we can reflect more continuously
+          than we can carry on any form of action.” -
+          http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.01.0054%3Abekker+page%3D1177a</chars>
+      </ContentAsText>
+    </hasBody>
+    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
+      <Person rdf:about="http://data.perseus.org/sosol/users/IDE"/>
+    </annotatedBy>
+    <motivatedBy xmlns="http://www.w3.org/ns/oa#"
+      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+      rdf:resource="http://www.w3.org/ns/oa#linking"/>
+    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-03-20T01:13:41+00:00</annotatedAt>
+  </Annotation>
+  <Annotation xmlns="http://www.w3.org/ns/oa#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    rdf:about="http://data.perseus.org/collections/urn:cite:perseus:pdlcomm.6.1">
+    <hasTarget xmlns="http://www.w3.org/ns/oa#"
+      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+      rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1707/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@And[9]-Plato[2]"/>
+    <hasBody xmlns="http://www.w3.org/ns/oa#">
+      <ContentAsText xmlns="http://www.w3.org/2008/content#"
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        rdf:about="http://data.perseus.org/collections/urn:cite:perseus:pdlcomm.5.1/commentary">
+        <type xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+          xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+          rdf:resource="http://purl.org/dc/dcmitype/Text"/>
+        <format xmlns="http://purl.org/dc/elements/1.1/">text/plain</format>
+        <language xmlns="http://purl.org/dc/elements/1.1/">eng</language>
+        <chars xmlns="http://www.w3.org/2008/content#">Plato’s Phaedo (66b-67a)- “'There seems to be
+          a short cut which leads us and our argument to the conclusion in our search that so long
+          as we have the body, and the soul is contaminated by such an evil, we shall never attain
+          completely what we desire, that is, the truth. For the body keeps us constantly busy by
+          reason of its need of sustenance; and moreover, if diseases come upon it they hinder our
+          pursuit of the truth. And the body fills us with passions and desires and fears, and all
+          sorts of fancies and foolishness, so that, as they say, it really and truly makes it
+          impossible for us to think at all. The body and its desires are the only cause of wars and
+          factions and battles; for all wars arise for the sake of gaining money, and we are
+          compelled to gain money for the sake of the body. We are slaves to its service. And so,
+          because of all these things, we have no leisure for philosophy. But the worst of all is
+          that if we do get a bit of leisure and turn to philosophy, the body is constantly breaking
+          in upon our studies and disturbing us with noise and confusion, so that it prevents our
+          beholding the truth, and in fact we perceive that, if we are ever to know anything
+          absolutely, we must be free from the body and must behold the actual realities with the
+          eye of the soul alone. And then, as our argument shows, when we are dead we are likely to
+          possess the wisdom which we desire and claim to be enamored of, but not while we live.
+          For, if pure knowledge is impossible while the body is with us, one of two thing must
+          follow, either it cannot be acquired at all or only when we are dead; for then the soul
+          will be by itself apart from the body, but not before. And while we live, we shall, I
+          think, be nearest to knowledge when we avoid, so far as possible, intercourse and
+          communion with the body, except what is absolutely necessary, and are not filled with its
+          nature, but keep ourselves pure from it until God himself sets us free. And in this way,
+          freeing ourselves from the foolishness of the body and being pure, we shall, I think, be
+          with the pure and shall know of ourselves all that is pure…”
+          -http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.01.0170%3Atext%3DPhaedo%3Asection%3D66b</chars>
+      </ContentAsText>
+    </hasBody>
+    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
+      <Person rdf:about="http://data.perseus.org/sosol/users/IDE"/>
+    </annotatedBy>
+    <motivatedBy xmlns="http://www.w3.org/ns/oa#"
+      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+      rdf:resource="http://www.w3.org/ns/oa#linking"/>
+    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-03-20T01:13:41+00:00</annotatedAt>
+  </Annotation>
+  <Annotation xmlns="http://www.w3.org/ns/oa#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    rdf:about="http://data.perseus.org/collections/urn:cite:perseus:pdlcomm.7.1">
+    <hasTarget xmlns="http://www.w3.org/ns/oa#"
+      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+      rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1707/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@And[11]-Varro[2]"/>
+    <hasBody xmlns="http://www.w3.org/ns/oa#">
+      <ContentAsText xmlns="http://www.w3.org/2008/content#"
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        rdf:about="http://data.perseus.org/collections/urn:cite:perseus:pdlcomm.5.1/commentary">
+        <type xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+          xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+          rdf:resource="http://purl.org/dc/dcmitype/Text"/>
+        <format xmlns="http://purl.org/dc/elements/1.1/">text/plain</format>
+        <language xmlns="http://purl.org/dc/elements/1.1/">eng</language>
+        <chars xmlns="http://www.w3.org/2008/content#">Short Histories of the Literatures of the
+          World, Volume 11 by Marcus Southwell Dimsdale (page 228+) - speaking on Varro and his
+          works: “His conclusion that man is body and soul, two steeds yoked side by side, that his
+          highest good is both material and spiritual, and that the best life is that in which
+          action and contemplation are combined, is that of his master Antiochus.” -
+          http://books.google.com/books?id=8sE9AQAAIAAJ&amp;pg=PA229&amp;lpg=PA229&amp;dq=marcus+varro+action+and+contemplation&amp;source=bl&amp;ots=Ae4IE0-ZDS&amp;sig=334Ihx4fBiB10I-Yrjx6MagykqU&amp;hl=en&amp;sa=X&amp;ei=0mxeU5-NPKfLsQTjm4KYCw&amp;ved=0CGcQ6AEwCQ#v=onepage&amp;q=marcus%20varro%20action%20and%20contemplation&amp;f=false
+          St. Augustine’s City of God (Book 8, Ch. 4) – “And, as the study of wisdom consists in
+          action and contemplation, so that one part of it may be called active, and the other
+          contemplative,--the active part having reference to the conduct of life, that is, to the
+          regulation of morals, and the contemplative part to the investigation into the causes of
+          nature and into pure truth…” - http://www.ewtn.com/library/PATRISTC/PNI2-4.TXT </chars>
+      </ContentAsText>
+    </hasBody>
+    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
+      <Person rdf:about="http://data.perseus.org/sosol/users/IDE"/>
+    </annotatedBy>
+    <motivatedBy xmlns="http://www.w3.org/ns/oa#"
+      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+      rdf:resource="http://www.w3.org/ns/oa#linking"/>
+    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-03-20T01:13:41+00:00</annotatedAt>
+  </Annotation>
+  <Annotation xmlns="http://www.w3.org/ns/oa#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    rdf:about="http://data.perseus.org/collections/urn:cite:perseus:pdlcomm.8.1">
+    <hasTarget xmlns="http://www.w3.org/ns/oa#"
+      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+      rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1707/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@yet[17]-death[1]"/>
+    <hasBody xmlns="http://www.w3.org/ns/oa#">
+      <ContentAsText xmlns="http://www.w3.org/2008/content#"
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        rdf:about="http://data.perseus.org/collections/urn:cite:perseus:pdlcomm.5.1/commentary">
+        <type xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+          xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+          rdf:resource="http://purl.org/dc/dcmitype/Text"/>
+        <format xmlns="http://purl.org/dc/elements/1.1/">text/plain</format>
+        <language xmlns="http://purl.org/dc/elements/1.1/">eng</language>
+        <chars xmlns="http://www.w3.org/2008/content#">Psalm 116- “Precious in the sight of the Lord
+          / is the death of his faithful servants.” -
+          http://www.biblegateway.com/passage/?search=Psalm%20116</chars>
+      </ContentAsText>
+    </hasBody>
+    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
+      <Person rdf:about="http://data.perseus.org/sosol/users/IDE"/>
+    </annotatedBy>
+    <motivatedBy xmlns="http://www.w3.org/ns/oa#"
+      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+      rdf:resource="http://www.w3.org/ns/oa#linking"/>
+    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-03-20T01:13:41+00:00</annotatedAt>
+  </Annotation>
+  <Annotation xmlns="http://www.w3.org/ns/oa#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    rdf:about="http://data.perseus.org/collections/urn:cite:perseus:pdlcomm.9.1">
+    <hasTarget xmlns="http://www.w3.org/ns/oa#"
+      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+      rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1707/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@And[12]-praises[1]"/>
+    <hasBody xmlns="http://www.w3.org/ns/oa#">
+      <ContentAsText xmlns="http://www.w3.org/2008/content#"
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        rdf:about="http://data.perseus.org/collections/urn:cite:perseus:pdlcomm.5.1/commentary">
+        <type xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+          xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+          rdf:resource="http://purl.org/dc/dcmitype/Text"/>
+        <format xmlns="http://purl.org/dc/elements/1.1/">text/plain</format>
+        <language xmlns="http://purl.org/dc/elements/1.1/">eng</language>
+        <chars xmlns="http://www.w3.org/2008/content#">Genesis chapter 2- “And on the seventh day
+          God ended his work which he had made; and he rested on the seventh day from all his work
+          which he had made. / And God blessed the seventh day, and sanctified it: because that in
+          it he had rested from all his work which God created and made.” -
+          http://www.kingjamesbibleonline.org/Genesis-Chapter-2/ Exodus chapter 20- “Remember the
+          sabbath day, to keep it holy. / Six days shalt thou labour, and do all thy work: / But the
+          seventh day is the sabbath of the LORD thy God: in it thou shalt not do any work, thou,
+          nor thy son, nor thy daughter, thy manservant, nor thy maidservant, nor thy cattle, nor
+          thy stranger that is within thy gates: / For in six days the LORD made heaven and earth,
+          the sea, and all that in them is, and rested the seventh day: wherefore the LORD blessed
+          the sabbath day, and hallowed it.” -
+          http://www.kingjamesbibleonline.org/Exodus-Chapter-20/ Deuteronomy chapter 5- “Keep the
+          sabbath day to sanctify it, as the LORD thy God hath commanded thee. / Six days thou shalt
+          labour, and do all thy work: / But the seventh day is the sabbath of the LORD thy God: in
+          it thou shalt not do any work, thou, nor thy son, nor thy daughter, nor thy manservant,
+          nor thy maidservant, nor thine ox, nor thine ass, nor any of thy cattle, nor thy stranger
+          that is within thy gates; that thy manservant and thy maidservant may rest as well as
+          thou. / And remember that thou wast a servant in the land of Egypt, and that the LORD thy
+          God brought thee out thence through a mighty hand and by a stretched out arm: therefore
+          the LORD thy God commanded thee to keep the sabbath day.” -
+          http://www.kingjamesbibleonline.org/Deuteronomy-Chapter-5/ Psalm 1- “but whose delight is
+          in the law of the Lord, / and who meditates on his law day and night. / That person is
+          like a tree planted by streams of water, / which yields its fruit in season / and whose
+          leaf does not wither— / whatever they do prospers.” -
+          http://www.biblegateway.com/passage/?search=Psalm%201&amp;version=NIV </chars>
+      </ContentAsText>
+    </hasBody>
+    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
+      <Person rdf:about="http://data.perseus.org/sosol/users/IDE"/>
+    </annotatedBy>
+    <motivatedBy xmlns="http://www.w3.org/ns/oa#"
+      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+      rdf:resource="http://www.w3.org/ns/oa#linking"/>
+    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-03-20T01:13:41+00:00</annotatedAt>
+  </Annotation>
+  <Annotation xmlns="http://www.w3.org/ns/oa#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    rdf:about="http://data.perseus.org/collections/urn:cite:perseus:pdlcomm.10.1">
+    <hasTarget xmlns="http://www.w3.org/ns/oa#"
+      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+      rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1707/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@The[3]-men[17]"/>
+    <hasBody xmlns="http://www.w3.org/ns/oa#">
+      <ContentAsText xmlns="http://www.w3.org/2008/content#"
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        rdf:about="http://data.perseus.org/collections/urn:cite:perseus:pdlcomm.5.1/commentary">
+        <type xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+          xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+          rdf:resource="http://purl.org/dc/dcmitype/Text"/>
+        <format xmlns="http://purl.org/dc/elements/1.1/">text/plain</format>
+        <language xmlns="http://purl.org/dc/elements/1.1/">eng</language>
+        <chars xmlns="http://www.w3.org/2008/content#">Plato’s Laws (688a-688b)- an Athenian says,
+          “it was really essential [688b] to look to the whole of virtue, and first and above all to
+          pay regard to the principal virtue of the four, which is wisdom and reason and opinion,
+          together with the love and desire that accompany them.” -
+          http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.01.0166%3Abook%3D3%3Apage%3D688
+          (636e-637b)- “Still, in my opinion, the Lacedaemonian lawgiver was right in ordaining the
+          avoidance of pleasures, while as to the laws of Cnosus—our friend Clinias, if he thinks
+          fit, will defend them. The rules about pleasures at Sparta seem to me the best in the
+          world. For our law banished entirely from the land that institution which gives the most
+          occasion for men to fall into excessive pleasures and riotous and follies of every
+          description; neither in the country nor in the cities controlled by Spartiates is a
+          drinking-club to be seen nor any of the practices which belong to such and foster to the
+          utmost all kinds of pleasure. Indeed there is not a man who would not punish at once and
+          most severely any drunken reveller he chanced to meet with, [637b] nor would even the
+          feast of Dionysus serve as an excuse to save him—a revel such as I once upon a time
+          witnessed “on the wagons”1 in your country; and at our colony of Tarentum, too, saw the
+          whole city drunk at the Dionysia. But with us no such thing is possible.” -
+          http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.01.0166%3Abook%3D1%3Apage%3D636</chars>
+      </ContentAsText>
+    </hasBody>
+    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
+      <Person rdf:about="http://data.perseus.org/sosol/users/IDE"/>
+    </annotatedBy>
+    <motivatedBy xmlns="http://www.w3.org/ns/oa#"
+      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+      rdf:resource="http://www.w3.org/ns/oa#linking"/>
+    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-03-20T01:13:41+00:00</annotatedAt>
+  </Annotation>
+  <Annotation xmlns="http://www.w3.org/ns/oa#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    rdf:about="http://data.perseus.org/collections/urn:cite:perseus:pdlcomm.11.1">
+    <hasTarget xmlns="http://www.w3.org/ns/oa#"
+      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+      rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1707/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@But[7]-actions[9]"/>
+    <hasBody xmlns="http://www.w3.org/ns/oa#">
+      <ContentAsText xmlns="http://www.w3.org/2008/content#"
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        rdf:about="http://data.perseus.org/collections/urn:cite:perseus:pdlcomm.5.1/commentary">
+        <type xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+          xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+          rdf:resource="http://purl.org/dc/dcmitype/Text"/>
+        <format xmlns="http://purl.org/dc/elements/1.1/">text/plain</format>
+        <language xmlns="http://purl.org/dc/elements/1.1/">eng</language>
+        <chars xmlns="http://www.w3.org/2008/content#">Dionysius of Halicarnassus in Roman
+          Antiquities (Book 1, Ch. 1, V, page 14)- “when they shall be convinced from this history,
+          that Rome, even in her infancy, brought forth infinite examples of virtue, than which no
+          city, either Greek, or Barbarian, ever produced greater for piety, justice, habitual
+          temperance, and military accomplishments.” -
+          https://archive.org/details/romanantiquities01dion Cicero’s De Officiis (1.62)- “But if
+          the exaltation of spirit seen in times of danger and toil is devoid of justice and fights
+          for selfish ends instead of for the common good, it is a vice; for not only has it no
+          element of virtue, but its nature is barbarous and revolting to all our finer feelings.
+          The Stoics, therefore, correctly define courage as ‘that virtue which champions the cause
+          of right.’ Accordingly, no one has attained to true glory who has gained a reputation for
+          courage by treachery and cunning; for nothing that lacks justice can be morally right.” -
+          http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A2007.01.0048%3Abook%3D1%3Asection%3D62</chars>
+      </ContentAsText>
+    </hasBody>
+    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
+      <Person rdf:about="http://data.perseus.org/sosol/users/IDE"/>
+    </annotatedBy>
+    <motivatedBy xmlns="http://www.w3.org/ns/oa#"
+      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+      rdf:resource="http://www.w3.org/ns/oa#linking"/>
+    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-03-20T01:13:41+00:00</annotatedAt>
+  </Annotation>
+
+</rdf:RDF>

@@ -1,0 +1,1061 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title/>
+            <author>Bodin, Jean</author>
+         </titleStmt>
+         <publicationStmt>
+            <publisher>Perseus Project</publisher>
+            <publisher>Trustees of Tufts University</publisher>
+            <pubPlace>Medford, MA</pubPlace>
+         </publicationStmt>
+         <sourceDesc>
+            <bibl>
+               <title/>
+               <author>Bodin, Jean</author>
+               <publisher/>
+               <pubPlace/>
+               <date/>
+            </bibl>
+         </sourceDesc>
+      </fileDesc>
+      <revisionDesc>
+          <change when="2014-05-07T14:49:43.93Z" who="http://data.perseus.org/sosol/users/IDE">Aligned I.1 of the French with Knolles, and fixed several issues with the French OCR, as well as note 5 on the French, which was in the wrong place.</change>
+          <change when="2014-01-31T21:29:51.58Z"
+                 who="http://data.perseus.org/sosol/users/Bridget%20Almas%20-%20Tufts%20Account">Finalized - Finalizing addition of pb tags</change>
+          <change when="2014-01-31T21:29:51.178Z"
+                 who="http://data.perseus.org/sosol/users/Bridget%20Almas%20-%20Tufts%20Account">Vote - Accept - Accepting my changes.</change>
+          <change when="2014-01-30T15:13:21.428Z"
+                 who="http://data.perseus.org/sosol/users/Bridget%20Almas">Added pb tags and xml formattingXML Markup Change&#xD;
+</change>
+          <change who="http://papyri.info/editor/users/balmas">Converted from doc to TEI</change>
+      </revisionDesc>
+   </teiHeader>
+   <text n="urn:cts:pdlpsci:bodin.livrep.perseus-fre1" xml:lang="fre">
+      <body>
+         <div type="edition" xml:space="preserve">
+            <div n="1" type="textpart" subtype="book">
+               <pb n="1" edRef="3"/>
+               <head>LIVRE Premier </head>
+               <div n="1" type="textpart" subtype="chapter">
+                  <head><hi rend="italic">CHAPITRE I</hi> ? Quelle est la fin principale de la
+                     Republique bien ordonnee</head>
+                  <p> REPVBLIQVE est vn droit gouuernement de plusieurs mesnages, &amp; de ce qui
+                     leur est commun, auec puissance souueraine. Nous mettons ceste definitiō en
+                     premier lieu, par ce qu'il faut chercher en toutes choses la fin principale:
+                     &amp; puis apres les moyens d'y paruenir. Or la definition n'est autre chose
+                     que la fin du suget qui se presente: &amp; si elle n'est bien fondee, tout ce
+                     qui sera basti sur icelle se ruinera biē tost apres. Et iaçoit que celuy qui
+                     a trouué la fin de ce qui est mis en auant, ne trouue pas tousiours les moyens
+                     d'y paruenir, non plus que le mauuais archer, qui voit le blanc &amp; n'y vise
+                     pas: neantmoins auec l'adresse &amp; la peine qu'il emploira, il y pourra
+                     fraper, ou approcher: &amp; ne sera pas moins estimé, s'il ne touche au but,
+                     pourueu qu'il face tout ce qu'il doit pour y attaindre. Mais qui ne sçait la
+                     fin &amp; definition du suget qui luy est: proposé, cestuy-là est hors
+                     d'esperance de trouuer iamais les moyens d'y paruenir, non plus que celuy qui
+                     donne en l'air sans voir la bute. Deduisons donc par le menu les parties de la
+                     definition, que nous auons posee. Nous auons dit en premier lieu, droit
+                     gouuernement, pour la difference qu'il y a entre les Republiques, &amp; les
+                     troupes des voleurs &amp; pirates, auec lesquels on ne doibt auoir part, ny
+                     commerce, ny alliance: comme il a tousiours esté gardé en toute Republique bien
+                     ordonnee, quand il a esté question de donner la foy, traitter la paix, denoncer
+                     la guerre, accorder ligues offensiues, ou defensiues, bourner les frontieres,
+                     &amp; decider les differens entre les princes &amp; seigneurs souuerains, on
+                     n'y a iamais compris les voleurs, ny leur suitte: si peut estre cela ne s'est
+                     fait par necessité forcee, qui n'est point sugette à la discretion des loix
+                     humaines, lesquelles ont tousiours separé les brigans &amp; corsaires, d'auec
+                     ceux que nous di- <pb n="2"/> fons droits ennemis en fait de guerre: qui
+                     maintiennent leurs estats &amp; Republiques par voye de iustice, de laquelle
+                     les brigans &amp; corsaires cherchent l'euersion &amp; ruine. C'est pourquoy
+                     ils ne doiuent iouyr du droit de guerre commun à tous peuples, ny se preualoir
+                     des loix que les vainqueurs donnent aux vaincus. Et mesme la loy n'a pas voulu,
+                     que celuy qui tomberoit entre leurs mains, perdist vn seul poinct de sa
+                        liberté,<note place="margin">postliminium De captiuis.ff.</note> ou qu'il ne
+                     peust faire testament,<note place="margin">l.t.de legat.3.</note>  &amp; tous
+                     actes legitimes, que ne pouuoit<note place="margin">eius qui a latronibus.De
+                        testam.ff.</note>   celuy qui estoit captif des ennemis, comme estant leur
+                     esclaue, qui perdoit sa liberté, &amp; la puissance<note place="margin">l.in
+                        bello. De captiuis.ff.</note>  domestique sur les siens. Et si on dit, que
+                     la loy<note place="marging">l.si pignore, §.Si prædo act.de pignore. l.I.§.si
+                        prædo.l bona fides.depositi.l ita ut si fur vel prædo commodat.</note>  veut
+                     qu'on rende au voleur le gage, le depost, la chose empruntee, &amp; qu'il soit
+                     ressaisi des choses par luy occupees iniustement sur autruy, s'il en est
+                     depouillé par violence, il y a double raison: l'vne, que le brigand merite,
+                     qu'on ayt egard à luy, quand il vient faire hommage au magistrat, &amp; se rend
+                     soubs l'obeissance des loix pour demander, &amp; receuoir iustice: l'autre, que
+                     cela ne se fait pas tant en faueur des brigans, qu'en haine de celuy, qui veut
+                     retenir le sacré depost, ou qui procede par voye de fait ayant la iustice en
+                     main. Et quant au premier, nous en auons assez d'exemples, mais il n'y en a
+                     point de plus memorable que d'Auguste l'Empereur, qui fïst publier à son de
+                     trompe, qu'il donneroit XXV. mil escus à celuy, qui prendroit Crocotas, chef
+                     des voleurs en Espagne: dequoy aduerty Crocotas, se represente luy mesme à
+                     l'Empereur, &amp; luy demande XXV. mil escus. Auguste les luy fist payer,<note place="margin">Dion.lib.56.</note>   &amp; luy donna sa grace: affin qu'on
+                     ne pensast point qu'il voulust luy oster la vie, pour le frustrer du loyer
+                     promis, &amp; que la foy &amp; seureté publique fust gardee a celuy qui venoit
+                     en iustice: combien qu'il pouuoit proceder contre luy &amp; luy faire son
+                     proces. Mais qui voudroit vser du droit commun enuers les corsaires &amp;
+                     voleurs, comme auec les droits ennemis, il feroit vne perilleuse ouuerture a
+                     tous vagabons de se ioindre aux brigans, &amp; asseurer leurs actions &amp;
+                     ligues capitales soubs le voile de iustice. Non pas qu'il soit impossible de
+                     faire vn bon Prince d'vn voleur, ou d'vn corsaire vn bon Roy: &amp; tel pirate
+                     y a, qui merite mieux d'estre appelle Roy, que plusieurs qui ont porté les
+                     sceptres &amp; diademes., qui n'ont excuse veritable, ny vray-semblable, des
+                     voleries &amp; cruautez, qu'ils faisoient souffrir aux fugets: comme disouit
+                     Demetrius le corsaire au Roy Alexandre le Grand, qu'il n'auoit appris autre
+                     mestier deson pere, ny hérité pour tout bien que deux fregates: mais quant à
+                     luy, qui blasmoit la piratique, il rauageoit neantmoins, &amp; brigandoit auec
+                     deux puissantes armees, par mer, &amp; par terre, encore qu'il eust de son pere
+                     vn grand &amp; florissant royaume. ce qui esmeut Alexandre plustost à vn
+                     remords de conscience, qu'a vanger la iuste reproche à luy faite par vn
+                     escumeur, qu'il fist alors capitaine en chef d'vne legion: comme de nostre aage
+                     Sultan Sulyman appella à son conseil les deux plus nobles corsaires de memoire
+                     d'homme, Ariadin Barberousse, &amp; Dragut Reis, faisant l'vn &amp; l'autre <pb n="3"/> Amiral, &amp; Bascha, tant pour netto yer la mer des autres pirates,
+                     que pour asseurer son estat, &amp; le cours de la traffique. Ces moyens
+                     d'attirer les chefs des pirates au port de vertu, est, &amp; fera tousiours
+                     loüable, non seulement affin de ne reduire point telles gens au desespoir
+                     d'enuahir l'estat des Princes, ains aussi pour ruiner les autres comme ennemis
+                     du genre humain: &amp; quoy qu'ils semblent viure en amitié &amp; societé
+                     partageans egalement le butin, comme on disoit de Bargule &amp; de Viriat,
+                     neantmoins cela ne doit estre appelle societé, ny amitié, ny partage en
+                        termes<note place="margin">l.communi.§.inter prædones communi diuid.</note> 
+                     de droit: ains coniurations, voleries, &amp; pillages: car le principal poinct,
+                     auquel gist la vraye marque d'amitié, leur defaut, c'est à sçauoir, le droit
+                     gouuernement selon les loix de nature. C'est pourquoy les anciens<note place="margin">Cicero &amp; Aristo in polit.</note>  appelloient Republique,
+                     vne societé d'hommes assemblez, pour bien &amp; heureusement viure: laquelle
+                     definition toutesfois a plus qu'il ne faut d'vne part, &amp; moins d'vne autre:
+                     car les trois poincts principaux y manquent, c'est à sçauoir, la famille, la
+                     souueraineté, &amp; ce qui eft commun en vne Republique: ioint aussi que ce
+                     mot, heureusement, ainsi qu'ils entendoient, n'est point necessaire: autrement
+                     la vertu n'auroit aucun pris, si le vent ne soufloit tousiours en poupe: ce que
+                     iamais homme de bien n'accordera: car la republique peut estre bien gouuernee,
+                     &amp; sera neantmoins affligee de pauureté, delaissee des amis, assiegee des
+                     ennemi &amp; comblee de plusieurs calamitez: auquel estat Ciceron mesmes
+                     confesse auoir veu tomber la Republique de Marseille en Prouence, qu'il dit
+                     auoir efté la mieux ordonnee, &amp; la plus accōplie, qui fust onques en tout
+                     le monde sans exception: &amp; au contraire, il faudroit, que la Republique
+                     fertile en assiette, abondante en richesses, fleurissante en hommes, reueree
+                     des amis, redoutee des ennemis, inuincible en armes, puissante en chasteaux,
+                     superbe en maisons, triomphante en gloire, fust droittement gouuernee, ores
+                     qu'elle fust debordee en mechancetez, &amp; fondue en tous vices. Et neantmoins
+                     il est biē certain, que la vertu n'a point d'ennemy plus capital, qu'vn tel
+                     succés qu'on dit tresheureux: &amp; qu'il est presque impossible d'accoler
+                     ensemble deux choses si contraires. Par ainsi nous ne mettrons pas en ligne de
+                     cōpte, pour definir la Repub. ce mot, heureusement: ains nous prendrons la mire
+                     plus haut pour toucher, ou du moins approcher, au droit gouuernement:
+                     toutefois, nous ne voulons pas aussi figurer vne Republique en Idee sans
+                     effect, telle que Platon, &amp; Thomas le More chancelier d'Angleterre, ont
+                     imaginé, mais nous contenterons de suiure les regles Politiques au plus pres
+                     qu'il sera possible: en quoy faisant, on ne peut iustement estre blasmé,
+                     encores qu'on n'ayt pas attaint le but où l'on visoit, non plus que le maistre
+                     pilote transporté de la tempeste, ou le medecin vaincu de la maladie, ne font
+                     pas moins estimez, pourueu que l'vn ayt bien gouuerné son malade, &amp; l'autre
+                     son nauire. Or si la vraye felicité d'vne Republique, &amp; d'vn homme seul est
+                     tout <pb n="4"/> vn, &amp; que le souuerain bien de la Republique en general,
+                     aussi bien que d'vn chacun en particulier, gist es vertus intellectuelles,
+                     &amp; contemplatiues, comme les mieux entendus<note place="margin">Aristotel.lib.7.cap.3. &amp;15.polit.&amp; lib.10.ethic.ad
+                     Nicomach.</note>  ont resolu: il faut aussi accorder, que ce: peuple là iouist
+                     du souuerain bien, quand il a ce but deuant les yeux, de s'exercer en la
+                     contemplation des choies naturelles humaines, &amp; diuines, en rapportant la
+                     louange du tout au grand prince de nature. Si donc nous confessons, que cela
+                     est le but principal de la vie bien heureuse d'vn chacun en particulier, nous
+                     concluons aussi que c'est la fin &amp; felicité d'vne Republique. mais d'autant
+                     que les hommes d'affaires, &amp; les Princes, ne sont iamais tombez d'accord
+                     pour ce regard, chacun mesurant son bien au pied de ses plaisirs &amp;
+                     contentemens: &amp; que ceux qui ont eu mesme opinion du souuerain bien d'vn
+                     particulier, n'ont pas tousiours accordé que l'homme de bien, &amp; le bon
+                     citoyen soit tout vn: ny que la felicité d'vn homme, &amp; de toute la
+                     Republique fust pareille: cela fait, qu'on atousiours eu varieté de loix, de
+                     coustumes, &amp; desseings, selon les humeurs &amp; passions des Princes &amp;
+                     gouuerneurs. Toutefois puisque l'homme sage est Ia mesure de iustice &amp; de
+                     verité: &amp; que ceux là qui sont reputez les plus sages, demeurent d'accord,
+                     que le souuerain bien d'vn particulier, &amp; de la Republique n'est qu'vn,
+                     sans faire difference entre l'homme de bien, &amp; le bon citoyen, nous
+                     arresterons là le vray poinct de felicité, &amp; le but principal, auquel se
+                     doit rapporter le droit gouuernement d'vne Republique: iaçoit qu'Aristote a
+                     doublé d'opinion, &amp; tranché quelquefois le different des parties par la
+                     moitié, couplant tantost les richesses, tantost la force &amp; la santé auec
+                     l'action de vertu, pour s'accorder à la plus commune opinion des
+                        hommes: mais<note place="margin">lib.10.ethic.Nico.&amp; 7.politic.</note> 
+                     quand il en dispute plus subtilement, il met le comble de felicité en
+                     contemplation. Qui semble auoir donné occasion à Marc Varron de dire, que la
+                     felicité des hommes est meslee d'action, &amp; de contemplation: &amp; sa
+                     raison est à mon aduis, que d'vne chose simple la felicité est simple, &amp;
+                     d'vne chose double, composee de parties diuerses, la felicité eft double: comme
+                     le bien du corps gist en santé, force, alegresse, &amp; en la beauté des
+                     membres bien proportionnez: &amp; la felicité de l'ame inferieure, qui eft la
+                     vraye liaison du corps &amp; de l'intellect, gist en l'obeissance que les
+                     appetits doiuent à la raison: c'est à dire, en l'action des vertus morales:
+                     tout ainsi que le souuerain bien de la partie intellectuelle, gist aux vertus
+                     intellectuelles: c'est à sçauoir, en prudence, science, &amp; vraye religion:
+                     l'vne touchant les choses humaines, l'autre les choses naturelles: la
+                     troisiesme, les choses diuines: la premiere monstre la difference du bien &amp;
+                     du mal: la seconde, du vray &amp; du faux: la troisiesme, de la pieté &amp;
+                     impieté, &amp; ce qu'il faut choisir &amp; fuir: car de ces trois se compose la
+                     vraye sagesse, où est le plus haut poinct de felicité en ce monde. Aussi peut
+                     on dire par comparaison du petit au grand, que la Republique doit auoir vn
+                     territoire suffisant, &amp; lieu capable pour les habitans, la fertilité d'vn
+                     pays assez plantureux, &amp; quantité de bestail pour la <pb n="5"/> nourriture
+                     &amp; vestemens des sugets: &amp; pour les maintenir en sante, la douceur du
+                     ciel, la temperature de l'air, la bonté des eaux: &amp; pour la defense &amp;
+                     retraite du peuple, les matieres propres à bastir maisons &amp; places fortes,
+                     si le lieu de soy n'est assez couuert &amp;. defensable. Voila les premieres
+                     choses, desquelles on est le plus soigneux en toute Republique, &amp; puis on
+                     cherche ses aisances: comme les medecines, les metaux, les teintures: &amp;
+                     pour assugetir les ennemis, &amp; allonger ses frontieres par conquestes, on
+                     fait prouision d'armes offensiues: &amp; d'autant que les appetits des hommes
+                     font le plus souuent insatiables, on veut auoir en affluence, non seulement les
+                     choses vtiles &amp; necessaires, ains aussi plaisantes &amp; inutiles. Et tout
+                     ainsi qu'on ne pense gueres à l'instruction d'vn enfant qu'il ne soit eleué,
+                     nourri, &amp; capable de raison: aussi les Republiques n'ont pas grand soing
+                     des vertus morales, ny des belles sciences, &amp; moins encores de la
+                     contemplation des choses naturelles &amp; diuines, qu'elles ne soient garnies
+                     de cequi leur fait besoin: &amp; se contentent d'vne prudence mediocre, pour
+                     asseurer leur estat contre les estrangers, &amp; garder les sugets d'offenser
+                     les vns les autres, ou si quelcun est offensé, reparer la faute. Mais l'homme
+                     se voyant esleué &amp; enrichi de tout ce qui luy est necessaire &amp; commode,
+                     &amp; sa vie asseuree d'vn bon repos, &amp; Tranquillité douce, s'il est bien
+                     né, il prend à contre-cueur les vicieux &amp; meschans, &amp; s'approche des
+                     gens de bien &amp; vertueux: &amp; quand son esprit est clair net des vices
+                     &amp; passions, qui troublent l'ame, il prend garde plus soigneusement à voir
+                     la diuersïté des choses humaines, les aages differens, les humeurs contraires,
+                     la grandeur des vns, Ia ruine des autres, le changement des Republiques:
+                     cherchant tousiours les causes des effects qu'il voit. puis apres, se tournant
+                     à la beauté de nature, il prend plaisir à la varieté des animaux, des plantes,
+                     des minéraux, considerant la forme, la qualité, la vertu de chacune, les haines
+                     &amp; amitiez des vnes enuers les autres, &amp; la suitte des causes
+                     enchaisnees, &amp; dependentes l'vne de l'autre: puis laissant la region
+                     elementaire, il dresse son vol iusques au ciel, auec les aisles de
+                     contemplation, pour voir la splendeur, la beauté, la force des lumieres
+                     celestes, le mouuement terribIe, Ia grandeur &amp; hauteur d'icelles, &amp;
+                     l'harmonie melodieuse de tout ce monde: alors il eft raui d'vn plaisir
+                     admirable, accompagné d'vn desir perpetuel de trouuer la premiere cause, &amp;
+                     celuy qui fut autheur d'vn si beau chef-d'œuure: auquel estant paruenu, il
+                     arreste là le cours de ses contemplations, voyant qu'il eft infini &amp;
+                     incomprehensible en essence, en grandeur, en puissance, en sagesse, en bonté.
+                     Par ce moyen de contemplation, les hommes sages &amp; entendus, ont resolu vne
+                        tresbelle<note place="margin">Aristot.lib.6.phys.&amp; lib 12.cap.vlt.
+                        metaphys.</note> demonstration, c'est asçauoir, qu'il n'y a qu'vn Dieu
+                     eternel &amp; infini: &amp; de là ont quasi tiré vne conclusion de la felicité
+                     humaine. Si doncvn tel homme est iugé sage, &amp; bien heureux, aussi sera la
+                     Republique tres-heureuse, ayant beaucoup de tels citoyens, encores qu'elle ne
+                     soit pas de grande estendue, ny opulente en biens, mesprisant les pom <pb n="6"/>  pes &amp; delices, des citez superbes plongees en plaisirs, &amp; ne faut
+                     pas pourtant conclure, que la felicité de l'homme soit confuse &amp; meslee:
+                     car combien que l'homme soit composé d'vn corps mortel, &amp; d'vne ame
+                     immortelle, si faut-il confesser, que son bien principal depend de la partie la
+                     plus noble: car puisque le corps doibt seruir à l'ame, &amp; l'appetit bestial
+                     à la raison diuine, son bien souuerain despend aussi des vertus
+                     intellectuelles, qu'Aristote appelle l'action de l'intellect: &amp; iaçoit
+                     qu'il eust dit, que le souuerain bien gist en l'action de vertu, si est-ce
+                     qu'en fin il a esté contraint de confesser,<note place="margin">Aristot.lib.10.ethicor.&amp; cap.7.polit.</note>  que l'action se rapporte
+                     à la contemplation, comme à sa fin, &amp; qu'en icelle gist le souuerain bien:
+                     autrement, dit-il, les hommes feroient plus heureux que Dieu, qui n'est point
+                     empesché aux actions muables, iouissant du fruit eternel de contemplation,
+                     &amp; d'vn repos treshault. mais ne voulant pas s'arrester ouuertement à
+                     l'aduis de son maistre, ny se departir de la maxime qu'il auoit posee, c'est à
+                     sçauoir, que le souuerain bien gist en l'action de vertu, quand il a conclu la
+                     dispure du souuerain bien, il a coulé doucement ce mot æquiuoque, l'action de
+                     l'intellect, pour contemplation, disant que la felicité de l'homme gist en
+                     l'action de l'intellect: affin qu'il ne semblast vouloir mettre la fin
+                     principale de l'homme, &amp; des Republiques, en deux choses du tout
+                     contraires, c'eft a sçauoir, en mouuement &amp; en repos. en action &amp;
+                     contemplation. &amp; neantmoins voyant que les hommes &amp; les Republiques
+                     font en perpetuel mouuement, empeschez aux actions necessaires, il n'a pas
+                     voulu dire simplement, que la felicité gist en contemplation, ce qu'il faut
+                     neantmoins aduouër. car quoy'que les actions, par lesquelles la vie de l'homme
+                     est'entretenuë, soient fort necessaires, comme boire &amp; manger, si est- ce
+                     qu'il n'y eut iamais homme bien appris, qui fondast en cela le souuerain bien.
+                     aussi l'action des vertus morales est bien fort louable: par ce qu'il est
+                     impossible, que l'ame puisse recueillir le doux fruit de contemplation, qu'elle
+                     né soit esclarcie, &amp; purisiee parles vertus morales, ou par la lumiere
+                     diuine: de forte, que les vertus morales se rapportent aux intellectuelles. or
+                     la felicité n'est pas accomplie, qui se rapporte, &amp; cherche quelque chose
+                     de meilleur, comme sa fin principale, &amp; ce qui est moins noble, au plus
+                     noble, comme le corps à l'ame, celle cy à l'intellect, l'appetit à la raison,
+                     &amp; viure pour bien viure. Par ainsi Marc Varron, qui a mis la felicité en
+                     action, &amp; en contemplation, eust mieux dit, à mon aduis, que la vie de
+                     l'homme a besoin d'action, &amp; de contemplation: mais que le souuerain bien
+                     gist en contemplation<note place="margin">Plato in Phædone.</note> , que les
+                     Academiques ont appellé la mort plaisante, &amp; les Hebrieux la mort<note place="margin">Psal.116. &amp; Leo Hebræus
+                        lib.3.de amore.</note> precieuse,
+                     d'autant qu'elle rauist l'ame hors de la fange corporelle, pour la deifier. Et
+                     neantmoins il est bien certain, que la Republique ne peut estre bien ordonnee,
+                     si on laisse du tout, ou pour long temps les actions ordinaires, la voye de
+                     iustice, la garde &amp; defense des sugets, les viures, &amp; prouisions
+                     necessaires à l'entretenement d'iceux, non plus que l'homme ne peut viure
+                     longue- <pb n="7"/> Mais tout ainsi qu'en ce monde, qui est la vraye image de
+                     la Republique bien ordonnee, &amp; de l'homme bien reiglé, on voie la lune
+                     comme l'ame s'approcher du Soleil, laissant aucunement la region elementaire,
+                     qui ressent vn merueilleux changement, pour le declin de ceste Iumiere, &amp;
+                     tost apres l'accouplement du Soleil se remplir d'vne vertu celeste, qu'elle
+                     rend à toutes choses: aussi l'ame de ce petit monde estant par fois rauie en
+                     contemplation, &amp; aucunement vnie à ce grand Soleil intellectuel, elle
+                     s'enflamme d'vne clarté diuine, &amp; force émerueillable, &amp; d'vne vigueur
+                     celeste fortifiant le corps, &amp; les forces naturelles. mais si l'ame
+                     s'addonne par trop au corps, &amp; s'enyure des plaisirs sensuels, fans
+                     rechercher le soleil diuin, il luy en prend tout ainsi qu'à la lune, quand elle
+                     s'enuelope du tout en l'ombre de la terre, qui luy oste sa lumiere, &amp; sa
+                     force, &amp; produit par ce desaut plusieurs monstres. &amp; neantmoins si elle
+                     demeuroit tousiours vnie au Soleil, il est bien certain que le monde
+                     elementaire periroit. Nous ferons mesme iugement de là Republique bien
+                     ordonnee, la fin principale de laquelle gist aux vertus contemplatiues, iacoit
+                     que les actions politiques soient preallables, &amp; les moins illustres soient
+                     les premieres: comme faire prouisions necessaires, pour entretenir &amp;
+                     defendre la vie des sugets: &amp; neantmoins telles actions se rapportent aux
+                     morales, &amp; celles cy aux intellectuelles, la fin desquelles est la
+                     contemplation du plus beau suget qui soit, &amp; qu'on puisse imaginer. Aussi
+                     voyons nous, que Dieu a laisse six iours pour toutes actions, estant la vie de
+                     l'homme sugette pour la plus-part à icelles: mais il a ordonné, que le
+                     septiesme, qu'il au oit beni sus tous les autres, seroit chomé, comme le saint
+                     iour du repos, affin de l'employer<note place="margin">Psal.I.</note>  en la
+                     contemplation de ses œuures de sa loy, &amp; de ses louanges. Voila quant à la
+                     fin principale des Republiques bien ordonnees, qui sont d'autant plus
+                     heureuses, que plus pres elles approchent de ce but: car tout ainsi qu'il y a
+                     plusieurs degrez de felicité és hommes, aussi ont les Republiques leurs degrez
+                     de felicité, les vnes plus, les autres moins, selon le but que chacune se
+                     propose pour imiter: comme l'on disoit<note place="margin">Plato.</note>  des
+                     Lacedemoniens, qu'ils estoient courageux, &amp; magnanimes, &amp; au reste de
+                     leurs actions, iniustes: par ce que leur institution, leurs loix, &amp;
+                     coustumes n'auoient autre but deuant les yeux, que rendre les hommes courageux,
+                     &amp; inuincibles aux labeurs &amp; douleurs, meprisans les plaisirs &amp;
+                     delices. mais la Republique de Romains a fleuri en iustice, &amp; surpasse
+                     celle de Lacedemonne, par ce que les Romains n'auoient pas feulement la
+                     magnanimité, ains aussi la vraye iustice leur estoit comme vn suget, auquelils
+                     adressoient toutes leurs actions. Il faut donc s'efforcer de trouuer les moyens
+                     de paruenir ou approcher de la felicité, que nous auons dit, &amp; à la
+                     definition de la Republique, que nous auons posee. <pb n="8"/>
+                  </p>
+               </div>
+               <div n="2" type="textpart" subtype="chapter">
+                  <head><hi rend="italic">CHAP.II.</hi> ? DV MESNAGE, ET LA DIFFERENCE ENTRE LA
+                     REPUBLIQE &amp; LA FAMILLE</head>
+                  <p> MESNAGE est vn droit gouuernement de plusieurs sugets, sous l'obeissance d'vn
+                     chef de famille, &amp; de ce qui luy est propre. La seconde partie de la
+                     definition de Republique que nous auons posee, touche la famille, qui est la
+                     vraye source &amp; origine de toute Republique, &amp; membre principal
+                     d'icelle. Et par ainsi Xenophon &amp; Aristote, sans occasion, à mon aduis, ont
+                     diuisé l'oeconomie de la police: ce qu'on ne peut faire sans demembrer la
+                     partie principale du total, &amp; bastir vne ville fans maisons, ou bien par
+                     mesme moyen il falloit faire vne science à part des corps &amp; colleges, qui
+                     ne sont ny familles, ny citez, &amp; sont neantmoins partie de la Republique.
+                     Mais les Iurisconsultes, &amp;: legislateurs, que nous deuons suiure, ont
+                     traitté les loix &amp; ordonnances de la police, des colleges, &amp; des
+                     familles en vne mesme science. toutefois ils n'ont pas pris l'œconomie comme
+                     Aristote, qui l'appelle science d'acquerir des biens, qui est commune aux corps
+                     &amp; colleges aussi bien comme aux Republiques. Or nous entendons par la
+                     mesnagerie, le droit gouuernement de la famille, &amp; de la puissance que le
+                     chef de famille a sus les siens, de l'obeissance qui luy est deue, qui n'a
+                     point esté touchee aux traittez d'Aristote, &amp; de Xenophon. Tout ainsi donc
+                     que la famille bien conduitte, est la vraye image de la Republique, &amp; la
+                     puissance domestique semblable à la puissance souueraine:aussi est le droit
+                     gouuernement de la maison, le vray modelle du gouuernement de la Repub. Et tout
+                     ainsi que les membres chacun en particulier faisans leur deuoir, tout le corps
+                     se porte bien: aussi les familles estants bien gouuernees, la Repub. ira bien.
+                     Nous auons dit que Republique est vn droit gouuernement de plusieurs mesnages,
+                     &amp; de ce qui leur est commun, auec puissance souueraine. le mot de plusieurs
+                     ne peut estre fîgnifié par deux au cas qui s'offre, car la loy<note place="margin">l.Neratius.de verbor.signif.ff.</note>  veut du moins trois
+                     personnes pour faire vn college, &amp; autant pour faire vne famille, outre le
+                     chef de famille, soient enfans, ou esclaues, ou afranchis, ou gens libres qui
+                     se soubmettent volontairement à l'obeissance du chef de mesnage, qui fait le
+                     quatriesme, &amp; toutesfois membre<note place="margin">l.familiæ.eod.</note> de la famille. Et d'autant que les mesnages, corps &amp;
+                     colleges, ensemble les Republiques, &amp; tout le genre humain periroit, fil
+                     n'eftoit repeuplé par mariages, il s'ensuit bien que la famille ne sera pas
+                     accomplie de tout poinct sans la femme, qui pour ceste cause est appellee mere
+                     de famille: tellement qu'il faut à ce compte cinq personnes du moins, pour
+                     accomplir vne famille entiere. Si donc il faut trois personnes pour faire vn
+                     college, &amp; autant pour vn mesnage, outre le chef de famille &amp; sa femme:
+                        <pb n="9"/> nous dirons par mesme raison, qu'il faut du moins trois mesnages
+                     pour faire vne Republique, qui seroit trois fois cinq pour trois mesnages
+                     parfaicts. Et a mon aduis que les anciens appelloient pour ceste cause vn
+                     peuple quinze personnes, comme dit Apulee, rapportans Ie nombre de quinze à
+                     trois familles parfaites. Autrement fil n'y a qu'vn mesnage, encores que le
+                     pere de famille eust trois cens femmes, &amp; six cens enfans, autant qu'en
+                     auoit Hermotimus Roy de Parthe, ou cinq cens esclaues, comme Crassus: s'ils
+                     sont tous sous la puissance d'vn chef de mesnage, ce n'est pas vn peuple, ny
+                     vne Republique, ains vn mesnage seulement, encore qu'il y eust plusieurs
+                     enfans, &amp; plusieurs esclaues, ou seruiteurs mariez ayans d'autres enfans,
+                     pourueu qu'ils soient tous en la puissance: d'vn chef, que la loy<note place="margin">l.pronuntiatio.§.familiæ.eod.</note>  appelle pere de
+                     famille, ore qu'il fust au berceau. Et pour ceste cause les Hebrieux, qui
+                     monstrent tousiours la proprieté des choses par les noms, ont appelle famille
+                     HEBREW TEXT, non pas pour ce que la famille contient mil personnes, comme dit
+                     vn Rabin, mais du mot HEBREW TEXT, qui signifie chef, seigneur, prince, nommant
+                     la famille par le chef d'icelle. Maison dira peut estre, que trois corps &amp;
+                     colleges, ou plusieurs particuliers fans famille, peuuent aussi bien composer
+                     vne Republique, s'ils sont gouuernez auec puissance souueraine: il y a bien
+                     apparence: &amp; toutefois ce n'est point Republique, veu que tout corps &amp;
+                     college s'aneantist de soy mesme, s'il n'est reparé parles familles. Or la loy
+                     dit, que le peuple ne meurt<note place="margin">l.proponebatur.de
+                        iudic.ff.</note>  iamais, &amp; tient que cent, voire mil ans apres, c'est
+                     le mesme peuple, encore que I'vsufruit laissé à la Republique, est reuni à la
+                     proprieté, qui autrement seroit inutile, cent ans apres:<note place="margin">l.
+                        an vsufrusctus.de vsufr.ff.</note>  car on presume, que tous ceux qui
+                     viuoient, meurent en cent ans, combien qu'ils soient immortels par succession,
+                     comme le nauire de Thesee, qui dura tant qu'on eut soin de le reparer. Mais
+                     tout ainsi que le nauire n'est plus que bois, sans forme de vaisseau, quand la
+                     quille, qui soustient les costes, la proüe, la poupe, &amp; le tillac, sont
+                     ostez: aussi la Republique sans puissance souueraine, qui vnist tous les
+                     membres &amp; parties d'icelles, &amp; tous les mesnages &amp; colleges en vn
+                     corps, n'est plus Republique. Et sans sortir de la similitude, tout ainsi que
+                     le nauire peut estre demembré en plusieurs pieces, ou bruslé du tout: aussi le
+                     peuple peut estre escarté en plusieurs endroits, ou du tout esteint, encore que
+                     la ville demeure en son entier: car ce n'est pas la ville, ny les personnes qui
+                     font la cité: mais l'vnion d'vn peuple fous vne seigneurie souueraine, encore
+                     qu'il n'y ayt que trois mesnages. Car comme le ciron ou la formi font aussi
+                     bien nombrez entre les animaux, comme les Elephans: aussi le droit gouuernement
+                     de trois familles auec puissance souueraine, fait aussi bien vne Republique,
+                     comme d'vne grande seigneurie. Et la seigneurie de Rhaguse n'est pas moins
+                     Republique, que celle des Turcs, ou des Tartares. Et tout ainsi qu'au
+                     denombrement des maisons, vn petit mesnage est aussi bien compté pour vn feu,
+                     que la plus grande &amp; la plus riche maison de là cité: <pb n="10"/> aussi vn
+                     petit Roy est autant souuerain, que le plus grand Monarque de la terre: car vn
+                     grand royaume n'est autre chose, disoit Cassiodore, que vne grande Republique
+                     sous la garde d'vn chef souuerain. Et par ainsi de trois mesnages, si l'vn des
+                     chefs de mesnage a puissance souueraine sus les deux autres: ou les deux
+                     ensemble sus le tiers, ou les trois en nom collectif sur chacun en particulier,
+                     c'est aussi bien Republique, comme fil y auoit six millions de sugets. Et par
+                     ce moyen il se pourra faire, qu'vne famille fera plus grande qu'vne Republique,
+                     &amp; mieux peuplee: comme lon dict du bon pere de famille Ælius Tuberon, qui
+                     estoit chef de famille de seize enfans tous mariez issus de luy, qu'il auoit
+                     tous en fa puissance, auec leurs enfans &amp; seruiteurs demeurans auec luy en
+                        mesme<note place="margin">Plutar in Æmylio.</note>  logis. Et au contraire,
+                     la plus grande cité ou monarchie, &amp; la mieux peuplee qui soit sur la terre,
+                     n'est pas plus Republique, ny cité que la plus petite: quoy que dist Aristote,
+                     que la ville de Babylone, qui auoit trois iournees<note place="margin">Herodo.lib.3.</note>  de tour en quarré, estoit vne nation plustost qu'vne
+                     Republique, qui ne doit auoir, à son dire, que dix mil citoyens pour le plus:
+                     comme fil estoit inconuenient qu'vne, voire cent nations diuerses fous vne
+                     puissance souueraine, feissent vne Republique. Or si l'opinion d'Aristote auoit
+                     lieu, la Republique Romaine, qui a esté la plus illustre qui fut onques, n'eust
+                     pas mérité le nom de Republique, veu qu'au temps de sa fondation elle n'auoit
+                     que trois mil cito yens, &amp; sous l'Empereur Tibere il s'en trouua quinze
+                     millions &amp; cent dix mil, espars en tout l'Empire, sans y comprendre les
+                     esclaues, qui estoient pour le moins dix pour vn, &amp; sans compter les
+                     alliez, ny les autres peuples libres, aux enclaues de l'Empire, qui auoient
+                     leur estat à part en tiltre de souueraineté: qui est le vray fondement, &amp;
+                     le piuot, sur lequel tourne l'estat d'vne cité, &amp; de laquelle dependent
+                     tous les magistrats, loix, &amp; ordonnances, &amp; qui est la feule vnion,
+                     &amp; liaison des familles, corps, &amp; colleges, &amp; de tous les
+                     particuliers en vn corps parfaict de Republique, soit que tous les sugets
+                     d'icelle soient enclos en vne petite ville, ou en quelque petit territoire:
+                     comme la Republique de Schunits, l'vn des cantons de Suisse, qui n'est pas de
+                     si grand estendue, que plusieurs fermes de ce Royaume, ne soient de plus grand
+                     reuenu: soit que la Republique ayt plusieurs bailliages, ou prouinces: comme le
+                     Royaume de Perse, qui auoit six vingts gouuernemens, &amp; celuy d'Æthiopie,
+                     qui en a cinquante, que Paul Ioue fans propos appelle royaumes: &amp;
+                     toutesfois il n'y a qu'vn Roy, vn Royaume, vne Monarchie, vne Republique, sous
+                     la puissance souueraine du grand Negus. Mais outre la sonuetaineté, il faut
+                     qu'il y ait quelque chose de commun, &amp; de public: comme le domaine public,
+                     le thresor public, le pourpris de la cité, les rues, les murailles, les places,
+                     les temples, les marchez, les vsages, les loix, les coustumes, la iustice, les
+                     loyers, les peines, &amp; autres choses semblabes, qui sont ou communes, ou
+                     publiques, ou l'vn &amp; l'autre ensemble. car ce n'est pas Repub. s'il n'y a
+                     rien de pu- <pb n="21"/> E droit gouuernement'du pere &amp; des enfans gift à
+                     bien vser de la puissance, que Dieu a donné au pere sur ses en- fans propres,
+                     ou la loy sur les enfans adoptez, &amp; en l'obeissance, amour, &amp; reuerence
+                     des enfans enuers les peres. Le mot de puissance, est propre à tous ceux qui
+                     ont pouuoir de commander à autrui. Ainsi le Prince, dit Seneque, commande aux
+                     fugets, le magistrat aux citoyens, le pere aux enfans, le maistre aux
+                     disciples, le capitaine aux soldats, le seigneur aux esclaues. Mais de tous
+                     ceux là, il n'y en a pas vn., à qui nature donne aucun pouuoir de commander,
+                     &amp; moins encores d'asseruir autruy, horsmis au pere, qui est la vraye image
+                     du grand Dieu souuerain, pere. vniuersel de toutes choses, comme disoit Procle
+                     Academicien. Aussi Platon ayant en premier lieu articulé les loix, qui touchent
+                     l'honneur de Dieu, il dit, que c'est vne preface de la reuerence que l'enfant
+                     doit au pere, duquel, apres Dieu, il tient la vie, &amp; tout ce qu'il peut
+                     auoir en ce monde. Et tout aind que nature oblige le pere à nourrir l'enfant,
+                     tant qu'il est impuissant, &amp; l'instruire en tout honneur &amp; vertu: aussi
+                     l'enfant est oblige, mais beaucoup plus est roictement, d'aimer, reuerer,
+                     seruir, nourrir le pere, &amp; ployersous ses mandamens en toute obeissance,
+                     supporter, cacher, &amp; couurir toutes ses infirmitez &amp; imperfections,
+                     &amp; n'espargner iamais ses biens, ny son sang, pour sauuer, de entretenir la
+                     vie de celuy, duquel il tient la sienne. Laquelle obligation ores qu'elle soit
+                     sellee du seau de nature, voire qu'elle porte execution paree, si est-ce
+                     toutesfois pour monstrer combien elle est grande, il n'y en a point de plus
+                     certain argument, que le premier commandement <note place="margin"> Exodi 21
+                        Deuterono.5.</note> de la seconde table, &amp; seul en tous les dix articles
+                     du Decalogue, qui porte son loyer: <note place="margin"> Deuteron.II.&amp;
+                        22.</note> combien qu'il n'est deu aucun loyer à celuy, qui est obligé de
+                     faire quelque chose, mesmement par obligation si estroicte, que toutes les loix
+                        diuines<note place="margin"> Exechiel.22.</note> &amp; humaines en font
+                     pleines. Au contraire, nous lisons, que la premiere malediction, qui soit en la
+                     Bible, <note place="margin"> Genes.7.</note>est celle qui fut donnee à Cham,
+                     pour n'auoir pas couuert la honte de son pere. Et non fans cause les enfans
+                     anciennement estoient si ialoux <note place="margin"> Genes.27.28.</note>les
+                     vns des autres, à qui emporteroit la benediction du pere, craignant plus fa
+                     malediction que la mort. Et de fait le ieune Torquatus <note place="margin">
+                        Valer.Max.lib.2.</note>estant chassé de la maison de son pere, se tua de
+                     regret. C'est pourquoy Platon<note place="margin"> In.lib.de legib.</note>
+                     disoit, qu'il faut bien fur tout prendre garde aux male dictions &amp;
+                     benedictions que les peres donnent aux enfans: &amp; qu'il n'y a priere que
+                     Dieu plus volontiers exauce, que celle du pere enuers ses enfans. Si donc les
+                     enfans sont si estroictement obligez à seruir, aimer, obeir, reuerer les peres
+                     &amp; meres, quelles peines meritent ceux-là, qui sont desobeissans,
+                     irreuerens, iniurieux? quel supplice peut estre assez grand à celuy, qui frappe
+                     le pere ou la mere? car quant au meurtrier du pere, ou de la mere, il ne s'est
+                     iamais trouué iuge, ny legislateur, qui sceust imaginer tormens suffisans pour
+                     vn cas si execrable, quoy que la loy Pompeia <note place="margin">
+                        l.I.ad.L.Pompeiam.</note> des Parricides, ait <pb n="22"/> ordonné vn
+                     torment plus estrange, que digne d'vn tel crime: &amp; encores que nous en
+                     ayons veu vn de nostre memoire, qui a esté tenaillé, puis rompu sur la roue,
+                     &amp; en fin bruflé: si est-ce qu'il n'y auoit homme,, qui n'eut plus d'horreur
+                     de sa meschanceté, que de frayeur de sa peine, &amp; qui ne confessast, qu'il
+                     meritoit plus qu'il ne souffroit. Aussi le sage Solon interrogé pourquoy il
+                     auoit oublié la peine du Parricide, fist response, qu'il ne pensoit pas qu'il y
+                     eust homme si detestable, qui voulust commettre vn adte si meschant. <note place="margin"> Cicero pro Roscio perduel.</note> quiestoit sagement
+                     respondu. car le sage legislateur ne doit iamais faire mention d'vn crime, qui
+                     n'est point, ou bien peu cogneu, affin qu'il ne donne exemple aux meschans d'en
+                     faire l'essay. mais file crime est grand, &amp; execrable, il ne doit pas le
+                     couler parsouffrance, ny le monstrer aussi au doigt &amp; à l'œil :ains par
+                     circonstances, &amp; peines qui enapprochent. comme nous voyons la loy de Dieu
+                     n'auoir establi aucune peine au meurtrier du pere ou de la mere, ny mesmes à
+                     celuy qui afrappé l'vn ou l'autre (comme la loy Seruia<note place="margin">lex
+                        Seruia his verbis concepta est apud Festum Pomp. Si parentem puer
+                        verbararit, ast olle porassut, parentes puer diuis sacer esto ast, inquit,
+                        pro certe: plorassit, proclamarit. id est, capitale supplicium irrogandum ei
+                        est catemus, vt lachrymae, vor, &amp; clamor meritum dolorem
+                        restificentur.</note>, qui condamne à mort pour tel crime) mais elle donne
+                     plein pouuoir, &amp; puissance au pere, &amp; à la mere de lapider l'enfant
+                     desobeissant, &amp; veut qu'ils en soient creus, &amp; que l'execution se face
+                     en presence du iuge, &amp; fans qu'il luy soit permis de s'enquerir de la
+                     verité, ny d'en prendre aucune cognoissance. car en ce faisant, l'enfant
+                     n'estoit pas tué en cholere, comme il peut aduenir, ny en secret, pour couurir
+                     le deshonneur de la maison, ainsi que nous voyons en nos loix vn pere auoir tué
+                     son fils à la chasse, pour auoir incestué fa belle mere: c'est, dit la loy<note place="margin">l.diuus.ad l. Pompeiam de parricid.</note>, tuer en voleur:
+                     car le principal fruict de la peine, est qu'elle soit exemplaire à tous.
+                     L'autre article de la loy<note place="margin"> Leuit.20.
+                        Deutero.27.Exod.21.</note> de Dieu veut, que l'enfant qui aura mesdit au
+                     pere, ou à la mere, soit executé à mort: &amp; en donne la cognoissance aux
+                     iuges, ne laissant pas la peine à la discretion des peres &amp; meres, affin
+                     que le crime ne demeure impuni, car l'amour du pere &amp; de la mere est fi
+                     ardent enuers leurs enfans, qu'ils ne voudroient pas que la iustice en eust
+                     iamais la cognoissance, encores que leurs enfans les eussent frappez à mort:
+                     comme de fait il aduint à Chastillon sur Oing, l'an M.D.LXV. que le pere ayant
+                     receu vn coup d'espee à trauers le corps par son fils, luy voulant donner vn
+                     soufflet, il ne cessa de crier apres son fils, iusques à la mort qu'il s'en
+                     fuist, craignant qu'il tombast entre les mains de iustice., &amp; qu'il fust
+                     executé à mort, ainsi qu'il fut les pieds pendus contremont quelque temps,
+                     &amp;vne pierre au col, &amp; puis bruslé tout vif, renonçant a l'appel par luy
+                     intergetté de la sentence. qui monstre assez l'estrange &amp; violente passion
+                     d'amour du pere enuers ses enfans, nous en auons aussi de nostre temps vn
+                     exemple de la mere, qui aimoit mieux souffrir estre mesprisee, iniuriee, batue,
+                     frappee &amp;foulee aux pieds par son propre fils, que de s'en plaindre au
+                     iuge, qui laissoit tout cela im puni, iusques à ce qu'il eut fait ses ordures
+                     au potage de sa mere(il faut que la pofterité sçache ceste vilainie)alors le
+                     iuge condamna le fils à faire amende honorable, &amp; requerir pardon à <pb n="23"/> la mere. le fils en appelle au Parlement de Toulouze, ou il fut dit
+                     mal iucré, &amp; en amendant le increment, il fut condamné à estre bruslé tout
+                     vif, sans auoir esgard aux cris, &amp; lamentations de la mere, qui protestoit
+                     luy pardonner, &amp; n'auoir receu aucune iniure. Seneque parlant du pere, qui
+                     chasse seulement son fils de sa maison, O'que le pere, dit-il, coupe ses
+                     membres à grand regret, combien il fait de souspirs en les coupant, combien de
+                     fois il pleure après les auoir coupez, 8c combien il souhaitte les remettre en
+                     leur place. Tout ce que i'ay dit, &amp; les exemples, que i'ay deduicts de si
+                     fraiche memoire, seruiront pour monstrer, qu'il est besoin de rendre aux peres
+                     la puissance de la vie &amp; de la mort, que la loy de Dieu &amp; de nature
+                     leur donne: loy, qui a esté la plus ancienne qui fut onques, commune aux
+                     Perses, &amp; aux peuples de la haute Asie, commune aux Romains, aux Hebrieux,
+                     aux Celtes, &amp; pratiquee en toutes les Indes Occidentales auparauant
+                     qu'elles fussent assugetties des Espagnols: autrement il ne faut pas esperer de
+                     iamais voiries bonnes meurs, l'honneur, la vertu, l'ancienne splendeur des
+                     Republiques restablies. Car nostre Iustinian<note place="margin"> in tit
+                        depatria po-in institur.</note> s'est abusé de dire, qu'il n'y auoit peuple,
+                     qui eust telle puissance fus leurs enfans, que les Romains, &amp; ceux qui ont
+                     suiui son opinion. nous auons la loy de Dieu, qui doit estre saincte &amp;
+                     inuiolable à tous peuples. nous auons le tesmoignage des histoires Greques
+                     &amp;: Latines, pour le regard des Perses<note place="margin">Aristot.in
+                        polit.</note>, des Romains<note place="margin">l.in suis.de
+                        liberis.&amp;postea.</note>, &amp; Celtes<note place="margin">caesar
+                        lib.6.commentar.</note>, deiquels parlant Cesar en ses memoires: Les
+                     Gaulois, dit-il, ont puissance de la vie &amp; de la mort fus leurs enfans,
+                     &amp; fur leurs femmes, aussi bien que fus leurs esclaues. Et combien que
+                        Romule<note place="margin">Dionys. haliear.lib.2.</note>, en la publication
+                     de ses loix, eust limité la puissance de la vie &amp; de la mort, qu'il donnoit
+                     aux maris sus les femmes, en quatre cas: si est-ce qu'il ne limita rien pour le
+                     regard des peres, leur donnant pleine puissance de disposer de la vie &amp; de
+                     la mort de leurs enfans, &amp; fans qu'ils peussent rien acquerir, <note place="margin"> l.placuir.de acquir.haeredit.</note>qui ne fust aux peres.
+                     Et non seulement les Romains auoient telle puissance sus leurs propres enfans,
+                     ains aussi sus les enfans d'autruy par eux adoptez. <note place="margin">Gest.lib.5 c.19.</note> Laquelle puisance deux cens soixante ans apres fut
+                     ratifice, &amp; amplifiee par les loix des douze<note place="margin"> Gell.
+                        lib.20.</note> tables: qui donnerent aussi puissance au pere de vendre ses
+                     enfans, &amp; fils se rache ptoient, les reuendre iufques à trois fois, loy,
+                     qui s'est trouuee du tout semblable aux Isles Occidentales, comme nous lisons
+                     en l'histoire des Indes. Et encores à present il est permis au pere en tout le
+                     païs de Moscouie, &amp; de Tartane, de vendre iusques à quatre sois
+                     inclusiuement ses enfans: puis fils se racheptent, ils font afranchis du tout;
+                     Par le moyen de ceste puissance paternelle, les Romains ont fleuri en tout
+                     honeur&amp; vertu, &amp; souuent la Republique a esté releuee de fa cheute
+                     ineuicable par la puissance paternelle, alors que les peres venoient tirer
+                        <note place="margin"> Donys. haliear.lib.2.</note> Meurs enfans magistrats
+                     de la Tribune aux harangues, pour les empescher de publier ny loy ny requeste,
+                     qui tendist à sedition. &amp; entre autres Cassius getta son fils hors la
+                     Tribune, &amp; le fist mourir, pour auoir publié la loy <pb n="24"/> des
+                     heritages, demeurans les huissiers, sergens, magistrats, &amp; tout le peuple
+                     estonné, sans oser luy faire aucune resistence, encores que le peuple voulust à
+                     toute force qu'on publiait la loy. Qui monstre non seulement que celle
+                     puissance paternelle estoit comme sacree &amp; inuiolable, ains aussi que le
+                     pere pouuoit à tort ou a droit disposer de la vie, &amp; de la mort de ses
+                     enfans, sans que les magistrats en peussent prendre cognoissance. Car combien
+                     que le Tribun Pomponius<note place="margin"> Valer.Max.lib.4.</note> eust
+                     chargé Torquat enuers le peuple de plusieurs chefs d'accusation, &amp; entre
+                     autres qu'il greuoit par trop son fils à cultiuer la terre: si est-ce
+                     neantmoins, que le fils mesine alla trouuer le Tribun en son lict, &amp; luy
+                     mettant la dague fus la gorge, luy fist iurer, qu'il se desisteroit de la
+                     poursuitte, qu'il faisoit contre son pere. Le Tribun priale peuple de l'excuser
+                     pour le ferment qu'il auoit fait. le peuple ne voulut point qu'on passast
+                     outre. Par ces deux exemples on peut iuger, que les Romains faisoient plus
+                     d'estat de la puissance paternelle que des loixmefmes qu'ils appelloient
+                     sacrees, par lesquelles la teste de celuy estoit voüee à luppiter, qui auroit
+                     seulement attenté de toucher<note place="margin"> Dionys.Halicat.lib.7.&amp;
+                        Liuius lib 3.</note> au Tribun pour l'offenser. Car ils tenoient, que la
+                     iuftice domestique, &amp; puissance paternelle, estoit vn tresseur fondement
+                     des loix de l'honneur, de la vertu, &amp; de toute pieté. Aussi nous trouuons
+                     les rares &amp; beaux exemples de pieté enuers les peres &amp; meres en la
+                     Republique Romaine, qui ne se trouuent point ailleurs. i'en ay marqué vn entre
+                     mil, i'en mettray encores vn autre, que tous les peintres du mondeont prins
+                     pour embellir leur science, c'est à sçauoir, de la fille, qui allait toit le
+                     pere condamné à mourir de l'ancienne peine ordinaire de famine, qui ne souffix
+                     iamais <note place="margin"> Plin.lib.</note> l'homme sain passer le septiesme
+                     iour: le geolier ayant espié ceft acte de pieté, en auertit les magistrats,
+                     &amp; le fait estant rapporté au peuple ,la fille obtint la grace pour la vie
+                     dupere. combien queles bestes sans raison nous enseignent assez ce deuoir
+                     naturel, tesmoing la Cicogne, que la langue saincte, qui nomme les choses selon
+                     leur proprieté cachee, appelle Chasida, c'est à dire, debonaire &amp;
+                     charitable, d autant qu'elle nourrist ses pere &amp; mere en vieillesse. Et
+                     combien que le pere soit tenu d'enseigner &amp; inftruire ses enfans, mesmement
+                     en la crainte de Dieu, si est-ce neantmoins s'il n'a fait son debuoir. l'enfant
+                     n'est pas excusé du sien, quoy que Solon par ses loix eust acquité les enfans
+                     de nourrir leurs peres, s'ils ne leurs auoient apprins vn mestier pour gaigner
+                     leur vie. Il n'est p as besoin d'entrer en ceste dispute, ou il est
+                     principalement questio de la puissance paternelle, de laquelle l'vn des plus
+                     grands biens, qui en resultoit, anciennement estoit la droite nourriture des
+                     enfans. Car la iuftice publique ne prend iamais cognoissance du mespris,
+                     desobeissance, &amp;irreuerence des enfans enuers le pere &amp; mere, ny
+                     pareillement desvices, que la licence desbordee apporte à la ieunesse en excez
+                     d'habits, d'yurongnie, paillardise, jeux de hazard, ny mesmes de plusieurs
+                     crimes fugets à la iurisdidtion publique, que les pauures parens n'osent dé-
+                     DON'T KNOW WHERE NOTE 6 GOES: <note place="margin">Leuitici.II.Iob.19 HEBREW
+                        TEXT pia misericords.</note>
+                     <pb n="25"/> couurir, &amp; neantmoins la puissance de les punir leur est
+                     ostee: car les enfans n'ayans aucune craincte des parens, &amp; de Dieu encores
+                     moins, se garentiront assez des magistrats, la pluspart desquels ne punist
+                     ordinairement que les belistres. Or est il impossible que la Republique vaille
+                     rien, si les familles qui font les pilliers d'icelle, sont mal fondez.
+                     Dauantage tous les procez, querelles, &amp; differens, qui font ordinaires
+                     entre les freres &amp; seurs, estoient tous estaincts, &amp; assopis, tant
+                     quele pere viuoit, car les mariages ne luy oftoiet point la puissance, &amp;
+                     encores qu'il l'eust emancipé, ceux qui se marioient, &amp; sorroient de sa
+                     maison pour tenir mesnage à part, ce qu'ils ne faisoient pas aysément,
+                     neantmoins la reuerence, &amp; craincte du pere leur demeuroit tousiours. C'est
+                     vne des causes principales d'où viennent tant de proces: car on ne voit les
+                     magistrats empesehez, qu'à vuider ceux qui se prouignent, non seulement entre
+                     le mari, &amp; la femme, ains aussi entre les freres, &amp; seurs, &amp; qui
+                     plus est entre les peres, &amp; les enfans. Or la puissance paternelle estant
+                     peu à peu lachee fus le declin de l'Empire Romain, aussi tost apres seuanouit
+                     l'ancienne vertu, &amp; toute la splendeur de leur Republique, &amp; au lieu de
+                     pieté, &amp; de bonnes meurs, il s'en ensuiuit vn million de vices, &amp; de
+                     mechancetez. Car la puissance patern elle de la vie, &amp; de la mort, fut
+                     ostee peu à peu par l'ambition des magistrats, pour attirer tout à leur
+                     cognoissance, &amp; cela aduint apres la mort d'Auguste, depuis lequel temps on
+                     n'estoit quasi empesché qu'à punir les parricides: comme nous lisons en
+                     Seneque, <note place="margin"> lib.I.de clementia.</note> lequel adressant sa
+                     parole à Neron. On a plus veu, dit-il, punir de Parricides en cinq ans soubs le
+                     regne de vostre pere, que iamais on n'auoit veu depuis la fondation de Rome. Or
+                     il est bien certain que pour vn Parricide qu'on punist, il s'en commet dix,
+                     estant la vie du pere, &amp; de la mere exposee a mil mors., si la bonté de
+                     nature, &amp; la crainte de Dieu ne retient les enfans. Et né se faut pas
+                     esmerueiller si Neron ne fist point de conscience de tuer, ny de repentence
+                     d'auoir tué sa mere, car c'estoit alors vn crime tout commun. mais Seneque ne
+                     dit pas la cause, c'est à sçauoir, qu'il falloit<note place="margin">l.inauditum.ad l. cornel.de sicat.</note> que le pere pour chastier
+                     l'enfant, allast au magistrat l'acculer, ce que iamais les anciens Romains
+                     n'auoient souffert. Et mesme le Senateur Fuluius du temps de Ciceron, fist
+                     mourir son fils, pour auoir eu part à la coniuration de Catilina, de sa pleine
+                     puissance. <note place="margin"> Salust in bello Catilin.</note>&amp; encores
+                     du temps d'Auguste, le Senateur Tarius fist le procez à son fils d'vn crime
+                     capital, &amp;appella Auguste pour venir en se m aison luy donner conseil, en
+                     qualité de particulier, &amp; ne se mit pas, dit Seneque, en la place du luge.
+                     Aussi voyons nous que par la loy Pompeia<note place="margin"> l.I.ad
+                        l.Pompeiam.</note> des Parricides, tous les parens font comprins soubs la
+                     peine de la loy horsmis le pere: mais il apert assez que du temps d'Vlpian,
+                     &amp; de Paul lurisconsultes, les peres n'auoient plus telle puissance de la
+                     vie &amp; de la mort: car l'vn <note place="margin"> l.inauditum.ad l.cor de
+                        sicar.</note> dit que le pere doibt accuser le fils deuant le magistrat:
+                     l'autre que les enfans n'ont que plaindre, si le pere les desherite, attendu
+                     qu'ils pou- <pb n="26"/> uoient anciennement, <note place="margin"> l. in suis
+                        de liberis &amp; postliu.</note> dit-il les mettre a mort, l'vn l'autre fut
+                     du temps de l'Empereur Alexandre: neantmoins il ne se trouue point de loy qui
+                     ayt osté la puissance de la vie &amp; de la mort aux peres, iusques à
+                     Constantin le grand, <note place="margin"> l.I de emendat. propinq.C.</note>
+                     encores sa loy n'est pas derogatoire en termes exprès. mesmes Diocletian<note place="margin">l. si filius de patria pot.C.</note> peu d'annees auparavant
+                     Connstantin dit que le luge doibt donner la sentence contre le fils telle que
+                     le pere voudra. Or est il certain en termes de droit <note place="margin">
+                        l.2.quae sic longa consuet.C.</note> que la coustume pour inueteree quelle
+                     soit, ne peut oster l'effect de la loy, s'il n'y a loy contraire portant
+                     derogation expresse: &amp; se peut tousiours l'ancienne loy ramener en vsage.
+                     Depuis que les enfans eurent gaigné ce poinct par la souffrance des peres, de
+                     s'exempter de leur puissance ab solue ils obtindrent aussi du mesme Empereur,
+                     que la proprieté des biens maternels leur demeureroit: <note place="margin">
+                        l.I. de boins maternis.C.</note> &amp; puis soubs l'Empire de Theodose le
+                     ieune, ils arrachcrent vn autre edict pour tous biens generalement, qu'ils
+                     pourroient acquerir en quelque sorte que ce fust:, demeurant feulement
+                     l'vsusruidt aux peres<note place="margin"> l.cum oportet de bonis quae
+                        liberis.</note> qui ne pourroient aliener la proprieté, ny en disposer en
+                     forte quelconque, encores n'ont ils propriété ny vsufruict en pays coustumier,
+                     ce qui a tellement enflé le cueur des enfans, que bien souuent ils commandent
+                     aux peres, qui font contraints d'obeir à leurs volontez, ou mourir de faim. Et
+                     au lieu de restraindre la licence des enfans, de entretenir en quelque degré la
+                     puissance paternelle, Iuftinian n'a pas voulu que le pere peust emanciper ses
+                     enfans sans leur consentement<note place="margin">l.iubemus. de emancipat.C.
+                        Nonel.quibus modis naturales.§. generaliter collat.7.l.cum in
+                        adoptiuius.§.I. de adopt.C.</note>: c'est à dire, sans leur faire quelque
+                     auantage, au lieu que l'emancipation estoit anciennement le tesmoignage,loyer
+                     de l'obeissancè filiale, mais après auoir perdu la dignité paternelle, les
+                     enfans commencerent à trafiquer auec les peres pour les emancipations, en forte
+                     que les dos faicts par le pere aux enfans, pour auoir quelque estat, ou office,
+                     leur demeuroient en pur gain, <note place="margin"> l.I.§.nec castrense de
+                        collar.bon l I. de castrensi pecul.C.l. foril. aduocati. de aducatis diuer.
+                        iudicior.C.l. sine emancipatus.C. Alexand. consil 142. lib. 2.</note> &amp;
+                     ce qu'ils donnoient en les emancipant, ne leur estoit precompté en auancement
+                     de droit successis, si l'acte d'emancipation<note place="margin"> l.si quando
+                        §. generaliter.de inos.te.C l peto de legat.5. l.etiam.§. si debit. de bon
+                        liber.&amp;.l.si non de officiae.C.</note> ne le portoit. qui se pratique
+                     encores auiourd'huy en tous les pays de droit escrit. &amp; si le fils est
+                     riche par son industrie, ou autrement, il se fait emanciper par le pere en luy
+                     donnant quelque chose, qu iluy est compté pour droit de legitime<note place="margin">l.I.§. si parens. si cuis å parente manu.</note>, auenant la
+                     mort du fils deuant le pere, encores qu'il ne soit dict par l'acte
+                     d'emancipation, ou mesmes qu'il fust dict que c'est pour recompense de
+                     l'emancipation, cela neantmoins luy tient lieu de legitime<note place="margin">sic definit Bald. in l. illud de collat. &amp; Iacob arena in l. vt lib.
+                        eod. C. &amp; Oldrad. &amp; Nicol. demat eod. Iacob. Butrig. in l. scrimus
+                        de inoffi test. C. Alexand consil. 242 lib 2.</note>: tellement que le pere
+                     est en danger de mourir de faim, s'il n'a autres moyens, combien que l'equité
+                     narurelle veut que la raison soit reciproque<note place="margin">cum relatorum
+                        sit eadem ratio l. vlt de indicta viduit.C.l. vlt. de except.l.I.de
+                        consulib. authent.81.</note>, quand ores le fils ne seroit en rien tenu au
+                     pere: de ils sont la condition du pere beaucoup pire que celle du fils: qui est
+                     tenu par toutes les loix diuines, de nourrir le pere tant qu'il viura: de le
+                     pere n'est tenu de nourrir le fils, mesme par l'ancienne loy de Romule, que
+                     iusques à sept ans. Auec toutes ces indignitez encores Iustinian a exempté
+                     touts les <pb n="27"/> Patrices, Euesques, &amp; Consuls de la puissance
+                     paternelle qui leur restoit: de en cas pareil ceux qui entrent es monasteres
+                        <note place="margin"> Accurs. in l. si ex causa § Papin. de minor.
+                        Bart.Angel.Alexand. ad Bart. notas. Ludo.Bolognia. in authent. ingreti
+                        Alberic.eod.Alexand.Iaso. Roman. in l. sub conditione. de liber &amp;
+                        post</note>&amp; en pays coustumier, outre ce que i'ay dit, on a exempté les
+                     mariez, de ceux qui ont esté dix ans absens hors la maison du pere.. qui a fait
+                     que les Iuris consultes Italiens<note place="margin"> Accurs in tit. de parria
+                        pot. §. vlt. in instit. Bal. in c.I. §. si dono. de matr. de nono
+                        benefi.</note> ont escrit, que les François ne sont point en la puissance du
+                     pere: comme à la verité il n'en reste qu'vne ombre imaginaire, quand le pere
+                     autorise ses enfans pour les actes legitimes, ou pour les rerraicts feodaux,
+                     &amp; lignagers, de ce que le pere a vedu: ou pour apprehender vne succession
+                     doubteuse: alors le pere emancipé son fils. Et combien que Philippe de Valois
+                        emancipa<note place="margin"> anno 1331. Februar.17.</note> son fils Ican,
+                     pour luy donner le Duché de Normandie: neantmoins l'emancipation ne seruoitde
+                     rien, non plus que celles qu'on fait ordinairement, veu que le donateur, ny le
+                     donataire, ny la chose donnee n'estoient tenus en rien qui soit du droit
+                     escrit, &amp; que les peres en pays costumier n'ont rien es biens des enfans.
+                     Apres auoir ainsi despouillé les peres de la puissance paternelle, &amp; des
+                     biens acquis à leurs enfans, on est venu à demander si le fils se peut
+                     defendre, &amp; repousser la force iniuste du pere par force: &amp; s'en est
+                     trouué <note place="margin"> Bart. in l.vlt.vim de instit.ff.</note> qui ont
+                     tenu l'affirmatiue: comme fil n'y auoit point de difference entre celuy qui a
+                     commandement, de chastiment sur autruy, &amp; celuy qui n'en a point. Et fil
+                     est ainsi que le soldat qui auoit seulement rompu le baston de vigne<note place="margin"> Vitibus fieribam hic milites. Plin lib. 12.</note> de son
+                     capitaine, quand il frapoit à tort ou à droit, estoit mis à mort par la
+                        loy<note place="margin"> l.omnis de re milit.</note> des armes, que merite
+                     le fils qui met la main sus le pere? On a passé plus outre, car on a bien ose
+                     penser, voire escrire, de mettre en lumiere, que le fils peut tuer le pere,
+                     s'il est ennemi de la Republique: ce que iene toucherois, si les plus estimez
+                     ne lauoient ainsi resolu. <note place="margin"> Bart. in l. si adulterium. §.
+                        liberto. de adult. Angel.Aretin. &amp; Imola in l. tritictum. de verb.
+                        oblig. Salicet in l.I.de iis qui parentes. C ex l. minime. de religioso.
+                        Panormit. consilio. 104.lib.I.</note>le tiens que c'est vne impieté, non
+                     seulement de le faire, ains aussi de l'escrire: car c'est absoudre les
+                     parricides qui l'auront fait, de donner courage à ceux qui n'osoient le penser,
+                     &amp; les inuiter ouuertement à commettre chose si detestable, soubs le voile
+                     de charité publique: mais disoit vn ancien autheur, <note place="margin">
+                        Quintil.decl.286.</note> nullum tantum scelus à patre admitti potest quod
+                     sit parricidio vindicandum. O que de peres seroient ennemis de la Republique,
+                     si ces resolutions auoient lieu! Et qui est le pere qui pourroit en guerre
+                     ciuile eschaper les mains d'vn enfant parricide? car on sçait bien qu'en telles
+                     guerres, les plus foibles ont le tort, &amp; que les plus forts declarent
+                     tousiours les autres ennemis de la patrie. Et hors la guerre ciuile, celuy est
+                        <note place="margin"> l I. ad l.Iul.maiestat.</note> ennemi de la
+                     Republique, non seulement qui a donné conseil, confort de ay de aux ennemis,
+                     ains aussi qui leur a presté, ou vendu bien cher des armes, ou des viures. Et
+                     mesmes par les ordonnances d'Angleterre publiees l'an M. D. LXIII. ay der aux
+                     ennemis en quelque sorte que ce soit, est appellé crime de haulte trahison. Et
+                     toutefois ces maiftres d'eschole, n'en font point distinction. Or il est aduenu
+                     de ces resolutions, ce que la posterité ne croira pas, que vn banni de Venize
+                     ayant apporté la teste de son pere banni comme luy, <pb n="28"/> demanda le
+                     retour en son pays, biens &amp; honneurs, suyuant l'ordonnance<note place="margin"> iu statutis Venet. &amp; edicto Mediolani anno.1564. Augusto
+                        Mense.</note> de Venise pratiquée presque en toute l'Italie: &amp; obtint
+                     loyer de son execrable desloyauté. Il vaudroit peut estre mieux que leur cité
+                     fust abysmee qu'vn tel cas fust aduenu. Le Roy de France receut en bonne part
+                     l'exeuse de Maximilian Roy de Boheme, l'an M. D. LVII. de ce qu'il auoit refusé
+                     faufeonduit au Duc de Wittemberg pour les Ambassadeurs de France, confessant
+                     que c'estoit enfraindre le droit des gens: neantmoins il dist qu'il n'osoit
+                     desobeir à son pere. Et s'il est licite de violer le droit des gens pour obeir
+                     au pere en si peu de chose, quelle raison., quel argument pourroit on trouuer.
+                     quel qu'il fust, d'attenter à la vie du pere? Et combien que tel parricide soit
+                     fort detestable, si est- il encores plus pernicieux pour la consequence. car
+                     puisque on donne loyer à celuy qui tue son pere pour quelque couleur que ce
+                     soit, qui est celuy qui fera asseuré des freres, &amp; proches parens! Et de
+                     fait il est aduenu l'an M. D. LXIV., que Sampetre Corse fut tué par son cousin
+                     germain, qui eut dix mil escus pour le taillom qui auoit esté leué, par
+                     ordonnancè de la seigneurie de Genes. il estoit bien plus expedient de fuiure
+                     Ciceron, lequel n'a pas seulement voulu coucher par escrit les mesmes questions
+                     formees par deux anciens Philosophes Antio que &amp; Antipater, ains les a
+                     euitees comme vn precipice haut &amp; glissant. Ioint aussi que la loy<note place="margin"> l.non omnes de re militari.</note> resiste formellement
+                     &amp; defend de permettre aucun loyer au banni, pour tuer les brigans, encores
+                     que l'Emperenr Adrian fust bien d'auis qu'on pardonnait la faute au banni, ie
+                     di donc qu'il est bien expedient, que les Princes &amp; legislateurs remettent.
+                     fus les anciennes loix, touchant la puissance des peres sur les enfans qu'ils
+                     se reglent selon la loy de Dieu: soient enfans legitimes, ou naturels, ou l'vn
+                     &amp; l'autre ensemble, pourueu qu'ils ne soient point conceus par inceste.,
+                     que les loix diuines &amp; humaines ont tousiours eu en abomination. <note place="margin"> l. humilem &amp; authent. ex complexu. de incestis &amp;
+                        inutilib.C.Bart. in l. suggestio. de verb. fig. C. Alexand. consil. 60.
+                        lib.2. Guido Papus quaest. de l. 580. Astic. decis. 165. Bart. in l. si vt
+                        proponis. de dignit.</note> Mais on dira, peut estre, qu'il y a danger que
+                     le pere furieux, ou prodigue abuse de la vie, &amp; des biens de ses enfans. Ie
+                     responds que les loix ont pourueu de curateurs à telles gens, &amp; leur ont
+                     osté la puissance sur autruy, attendu qu'ils ne l'ont pas sur eux-mesmes. Si le
+                     pere n'est point insensé, iamais il ne luy aduiendra de tuer son enfant sans
+                     cause. &amp; si l'enfant l'a merité, les magistrats ne s'en doiuent point
+                     mesler. car l'affection &amp; amour est si grande des pere &amp; mere enuers
+                     les enfans, que la <note place="margin"> l. cum futiosus de
+                        curat.furi.C.l.vlt.famil.ercise.</note> loy n'a iamais presumé qu'ils sacent
+                     rien qu'au profit &amp; honneur des enfans: &amp; que toute suspicion de fraude
+                        <note place="margin"> l.si tutor. de interdicto matri. C.l.si vero §. penul.
+                        de adopt.l non solum.§.de vno. de ritu nupt. 2.l.I ad l.
+                     Pompeiam.</note>cesse pour le regard des peres enuers leurs enfans. Et qui plus
+                     est ils oublient souuent tout droit diuin &amp; humain pour les faire grands à
+                     tort ou à droit. Et pour ceste cause, le pere ayant tué son fils, n'est point
+                     fuget à la peine des parricides: car la loy n'a pas presumé qu'il voulust faire
+                     sans bonne &amp; iuste cause: &amp; luy a donné priuatiuement<note place="margin"> l marito.ad l. Iul. de adult ff.</note> à tous autres,
+                     puissance de tuer l'adultere, &amp; sa fille trouuez sus le fait. Qui font tous
+                     argumens necessaires, pour monstrer qu'il ne faut pas craindre que les peres
+                     abusent de leur puissance, Mais <pb n="29"/> on repliquera, qu'il s'en est
+                     trouué, qui en ont abusé: soit, ie dy neantmoins, que iamais sage legislateur
+                     ne laissa à faire vne bonne loy, pour les inconueniens, qui aduiennent peu
+                        <note place="margin"> l.3.4.5.de leg. ff.</note> souuent. Et où fut oneques
+                     loy si iuste, si naturelle, si necessaire., qui ne fust sugette à plusieurs
+                     inconueniens? &amp; qui voudroit arracher toutes les loix, pour les absurditez
+                     qui en resultent, il n‘en demeureroit <note place="margin"> Cato in oratione
+                        pro lege Oppiaapud Liuium lib.35.</note>pas vne. Brief ie dy, que l'amour
+                     naturel des pere &amp; mere enuers leurs enfans, est impossible, &amp;
+                     incompatible auec la cruauté, &amp; que le plus grand tourment, que peut
+                     endurer vn pere, c'est d'auoir tué son fils: comme de fait il est aduenu de
+                     nostre memoire au pays d'Anjou, qu'vn pere ayant, sans y penser, tué son fils
+                     d'vne mote de terre, se perdit à l'heure mesme, encores que personne n'en
+                     sceust rien. Aussi les <note place="margin"> diodor.</note>Ægyptiens, pour
+                     toute peine qu'ils ordonnoient au pere, qui auoit tué son enfant à tort &amp;
+                     sans cause., c'estoit, de le enfermer trois iours aupres du corps mort, car ils
+                     tenoient pour chose detestable, que pour la mort du fils on ostast la vie au
+                     pere, duquel il tenoit la sienne. Encores peut on dire, que si les peres
+                     auoient la puissance de la vie &amp; de la mort fus leurs enfans, qu'ils
+                     pourroient les coatraindre à faire chose contre la Republique. Ieresponds., que
+                     cela n'est pas à prefumer: &amp; toutefois quand bien il seroit ainsi, les
+                        <note place="margin"> l.ille à quo §.vlt. ad Trebel.</note> loix y ont
+                     sagement pourueu, ayant de tout temps exempté les enfans de la puissance des
+                     peres, en ce qui touche le public: comme aussi fist bien entendre Fabius
+                     Gurgés: car estant ConsuI, &amp; voyant, que son pere venoit à luy monté
+                     lcheual, il commanda à vn huissier de le faire descendre, qui le trouua fore
+                     bon, faisant honneur à son fils, &amp; le caressant, pour auoir bien entendu sa
+                     charge. Et tant s'en faut, que les sages peres vouluffent rien commander à
+                     leurs enfans, qui portast coup au bien public, que mesmes il s'en est trouué,
+                     qui les ont fait mourir, pour auoir contreuenu aux loix publiques: corne fist
+                     Brutus ses deux enfans, &amp;Torquat le Consul, qui fist triompher son fils en
+                     son camp, pour auoir vaincu son ennemi au combat, &amp; puis luy fist trancher
+                     la teste, pour auoir combatu contre sa defense, fuiuant la loy des<note place="margin"> l.3.de te milit.ff.</note> armes. Il y a encores vne
+                     obietion pour le regard des biens des enfans, s'ils estoient en la pleine
+                     disposition des peres, ils pourroient sans cause desheriter les vns, &amp;
+                     enrichir les autres. le responds, que les loix y ont aussi pourueu, faisant
+                     ouuerture de la iuftice aux enfans desheritez sans <note place="margin">
+                        Noudl.vt cum de appellatione. 5.causas.</note>cause. combien que l'ancienne
+                     façon des Romains estoit encores plus loüable, de ne receuoir iamais l'enfant a
+                     debatre la volonté du pere, par voye d'action, ains seulement <note place="margin"> toto tit. de inoff. testam.</note>par voye de requeste,
+                     &amp; parlant du pere dsfunct en toute humilité., honneur, &amp; reuerence:
+                     laissant le tout à la discretion &amp; religion des iuges. mais depuis que les
+                     Preteurs, qui ne pouuoient donner les successions, donnerent la possession des
+                     biens qui valoit<note place="margin"> l.I.de bonor.possess.</note> autant,
+                     &amp; qu'on les eut attachez à certaines legitimes, &amp; ordonnances
+                     testamemtaires, aussi tost on apperceut la defobeissance &amp; rebellion des
+                     enfans, qui fut la seule<note place="margin"> Plutar.in Lycurg.</note> cause,
+                     que l'vn des <pb n="30"/> Ephorcs publia la loy testamcntaire en Lacedemonne, a
+                     ce qu'il fuit des lors en auant permis à chacun de faire heritier qu'il
+                     voudroit, n'ayant autre occasion que. l'arrogance de son fils, auquel la
+                     succession du pere ne, pouuoit fuir parla coustume du pays. O que si cela auoit
+                     lieu partout, qu'on verroit les enfans obeissans, &amp; seruiables aux pere
+                     &amp; mere: &amp; combien ils auroient peur de les offenser. Mais affin de
+                     trancher la racine à. tous les arguments qu'on peut faire, nous auons la loy de
+                     Dieu expresse, qui pour le moins nous garentira de tous inconueniens, pour le
+                     regard de la puissance de la vie &amp; de la mort, donnée aux pere &amp; mere
+                     fus leurs enfans, encores que les biens fussent en la disposition de la<note place="margin"> Numeri 23.</note> loy. Nous auons dit, que la puissance
+                     paternelle s'estend aussi enuers les enfans adoptez: &amp; combien que le
+                     droict des adoptions estant decheu peu à peu, soit presque estaint, par le
+                     moyen des loix de Iuftiniam, lequel voulant retrancher les abus qui s'y
+                     commettoient, l'a presque aneantie neantmoins il est bien certain, que c'est vn
+                     ancien droit, &amp; commun à tous les peuples, &amp; de grade consequence à
+                     toutes Républiques. Nous voyons les plus anciens peuples l'auoir eu en
+                     singuliere recommandation mesme Iacob <note place="margin"> Genes.vlt.</note>
+                     adopta Ephraim &amp; Manassé fils de Iofcph, encores qu'il eust douze enfans
+                     viuans, qui en auoient plusieurs autres, &amp; leur donna parc &amp; portion
+                     des acquests par luy faits. Et quant aux Ægyptiens, nous en auons l'exemple de
+                     Moyse., qui fut adopté <note place="margin"> Exodi I.</note> comme fils de Roy.
+                     Nous voyons aussi Thesee auoir esté adopté solennellement par Ægeus, Roy
+                     d'Athenes, le faisant son successeur en i'estat: vray est qu'il estoit son
+                        fils<note place="margin"> Plutar. in Thes.</note> naturel. &amp; depuis ce
+                     temps là, tous les Atheniens quiauoient enfans naturels des femmes d'Athenes,
+                     furent contraints les adopter, &amp; les faire enregistrer comme enfans
+                     legitimes, &amp; leur laisser leur part &amp; portion des biens comme aux
+                     autres, ainsi que nous lisons<note place="margin"> Demosthen. contra Boeotum.
+                        Spudiam, Phoenippum, Macurtatum, Leocharem.</note> és plaidoyez des dix
+                     orateurs. car ils n'appelloient bastard, <note place="margin"> Nothum vocabant.
+                        Plutharan Themi.&amp; Pericle.</note> que celuy qui estoit né de pere, ou de
+                     mere estrangere, ores qu'elle fust femme d'honneur. comme aussi tous les
+                     peuples d'Orient ne faisoient point ou peu de difference entre les enfans
+                     naturels, &amp; legitimes, ainsi que nous voyons les enfans des chambrieres de
+                     Iacob auoir esté en pareil degré de biens, &amp; d'honneurs que les autres
+                     légitimes. &amp; mesme Diodore<note place="margin"> lib.2.c.3.</note> escrit
+                     que les enfans des Ægyptiens conceus des esclaues, auoient autant de
+                     prerogatiue que les autres. car il leur estoirt permis<note place="margin">
+                        Herodot.lib.3.</note> d'auoir tant de femmes qu'ils vouloient. comme aux
+                        Perses<note place="margin"> Herod.lib.3.Iustin.lib.4.Tertul.lib.ad
+                        vxorem.</note> &amp; à tous les peuples de la haute Asie: coustume que iis
+                     ont encores à present, &amp; presque en toute l'Afrique: &amp; n'y auoit, die
+                     Tacite, de tous les Barbares, que les peuples d'Alemagne, qui n'auoient que
+                     chacun vne femme. Nous auons rendu la raison en la methode des <note place="margin"> cap.6.</note>histoires. Il falloit donc par consequent, que
+                     tous les enfans d'vn mesme pere, fussent en sa puissance, soit qu'ils fussent
+                     adoptez ou non. Mais les Romains ne faisoient ny mise, ny recepte anciennement
+                     des enfans naturels, non plus que d'estrangers, qui ne leur eussent en rien
+                     touché <pb n="31"/> comme dit <note place="margin"> Constitut. Nouel.
+                        89.</note> Iustinian, &amp; n'estoient point tenus l'es adopter, comme les
+                     Athéniens, aussi n'auoient ils aucune puissance sur eux: &amp; n'estoient tenus
+                     de rien leur laisser, &amp; mesmes Constantin5 <note place="margin"> I.1. de
+                        natural. Liber. C.</note> le défendit. mais Arcadius &amp; Theodose le ieune
+                     modererent 6 <note place="margin"> I.2. &amp; 3. Ead. Nouel. 89.</note> la
+                     rigueur des loix: &amp; depuis Zenon7 <note place="margin"> I.4. de natura.
+                        Liber. C.</note> l'Empereur ordonna, qu'ils seroient reputez legitimes, par
+                     mariage du perc auec leur mere. Et qui plus est, Anastase auoit ordonné, que
+                     tous bastards seroient reputez légitimés par adoption: mais Iustin &amp;
+                     Iustinian casserent l'edict: &amp; fermèrent la porte aux bastards, affin qu'vn
+                     chacun pensast d'auoir femmes &amp; enfans légitimés: &amp; que les anciennes
+                     familles, &amp; droits des successions ne fussent àlterez, &amp; troublez
+                     parles bastars: demeurant encores neantmoins le droit des adoptions, qui a esté
+                     receu pour supployer le défaut de nature: &amp; duquel lès ânciéns Romains ont
+                     tant fait d'estime, que les peres ad optifs auoient mesme puissance de la vie
+                     &amp; de la mort8 <note place="margin"> Ge. Lib. 5. C. 19.</note> sus les
+                     enfans adoptez, comme fus leurs propres enfans: qui estoit la vraye causè, pour
+                     laquelle les femmes ne pouuoient adopter, iusques à l'edict publié par
+                     Diocletiân.9 <note place="margin"> Fallit Gellius libr. 5. Cap. 19. Qui putat,
+                        adoptare non potuisse: quia commitiis interesse non liceret. Nam adoptio
+                        sine commitio siebat.</note> attendu que elles estoient1 en la puissànce
+                     perpetuelle des maris, ou parens: comme aussi en Grece il ne leur estoit permis
+                     d'adopter, comme dit l'Orateur 2 <note place="margin"> Isaeus, GREEK
+                        TEXT.</note> Isæus. Estant donc le droit des adoptions annobly par les
+                     Romains, &amp; mesmes alors qu'ils auoient estendu les frontières de leur
+                     Empire plus que iamais, tous les autres peuples en firent d'autânt plus
+                     d'estime, &amp; iusques aux Goths, Alemans, François, Saliens, comme nous
+                     voyons aux loix des Ripuaires, ou ils vsent du mot adfatinir, pour adopter:
+                     tenans les enfans adoptez en mesme degré, que les enfans propres au droit des
+                     successions, suyuânt le droit <note place="margin"> I. vlt. De adopt. C. §. Sed
+                        ea. In Instit. De heteditat. Que ab intestato. I. sit e parens. De suis.
+                        &amp; legit. C. I. poenae. §. &amp; si quidem. De adopt. C.</note> commun,
+                     qui les repute comme héritiers <note place="margin"> in I. arrogato. § vlt. De
+                        adopt. I. certam. De iniusto rupto. I.1. §. Intestatorum. De hereditat. Quae
+                        ab intestat. institut.</note> siéns. Aussi lisons nous en Cassiodore, quê
+                     Theodorich, Roy dès Goths, adopta le Roy des Herules: &amp; <note place="margin"> Paul. Diacon. Lib. Sexto, de gestis longobard.</note>
+                     Luitprand, Roy des Lombards, adopta le fils de Charles Prince de France, en luy
+                     coupant les cheueux, encores qu'il eust d'autres enfans: comme fist Micipsa Roy
+                     des Numides, adoptant Iugurtha, encores qu'il eust deux enfans légitimés,
+                     laissant à tous trois son Royaume par egales portions. Mais la premiere
+                     occasion des adoptions fut prise pour le défaut d'enfans, ou pour le moins
+                     d'enfans masles: comrne Scipion l'aisné n'ayant qu'vne fille, adopta le ieune
+                     Scipion fils de PaulÆmil, le faisant héritier de son bien, &amp; de son nom:
+                     &amp; Cesar le Dictateur n'ayant eu qu'vne fille, adopta son neueu, le faisant
+                     aussi héritier pour trois quarts, à la charge de porter son nom: car celuÿ du
+                     pere propre estoit diminué, &amp; mis apres le nom du pere adoptif. &amp;
+                     Auguste par faute d'hoirs procreez deson corps, adopta Caius, &amp; Lucius,
+                     enfans de sa fille, dedans sa maison, les acheptant de leur pere Agrippa,
+                     suyuant la forme ancienne, &amp; depuis leur mort adopta Tibere: &amp; cestuycy
+                     Caligula: &amp; Claude adopta Néron: auquel succedant Galba sans enfans, 6
+                        <note place="margin"> Tranquil in Galba.</note> adopta Pison deuant son
+                     armee: coustume qui depuis fut gardée en l'adoption de l'Empereur Aurelian:
+                        <note place="margin"> Vopiscus in Aureliano.</note> &amp; que l'Empereur
+                     Iustinian voulut <pb n="32"/> pratiquer en l'adoption de Cosroe, Roy de Perse,
+                     qui le refusa, ayant sceu, que par cemoyen il ne pourroit estre Empereur, comme
+                     dit Procope. Aussi lisons nous que l'Empereur Nerua par faute d'enfans adopta
+                     Traian, cestuycy Adrian, qui depuis adopta Antonin le Piteux, &amp; ne se
+                     contenta pas d'auoir adopté vn si homme de bien, ains aussi le chargea
+                     d'adopter de son viuânt Ælius Verus, &amp; Marc Aurele sur nommé le Philosophe.
+                     affin que l'Empire n'eust faute d'Empereurs les plus vertueux qui furent
+                     onques. mais ce dernier ayant eu vn fils le plus vicieux qu'il estoit possible,
+                     laissa vn tresmauuais successeur, &amp; en eust adopté vn, comme il en auoit
+                     grand vouloir, si ses amis ne l'eu eussent destourné: car ce n'estoit pas la
+                     coustume en Rome d'adopter, si on auoit enfans: &amp; pour ceste causè fut
+                     blasmé Claude l'Empereur d'auoir adopté Néron, fils de sa sécondé femme, ayant
+                     fils &amp; fille du premier lict: qui furent tuez par Néron. Mais fans vser
+                     d'exemples des estranges, qui sont infinis, nous auons l'adoption de Loys de
+                     France Duc d'Anjou, par Anne la Louuette, Royne de Naples &amp; de Sicile à
+                     faute d'hoirs apres <note place="margin"> Anthonin. Chroni. Tit. 22.</note>
+                     auoir regetté comme ingrat son neueu Alphons, Roy d'Aragon, qu'elle auoit
+                     auparauant adopté, &amp; du consentement du <note place="margin"> Martin.
+                        V.</note> Pape, seigneur souuerain de Naples &amp; de Sicile: &amp; depuis
+                     René d'Anjou son arrière neueu fut aussi adopté par Ieanne la ieune, aussî
+                     Royne de Naples, à faute d‘enfans, &amp; quasi au mesme temps, c'eft à dire,
+                     l'an m. cccc. viii. Henri, Duc de Pomeran, fut adopté par Marguerite de V
+                     volmar Royne de Dânnemarc, Noruege, 2 <note place="margin"> Aeneas Syluius in
+                        Europa. Cap. 33.</note> &amp; Suede, pour successeur esdits Royaumes: &amp;
+                     tost après Henry cinquiesme, Roy d'Angleterre, fut adopté, non par Charle
+                     sîxiesme, qui estoit hors de son sens, mais par sa femme, qui fist par son
+                     nouueau gendre declarer Charle septiesme, son propre fils, incapable de là
+                     couronne: encores qu'il fust sage &amp; vertueux Prince. Iustinian voulant
+                     remedier à tels abus, ordonna, <note place="margin"> I. cum in adoptiuis. C. de
+                        adopt.</note> que les enfans adoptez ne laisseroient pas de succeder à leurs
+                     propres parens, par ce que les peres adoptifs, pour peu d'occasion, chassoient
+                     les enfans adoptez, ausquels les peres propres n'auoient rien laisse pour
+                     l'esperance de la succession d'autruy: mais il fut mal conseillé d'oster la
+                     puissance paternelle, qui estoit la seule marque d'adoption, laquelle ostee, ne
+                     restoit plus rien. Or il estoit plus expedient de mettre au néant les
+                     adoptions, si le pere auoit des enfans naturels &amp; légitimés, ou fil en
+                     auoit, ordonner que l'enfant adopté succederoit aux mesmes droicts, que
+                     l'enfant propre. nous auons bien retenu l'vn en ce Royaume, mais nous auons
+                     laissé l'autre: car nous ne soufrons2 <note place="margin"> Masuer. Tit. De
+                        probat. Vers. Item &amp; si defunctus. Benedic. In cap. Raynutius in verbo
+                        &amp; vxorem nu. 758 &amp; 760. Faber in §.1. de adopt institut.</note> pas,
+                     que les enfans adoptez succedent en rien qui soit auec les enfans propres &amp;
+                     légitimés, ce qu'on leur laisse à faute d'enfans, peut estre laissé à vn
+                     estranger: &amp; le pere peut cependant tirer profit de l'adoption, dequoy se
+                     plaignoit de son temps Scipion l'African, en la harangue de sa censure qu'il
+                     fist au3 <note place="margin"> Gelli. Lib. 5. C. 19.</note> peuple. &amp;
+                     depuis la publication de la loy Iulia <pb n="33"/> Pappia, qui donnoit de
+                     grands priuileges à ceux, qui auoient des enfans: ceux, qui n'en auoient point,
+                     en adoptoient, pour auoir part aux magistrats, &amp; après auoir eu ce qu'ils
+                     demandoient, iIs emancipoient <note place="margin"> Tacit. Lib. 1.</note> les
+                     enfans: comme au contraire Claudius estant nobIe, se fist adopter par vn
+                     roturier, 5 <note place="margin"> Cicero pro domo.</note> &amp; quitta sa
+                     noblesse pour estre Tribun du peuple, &amp; tost après se fist emanciper. c'est
+                     purquoy le Sénat Romain fit vn6 <note place="margin"> Tacit. Lib 1. I. nec ei.
+                        De adopt.</note> arrest, que les enfans adoptez ne iouyroient d'aucun
+                     priuilege des charges publiques, fust de tutelles, ou d'imposts. &amp; depuis
+                     fut ordonné, qu'on ne pourroit par ce moyen obtenir <note place="margin"> I. 2.
+                        §. Adoptiui. De vacat munerum &amp; §. 1. In institu. De excusat.</note>
+                     aucun office: ny empescher les substitutions faites à faute d'enfans: 8 <note place="margin"> I. fideicommissum de condit. &amp; demon.</note> ny faire
+                     obtenir ce qui estoit laisse, ou pron is, au cas qu'on <note place="margin"> I.
+                        si ita quis §. si quis de lege. 2.</note> auroit enfans: ny casser les
+                     donations, qui sont reuoquees, quand le donateur a des enfans: 1 <note place="margin"> Castrens. In I. 2 si in fraudem patroni. C &amp; consil. 433
+                        lib. 1. </note> ny faire, que les filles par la2 <note place="margin"> Bal.
+                        consil. 24. Lib. 1. &amp; 102 lib. 4.</note> coustume soient èxcluses: ny
+                     que le3 <note place="margin"> I. vlt. De iis qui ven. Eta. C. I. fidei
+                        commissum de condi. &amp; de. I. adoptions. De adopt. ff.</note> mot de fils
+                     simplement apposé aux loix, coustumes, &amp; autres actes légitimés, signifie
+                     l'enfant adopté, toutes Iesquelles fraudes il est bon de retrancher, &amp; non
+                     pas estaindre le droit des adoptions, &amp; pour le moins laisser au pere
+                     adoptif la puissance paternelle, pour tenir en obeissance le fils adopté. Voila
+                     quant au sécond poinct de la famille touchant le gouuernement du pere enuers
+                     fès enfans: disons du troisîesme. </p>
+               </div>      </div>
+         </div>
+      </body>
+   </text>
+
+</TEI>

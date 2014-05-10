@@ -136,7 +136,11 @@
             else {
                 link_uri = link_uri + 'texts/';
             }
-            return link_uri + _urn + ':' + _subrefs[0].cite;
+            link_uri = link_uri + _urn;
+            if (_subrefs.length > 0) {
+                link_uri = link_uri  + ':' + _subrefs[0].cite;
+            }
+            return link_uri;
         } 
         else {
             return _uri;
