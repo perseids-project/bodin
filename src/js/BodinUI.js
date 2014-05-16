@@ -137,9 +137,14 @@
 					align.each( function() {
 						ids[ jQuery( this ).attr( 'data-alignid' ) ] = 1;
 					});
-					self.deactivateIds( ids );
-					jQuery( '.external', self.elem ).toggleClass( 'active' );
-					jQuery( ' .inline', self.elem ).toggleClass( 'active' );
+					if ( on == false ) {
+						self.deactivateIds( ids );
+					}
+					else {
+						self.activateIds( ids );
+					}
+//					jQuery( '.external', self.elem ).toggleClass( 'active' );
+//					jQuery( ' .inline', self.elem ).toggleClass( 'active' );
 					break;
 			}
 			//------------------------------------------------------------
@@ -153,7 +158,13 @@
 	
 	BodinUI.prototype.deactivateIds = function( _ids ) {
 		for ( var id in _ids ) {
-			jQuery( '.align[ data-alignid = "' + id + '"]' ).toggleClass( 'active' );
+			jQuery( '.align[ data-alignid = "' + id + '"]' ).removeClass( 'active' );
+		}
+	}
+	
+	BodinUI.prototype.activateIds = function( _ids ) {
+		for ( var id in _ids ) {
+			jQuery( '.align[ data-alignid = "' + id + '"]' ).addClass( 'active' );
 		}
 	}
 	

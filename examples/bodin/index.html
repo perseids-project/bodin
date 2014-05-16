@@ -9,8 +9,8 @@
 		<title>bodin</title>
 	</head>
 	<body>
-		<div class="overlay">
-			<div class="popup" id="welcome">
+		<div id="welcome" class="overlay">
+			<div class="popup">
 				<p>Bodin is loading...</p>
 			</div>
 		</div>
@@ -105,7 +105,6 @@
 				//  Hide the load screen
 				//------------------------------------------------------------
 				jQuery('#welcome').hide();
-				jQuery('.overlay').hide();
 			});
 			//------------------------------------------------------------
 			//  When a milestone is clicked in any instance all instances
@@ -134,7 +133,6 @@
 			jQuery( window ).on( 'BodinUI-INLINE', function( _e, _target, _motivation, _src) {
 				jQuery( window ).trigger( 'BodinExternal-LOADINLINE', [ _target, _motivation, _src ] );
 			});
-
 			//------------------------------------------------------------
 			//  Get a BodinAlign object.
 			//------------------------------------------------------------
