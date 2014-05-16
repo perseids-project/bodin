@@ -10,6 +10,3 @@ This project aims to make exploring aligned texts easier, more enjoyable, and ho
 # True
 It's an interface designed for quickly navigating aligned texts.
 It gives a sense of the location of aligned passages relative to one another through it's animation.
-
-# Soon to be true
-It supports the display of multiple alignments at the same time, so the alignments themselves can be compared.
