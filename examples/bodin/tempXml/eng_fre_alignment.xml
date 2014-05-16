@@ -73,14 +73,6 @@
     </serializedBy>
     <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-04-15T20:08:23+00:00</annotatedAt>
   </Annotation>
-  <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/10">
-    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1"/>
-    <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
-      <Person xmlns="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/sosol/users/IDE"/>
-    </annotatedBy>
-    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-04-23T19:23:03+00:00</annotatedAt>
-  </Annotation>
   <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/11">
     <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1@Nous[2]-alliance[1]"/>
     <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1396/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@First[1]-alliance[1]"/>
@@ -107,22 +99,6 @@
     </serializedBy>
     <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-04-30T15:02:38+00:00</annotatedAt>
   </Annotation>
-  <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/13">
-    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1"/>
-    <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
-      <Person xmlns="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/sosol/users/IDE"/>
-    </annotatedBy>
-    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-04-30T15:06:16+00:00</annotatedAt>
-  </Annotation>
-  <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/14">
-    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1"/>
-    <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
-      <Person xmlns="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/sosol/users/IDE"/>
-    </annotatedBy>
-    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-04-30T18:57:43+00:00</annotatedAt>
-  </Annotation>
   <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/15">
     <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1@à[1]-ruine[1]"/>
     <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1396/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@their[2]-societie[2]"/>
@@ -135,36 +111,8 @@
     </serializedBy>
     <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-01T15:17:28+00:00</annotatedAt>
   </Annotation>
-  <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/16">
-    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1"/>
-    <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1396/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1"/>
-    <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="oa:linking_translation"/>
-    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
-      <Person xmlns="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/sosol/users/IDE"/>
-    </annotatedBy>
-    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-01T15:17:31+00:00</annotatedAt>
-    <serializedBy xmlns="http://www.w3.org/ns/oa#">
-      <SoftwareAgent xmlns="http://www.w3.org/ns/prov#" rdf:about="http://perseids.org/perseids-annotator#0.0.1"/>
-    </serializedBy>
-  </Annotation>
-  <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/17">
-    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1"/>
-    <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
-      <Person xmlns="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/sosol/users/IDE"/>
-    </annotatedBy>
-    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-01T20:09:45+00:00</annotatedAt>
-  </Annotation>
-  <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/18">
-    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1"/>
-    <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
-      <Person xmlns="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/sosol/users/IDE"/>
-    </annotatedBy>
-    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-01T20:19:06+00:00</annotatedAt>
-  </Annotation>
   <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/19">
-    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1@C[1]-pourquoy[1]"/>
+    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1@C'est[1]-pourquoy[1]"/>
     <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1@ils[1]-vaincus[1]"/>
     <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1396/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@For[3]-cause[1]"/>
     <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1396/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@for[8]-enioy[2]"/>
@@ -178,7 +126,6 @@
     <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-01T20:31:17+00:00</annotatedAt>
   </Annotation>
   <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/20">
-    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1"/>
     <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1@Et[2]-siens[1]"/>
     <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1396/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@Yea[1]-things[1]"/>
     <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="oa:linking_translation"/>
@@ -278,18 +225,6 @@
     </serializedBy>
     <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-01T20:56:26+00:00</annotatedAt>
   </Annotation>
-  <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/28">
-    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1"/>
-    <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1396/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1"/>
-    <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="oa:linking_translation"/>
-    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
-      <Person xmlns="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/sosol/users/IDE"/>
-    </annotatedBy>
-    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-01T20:56:43+00:00</annotatedAt>
-    <serializedBy xmlns="http://www.w3.org/ns/oa#">
-      <SoftwareAgent xmlns="http://www.w3.org/ns/prov#" rdf:about="http://perseids.org/perseids-annotator#0.0.1"/>
-    </serializedBy>
-  </Annotation>
   <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/29">
     <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1@Ces[1]-nature[1]"/>
     <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1396/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@Truly[1]-nature[1]"/>
@@ -303,7 +238,7 @@
     <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-04T14:58:52+00:00</annotatedAt>
   </Annotation>
   <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/30">
-    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1@C[2]-viure[2]"/>
+    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1@C'est[2]-viure[2]"/>
     <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1396/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@And[4]-together[4]"/>
     <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="oa:linking_translation"/>
     <annotatedBy xmlns="http://www.w3.org/ns/oa#">
@@ -368,7 +303,7 @@
   </Annotation>
   <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/35">
     <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1@auquel[2]-Prouence[1]"/>
-    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1@qu[20]-exception[1]"/>
+    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1@qu'il[16]-exception[1]"/>
     <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1396/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@vnto[20]-fallen[2]"/>
     <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1396/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@which[26]-exception[1]"/>
     <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="oa:linking_translation"/>
@@ -392,18 +327,6 @@
     </serializedBy>
     <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-05T14:16:58+00:00</annotatedAt>
   </Annotation>
-  <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/37">
-    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1"/>
-    <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1396/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1"/>
-    <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="oa:linking_translation"/>
-    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
-      <Person xmlns="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/sosol/users/IDE"/>
-    </annotatedBy>
-    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-05T14:17:03+00:00</annotatedAt>
-    <serializedBy xmlns="http://www.w3.org/ns/oa#">
-      <SoftwareAgent xmlns="http://www.w3.org/ns/prov#" rdf:about="http://perseids.org/perseids-annotator#0.0.1"/>
-    </serializedBy>
-  </Annotation>
   <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/38">
     <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1@Et[5]-contraires[1]"/>
     <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1396/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@And[6]-which[27]"/>
@@ -417,42 +340,6 @@
     </serializedBy>
     <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-05T17:42:42+00:00</annotatedAt>
   </Annotation>
-  <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/39">
-    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1"/>
-    <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1396/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1"/>
-    <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="oa:linking_translation"/>
-    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
-      <Person xmlns="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/sosol/users/IDE"/>
-    </annotatedBy>
-    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-05T17:42:44+00:00</annotatedAt>
-    <serializedBy xmlns="http://www.w3.org/ns/oa#">
-      <SoftwareAgent xmlns="http://www.w3.org/ns/prov#" rdf:about="http://perseids.org/perseids-annotator#0.0.1"/>
-    </serializedBy>
-  </Annotation>
-  <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/40">
-    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1"/>
-    <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
-      <Person xmlns="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/sosol/users/IDE"/>
-    </annotatedBy>
-    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-05T17:45:22+00:00</annotatedAt>
-  </Annotation>
-  <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/41">
-    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1"/>
-    <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
-      <Person xmlns="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/sosol/users/IDE"/>
-    </annotatedBy>
-    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-05T17:51:30+00:00</annotatedAt>
-  </Annotation>
-  <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/42">
-    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1"/>
-    <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
-      <Person xmlns="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/sosol/users/IDE"/>
-    </annotatedBy>
-    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-05T19:32:24+00:00</annotatedAt>
-  </Annotation>
   <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/43">
     <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1@toutefois[1]-possible[1]"/>
     <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1396/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@Yet[1]-Commonweals[2]"/>
@@ -465,18 +352,6 @@
     </serializedBy>
     <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-05T19:40:07+00:00</annotatedAt>
   </Annotation>
-  <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/44">
-    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1"/>
-    <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1396/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1"/>
-    <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="oa:linking_translation"/>
-    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
-      <Person xmlns="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/sosol/users/IDE"/>
-    </annotatedBy>
-    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-05T19:40:14+00:00</annotatedAt>
-    <serializedBy xmlns="http://www.w3.org/ns/oa#">
-      <SoftwareAgent xmlns="http://www.w3.org/ns/prov#" rdf:about="http://perseids.org/perseids-annotator#0.0.1"/>
-    </serializedBy>
-  </Annotation>
   <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/45">
     <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1@en[34]-nauire[1]"/>
     <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1396/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@In[1]-ship[1]"/>
@@ -488,26 +363,6 @@
       <SoftwareAgent xmlns="http://www.w3.org/ns/prov#" rdf:about="http://perseids.org/perseids-annotator#0.0.1"/>
     </serializedBy>
     <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-05T19:45:16+00:00</annotatedAt>
-  </Annotation>
-  <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/46">
-    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1"/>
-    <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1396/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1"/>
-    <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="oa:linking_translation"/>
-    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
-      <Person xmlns="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/sosol/users/IDE"/>
-    </annotatedBy>
-    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-05T19:45:19+00:00</annotatedAt>
-    <serializedBy xmlns="http://www.w3.org/ns/oa#">
-      <SoftwareAgent xmlns="http://www.w3.org/ns/prov#" rdf:about="http://perseids.org/perseids-annotator#0.0.1"/>
-    </serializedBy>
-  </Annotation>
-  <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/47">
-    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1"/>
-    <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
-      <Person xmlns="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/sosol/users/IDE"/>
-    </annotatedBy>
-    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-05T20:48:33+00:00</annotatedAt>
   </Annotation>
   <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/48">
     <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1@Or[2]-nature[2]"/>
@@ -594,14 +449,6 @@
     </serializedBy>
     <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-06T15:30:02+00:00</annotatedAt>
   </Annotation>
-  <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/55">
-    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1"/>
-    <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
-      <Person xmlns="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/sosol/users/IDE"/>
-    </annotatedBy>
-    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-06T15:30:14+00:00</annotatedAt>
-  </Annotation>
   <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/56">
     <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1@iaçoit[2]-contemplation[2]"/>
     <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1396/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@Albeit[1]-Contemplation[1]"/>
@@ -625,18 +472,6 @@
       <SoftwareAgent xmlns="http://www.w3.org/ns/prov#" rdf:about="http://perseids.org/perseids-annotator#0.0.1"/>
     </serializedBy>
     <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-06T15:51:09+00:00</annotatedAt>
-  </Annotation>
-  <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/58">
-    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1"/>
-    <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1396/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1"/>
-    <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="oa:linking_translation"/>
-    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
-      <Person xmlns="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/sosol/users/IDE"/>
-    </annotatedBy>
-    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-06T15:51:11+00:00</annotatedAt>
-    <serializedBy xmlns="http://www.w3.org/ns/oa#">
-      <SoftwareAgent xmlns="http://www.w3.org/ns/prov#" rdf:about="http://perseids.org/perseids-annotator#0.0.1"/>
-    </serializedBy>
   </Annotation>
   <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/59">
     <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1@comme[9]-fuir[1]"/>
@@ -674,18 +509,6 @@
     </serializedBy>
     <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-06T16:15:46+00:00</annotatedAt>
   </Annotation>
-  <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/62">
-    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1"/>
-    <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1396/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1"/>
-    <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="oa:linking_translation"/>
-    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
-      <Person xmlns="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/sosol/users/IDE"/>
-    </annotatedBy>
-    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-06T16:15:48+00:00</annotatedAt>
-    <serializedBy xmlns="http://www.w3.org/ns/oa#">
-      <SoftwareAgent xmlns="http://www.w3.org/ns/prov#" rdf:about="http://perseids.org/perseids-annotator#0.0.1"/>
-    </serializedBy>
-  </Annotation>
   <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/63">
     <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1@Voila[1]-metaux[1]"/>
     <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1396/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@That[4]-medicines[1]"/>
@@ -699,18 +522,6 @@
     </serializedBy>
     <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-06T16:29:51+00:00</annotatedAt>
   </Annotation>
-  <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/64">
-    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1"/>
-    <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1396/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1"/>
-    <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="oa:linking_translation"/>
-    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
-      <Person xmlns="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/sosol/users/IDE"/>
-    </annotatedBy>
-    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-06T16:29:54+00:00</annotatedAt>
-    <serializedBy xmlns="http://www.w3.org/ns/oa#">
-      <SoftwareAgent xmlns="http://www.w3.org/ns/prov#" rdf:about="http://perseids.org/perseids-annotator#0.0.1"/>
-    </serializedBy>
-  </Annotation>
   <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/65">
     <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1@Et[6]-autres[3]"/>
     <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1396/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@And[8]-iniurie[1]"/>
@@ -722,18 +533,6 @@
       <SoftwareAgent xmlns="http://www.w3.org/ns/prov#" rdf:about="http://perseids.org/perseids-annotator#0.0.1"/>
     </serializedBy>
     <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-06T17:30:47+00:00</annotatedAt>
-  </Annotation>
-  <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/66">
-    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1"/>
-    <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1396/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1"/>
-    <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="oa:linking_translation"/>
-    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
-      <Person xmlns="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/sosol/users/IDE"/>
-    </annotatedBy>
-    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-06T17:30:49+00:00</annotatedAt>
-    <serializedBy xmlns="http://www.w3.org/ns/oa#">
-      <SoftwareAgent xmlns="http://www.w3.org/ns/prov#" rdf:about="http://perseids.org/perseids-annotator#0.0.1"/>
-    </serializedBy>
   </Annotation>
   <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/67">
     <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1@Mais[3]-bien[22]"/>
@@ -808,18 +607,6 @@
     </serializedBy>
     <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-06T18:59:09+00:00</annotatedAt>
   </Annotation>
-  <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/73">
-    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1"/>
-    <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1396/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1"/>
-    <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="oa:linking_translation"/>
-    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
-      <Person xmlns="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/sosol/users/IDE"/>
-    </annotatedBy>
-    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-06T18:59:13+00:00</annotatedAt>
-    <serializedBy xmlns="http://www.w3.org/ns/oa#">
-      <SoftwareAgent xmlns="http://www.w3.org/ns/prov#" rdf:about="http://perseids.org/perseids-annotator#0.0.1"/>
-    </serializedBy>
-  </Annotation>
   <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/74">
     <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1@alors[2]-œuure[1]"/>
     <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1396/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@so[21]-worke[2]"/>
@@ -844,18 +631,6 @@
     </serializedBy>
     <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-06T19:31:31+00:00</annotatedAt>
   </Annotation>
-  <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/76">
-    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1"/>
-    <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1396/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1"/>
-    <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="oa:linking_translation"/>
-    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
-      <Person xmlns="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/sosol/users/IDE"/>
-    </annotatedBy>
-    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-06T19:31:32+00:00</annotatedAt>
-    <serializedBy xmlns="http://www.w3.org/ns/oa#">
-      <SoftwareAgent xmlns="http://www.w3.org/ns/prov#" rdf:about="http://perseids.org/perseids-annotator#0.0.1"/>
-    </serializedBy>
-  </Annotation>
   <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/77">
     <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1@Par[2]-moyen[1]"/>
     <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1@les[59]-hommes[7]"/>
@@ -876,30 +651,6 @@
     </serializedBy>
     <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-06T19:43:44+00:00</annotatedAt>
   </Annotation>
-  <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/78">
-    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1"/>
-    <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1396/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1"/>
-    <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="oa:linking_translation"/>
-    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
-      <Person xmlns="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/sosol/users/IDE"/>
-    </annotatedBy>
-    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-06T19:43:48+00:00</annotatedAt>
-    <serializedBy xmlns="http://www.w3.org/ns/oa#">
-      <SoftwareAgent xmlns="http://www.w3.org/ns/prov#" rdf:about="http://perseids.org/perseids-annotator#0.0.1"/>
-    </serializedBy>
-  </Annotation>
-  <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/79">
-    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1"/>
-    <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1396/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1"/>
-    <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="oa:linking_translation"/>
-    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
-      <Person xmlns="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/sosol/users/IDE"/>
-    </annotatedBy>
-    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-06T19:45:12+00:00</annotatedAt>
-    <serializedBy xmlns="http://www.w3.org/ns/oa#">
-      <SoftwareAgent xmlns="http://www.w3.org/ns/prov#" rdf:about="http://perseids.org/perseids-annotator#0.0.1"/>
-    </serializedBy>
-  </Annotation>
   <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/81">
     <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1@Si[2]-meslee[2]"/>
     <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1396/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@If[2]-happie[2]"/>
@@ -914,14 +665,6 @@
       <SoftwareAgent xmlns="http://www.w3.org/ns/prov#" rdf:about="http://perseids.org/perseids-annotator#0.0.1"/>
     </serializedBy>
     <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-06T20:10:40+00:00</annotatedAt>
-  </Annotation>
-  <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/82">
-    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1"/>
-    <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
-      <Person xmlns="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/sosol/users/IDE"/>
-    </annotatedBy>
-    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-06T20:11:09+00:00</annotatedAt>
   </Annotation>
   <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/84">
     <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1@car[5]-noble[1]"/>
@@ -1020,18 +763,6 @@
     </serializedBy>
     <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-07T13:49:23+00:00</annotatedAt>
   </Annotation>
-  <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/92">
-    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1"/>
-    <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1396/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1"/>
-    <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="oa:linking_translation"/>
-    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
-      <Person xmlns="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/sosol/users/IDE"/>
-    </annotatedBy>
-    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-07T13:49:27+00:00</annotatedAt>
-    <serializedBy xmlns="http://www.w3.org/ns/oa#">
-      <SoftwareAgent xmlns="http://www.w3.org/ns/prov#" rdf:about="http://perseids.org/perseids-annotator#0.0.1"/>
-    </serializedBy>
-  </Annotation>
   <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/93">
     <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1@aussi[11]-viure[4]"/>
     <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1396/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@The[1]-contemplation[13]"/>
@@ -1055,18 +786,6 @@
       <SoftwareAgent xmlns="http://www.w3.org/ns/prov#" rdf:about="http://perseids.org/perseids-annotator#0.0.1"/>
     </serializedBy>
     <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-07T13:54:08+00:00</annotatedAt>
-  </Annotation>
-  <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/95">
-    <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1"/>
-    <hasBody xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1396/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1"/>
-    <motivatedBy xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="oa:linking_translation"/>
-    <annotatedBy xmlns="http://www.w3.org/ns/oa#">
-      <Person xmlns="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/sosol/users/IDE"/>
-    </annotatedBy>
-    <annotatedAt xmlns="http://www.w3.org/ns/oa#">2014-05-07T13:54:10+00:00</annotatedAt>
-    <serializedBy xmlns="http://www.w3.org/ns/oa#">
-      <SoftwareAgent xmlns="http://www.w3.org/ns/prov#" rdf:about="http://perseids.org/perseids-annotator#0.0.1"/>
-    </serializedBy>
   </Annotation>
   <Annotation xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/96">
     <hasTarget xmlns="http://www.w3.org/ns/oa#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1@que[57]-deifier[1]"/>
