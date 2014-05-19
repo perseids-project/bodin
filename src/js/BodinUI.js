@@ -184,10 +184,139 @@
 	}
 	
 	/**
+	 * Used during development to explore DOM structure
+	 *
+	 * @param { dom } _target
+	 * @param { string } _selector
+	 */
+	BodinUI.prototype.domProbe = function( _target, _selector ) {
+		var self = this;
+		var parents = jQuery( _target ).parents( _selector );
+		var children = jQuery( _target ).children( _selector );
+		var siblings = jQuery( _target ).siblings( _selector );
+		console.log( '-- Parents ----');
+		console.log( parents );
+		console.log( '-- Children ----');
+		console.log( children );
+		console.log( '-- Siblings ----');
+		console.log( siblings );
+	}
+	
+	/**
+	 * Get all of a token's active alignments
+	 */
+	BodinUI.prototype.allAligns = function( _target ) {
+		var self = this;
+		var aligns = [];
+		aligns.push( _target );
+		var parents = jQuery( _target ).parents( '.align.active' );
+		for ( var i=0; i<parents.length; i++ ) {
+			aligns.push( parents[i] );
+		}
+		return aligns;
+	}
+	
+	/**
+	 * Build the overlap menu.
+	 */
+	BodinUI.prototype.overlapMenu = function( _e ) {
+		var self = this;
+		//------------------------------------------------------------
+		//  Check to see if alignment is overlapping.
+		//------------------------------------------------------------
+		var aligns = self.allAligns( _e.currentTarget );
+		//------------------------------------------------------------
+		//  Otherwise display a menu to select the right alignment.
+		//------------------------------------------------------------
+		if ( aligns.length == 0 ) {
+			return false;
+		}
+		//------------------------------------------------------------
+		//  Grab the align-id and color.
+		//------------------------------------------------------------
+		var items = {};
+		for ( var i=0; i<aligns.length; i++ ) {
+			var alignId = jQuery( aligns[i] ).attr( 'data-alignId' );
+			var clss = jQuery( aligns[i] ).attr( 'class' ).split(' ');
+			for ( var j=0; j<clss.length; j++ ) {
+				if ( clss[j].indexOf( 'color-' ) != -1 ) {
+					items[ alignId ] = {};
+					items[ alignId ]['color'] = clss[j];
+				}
+			};
+			items[ alignId ]['first_and_last'] = self.firstAndLast( alignId );
+		}
+		//------------------------------------------------------------
+		//  Build the menu
+		//------------------------------------------------------------
+		self.overlapMenuRemove();
+		var menu = jQuery( '<div id="bodinMenu"></div>' );
+		for ( var id in items ) {
+			var item = jQuery( '<a href="" data-alignId="' + id + '">' + items[id]['first_and_last'] + '</a>' );
+			item.addClass( items[id]['color'] );
+			item.addClass( 'active' );
+			menu.append( item );
+		}
+		jQuery( 'body' ).append( menu );
+		//------------------------------------------------------------
+		//  Move the menu into position.
+		//------------------------------------------------------------
+		self.overlapMenuPos( _e.clientX, _e.clientY );
+		//------------------------------------------------------------
+		//  Start the menu touch event listener.
+		//------------------------------------------------------------
+		self.overlapMenuStart();
+		return true;
+	}
+	
+	BodinUI.prototype.overlapMenuPos = function( _x, _y ) {
+		jQuery( '#bodinMenu' ).css({
+			top: _y,
+			left: _x
+		});
+	}
+	
+	BodinUI.prototype.overlapMenuRemove = function() {
+		var self = this;
+		jQuery( '#bodinMenu' ).remove();
+	}
+	
+	BodinUI.prototype.overlapMenuStart = function() {
+		var self = this;
+		jQuery( '#bodinMenu a' ).on( 'touchstart click', function( _e ) {
+			_e.stopPropagation();
+			_e.preventDefault();
+			self.alignTrigger( this );
+			self.overlapMenuRemove();
+		});
+		jQuery( window ).on( 'touchstart click', function( _e ) {
+			self.overlapMenuRemove();
+		});
+	}
+	
+	BodinUI.prototype.firstAndLast = function( _alignId ) {
+		var self = this;
+		var id = jQuery( self.elem ).attr('id');
+		var sub_select = '[ data-alignId="'+_alignId + '" ]';
+		var first = jQuery( '#'+id+' .align-start'+sub_select ).text().trim();
+		var last = jQuery( '#'+id+' .align-end'+sub_select ).text().trim();
+		return first + " ... " + last;
+	}
+	
+	BodinUI.prototype.alignTrigger = function( _elem ) {
+		var self = this;
+		var alignId = jQuery( _elem ).attr( 'data-alignId' );
+		jQuery( window ).trigger( self.events['align'], [ 'align','data-alignId', alignId ] );
+	}
+	
+	/**
 	 * Start alignment events
 	 */
 	BodinUI.prototype.align = function() {
 		var self = this;
+		//------------------------------------------------------------
+		//  Alignment click.
+		//------------------------------------------------------------
 		jQuery( '.align', self.elem ).on( 'touchstart click', function( _e ) {
 			_e.stopPropagation();
 			_e.preventDefault();
@@ -197,8 +326,16 @@
 			if ( jQuery( this ).hasClass( 'active') == false ) {
 				return;
 			}
-			var id = jQuery( this ).attr('data-alignId')
-			jQuery( window ).trigger( self.events['align'], [ 'align','data-alignId',id ] );
+			//------------------------------------------------------------
+			//  Check if an overlap menu is necessary
+			//------------------------------------------------------------
+			if ( self.overlapMenu( _e ) == true ) {
+				return;
+			}
+			//------------------------------------------------------------
+			//  If there isn't any overlap just align.
+			//------------------------------------------------------------
+			self.alignTrigger( this );
 		});
 		jQuery( '.external', self.elem ).on( 'touchstart click', function( _e ) {
 			_e.stopPropagation();
@@ -337,7 +474,6 @@
 	BodinUI.prototype.filteredGoTo = function( _filter, _key, _val ) {
 		var self = this;
 		var pos = jQuery( '.'+_filter + '[' + _key + "='" + _val + "']" , self.elem ).position();
-		console.log( pos );
 		if ( pos == undefined ) {
 			return;
 		}

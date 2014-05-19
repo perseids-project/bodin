@@ -162,3 +162,20 @@ body,html {
 	background-color: #EEE;
 	overflow: scroll;
 }
+#bodinMenu {
+	z-index: 255;
+	position: fixed;
+	background-color: #F9F9F9;
+	padding: 10px;
+	border: 1px solid #333;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	-khtml-border-radius: 2px;
+}
+#bodinMenu a {
+	display:block;
+	text-decoration: none;
+	color: #222;
+	margin-bottom: 5px;
+}

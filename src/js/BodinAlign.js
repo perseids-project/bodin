@@ -320,7 +320,7 @@ var BodinAlign = function() {
                     // info and make it an inner element so that the original 
                     // token element remains the outermost element
                     //------------------------------------------------------
-                    var classes = [ annotation_type, annotation_type + '-' + _alignId, end_class, start_class, color_class, 'active' ].join(' ');
+                    var classes = [ annotation_type, end_class, start_class, color_class, 'active' ].join(' ');
                     var elem = this.alignSpan( _srcId+'-'+_alignId, classes, _body, _motivation);
                     sib.wrapInner( elem.smoosh() );
                     
