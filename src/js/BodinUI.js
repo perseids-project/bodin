@@ -228,7 +228,7 @@
 		//------------------------------------------------------------
 		//  Otherwise display a menu to select the right alignment.
 		//------------------------------------------------------------
-		if ( aligns.length == 0 ) {
+		if ( aligns.length == 1 ) {
 			return false;
 		}
 		//------------------------------------------------------------
@@ -327,15 +327,12 @@
 				return;
 			}
 			//------------------------------------------------------------
-			//  Check if an overlap menu is necessary
-			//------------------------------------------------------------
-			if ( self.overlapMenu( _e ) == true ) {
-				return;
-			}
-			//------------------------------------------------------------
 			//  If there isn't any overlap just align.
 			//------------------------------------------------------------
-			self.alignTrigger( this );
+			self.overlapMenuRemove();
+			if ( self.overlapMenu( _e ) == false ) {
+				self.alignTrigger( this );
+			}
 		});
 		jQuery( '.external', self.elem ).on( 'touchstart click', function( _e ) {
 			_e.stopPropagation();
