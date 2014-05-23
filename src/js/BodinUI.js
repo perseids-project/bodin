@@ -321,16 +321,16 @@
 			_e.stopPropagation();
 			_e.preventDefault();
 			//------------------------------------------------------------
-			//  If the alignments are not active just exit.
-			//------------------------------------------------------------
-			if ( jQuery( this ).hasClass( 'active') == false ) {
-				return;
-			}
-			//------------------------------------------------------------
 			//  If there isn't any overlap just align.
 			//------------------------------------------------------------
 			self.overlapMenuRemove();
 			if ( self.overlapMenu( _e ) == false ) {
+				//------------------------------------------------------------
+				//  If the alignments are not active just exit.
+				//------------------------------------------------------------
+				if ( jQuery( this ).hasClass( 'active') == false ) {
+					return;
+				}
 				self.alignTrigger( this );
 			}
 		});
