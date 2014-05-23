@@ -42,9 +42,16 @@ body,html {
     text-decoration: none;
 }
 .bodin .token {
+	padding: 0 2px;
+	display: inline-block;
     cursor: pointer;
 }
+.bodin .token.punc {
+	margin: -2px;
+	padding-right: 4px;
+}
 .bodin .align {
+	display: inline;
     margin: 0;
     padding: 0;
     -moz-transition: all .25s ease-in;

@@ -206,7 +206,7 @@ var BodinAlign = function() {
 	 */
 	this.apply = function() {
 		//------------------------------------------------------------
-		//	Loop through the alignments and markup where appropriate
+		//	Loop through the alignment document data
 		//------------------------------------------------------------
 		var srcId = 0;
 		for ( var src in this.alignments ) {
@@ -216,20 +216,24 @@ var BodinAlign = function() {
 				console.log( 'No ids specified for ' + src );
 				continue;
 			}
+			//------------------------------------------------------------
+			//  Get the alignment data into the right format and mark
+			//  the Bodin HTML.
+			//------------------------------------------------------------
 			var id = 0;
 			for ( var j in this.alignments[src]['json'] ) {
 				id++;
 				var obj = this.alignments[src]['json'][j];
 				var uris = [];
-				for (var k = 0; k< obj.body.length; k++) {
+				for ( var k=0; k<obj.body.length; k++ ) {
 					if ( obj.body[k].uri) {
 						uris.push( obj.body[k].uri );
 					}
 				}
-				if ( uris.length == 0 && obj.bodyText == null) {
+				if ( uris.length == 0 && obj.bodyText == null ) {
 					this.mark( ids['body'], srcId, id, obj['body'], null, null );
 				}
-				this.mark( ids['target'], srcId, id, obj['target'], obj['motivation'], { uris: uris, text: obj.bodyText, src: src });					 
+				this.mark( ids['target'], srcId, id, obj['target'], obj['motivation'], { uris: uris, text: obj.bodyText, src: src });
 			}
 		}
 	}
@@ -263,13 +267,12 @@ var BodinAlign = function() {
 		//------------------------------------------------------------
 		var id = '#'+_bodinId;
 		//------------------------------------------------------------
-		//	Get the tokens from the text
-		//------------------------------------------------------------
-		var tokens = jQuery(id + " .token[data-cite='" + _obj[0]['cite'] + "']");
-		//------------------------------------------------------------
 		//	Get the color class for this alignment
 		//------------------------------------------------------------
 		var color_class = this.colorClass( _alignId );
+		//------------------------------------------------------------
+		//  Get the annotation type
+		//------------------------------------------------------------
 		var annotation_type = this.annotation_classes.align;
 		if ( _body != null ) {
 			if ( _body.uris != null && _body.uris.length > 0 ) {
@@ -283,21 +286,23 @@ var BodinAlign = function() {
 		//------------------------------------------------------------
 		//	Identify each word in the passage with the alignment id 
 		//------------------------------------------------------------
+		var tokens = jQuery(id + " .token[data-cite='" + _obj[0]['cite'] + "']");
 		if ( tokens.length > 0) {
 			for ( var j=0; j<_obj.length; j++ ) {
+				//------------------------------------------------------------
+				//  Get start and end token
+				//------------------------------------------------------------
 				var start = _obj[j]['start'];
 				var end = _obj[j]['end'];
-				var sibs = tokens;
 				var jsonId = _obj[j]['id'];
-				var done = false;
+				//------------------------------------------------------------
+				//  Get the sibling tokens
+				//------------------------------------------------------------
+				var sibs = tokens;
 				var started = false;
 				for ( var i=0; i<sibs.length; i++ ) {
-					if ( done ) {
-						break;
-					}
 					var sib = jQuery( sibs[i] );
 					var start_class = '';
-					
 					if ( ! started ) { 
 						if ( sib.attr('data-ref') == start ) {
 						   start_class = annotation_type + '-start';
@@ -321,14 +326,14 @@ var BodinAlign = function() {
 					//------------------------------------------------------
 					var classes = [ annotation_type, end_class, start_class, color_class, 'active' ].join(' ');
 					var elem = this.alignSpan( _srcId+'-'+_alignId, classes, _body, _motivation);
-					sib.wrapInner( elem.smoosh() );
+					sib.wrap( elem.smoosh().noSpaceHtml() );
 					
 					if ( sib.attr('data-ref') == end ) {
 						if ( annotation_type == this.annotation_classes.inline ) {
 							var elem = this.commentSpan( _srcId+'-'+_alignId, classes, _motivation, _body );
-							sib.after( elem.smoosh() );
+							sib.after( elem.smoosh().noSpaceHtml() );
 						}
-						done = true;
+						break;
 					}
 				}
 			}

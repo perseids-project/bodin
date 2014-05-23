@@ -40,7 +40,13 @@
 		var self = this;
 		jQuery.get( self.src )
 		.done( function( _data ) {
-			jQuery( self.elem ).html( _data );
+			//------------------------------------------------------------
+			//  Set the HTML
+			//------------------------------------------------------------
+			jQuery( self.elem ).html( _data.noSpaceHtml() );
+			//------------------------------------------------------------
+			//  Remove whitespace between HTML elements
+			//------------------------------------------------------------
 			jQuery( self.elem ).trigger( self.events['loaded'], [ self.elem ] );
 		})
 		.fail( function() {
