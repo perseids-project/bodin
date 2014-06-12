@@ -328,9 +328,9 @@
 				//------------------------------------------------------------
 				//  If the alignments are not active just exit.
 				//------------------------------------------------------------
-				if ( jQuery( this ).hasClass( 'active') == false ) {
-					return;
-				}
+//				if ( jQuery( this ).hasClass( 'active' ) == false ) {
+//					return;
+//				}
 				self.alignTrigger( this );
 			}
 		});
@@ -470,7 +470,8 @@
 	*/
 	BodinUI.prototype.filteredGoTo = function( _filter, _key, _val ) {
 		var self = this;
-		var pos = jQuery( '.'+_filter + '[' + _key + "='" + _val + "']" , self.elem ).position();
+		var selector = '.'+_filter + '[' + _key + "='" + _val + "']";
+		var pos = jQuery( selector , self.elem ).position();
 		if ( pos == undefined ) {
 			return;
 		}
@@ -479,6 +480,10 @@
 		jQuery( '.work', self.elem ).animate ({
 			scrollTop: current + scroll
 		}, 1000 );
+		//------------------------------------------------------------
+		//  Add color
+		//------------------------------------------------------------
+		jQuery( selector ).addClass( 'active' );
 	}
 	
 	/**
@@ -524,12 +529,13 @@
 				{
 					id: id+'-view-1',
 					type: 'nav',
-					link: '&hearts; Chapters',
+					link: 'Chapters',
 					text: nav,
 					init: function() {},
 					refresh: function() {}
-				},
-				{
+				}
+				/*
+				,{
 					id: id+'-view-2',
 					type: 'options',
 					link: '&clubs; Options',
@@ -537,6 +543,7 @@
 					init: function() { self.startOptionsUI() },
 					refresh: function() {}
 				}
+				*/
 			]
 		}).data( '#sidecart_'+id );
 		//------------------------------------------------------------
