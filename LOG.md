@@ -69,4 +69,6 @@ https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/zIg2KC7PyH0%5B1
 
 Back to Javascript.
 
-#2014-04-14
+# 2014-06-19
+
+Back in the saddle.

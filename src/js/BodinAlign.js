@@ -183,7 +183,7 @@ var BodinAlign = function() {
 					else {
 						var chars = jQuery( body ).find( 'chars' );
 						if ( chars.length > 0 ) {
-							bodyText = jQuery( chars[0] ) .html();
+							bodyText = jQuery( chars[0] ).html();
 						}
 					}
 				}
@@ -410,6 +410,17 @@ var BodinAlign = function() {
 			this.styler.add( rule );
 		}
 	}
+	
+	/**
+	 *	Change palette
+	 */
+	this.paletteChange = function( _name ) {
+		//------------------------------------------------------------
+		//  Check to see if Palette exists
+		//------------------------------------------------------------
+		this.palette = new Palette( 'secondary' );
+	}
+	
 	
 	/**
 	 *	Trigger loaded event when each alignment is loaded

@@ -50,7 +50,9 @@
 			align: 'BodinUI-ALIGN',
 			switch_highlight: 'BodinUI-SWITCH_HIGHLIGHT',
 			external: 'BodinUI-EXTERNAL',
-			inline: 'BodinUI-INLINE'
+			inline: 'BodinUI-INLINE',
+			hide: 'BodinUI-HIDE',
+			show: 'BodinUI-SHOW'
 		};
 		//------------------------------------------------------------
 		//  Used for managing multiple alignment clicks
@@ -60,6 +62,26 @@
 		//	Start event listeners
 		//------------------------------------------------------------
 		self.start();
+	}
+	
+	/**
+	 * Hide BodinUI
+	 */
+	BodinUI.prototype.hide = function() {
+		var self = this;
+		jQuery( self.elem ).hide();
+		self.makeRoom();
+		jQuery( window ).trigger( self.events['hide'] );
+	}
+	
+	/**
+	 * Show BodinUI
+	 */
+	BodinUI.prototype.show = function() {
+		var self = this;
+		jQuery( self.elem ).show();
+		self.makeRoom();
+		jQuery( window ).trigger( self.events['show'] );
 	}
 	
 	/**
@@ -209,7 +231,7 @@
 		var self = this;
 		var aligns = [];
 		aligns.push( _target );
-		var parents = jQuery( _target ).parents( '.align.active' );
+		var parents = jQuery( _target ).parents( '.align' );
 		for ( var i=0; i<parents.length; i++ ) {
 			aligns.push( parents[i] );
 		}
@@ -249,15 +271,7 @@
 		//------------------------------------------------------------
 		//  Build the menu
 		//------------------------------------------------------------
-		self.overlapMenuRemove();
-		var menu = jQuery( '<div id="bodinMenu"></div>' );
-		for ( var id in items ) {
-			var item = jQuery( '<a href="" data-alignId="' + id + '">' + items[id]['first_and_last'] + '</a>' );
-			item.addClass( items[id]['color'] );
-			item.addClass( 'active' );
-			menu.append( item );
-		}
-		jQuery( 'body' ).append( menu );
+		self.overlapMenuBuild( items );
 		//------------------------------------------------------------
 		//  Move the menu into position.
 		//------------------------------------------------------------
@@ -267,6 +281,23 @@
 		//------------------------------------------------------------
 		self.overlapMenuStart();
 		return true;
+	}
+	
+	BodinUI.prototype.overlapMenuBuild = function( _items ) {
+		var self = this;
+		self.overlapMenuRemove();
+		var menu = jQuery( '<div id="bodinMenu"></div>' );
+		for ( var id in _items ) {
+			var item = jQuery( self.overlapMenuItem( _items, id )  );
+			item.addClass( _items[id]['color'] );
+			item.addClass( 'active' );
+			menu.append( item );
+		}
+		jQuery( 'body' ).append( menu );
+	}
+	
+	BodinUI.prototype.overlapMenuItem = function( _items, _id ) {
+		return '<a href="" data-alignId="' + _id + '">' + _items[ _id ]['first_and_last'] + '</a>'
 	}
 	
 	BodinUI.prototype.overlapMenuPos = function( _x, _y ) {
@@ -410,7 +441,7 @@
 	 * @param {int } _count The number of instances.
 	 */
 	BodinUI.prototype.makeRoom = function() {
-		var count = jQuery( '.bodin' ).length
+		var count = jQuery( '.bodin:visible' ).length
 		var styler = new Styler();
 		var percent = parseInt( 100/count );
 		styler.add({
