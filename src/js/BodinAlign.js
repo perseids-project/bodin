@@ -405,6 +405,7 @@ var BodinAlign = function() {
 	this.paletteStyles = function() {
 		var rule = {};
 		for ( var i=0; i<this.palette.colors.length; i++ ) {
+			rule[ '.align.'+this.colorClass(i)+':hover' ] = 'background-color:'+this.highlightColor(i);
 			rule[ '.active.'+this.colorClass(i) ] = 'background-color:'+this.highlightColor(i);
 			rule[ '.'+this.colorClass(i)+'.blink' ] = 'background-color:'+this.highlightBlinkColor(i);
 			this.styler.add( rule );
