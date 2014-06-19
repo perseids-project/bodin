@@ -55,17 +55,13 @@
 			show: 'BodinUI-SHOW'
 		};
 		//------------------------------------------------------------
-		//  Used for managing multiple alignment clicks
+		//  Sidecart is the option tab you see at the top
 		//------------------------------------------------------------
-		self.alignClick=0;
+		self.sidecart = undefined;
 		//------------------------------------------------------------
 		//	Start event listeners
 		//------------------------------------------------------------
 		self.start();
-		//------------------------------------------------------------
-		//  Sidecart is the option tab you see at the top
-		//------------------------------------------------------------
-		self.sidecart = undefined;
 	}
 	
 	/**
@@ -340,7 +336,7 @@
 	BodinUI.prototype.firstAndLast = function( _alignId ) {
 		var self = this;
 		var id = jQuery( self.elem ).attr('id');
-		var sub_select = '[ data-alignId="'+_alignId + '" ]';
+		var sub_select = '[ data-alignId="'+_alignId +'" ]';
 		var first = jQuery( '#'+id+' .align-start'+sub_select ).text().trim();
 		var last = jQuery( '#'+id+' .align-end'+sub_select ).text().trim();
 		return first + " ... " + last;
@@ -352,10 +348,7 @@
 		jQuery( window ).trigger( self.events['align'], [ 'align','data-alignId', alignId ] );
 	}
 	
-	/**
-	 * Start alignment events
-	 */
-	BodinUI.prototype.align = function() {
+	BodinUI.prototype.alignClick = function() {
 		var self = this;
 		//------------------------------------------------------------
 		//  Alignment click.
@@ -377,6 +370,10 @@
 				self.alignTrigger( this );
 			}
 		});
+	}
+	
+	BodinUI.prototype.externalClick = function() {
+		var self = this;
 		jQuery( '.external', self.elem ).on( 'touchstart click', function( _e ) {
 			_e.stopPropagation();
 			_e.preventDefault();
@@ -391,6 +388,10 @@
 			var motivation = jQuery ( this ).attr('data-motivation');
 			jQuery( window ).trigger( self.events['external'], [ uri, id, motivation ] );
 		});
+	}
+	
+	BodinUI.prototype.widgetClick = function() {
+		var self = this;
 		jQuery( '.inline-widget', self.elem ).on( 'touchstart click', function( _e ) {
 			_e.stopPropagation();
 			_e.preventDefault();
@@ -405,6 +406,16 @@
 			var src = jQuery( this ).attr('data-source');
 			jQuery( window ).trigger( self.events['inline'], [ id, motivation, src ] );
 		});
+	}
+	
+	/**
+	 * Start alignment events
+	 */
+	BodinUI.prototype.align = function() {
+		var self = this;
+		self.alignClick();
+		self.externalClick();
+		self.widgetClick();
 	}
 	
 	/**

@@ -415,12 +415,9 @@ var BodinAlign = function() {
 	 *	Change palette
 	 */
 	this.paletteChange = function( _name ) {
-		//------------------------------------------------------------
-		//  Check to see if Palette exists
-		//------------------------------------------------------------
-		this.palette = new Palette( 'secondary' );
+		this.palette = new Palette( _name );
+		this.paletteStyles();
 	}
-	
 	
 	/**
 	 *	Trigger loaded event when each alignment is loaded
