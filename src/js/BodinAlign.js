@@ -403,12 +403,13 @@ var BodinAlign = function() {
 	 *	Create palette styles
 	 */
 	this.paletteStyles = function() {
-		var rule = {};
+		var rules = {};
 		for ( var i=0; i<this.palette.colors.length; i++ ) {
-			rule[ '.align.'+this.colorClass(i)+':hover' ] = 'background-color:'+this.highlightColor(i);
-			rule[ '.active.'+this.colorClass(i) ] = 'background-color:'+this.highlightColor(i);
-			rule[ '.'+this.colorClass(i)+'.blink' ] = 'background-color:'+this.highlightBlinkColor(i);
-			this.styler.add( rule );
+			rules[ '.align.'+this.colorClass(i)+':hover' ] = 'background-color:'+this.highlightColor(i);
+			rules[ '.active.'+this.colorClass(i) ] = 'background-color:'+this.highlightColor(i);
+			rules[ '.active.'+this.colorClass(i)+':hover' ] = 'background-color:'+this.highlightBlinkColor(i);
+			rules[ '.'+this.colorClass(i)+'.blink' ] = 'background-color:'+this.highlightBlinkColor(i);
+			this.styler.add( rules );
 		}
 	}
 	

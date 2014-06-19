@@ -174,15 +174,21 @@ body,html {
     position: fixed;
     background-color: #F9F9F9;
     padding: 10px;
-    border: 1px solid #333;
+    border: 1px solid #CCC;
+	box-shadow: 5px 5px 5px rgba( 0, 0, 0, 0.5 );
+    border-radius: 2px;
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
-    border-radius: 2px;
     -khtml-border-radius: 2px;
 }
 #bodinMenu a {
+	padding: 5px;
     display:block;
     text-decoration: none;
     color: #222;
     margin-bottom: 5px;
+    -moz-transition: all .25s ease-in;
+    -webkit-transition: all .25s ease-in;
+    -o-transition: all .25s ease-in;
+    transition: all .25s ease-in;
 }
