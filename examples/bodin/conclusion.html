@@ -1,0 +1,145 @@
+<html>
+	<head>
+		<!-- Load CSS -->
+		<link href="../../src/css/onoffswitch.css" rel="stylesheet" type="text/css" />
+		<link href="../../third_party/sidecart/src/css/sidecart.css" rel="stylesheet" type="text/css" />
+		<link href="../../src/css/bodin.css" rel="stylesheet" type="text/css" />
+		<link href="../../src/css/popup.css" rel="stylesheet" type="text/css" />
+		<!-- End Load CSS -->
+		<title>bodin</title>
+	</head>
+	<body>
+		<div id="welcome" class="overlay">
+			<div class="popup">
+				<p>Bodin is loading...</p>
+			</div>
+		</div>
+		<div class="bodin" src="tempHtml/latinconclusion.html" id="latin"></div>
+		<div class="bodin" src="tempHtml/fr1576conclusion.html" id="french1576"></div>
+		<div class="bodin" src="tempHtml/fr1578conclusion.html" id="french1578"></div>
+		<div class="sidecart" id="master_options"></div>
+		<!--<div id="control_view"><p>Master options.</p></div>-->
+		<div id="external_annotation"></div>
+	</body>
+	
+	<!-- Load Javascript -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script type="text/javascript" src="../../third_party/jslib/src/js/jQueryPlus.js"></script>
+	<script type="text/javascript" src="../../third_party/jslib/src/js/StringExt.js"></script>
+	<script type="text/javascript" src="../../third_party/jslib/src/js/ObjectExt.js"></script>
+	<script type="text/javascript" src="../../third_party/jslib/src/js/Styler.js"></script>
+	<script type="text/javascript" src="../../third_party/jslib/src/js/Palette.js"></script>
+	<script type="text/javascript" src="../../third_party/jslib/src/js/Culuh.js"></script>
+	<script type="text/javascript" src="../../third_party/sidecart/src/js/sidecart.js"></script>
+	<script type="text/javascript" src="../../src/js/Bodin.js"></script>
+	<script type="text/javascript" src="../../src/js/BodinAlign.js"></script>
+	<script type="text/javascript" src="../../src/js/BodinExternal.js"></script>
+	<script type="text/javascript" src="../../src/js/BodinUI.js"></script>
+	<script type="text/javascript" src="../../src/js/TeiToBodin.js"></script>
+	<script type="text/javascript" src="../../src/js/Tooltipper.js"></script>
+	<script type="text/javascript">
+	
+		jQuery( document ).ready( function() {
+			jQuery( '#master_options' ).sidecart({
+				side: 'right',
+				theme: 'red',
+				views: [
+					{
+						id: 'master',
+						type: 'controls',
+						link: 'Options',
+						src: '#control_view',
+						init: function() {},
+						refresh: function() {}
+					}
+				]
+			});
+			//------------------------------------------------------------
+			// initialize the external_annotation div 
+			//------------------------------------------------------------
+			jQuery( '#external_annotation').BodinExternal({
+				xslt_path: "../xslt/cts_annotate.xsl",
+				tokenizer: "http://sosol.perseids.org/exist/rest/db/xq/tokenize.xquery?merging=false&splitting=false&uri="
+			}).data('#external_annotation');
+			jQuery( '#external_annotation' ).click( function() { jQuery(this).toggle() } );
+			//------------------------------------------------------------
+			//  Once Bodin texts are loaded get the alignment XML
+			//------------------------------------------------------------
+			jQuery( window ).on( 'Bodin-LOADED', function() {
+				bodinAlign.start([
+					{ 
+						src: 'tempXml/lat_fr1576.xml', 
+						ids: { body: 'french1576', target: 'latin' }
+					},
+					{ 
+						src: 'tempXml/fr1578_fr1576.xml', 
+						ids: { body: 'french1576', target: 'french1578' }
+					}
+				]);
+			});
+			//------------------------------------------------------------
+			//  Start up the UI once alignment XML is loaded
+			//------------------------------------------------------------
+			jQuery( window ).on( 'BodinAlign-LOADED', function() {
+				//------------------------------------------------------------
+				//  Markup translation alignment
+				//------------------------------------------------------------
+				bodinAlign.apply();
+				//------------------------------------------------------------
+				//  This sneaky bit of jQuery put's all Bodin instances
+				//  in an array so I can easily
+				//------------------------------------------------------------
+				jQuery( '.bodin' ).each( function() {
+					var id = jQuery( this ).attr('id');
+					if ( bodins[id] == undefined ) {
+						bodins[id] = jQuery( '#'+id ).BodinUI().data( '#'+id )
+					}
+				});
+				//------------------------------------------------------------
+				//  Hide the load screen
+				//------------------------------------------------------------
+				jQuery('#welcome').hide();
+			});
+			//------------------------------------------------------------
+			//  When a milestone is clicked in any instance all instances
+			//  will scroll to that milestone
+			//------------------------------------------------------------
+			jQuery( window ).on( 'BodinUI-MILESTONE', function( _e, _id ) {
+				for ( var i in bodins ) {
+					bodins[i].goTo( _id );
+				}
+			});
+			//------------------------------------------------------------
+			//  When an alignment passage is click start scrolling.
+			//------------------------------------------------------------
+			jQuery( window ).on( 'BodinUI-ALIGN', function( _e, _filter, _key, _value ) {
+				for ( var i in bodins ) {
+					bodins[i].filteredGoTo( _filter, _key, _value );
+					bodins[i].filteredAlphaBlink( _filter, _key, _value );
+				}
+			});
+			//------------------------------------------------------------
+			//  Create a window for the annotation contents if we don't
+			//------------------------------------------------------------
+			jQuery( window ).on( 'BodinUI-EXTERNAL', function( _e, _uri, _target, _motivation) {
+				jQuery( window ).trigger( 'BodinExternal-LOADTEXT', [ _uri, _target, _motivation, null ] );
+			});
+			jQuery( window ).on( 'BodinUI-INLINE', function( _e, _target, _motivation, _src) {
+				jQuery( window ).trigger( 'BodinExternal-LOADINLINE', [ _target, _motivation, _src ] );
+			});
+			//------------------------------------------------------------
+			//  Get a BodinAlign object.
+			//------------------------------------------------------------
+			bodinAlign = new BodinAlign();
+			//------------------------------------------------------------
+			//  Store all of your bodin instances
+			//------------------------------------------------------------
+			bodins = {};
+			//------------------------------------------------------------
+			//  Start it all up.
+			//------------------------------------------------------------
+			var bodin = new Bodin();
+			bodin.start( '.bodin' );
+		});
+	</script>
+</html>
