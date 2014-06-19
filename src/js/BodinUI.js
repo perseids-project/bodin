@@ -36,7 +36,7 @@
 		//------------------------------------------------------------
 		//	User config 
 		//------------------------------------------------------------
-		self.config = $.extend({
+		self.config = jQuery.extend({
 			scrollPad: 40,
 			blinkAlpha: .5,
 			blinkLength: .5, // seconds
@@ -62,6 +62,10 @@
 		//	Start event listeners
 		//------------------------------------------------------------
 		self.start();
+		//------------------------------------------------------------
+		//  Sidecart is the option tab you see at the top
+		//------------------------------------------------------------
+		self.sidecart = undefined;
 	}
 	
 	/**
@@ -72,6 +76,14 @@
 		jQuery( self.elem ).hide();
 		self.makeRoom();
 		jQuery( window ).trigger( self.events['hide'] );
+	}
+	
+	/**
+	 * Is the BodinUI instance visible?
+	 */
+	BodinUI.prototype.visible = function() {
+		var self = this;
+		return jQuery( self.elem ).is(":visible");
 	}
 	
 	/**
@@ -441,6 +453,7 @@
 	 * @param {int } _count The number of instances.
 	 */
 	BodinUI.prototype.makeRoom = function() {
+		var self = this;
 		var count = jQuery( '.bodin:visible' ).length
 		var styler = new Styler();
 		var percent = parseInt( 100/count );
@@ -448,11 +461,21 @@
 			'.bodin': 'width: '+percent+'%'
 		});
 	}
+	
+	BodinUI.prototype.sidecartFit = function() {
+		var self = this;
+		var events = self.events['hide']+' '+self.events['show'];
+		jQuery( window ).on( events, function() {
+			if ( self.sidecart != undefined ) {
+				self.sidecart.fitToParent();
+			}
+		});
+	}
 
 	/**
 	* Check the size of the instance.
 	*/
-   BodinUI.prototype.sizeCheck = function() {
+	BodinUI.prototype.sizeCheck = function() {
 		if ( jQuery( this.elem ).width() < 450 ) {
 			jQuery( this.elem ).addClass('slim');
 		}
@@ -553,15 +576,27 @@
 		//------------------------------------------------------------
 		//  Start sidecart
 		//------------------------------------------------------------
-		self.sidecart = jQuery( '#sidecart_'+id ).sidecart({
+		self.buildSidecart( id, nav );
+		//------------------------------------------------------------
+		//  Start nav events
+		//------------------------------------------------------------
+		self.navEvents();
+	}
+	
+	//------------------------------------------------------------
+	//  Start sidecart
+	//------------------------------------------------------------
+	BodinUI.prototype.buildSidecart = function( _id, _nav ) {
+		var self = this;
+		self.sidecart = jQuery( '#sidecart_'+_id ).sidecart({
 			side: 'top',
 			inside: true,
 			views: [
 				{
-					id: id+'-view-1',
+					id: _id+'-view-1',
 					type: 'nav',
 					link: 'Chapters',
-					text: nav,
+					text: _nav,
 					init: function() {},
 					refresh: function() {}
 				}
@@ -576,13 +611,9 @@
 				}
 				*/
 			]
-		}).data( '#sidecart_'+id );
-		//------------------------------------------------------------
-		//  Start nav events
-		//------------------------------------------------------------
-		self.navEvents();
+		}).data( '#sidecart_'+_id );
+		self.sidecartFit();
 	}
-	
 	
 	/**
 	* Start the index navigation events
