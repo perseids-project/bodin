@@ -27,6 +27,7 @@
 	<script type="text/javascript" src="../../third_party/jslib/src/js/jQueryPlus.js"></script>
 	<script type="text/javascript" src="../../third_party/jslib/src/js/StringExt.js"></script>
 	<script type="text/javascript" src="../../third_party/jslib/src/js/ObjectExt.js"></script>
+	<script type="text/javascript" src="../../third_party/jslib/src/js/ArrayExt.js"></script>
 	<script type="text/javascript" src="../../third_party/jslib/src/js/Styler.js"></script>
 	<script type="text/javascript" src="../../third_party/jslib/src/js/Palette.js"></script>
 	<script type="text/javascript" src="../../third_party/jslib/src/js/Culuh.js"></script>
@@ -96,7 +97,13 @@
 				jQuery( '.bodin' ).each( function() {
 					var id = jQuery( this ).attr('id');
 					if ( bodins[id] == undefined ) {
-						bodins[id] = jQuery( '#'+id ).BodinUI().data( '#'+id )
+						//------------------------------------------------------------
+						//  Start a Bodin UI instance
+						//------------------------------------------------------------
+						bodins[id] = jQuery( '#'+id ).BodinUI({ 
+							align_config: bodinAlign.config, 
+							alignments: bodinAlign.alignments
+						}).data( '#'+id );
 					}
 				});
 				//------------------------------------------------------------

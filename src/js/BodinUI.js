@@ -43,6 +43,15 @@
 			blinkN: 3
 		}, _config );
 		//------------------------------------------------------------
+		//  If alignment data gets passed
+		//------------------------------------------------------------
+		if ( 'align_config' in self.config ) {
+			self.align_config = self.config['align_config'];
+		}
+		if ( 'alignments' in self.config ) {
+			self.alignments = self.config['alignments'];
+		}
+		//------------------------------------------------------------
 		//	Events
 		//------------------------------------------------------------
 		self.events = {
@@ -350,7 +359,7 @@
 						data-alignuri="'+ _items[ _id ]['uri'] +'" \
 						data-motivation="'+ _items[ _id ]['motivation'] +'" \
 						data-alignId="'+ _id +'"> \
-						' + _items[ _id ]['uri'] + '\
+						<span class="small">external -- </span>' + _items[ _id ]['uri'] + '\
 					</a>'.smoosh();
 		}
 	}
@@ -385,9 +394,37 @@
 		var self = this;
 		var id = jQuery( self.elem ).attr('id');
 		var sub_select = '[ data-alignId="'+_alignId +'" ]';
-		var first = jQuery( '#'+id+' .align-start'+sub_select ).text().trim();
-		var last = jQuery( '#'+id+' .align-end'+sub_select ).text().trim();
-		return first + " ... " + last;
+		var ext = new ArrayExt();
+		
+		var disp = {};
+		jQuery( '.align-start'+sub_select ).each( function(){
+			var bodin = jQuery( this ).parents('.bodin');
+			var lang = jQuery( bodin ).attr('id');
+			disp[ lang ] = {};
+			disp[ lang ]['start'] = [];
+			jQuery( '#'+lang+' .align-start'+sub_select ).each( function(){
+				disp[ lang ]['start'].push( jQuery(this).text().trim() );
+			});
+		});
+		
+		jQuery( '.align-end'+sub_select ).each( function(){
+			var bodin = jQuery( this ).parents('.bodin');
+			var lang = jQuery( bodin ).attr('id');
+			disp[ lang ]['end'] = [];
+			jQuery( '#'+lang+' .align-end'+sub_select ).each( function(){
+				disp[ lang ]['end'].push( jQuery(this).text().trim() );
+			});
+		});
+		var html = '';
+		for ( var lang in disp ) {
+			var to_join = []
+			for ( var i in disp[ lang ]['start'] ) {
+				to_join.push( disp[ lang ]['start'][i] );
+				to_join.push( disp[ lang ]['end'][i] );
+			}
+			html += '<span class="small">'+lang+' -- </span>'+ext.multijoin( to_join, [' ... ',' &nbsp; '] )+'</br>';
+		}
+		return html;
 	}
 	
 	BodinUI.prototype.alignTrigger = function( _elem ) {

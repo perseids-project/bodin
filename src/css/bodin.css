@@ -192,3 +192,6 @@ body,html {
     -o-transition: all .25s ease-in;
     transition: all .25s ease-in;
 }
+#bodinMenu span.small {
+	font-size: 12px;
+}
