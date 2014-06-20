@@ -431,6 +431,13 @@ var BodinAlign = function() {
 		return jQuery('.align[data-alignid="'+_alignId+'"]').removeClass('active');
 	}
 	
+	this.show = function( _alignId ) {
+		if ( _alignId == undefined ) {
+			return jQuery('.align').addClass('active');
+		}
+		return jQuery('.align[data-alignid="'+_alignId+'"]').addClass('active');
+	}
+	
 	/**
 	 *	Trigger loaded event when each alignment is loaded
 	 */

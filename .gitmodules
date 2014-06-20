@@ -7,3 +7,6 @@
 [submodule "squish"]
 	path = squish
 	url = https://github.com/caesarfeta/squish
+[submodule "third_party/switch_grid"]
+	path = third_party/switch_grid
+	url = https://github.com/caesarfeta/switch_grid

@@ -78,9 +78,11 @@
 	 */
 	BodinUI.prototype.hide = function() {
 		var self = this;
-		jQuery( self.elem ).hide();
-		self.makeRoom();
-		jQuery( window ).trigger( self.events['hide'] );
+		if ( self.visible == true ) {
+			jQuery( self.elem ).hide();
+			self.makeRoom();
+			jQuery( window ).trigger( self.events['hide'] );
+		}
 	}
 	
 	/**
@@ -96,9 +98,11 @@
 	 */
 	BodinUI.prototype.show = function() {
 		var self = this;
-		jQuery( self.elem ).show();
-		self.makeRoom();
-		jQuery( window ).trigger( self.events['show'] );
+		if ( self.visible == false ) {
+			jQuery( self.elem ).show();
+			self.makeRoom();
+			jQuery( window ).trigger( self.events['show'] );
+		}
 	}
 	
 	/**

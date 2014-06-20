@@ -3,6 +3,7 @@
 		<!-- Load CSS -->
 		<link href="../../src/css/onoffswitch.css" rel="stylesheet" type="text/css" />
 		<link href="../../third_party/sidecart/src/css/sidecart.css" rel="stylesheet" type="text/css" />
+		<link href="../../third_party/switch_grid/src/css/toggle_switch.css" rel="stylesheet" type="text/css" />
 		<link href="../../src/css/bodin.css" rel="stylesheet" type="text/css" />
 		<link href="../../src/css/popup.css" rel="stylesheet" type="text/css" />
 		<!-- End Load CSS -->
@@ -18,7 +19,10 @@
 		<div class="bodin" src="tempHtml/english.html" id="english"></div>
 		<div class="bodin" src="tempHtml/french.html" id="french"></div>
 		<div class="sidecart" id="master_options"></div>
-		<!--<div id="control_view"><p>Master options.</p></div>-->
+		<div id="control_view">
+			<a id="clearAll" href="">Clear All Highlights</a>
+			<a id="showAll" href="">Show All Highlights</a>
+		</div>
 		<div id="external_annotation"></div>
 	</body>
 	
@@ -41,6 +45,9 @@
 	<script type="text/javascript">
 	
 		jQuery( document ).ready( function() {
+			//------------------------------------------------------------
+			//  Build the master options menu
+			//------------------------------------------------------------
 			jQuery( '#master_options' ).sidecart({
 				side: 'right',
 				theme: 'red',
@@ -50,7 +57,20 @@
 						type: 'controls',
 						link: 'Options',
 						src: '#control_view',
-						init: function() {},
+						init: function() {
+							jQuery( '#control_view a' ).on( 'touchstart click', function( _e ) {
+								_e.preventDefault();
+								id = jQuery( this ).attr('id');
+								switch( id ) {
+									case 'clearAll':
+										bodinAlign.clear();
+										break;
+									case 'showAll':
+										bodinAlign.show();
+										break;
+								}
+							});
+						},
 						refresh: function() {}
 					}
 				]
