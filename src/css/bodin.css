@@ -50,6 +50,9 @@ body,html {
     margin: -2px;
     padding-right: 4px;
 }
+.bodin .token.whiteout {
+	color: #FFF;
+}
 .bodin .align {
     display: inline;
     margin: 0;
@@ -175,14 +178,14 @@ body,html {
     background-color: #F9F9F9;
     padding: 10px;
     border: 1px solid #CCC;
-    box-shadow: 5px 5px 5px rgba( 0, 0, 0, 0.5 );
+	box-shadow: 5px 5px 5px rgba( 0, 0, 0, 0.5 );
     border-radius: 2px;
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
     -khtml-border-radius: 2px;
 }
 #bodinMenu a {
-    padding: 5px;
+	padding: 5px;
     display:block;
     text-decoration: none;
     color: #222;
@@ -193,23 +196,23 @@ body,html {
     transition: all .25s ease-in;
 }
 #bodinMenu span.small {
-    font-size: 12px;
+	font-size: 12px;
 }
 #master_options .tabs {
-    margin-top: 50px;
+	margin-top: 50px;
 }
 #master_options #control_view a {
-    text-align: center;
-    margin-bottom: 2px;
-    color: #F2F2F2;
-    background-color: #FF3333;
-    padding: 20px;
-    display: block;
+	text-align: center;
+	margin-bottom: 2px;
+	color: #F2F2F2;
+	background-color: #FF3333;
+	padding: 20px;
+	display: block;
     -moz-transition: all .25s ease-in;
     -webkit-transition: all .25s ease-in;
     -o-transition: all .25s ease-in;
     transition: all .25s ease-in;
 }
 #master_options #control_view a:hover {
-    background-color: #FF6666;
+	background-color: #FF6666;
 }

@@ -22,6 +22,7 @@
 		<div id="control_view">
 			<a id="clearAll" href="">Clear All Highlights</a>
 			<a id="showAll" href="">Show All Highlights</a>
+			<a id="isolate" href="">Isolate / "De-isolate"</a>
 		</div>
 		<div id="external_annotation"></div>
 	</body>
@@ -67,6 +68,9 @@
 										break;
 									case 'showAll':
 										bodinAlign.show();
+										break;
+									case 'isolate':
+										bodinAlign.isolate();
 										break;
 								}
 							});

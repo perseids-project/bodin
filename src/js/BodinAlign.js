@@ -28,6 +28,7 @@ var BodinAlign = function() {
 		inline: 'inline'
 	}
 	this.styler = new Styler();
+	this.isolated = false;
 	
 	/**
 	 *	  Start it up!
@@ -426,7 +427,7 @@ var BodinAlign = function() {
 	}
 	
 	/**
-	 *	Clear the alignments
+	 *	Clear the alignment highlights.
 	 */
 	this.clear = function( _alignId ) {
 		if ( _alignId == undefined ) {
@@ -435,11 +436,28 @@ var BodinAlign = function() {
 		return jQuery('.align[data-alignid="'+_alignId+'"]').removeClass('active');
 	}
 	
+	/**
+	 *	Show the alignment highlights
+	 */
 	this.show = function( _alignId ) {
 		if ( _alignId == undefined ) {
 			return jQuery('.align').addClass('active');
 		}
 		return jQuery('.align[data-alignid="'+_alignId+'"]').addClass('active');
+	}
+	
+	/**
+	 *	Isolate active alignments toggle
+	 */
+	this.isolate = function() {
+		if ( this.isolated == false ) {
+			jQuery('.token').addClass('whiteout');
+			jQuery('.align.active .token').removeClass('whiteout');
+			this.isolated = true;
+			return;
+		}
+		jQuery('.token').removeClass('whiteout');
+		this.isolated = false;
 	}
 	
 	/**
