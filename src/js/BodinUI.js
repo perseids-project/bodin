@@ -295,6 +295,7 @@
 				items[ alignId ] = {};
 				items[ alignId ]['type'] = 'external'
 				items[ alignId ]['uri'] = jQuery( aligns[i] ).attr( 'data-alignuri' );
+				items[ alignId ]['motivation'] = jQuery( aligns[i] ).attr( 'data-motivation' );
 			}
 		}
 		//------------------------------------------------------------
@@ -325,12 +326,32 @@
 		jQuery( 'body' ).append( self.menu );
 	}
 	
+	/**
+	 * Build an overlap menu item.
+	 */
 	BodinUI.prototype.overlapMenuItem = function( _items, _id ) {
 		switch ( _items[ _id ]['type'] ) {
+		//------------------------------------------------------------
+		//  Alignment link
+		//------------------------------------------------------------
 		case 'align':
-			return '<a href="" class="alignLink" data-alignId="' + _id + '">' + _items[ _id ]['first_and_last'] + '</a>';
+			return '<a href="" \
+						class="alignLink" \
+						data-alignId="'+ _id +'"> \
+						'+ _items[ _id ]['first_and_last'] +' \
+					</a>'.smoosh();
+					
+		//------------------------------------------------------------
+		//  External link
+		//------------------------------------------------------------
 		case 'external':
-			return '<a href="" class="external" data-alignId="' + _id + '">' + _items[ _id ]['uri'] + '</a>';
+			return '<a href="" \
+						class="external" \
+						data-alignuri="'+ _items[ _id ]['uri'] +'" \
+						data-motivation="'+ _items[ _id ]['motivation'] +'" \
+						data-alignId="'+ _id +'"> \
+						' + _items[ _id ]['uri'] + '\
+					</a>'.smoosh();
 		}
 	}
 	
