@@ -268,8 +268,12 @@ var BodinAlign = function() {
 		var id = '#'+_bodinId;
 		//------------------------------------------------------------
 		//	Get the color class for this alignment
+		// 
+		//  Adding the srcId will offset the color of 
+		//  overlapping alignments so there'll be less of the same
+		//  color on top of one another.
 		//------------------------------------------------------------
-		var color_class = this.colorClass( _alignId );
+		var color_class = this.colorClass( _srcId+_alignId );
 		//------------------------------------------------------------
 		//  Get the annotation type
 		//------------------------------------------------------------
