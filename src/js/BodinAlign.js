@@ -422,6 +422,16 @@ var BodinAlign = function() {
 	}
 	
 	/**
+	 *	Clear the alignments
+	 */
+	this.clear = function( _alignId ) {
+		if ( _alignId == undefined ) {
+			return jQuery('.align').removeClass('active');
+		}
+		return jQuery('.align[data-alignid="'+_alignId+'"]').removeClass('active');
+	}
+	
+	/**
 	 *	Trigger loaded event when each alignment is loaded
 	 */
 	this.loadCheck = function() {
