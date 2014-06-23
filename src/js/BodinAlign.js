@@ -27,7 +27,6 @@ var BodinAlign = function() {
 		external: 'external',
 		inline: 'inline'
 	}
-	this.styler = new Styler();
 	this.isolated = false;
 	
 	/**
@@ -220,7 +219,7 @@ var BodinAlign = function() {
 			srcId++;
 			var ids = this.xmlToIds( src );
 			if ( ids == undefined ) {
-				console.log( 'No ids specified for ' + src );
+				throw new Error({'message': 'No ids specified for ' + src });
 				continue;
 			}
 			//------------------------------------------------------------
@@ -282,7 +281,7 @@ var BodinAlign = function() {
 		//  overlapping alignments so there'll be less of the same
 		//  color on top of one another.
 		//------------------------------------------------------------
-		var color_class = this.colorClass( _srcId+_alignId );
+		var color_class = this.palette.colorClass( _srcId+_alignId );
 		//------------------------------------------------------------
 		//  Get the annotation type
 		//------------------------------------------------------------
@@ -300,7 +299,7 @@ var BodinAlign = function() {
 		//	Identify each word in the passage with the alignment id 
 		//------------------------------------------------------------
 		var cite = _obj[0]['cite'];
-		var tokens = jQuery(id + " .token[data-cite='" + cite + "']");
+		var tokens = jQuery( id + " .token[data-cite='" + cite + "']");
 		if ( tokens.length == 0 ) {
 			throw new Error({'message': "token with data-cite='" + cite + "'" });
 		}
@@ -382,61 +381,6 @@ var BodinAlign = function() {
 	}
 	
 	/**
-	 *	Retrieve a highlight color
-	 *
-	 *	@param { int } _id The alignment id
-	 *	@return { string } An rgba(255,0,0,0.25) string
-	 */
-	this.highlightColor = function( _id ) {
-		return this.alphaColor( _id, 0.15 );
-	}
-	
-	/**
-	 *	Retrieve a highlight blink color
-	 *
-	 *	@param { int } _id The alignment id
-	 *	@return { string } An rgba(255,0,0,0.25) string
-	 */
-	this.highlightBlinkColor = function( _id ) {
-		return this.alphaColor( _id, 0.5);
-	}
-	
-	this.alphaColor = function( _id, _alpha ) {
-		var color = this.palette.colors[  this.colorId(_id) ];
-		return color.toAlpha( _alpha );
-	}
-	
-	this.colorId = function( _int ) {
-		return _int % this.palette.colors.length
-	}
-	
-	this.colorClass = function( _int ) {
-		return 'color-'+this.colorId(_int);
-	}
-	
-	/**
-	 *	Create palette styles
-	 */
-	this.paletteStyles = function() {
-		var rules = {};
-		for ( var i=0; i<this.palette.colors.length; i++ ) {
-			rules[ '.align.'+this.colorClass(i)+':hover' ] = 'background-color:'+this.highlightColor(i);
-			rules[ '.active.'+this.colorClass(i) ] = 'background-color:'+this.highlightColor(i);
-			rules[ '.active.'+this.colorClass(i)+':hover' ] = 'background-color:'+this.highlightBlinkColor(i);
-			rules[ '.'+this.colorClass(i)+'.blink' ] = 'background-color:'+this.highlightBlinkColor(i);
-			this.styler.add( rules );
-		}
-	}
-	
-	/**
-	 *	Change palette
-	 */
-	this.paletteChange = function( _name ) {
-		this.palette = new Palette( _name );
-		this.paletteStyles();
-	}
-	
-	/**
 	 *	Clear the alignment highlights.
 	 */
 	this.clear = function( _alignId ) {
@@ -485,7 +429,8 @@ var BodinAlign = function() {
 		//------------------------------------------------------------
 		//	Set the palette style.
 		//------------------------------------------------------------
-		this.paletteStyles();
+		this.palette = new BodinPalette();
+		this.palette.styles();
 		//------------------------------------------------------------
 		//	Trigger the loaded event.
 		//------------------------------------------------------------
