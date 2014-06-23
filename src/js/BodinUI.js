@@ -106,44 +106,8 @@
 	}
 	
 	/**
-	 * Returns the options
+	 * Get all alignment ids
 	 */
-	BodinUI.prototype.optionsUI = function() {
-		var self = this;
-		return '\
-			<div class="switches">\
-			\
-				<!-- Highlights -->\
-				<h3>Highlights</h3>\
-				<div class="onoffswitch">\
-					<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="highlight_'+self.id+'" checked>\
-					<label class="onoffswitch-label" for="highlight_'+self.id+'">\
-						<div class="onoffswitch-inner"></div>\
-						<div class="onoffswitch-switch"></div>\
-					</label>\
-				</div>\
-				<!-- External -->\
-				<h3>External Only</h3>\
-				<div class="onoffswitch">\
-					<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="external'+self.id+'" checked>\
-					<label class="onoffswitch-label" for="external'+self.id+'">\
-						<div class="onoffswitch-inner"></div>\
-						<div class="onoffswitch-switch"></div>\
-					</label>\
-				</div>\
-				<!-- Commentaries -->\
-				<h3>Commentaries Only</h3>\
-				<div class="onoffswitch">\
-					<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="commentaries'+self.id+'" checked>\
-					<label class="onoffswitch-label" for="commentaries'+self.id+'">\
-						<div class="onoffswitch-inner"></div>\
-						<div class="onoffswitch-switch"></div>\
-					</label>\
-				</div>\
-			\
-			</div>'
-	}
-	
 	BodinUI.prototype.alignIds = function() {
 		var ids = {};
 		jQuery( '.align', self.elem ).each( function(){
@@ -186,8 +150,6 @@
 					else {
 						self.activateIds( ids );
 					}
-//					jQuery( '.external', self.elem ).toggleClass( 'active' );
-//					jQuery( ' .inline', self.elem ).toggleClass( 'active' );
 					break;
 			}
 			//------------------------------------------------------------
@@ -199,12 +161,22 @@
 		});
 	}
 	
+	/**
+	 * Deactivate/Unhighlight alignments
+	 *
+	 * @param { array } _ids
+	 */
 	BodinUI.prototype.deactivateIds = function( _ids ) {
 		for ( var id in _ids ) {
 			jQuery( '.align[ data-alignid = "' + id + '"]' ).removeClass( 'active' );
 		}
 	}
 	
+	/**
+	 * Activate/Highlight alignments
+	 *
+	 * @param { array } _ids
+	 */
 	BodinUI.prototype.activateIds = function( _ids ) {
 		for ( var id in _ids ) {
 			jQuery( '.align[ data-alignid = "' + id + '"]' ).addClass( 'active' );
@@ -245,6 +217,11 @@
 		console.log( siblings );
 	}
 	
+	/**
+	 * Trigger an alignment by passing 
+	 *
+	 * @param { dom } _elem
+	 */
 	BodinUI.prototype.alignTrigger = function( _elem ) {
 		var self = this;
 		var alignId = jQuery( _elem ).attr( 'data-alignId' );
@@ -361,8 +338,6 @@
 	
 	/**
 	 * Organize instances of bodin into columns
-	 *
-	 * @param {int } _count The number of instances.
 	 */
 	BodinUI.prototype.makeRoom = function() {
 		var self = this;
@@ -374,6 +349,9 @@
 		});
 	}
 	
+	/**
+	 * Fit sidecart instance into this bodin instance
+	 */
 	BodinUI.prototype.sidecartFit = function() {
 		var self = this;
 		var events = self.events['hide']+' '+self.events['show'];
@@ -495,10 +473,13 @@
 		self.navEvents();
 	}
 	
-	//------------------------------------------------------------
-	//  Start sidecart
-	//------------------------------------------------------------
-	BodinUI.prototype.buildSidecart = function( _id, _nav ) {
+	/**
+	* Build the sidecart.
+	*
+	* @param { string } _id
+	* @param { string } _text
+	*/
+	BodinUI.prototype.buildSidecart = function( _id, _text ) {
 		var self = this;
 		self.sidecart = jQuery( '#sidecart_'+_id ).sidecart({
 			side: 'top',
@@ -508,20 +489,10 @@
 					id: _id+'-view-1',
 					type: 'nav',
 					link: 'Chapters',
-					text: _nav,
+					text: _text,
 					init: function() {},
 					refresh: function() {}
 				}
-				/*
-				,{
-					id: id+'-view-2',
-					type: 'options',
-					link: '&clubs; Options',
-					text: self.optionsUI(),
-					init: function() { self.startOptionsUI() },
-					refresh: function() {}
-				}
-				*/
 			]
 		}).data( '#sidecart_'+_id );
 		self.sidecartFit();

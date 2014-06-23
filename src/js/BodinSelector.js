@@ -15,6 +15,9 @@ var BodinSelector = function( _bodinUI ) {
 	
 	/**
 	 * Get all of a token's active alignments
+	 *
+	 * @param { Dom } _target
+	 * @param { string } _name Class name
 	 */
 	this.allTargets = function( _target, _name ) {
 		var self = this;
@@ -32,6 +35,8 @@ var BodinSelector = function( _bodinUI ) {
 	
 	/**
 	 * Build the overlap menu.
+	 *
+	 * @param { Event } _e
 	 */
 	this.menuCheck = function( _e ) {
 		var self = this;
@@ -94,6 +99,11 @@ var BodinSelector = function( _bodinUI ) {
 		return true;
 	}
 	
+	/**
+	 * Build an overlap menu
+	 *
+	 * @param { Array } _items
+	 */
 	this.menuBuild = function( _items ) {
 		var self = this;
 		self.remove();
@@ -109,33 +119,62 @@ var BodinSelector = function( _bodinUI ) {
 	
 	/**
 	 * Build an overlap menu item.
+	 *
+	 * @param { Array } _items
+	 * @param { Array } _id
 	 */
 	this.menuItem = function( _items, _id ) {
 		switch ( _items[ _id ]['type'] ) {
-		//------------------------------------------------------------
-		//  Alignment link
-		//------------------------------------------------------------
-		case 'align':
-			return '<a href="" \
-						class="alignLink" \
-						data-alignId="'+ _id +'"> \
-						'+ _items[ _id ]['first_and_last'] +' \
-					</a>'.smoosh();
-					
-		//------------------------------------------------------------
-		//  External link
-		//------------------------------------------------------------
-		case 'external':
-			return '<a href="" \
-						class="external" \
-						data-alignuri="'+ _items[ _id ]['uri'] +'" \
-						data-motivation="'+ _items[ _id ]['motivation'] +'" \
-						data-alignId="'+ _id +'"> \
-						<span class="small">external -- </span>' + _items[ _id ]['uri'] + '\
-					</a>'.smoosh();
+			//------------------------------------------------------------
+			//  Alignment link
+			//------------------------------------------------------------
+			case 'align':
+				return this.alignLink( _items, _id );
+						
+			//------------------------------------------------------------
+			//  External link
+			//------------------------------------------------------------
+			case 'external':
+				return this.externalLink( _items, _id );
 		}
 	}
 	
+	/**
+	 * Build an alignment link.
+	 *
+	 * @param { Array } _items
+	 * @param { Array } _id
+	 */
+	this.alignLink = function( _items, _id ) {
+		return '<a href="" \
+					class="alignLink" \
+					data-alignId="'+ _id +'"> \
+					'+ _items[ _id ]['first_and_last'] +' \
+				</a>'.smoosh();
+	}
+	
+	/**
+	 * Build an external link.
+	 *
+	 * @param { Array } _items
+	 * @param { Array } _id
+	 */
+	this.externalLink = function( _items, _id ) {
+		return '<a href="" \
+					class="external" \
+					data-alignuri="'+ _items[ _id ]['uri'] +'" \
+					data-motivation="'+ _items[ _id ]['motivation'] +'" \
+					data-alignId="'+ _id +'"> \
+					<span class="small">external -- </span>' + _items[ _id ]['uri'] + '\
+				</a>'.smoosh();
+	}
+	
+	/**
+	 * Build an external link.
+	 *
+	 * @param { Int } _x
+	 * @param { Int } _y
+	 */
 	this.menuPos = function( _x, _y ) {
 		jQuery( '#bodinMenu' ).css({
 			top: _y,
@@ -143,10 +182,16 @@ var BodinSelector = function( _bodinUI ) {
 		});
 	}
 	
+	/**
+	 * Remove the menu
+	 */
 	this.remove = function() {
 		jQuery( '#bodinMenu' ).remove();
 	}
 	
+	/**
+	 * Start menu click events
+	 */
 	this.menuStart = function() {
 		var self = this;
 		self.bodinUI.externalClick( self.menu );
@@ -161,6 +206,11 @@ var BodinSelector = function( _bodinUI ) {
 		});
 	}
 	
+	/**
+	 * Get the start and end
+	 *
+	 * @param { String } _alignId The alignment id
+	 */
 	this.firstAndLast = function( _alignId ) {
 		var self = this;
 		var id = jQuery( self.elem ).attr('id');

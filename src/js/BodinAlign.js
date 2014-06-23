@@ -88,8 +88,8 @@ var BodinAlign = function() {
 	/**
 	 *	Extract target data from XML
 	 *
-	 *	@param { dom }
-	 *	@param { obj } JSON version
+	 *	@param { Dom } _target
+	 *	@param { Obj } _bodinTarget JSON version
 	 */
 	this.target = function( _target, _bodinTarget ) {
 		var targetUrn = this.getUrn( _target );
@@ -135,6 +135,12 @@ var BodinAlign = function() {
 		return { 'work': targetUrn, 'start': start, 'end': end, 'cite' : cite, 'uri': uri }
 	}
 	
+	/**
+	 *	Turn XML alignment into something more usable.
+	 *
+	 *	@param { XML } _data
+	 *	@param { String } _src
+	 */
 	this.json = function( _data, _src ) {
 		var self = this;
 		//------------------------------------------------------------
@@ -243,7 +249,7 @@ var BodinAlign = function() {
 	 *	Find ids associated with an xml source
 	 *
 	 *	@param { string } _src The path to the alignment xml
-	 *	return { obj }
+	 *	return { obj } or { undefined }
 	 */
 	this.xmlToIds = function( _src ) {
 		for ( var i in this.config ) {
@@ -257,11 +263,12 @@ var BodinAlign = function() {
 	/**
 	 *	Markup html with tags for translation alignment UI display
 	 *
-	 *	@param { string } _bodinId The id of the bodin instance
-	 *	@param { int } _srcId The id of the alignment source file
-	 *	@param { int } _alignId The id of the alignment
-	 *	@param { obj } _obj 
-	 *	@param { obj } _body object with either uris:[] or text:string
+	 *	@param { String } _bodinId The id of the bodin instance
+	 *	@param { Int } _srcId The id of the alignment source file
+	 *	@param { Int } _alignId The id of the alignment
+	 *	@param { Obj } _obj 
+	 *	@param { String } _motivation 
+	 *	@param { Obj } _body Object with either uris:[] or text:string
 	 */
 	this.mark = function( _bodinId, _srcId, _alignId, _obj, _motivation, _body ) {
 		//------------------------------------------------------------
@@ -488,7 +495,7 @@ var BodinAlign = function() {
 	/**
 	 * Get the CTS urn (without passage) from a uri 
 	 * 
-	 * @param { string } the string containing the uri
+	 * @param { string } _str The string containing the uri
 	 */
 	 this.getUrn = function( _str ) {
 		var stripped = '';
