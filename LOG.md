@@ -72,3 +72,63 @@ Back to Javascript.
 # 2014-06-19
 
 Back in the saddle.
+
+# 2014-06-23
+
+jQuery( '.align-start[ data-alignId="2-33" ]' )
+jQuery( '.align[ data-alignId="2-33" ]:first' )
+jQuery( '.align[ data-alignId="2-33" ]:first-of-type' )
+
+jQuery( '.align-end[ data-alignId="2-33" ]' )
+jQuery( '.align-end[ data-alignId="2-33" ]:last' )
+jQuery( '.align-end[ data-alignId="2-33" ]:last-of-type' )
+
+jQuery( '.align-start[ data-alignId="2-35" ]' )
+jQuery( '.align-end[ data-alignId="2-35" ]' )
+
+	<Annotation 
+		xmlns="http://www.w3.org/ns/oa#" 
+		xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+		rdf:about="http://data.perseus.org/perseids/annotations/998/1394/1397/133/4"
+	>
+		<hasTarget 
+			xmlns="http://www.w3.org/ns/oa#" 
+			xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+			rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1394/urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1@REPVBLIQVE[1]-souueraine[1]"
+		/>
+		
+		<hasBody 
+			xmlns="http://www.w3.org/ns/oa#" 
+			xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+			rdf:resource="http://sosol.perseids.org/sosol/cts/getpassage/1396/urn:cts:pdlpsci:bodin.livrep.perseus-eng1:1.1@A[1]-soueraigntie[1]"
+		/>
+		
+		<motivatedBy 
+			xmlns="http://www.w3.org/ns/oa#" 
+			xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+			rdf:resource="oa:linking_translation"
+		/>
+		
+		<annotatedBy 
+			xmlns="http://www.w3.org/ns/oa#">
+			<Person 
+				xmlns="http://xmlns.com/foaf/0.1/" 
+				xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+				rdf:about="http://data.perseus.org/sosol/users/IDE"
+			/>
+		</annotatedBy>
+		
+		<serializedBy 
+			xmlns="http://www.w3.org/ns/oa#">
+			<SoftwareAgent 
+				xmlns="http://www.w3.org/ns/prov#" 
+				rdf:about="http://perseids.org/perseids-annotator#0.0.1"
+			/>
+		</serializedBy>
+		
+	    <annotatedAt 
+			xmlns="http://www.w3.org/ns/oa#">
+				2014-04-15T17:33:20+00:00
+		</annotatedAt>
+		
+	</Annotation>

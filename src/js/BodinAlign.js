@@ -256,6 +256,7 @@ var BodinAlign = function() {
 	
 	/**
 	 *	Markup html with tags for translation alignment UI display
+	 *
 	 *	@param { string } _bodinId The id of the bodin instance
 	 *	@param { int } _srcId The id of the alignment source file
 	 *	@param { int } _alignId The id of the alignment
@@ -291,55 +292,57 @@ var BodinAlign = function() {
 		//------------------------------------------------------------
 		//	Identify each word in the passage with the alignment id 
 		//------------------------------------------------------------
-		var tokens = jQuery(id + " .token[data-cite='" + _obj[0]['cite'] + "']");
-		if ( tokens.length > 0) {
-			for ( var j=0; j<_obj.length; j++ ) {
-				//------------------------------------------------------------
-				//  Get start and end token
-				//------------------------------------------------------------
-				var start = _obj[j]['start'];
-				var end = _obj[j]['end'];
-				var jsonId = _obj[j]['id'];
-				//------------------------------------------------------------
-				//  Get the sibling tokens
-				//------------------------------------------------------------
-				var sibs = tokens;
-				var started = false;
-				for ( var i=0; i<sibs.length; i++ ) {
-					var sib = jQuery( sibs[i] );
-					var start_class = '';
-					if ( ! started ) { 
-						if ( sib.attr('data-ref') == start ) {
-						   start_class = annotation_type + '-start';
-						   started = true;
-						} 
-						else {
-							continue;
-						}
+		var cite = _obj[0]['cite'];
+		var tokens = jQuery(id + " .token[data-cite='" + cite + "']");
+		if ( tokens.length == 0 ) {
+			throw new Error({'message': "token with data-cite='" + cite + "'" });
+		}
+		for ( var j=0; j<_obj.length; j++ ) {
+			//------------------------------------------------------------
+			//  Get start and end token
+			//------------------------------------------------------------
+			var start = _obj[j]['start'];
+			var end = _obj[j]['end'];
+			var jsonId = _obj[j]['id'];
+			//------------------------------------------------------------
+			//  Get the sibling tokens
+			//------------------------------------------------------------
+			var sibs = tokens;
+			var started = false;
+			for ( var i=0; i<sibs.length; i++ ) {
+				var sib = jQuery( sibs[i] );
+				var start_class = '';
+				if ( ! started ) { 
+					if ( sib.attr('data-ref') == start ) {
+					   start_class = annotation_type + '-start';
+					   started = true;
+					} 
+					else {
+						continue;
 					}
-					var end_class = '';
-					//------------------------------------------------------------
-					// Add a class to indicate its the end of the alignment
-					//------------------------------------------------------------
-					if ( sib.attr('data-ref') == end ) {
-						end_class = annotation_type + '-end';
+				}
+				var end_class = '';
+				//------------------------------------------------------------
+				// Add a class to indicate its the end of the alignment
+				//------------------------------------------------------------
+				if ( sib.attr('data-ref') == end ) {
+					end_class = annotation_type + '-end';
+				}
+				//------------------------------------------------------
+				// Add a wrapping element on the token to hold alignment
+				// info and make it an inner element so that the original 
+				// token element remains the outermost element
+				//------------------------------------------------------
+				var classes = [ annotation_type, end_class, start_class, color_class ].join(' ');
+				var elem = this.alignSpan( _srcId+'-'+_alignId, classes, _body, _motivation);
+				sib.wrap( elem.smoosh().noSpaceHtml() );
+				
+				if ( sib.attr('data-ref') == end ) {
+					if ( annotation_type == this.annotation_classes.inline ) {
+						var elem = this.commentSpan( _srcId+'-'+_alignId, classes, _motivation, _body );
+						sib.after( elem.smoosh().noSpaceHtml() );
 					}
-					//------------------------------------------------------
-					// Add a wrapping element on the token to hold alignment
-					// info and make it an inner element so that the original 
-					// token element remains the outermost element
-					//------------------------------------------------------
-					var classes = [ annotation_type, end_class, start_class, color_class ].join(' ');
-					var elem = this.alignSpan( _srcId+'-'+_alignId, classes, _body, _motivation);
-					sib.wrap( elem.smoosh().noSpaceHtml() );
-					
-					if ( sib.attr('data-ref') == end ) {
-						if ( annotation_type == this.annotation_classes.inline ) {
-							var elem = this.commentSpan( _srcId+'-'+_alignId, classes, _motivation, _body );
-							sib.after( elem.smoosh().noSpaceHtml() );
-						}
-						break;
-					}
+					break;
 				}
 			}
 		}
