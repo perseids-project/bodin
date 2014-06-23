@@ -1,11 +1,11 @@
 <html>
 	<head>
 		<!-- Load CSS -->
-		<link href="../../src/css/onoffswitch.css" rel="stylesheet" type="text/css" />
-		<link href="../../third_party/sidecart/src/css/sidecart.css" rel="stylesheet" type="text/css" />
-		<link href="../../third_party/switch_grid/src/css/toggle_switch.css" rel="stylesheet" type="text/css" />
-		<link href="../../src/css/bodin.css" rel="stylesheet" type="text/css" />
-		<link href="../../src/css/popup.css" rel="stylesheet" type="text/css" />
+		<link href="src/css/onoffswitch.css" rel="stylesheet" type="text/css" />
+		<link href="third_party/sidecart/src/css/sidecart.css" rel="stylesheet" type="text/css" />
+		<link href="third_party/switch_grid/src/css/toggle_switch.css" rel="stylesheet" type="text/css" />
+		<link href="src/css/bodin.css" rel="stylesheet" type="text/css" />
+		<link href="src/css/popup.css" rel="stylesheet" type="text/css" />
 		<!-- End Load CSS -->
 		<title>bodin</title>
 	</head>
@@ -15,9 +15,9 @@
 				<p>Bodin is loading...</p>
 			</div>
 		</div>
-		<div class="bodin" src="tempHtml/latin.html" id="latin"></div>
-		<div class="bodin" src="tempHtml/english.html" id="english"></div>
-		<div class="bodin" src="tempHtml/french.html" id="french"></div>
+		<div class="bodin" src="examples/bodin/tempHtml/latin.html" id="latin"></div>
+		<div class="bodin" src="examples/bodin/tempHtml/english.html" id="english"></div>
+		<div class="bodin" src="examples/bodin/tempHtml/french.html" id="french"></div>
 		<div class="sidecart" id="master_options"></div>
 		<div id="control_view">
 			<a id="clearAll" href="">Clear All Highlights</a>
@@ -29,20 +29,21 @@
 	
 	<!-- Load Javascript -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script type="text/javascript" src="../../third_party/jslib/src/js/jQueryPlus.js"></script>
-	<script type="text/javascript" src="../../third_party/jslib/src/js/StringExt.js"></script>
-	<script type="text/javascript" src="../../third_party/jslib/src/js/ObjectExt.js"></script>
-	<script type="text/javascript" src="../../third_party/jslib/src/js/ArrayExt.js"></script>
-	<script type="text/javascript" src="../../third_party/jslib/src/js/Styler.js"></script>
-	<script type="text/javascript" src="../../third_party/jslib/src/js/Palette.js"></script>
-	<script type="text/javascript" src="../../third_party/jslib/src/js/Culuh.js"></script>
-	<script type="text/javascript" src="../../third_party/sidecart/src/js/sidecart.js"></script>
-	<script type="text/javascript" src="../../src/js/Bodin.js"></script>
-	<script type="text/javascript" src="../../src/js/BodinAlign.js"></script>
-	<script type="text/javascript" src="../../src/js/BodinExternal.js"></script>
-	<script type="text/javascript" src="../../src/js/BodinUI.js"></script>
-	<script type="text/javascript" src="../../src/js/TeiToBodin.js"></script>
-	<script type="text/javascript" src="../../src/js/Tooltipper.js"></script>
+	<script type="text/javascript" src="third_party/jslib/src/js/jQueryPlus.js"></script>
+	<script type="text/javascript" src="third_party/jslib/src/js/StringExt.js"></script>
+	<script type="text/javascript" src="third_party/jslib/src/js/ObjectExt.js"></script>
+	<script type="text/javascript" src="third_party/jslib/src/js/ArrayExt.js"></script>
+	<script type="text/javascript" src="third_party/jslib/src/js/Styler.js"></script>
+	<script type="text/javascript" src="third_party/jslib/src/js/Palette.js"></script>
+	<script type="text/javascript" src="third_party/jslib/src/js/Culuh.js"></script>
+	<script type="text/javascript" src="third_party/sidecart/src/js/sidecart.js"></script>
+	<script type="text/javascript" src="src/js/Bodin.js"></script>
+	<script type="text/javascript" src="src/js/BodinAlign.js"></script>
+	<script type="text/javascript" src="src/js/BodinExternal.js"></script>
+	<script type="text/javascript" src="src/js/BodinUI.js"></script>
+	<script type="text/javascript" src="src/js/BodinLink.js"></script>
+	<script type="text/javascript" src="src/js/TeiToBodin.js"></script>
+	<script type="text/javascript" src="src/js/Tooltipper.js"></script>
 	<script type="text/javascript">
 	
 		jQuery( document ).ready( function() {
@@ -83,7 +84,7 @@
 			// initialize the external_annotation div 
 			//------------------------------------------------------------
 			jQuery( '#external_annotation').BodinExternal({
-				xslt_path: "../xslt/cts_annotate.xsl",
+				xslt_path: "examples/xslt/cts_annotate.xsl",
 				tokenizer: "http://sosol.perseids.org/exist/rest/db/xq/tokenize.xquery?merging=false&splitting=false&uri="
 			}).data('#external_annotation');
 			jQuery( '#external_annotation' ).click( function() { jQuery(this).toggle() } );
@@ -93,15 +94,15 @@
 			jQuery( window ).on( 'Bodin-LOADED', function() {
 				bodinAlign.start([
 					{ 
-						src: 'tempXml/eng_lat_alignment.xml', 
+						src: 'examples/bodin/tempXml/eng_lat_alignment.xml', 
 						ids: { body: 'english', target: 'latin' }
 					},
 					{ 
-						src: 'tempXml/eng_fre_alignment.xml', 
+						src: 'examples/bodin/tempXml/eng_fre_alignment.xml', 
 						ids: { body: 'english', target: 'french' }
 					},
 					{ 
-						src: 'tempXml/commentary.xml', 
+						src: 'examples/bodin/tempXml/commentary.xml', 
 						ids: { body: 'french', target: 'english' }
 					}
 				]);
@@ -130,6 +131,15 @@
 						}).data( '#'+id );
 					}
 				});
+				//------------------------------------------------------------
+				//  Add the links
+				//------------------------------------------------------------
+				/*
+				links = new BodinLink();
+				links.add( "pleiades", "french", "Marseils[1]", "http://pleiades.stoa.org/places/148127" );
+				links.add( "pleiades", "english", "Marseils[1]", "http://pleiades.stoa.org/places/148127" );
+				links.add( "oxford", "english", "Cicero[1]", "http://www.oxfordreference.com/view/10.1093/acref/9780199545568.001.0001/acref-9780199545568-e-6597?p=emailAaG3LaJdgjwO2&d=/10.1093/acref/9780199545568.001.0001/acref-9780199545568-e-6597" );
+				*/
 				//------------------------------------------------------------
 				//  Hide the load screen
 				//------------------------------------------------------------

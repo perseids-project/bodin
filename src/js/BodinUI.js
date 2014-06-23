@@ -423,8 +423,10 @@
 		for ( var lang in disp ) {
 			var to_join = []
 			for ( var i in disp[ lang ]['start'] ) {
-				to_join.push( disp[ lang ]['start'][i] );
-				to_join.push( disp[ lang ]['end'][i] );
+				if ( 'start' in disp[ lang ] && 'end' in disp[ lang ] ) {
+					to_join.push( disp[ lang ]['start'][i] );
+					to_join.push( disp[ lang ]['end'][i] );
+				}
 			}
 			html += '<span class="small">'+lang+' -- </span>'+ext.multijoin( to_join, [' ... ',' &nbsp; '] )+'</br>';
 		}
