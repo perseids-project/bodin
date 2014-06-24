@@ -3,20 +3,21 @@
  */
 var BodinAlign = function() {
 	//------------------------------------------------------------
-	//	  This class is a singleton.	Ensure only one instance exists.
+	//  This class is a singleton.
+	//  Ensure only one instance exists.
 	//------------------------------------------------------------
 	if ( BodinAlign.prototype._singleton ) {
 		return BodinAlign.prototype._singleton;
 	}
 	BodinAlign.prototype._singleton = this;
 	//------------------------------------------------------------
-	//	Properties
+	//  Properties
 	//------------------------------------------------------------
 	this.src = {};
 	this.alignments = {};
 	this.config = null;
 	//------------------------------------------------------------
-	//	Ignore node lookup... see _mark()
+	//  Ignore node lookup... see _mark()
 	//------------------------------------------------------------
 	this.palette = new Palette( 'secondary' );
 	this.events = {
@@ -28,6 +29,10 @@ var BodinAlign = function() {
 		inline: 'inline'
 	}
 	this.isolated = false;
+	//------------------------------------------------------------
+	//  Error storage
+	//------------------------------------------------------------
+	this.errors = '';
 	
 	/**
 	 *	  Start it up!
@@ -127,11 +132,74 @@ var BodinAlign = function() {
 			//------------------------------------------------------------
 			start = index[0];
 			end = index[1];
+			//------------------------------------------------------------
+			// It's possible to have a single word as an alignment.
+			// So in this case the start is the end.
+			//------------------------------------------------------------
+			end = ( end != undefined ) ? end : start;
 		}
+		//------------------------------------------------------------
+		//  Make sure target is complete
+		//------------------------------------------------------------
+		try {
+			this.completeCheck( start, end, targetUrn, _target );
+		}
+		catch( _e ) {
+			this.addError( _e );
+		}
+		//------------------------------------------------------------
+		//  Make sure the token is valide
+		//------------------------------------------------------------
+		this.alignCheck( start, end );
 		//------------------------------------------------------------
 		//	Return target data JSON style
 		//------------------------------------------------------------
-		return { 'work': targetUrn, 'start': start, 'end': end, 'cite' : cite, 'uri': uri }
+		var node = { 'work': targetUrn, 'start': start, 'end': end, 'cite' : cite, 'uri': uri }
+		return node
+	}
+	
+	/**
+	 *	Make sure token reference exists.
+	 *
+	 * @param { String } _target
+	 */
+	this.tokenCheck = function( _target ) {
+		var token = jQuery( '.token[data-ref="' + _target + '"]' );
+		if ( token.length == 0 ) {
+			throw 'token ' + _target + ' not found';
+		}
+	}
+	
+	/**
+	 *	Make sure alignment edge tokens exist.
+	 *
+	 * @param { String } _start
+	 * @param { String } _end
+	 */
+	this.alignCheck = function( _start, _end ) {
+		var check = [ _start, _end ];
+		for ( var i=0; i<check.lenth; i++ ) {
+			this.tokenCheck( check[i] );
+		}
+	}
+	
+	/**
+	 *	It start is undefined then end must be undefined too
+	 */
+	this.completeCheck = function( _start, _end, _urn, _target ) {
+		if ( _start == undefined && _end != undefined ) {
+			throw 'Alignment start is undefined, urn = ' + _urn + ' end = ' + _end;
+		}
+		if ( _end == undefined && _start != undefined ) {
+			throw 'Alignment end is undefined, urn = ' + _urn + ' start = ' + _start;
+		}
+	}
+	
+	/**
+	 *	Add an error message to error output.
+	 */
+	this.addError = function( _error ) {
+		this.errors += _error + "\n";
 	}
 	
 	/**
@@ -152,6 +220,7 @@ var BodinAlign = function() {
 		var body_workid = $("#" + ids['body'] + " .work").attr('id');
 		var target_workid = $("#" + ids['target'] + " .work").attr('id');
 		var json = [];
+		
 		jQuery( _data ).find('Annotation').each( function(){
 			var annot = this;
 			//------------------------------------------------------------
