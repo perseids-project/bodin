@@ -92,10 +92,14 @@ var BodinAlign = function() {
 	/**
 	 *	Extract target data from XML
 	 *
+	 *  @param { String } _id BodinUI ID
 	 *	@param { Dom } _target
 	 *	@param { Obj } _bodinTarget JSON version
 	 */
-	this.target = function( _target, _bodinTarget ) {
+	this.target = function( _id, _target, _bodinTarget ) {
+		if ( _target == undefined ) {
+			throw 'Error target is undefined';
+		}
 		var targetUrn = this.getUrn( _target );
 		var uri = ( targetUrn == _bodinTarget ) ?  null :  _target;
 		var colon = _target.lastIndexOf( ':' ) + 1;
@@ -110,17 +114,10 @@ var BodinAlign = function() {
 		//------------------------------------------------------------
 		var at = _target.indexOf('@');
 		if ( at == -1 ) {
-			//------------------------------------------------------------
-			//	If the target is for one of the bodin texts
-			//	we don't want to process alignments without subreferences
-			//------------------------------------------------------------
-			if ( targetUrn == _bodinTarget ) {
-				return undefined;
-			} 
 			cite = _target.substr( colon );
 		} 
 		else {
-			cite = _target.substr( colon, at-colon );
+			cite = _target.substr( colon, at - colon );
 			//------------------------------------------------------------
 			//	Get the word and occurence
 			//------------------------------------------------------------
@@ -148,14 +145,51 @@ var BodinAlign = function() {
 			this.addError( _e );
 		}
 		//------------------------------------------------------------
-		//  Make sure the token is valide
-		//------------------------------------------------------------
-		this.alignCheck( start, end );
-		//------------------------------------------------------------
 		//	Return target data JSON style
 		//------------------------------------------------------------
-		var node = { 'work': targetUrn, 'start': start, 'end': end, 'cite' : cite, 'uri': uri }
-		return node
+		var tokens = undefined;
+		try {
+			tokens = this.tokenGroup( _id, start, end );
+		}
+		catch( _e ) {
+			this.addError( _e );
+			return undefined;
+		}
+		//------------------------------------------------------------
+		//  Create the target
+		//------------------------------------------------------------
+		var target = { 
+			'bodin_id': _id,
+			'work': targetUrn, 
+			'tokens': tokens,
+			'cite' : cite, 
+			'uri': uri 
+		}
+		return target;
+	}
+	
+	/**
+	 *	Get tokens between start and end tokens data-ref
+	 *
+	 * @param { String } _id
+	 * @param { String } _start
+	 * @param { String } _end
+	 *
+	 * bodinAlign.tokensBetween( 'french', 'A[1]', 'soueraigntie[1]' );
+	 */
+	this.tokenGroup = function( _id, _start, _end ) {
+		var tokens = [];
+		var start = this.token( _id, _start );
+		var end = this.token( _id, _end );
+		tokens.push( _start );
+		start.nextUntil( end, '.token' ).each( function(){
+			var id = jQuery( this ).attr('data-ref');
+			if ( id != undefined ) {
+				tokens.push( id );
+			}
+		});
+		tokens.push( _end );
+		return tokens;
 	}
 	
 	/**
@@ -163,24 +197,15 @@ var BodinAlign = function() {
 	 *
 	 * @param { String } _target
 	 */
-	this.tokenCheck = function( _target ) {
-		var token = jQuery( '.token[data-ref="' + _target + '"]' );
+	this.token = function( _id, _target ) {
+		var token = jQuery( '.bodin#'+_id+' .token[data-ref="'+_target+'"]' );
 		if ( token.length == 0 ) {
-			throw 'token ' + _target + ' not found';
+			throw 'Token ('+_target+') not found in '+_id;
 		}
-	}
-	
-	/**
-	 *	Make sure alignment edge tokens exist.
-	 *
-	 * @param { String } _start
-	 * @param { String } _end
-	 */
-	this.alignCheck = function( _start, _end ) {
-		var check = [ _start, _end ];
-		for ( var i=0; i<check.lenth; i++ ) {
-			this.tokenCheck( check[i] );
+		if ( token.length > 1 ) {
+			throw 'Something is wrong. Token ('+_target+') is not unique in '+_id;
 		}
+		return token;
 	}
 	
 	/**
@@ -188,10 +213,10 @@ var BodinAlign = function() {
 	 */
 	this.completeCheck = function( _start, _end, _urn, _target ) {
 		if ( _start == undefined && _end != undefined ) {
-			throw 'Alignment start is undefined, urn = ' + _urn + ' end = ' + _end;
+			throw 'Alignment Error, start = undefined, urn = ' + _urn + ' end = ' + _end;
 		}
 		if ( _end == undefined && _start != undefined ) {
-			throw 'Alignment end is undefined, urn = ' + _urn + ' start = ' + _start;
+			throw 'Alignment Error, end = undefined, urn = ' + _urn + ' start = ' + _start;
 		}
 	}
 	
@@ -217,63 +242,61 @@ var BodinAlign = function() {
 		//------------------------------------------------------------
 		// Get the body work text identifier
 		//------------------------------------------------------------
+		var bodinBody = ids['body'];
+		var bodinTarg = ids['target'];
+		
 		var body_workid = $("#" + ids['body'] + " .work").attr('id');
 		var target_workid = $("#" + ids['target'] + " .work").attr('id');
-		var json = [];
 		
+		var json = [];
 		jQuery( _data ).find('Annotation').each( function(){
-			var annot = this;
 			//------------------------------------------------------------
 			//	Get the target
 			//------------------------------------------------------------
-			var targets = [];
-			jQuery( annot ).find('hasTarget').each(
-				function() {
-					var target = this;
-					target = jQuery( target ).attr('rdf:resource');
-					target = self.target( target, target_workid );
-					if ( target ) {
-						targets.push( target );
-					}
-				}
-			);
+			var targets = self.getTargets( 'hasTarget', this, bodinTarg, target_workid );
 			if ( targets.length == 0 ) {
 				return true; // a continue in jQuery().each() land
 			}
+			
 			//------------------------------------------------------------
 			//  Get the body
 			//------------------------------------------------------------
-			var bodies = [];
-			var bodyText = null;
-			jQuery( annot ).find( 'hasBody' ).each(
-				function() {
-					var body = this;
-					var body_uri = jQuery( body ).attr( 'rdf:resource' );
-					if ( body_uri ) {
-						body = self.target( body_uri, body_workid );
-						if ( body ) {
-							bodies.push( body );
-						}
-					}
-					else {
-						var chars = jQuery( body ).find( 'chars' );
-						if ( chars.length > 0 ) {
-							bodyText = jQuery( chars[0] ).html();
-						}
-					}
-				}
-			);
-			if ( bodies.length == 0 && bodyText == null) {
+			var bodies = self.getTargets( 'hasBody', this, bodinBody, body_workid );
+			if ( bodies.length == 0 ) {
 				return true; // a continue in jQuery().each() land
 			}
+			
 			//------------------------------------------------------------
 			// Get the motivation
 			//------------------------------------------------------------
-			var motivation = jQuery( annot ).find( 'motivatedBy' );
-			motivation = jQuery( motivation[0] ).attr( 'rdf:resource' );
-			json.push({ id: this.jsonId, target: targets, body: bodies, bodyText: bodyText, motivation: motivation });
+			json.push({ 
+				target: targets, 
+				body: bodies, 
+				motivation: self.getMotivation( this ) 
+			});
 		});
 		return json;
+	}
+	
+	this.getMotivation = function( _annot ) {
+		var motivation = jQuery( _annot ).find( 'motivatedBy' );
+		return jQuery( motivation[0] ).attr( 'rdf:resource' );
+	}
+	
+	this.getTargets = function( _has, _annot, _bodin, _workid ) {
+		var self = this;
+		var targets = []
+		jQuery( _annot ).find( _has ).each(
+			function() {
+				var target = this;
+				target = jQuery( target ).attr('rdf:resource');
+				target = self.target( _bodin, target, _workid );
+				if ( target ) {
+					targets.push( target );
+				}
+			}
+		);
+		return targets;
 	}
 	
 	/**
@@ -288,29 +311,43 @@ var BodinAlign = function() {
 			srcId++;
 			var ids = this.xmlToIds( src );
 			if ( ids == undefined ) {
-				throw new Error({'message': 'No ids specified for ' + src });
+				throw 'No ids specified for ' + src;
 				continue;
 			}
 			//------------------------------------------------------------
 			//  Get the alignment data into the right format and mark
 			//  the Bodin HTML.
 			//------------------------------------------------------------
-			var id = 0;
+			var alignId = 0;
 			for ( var j in this.alignments[src]['json'] ) {
-				id++;
+				alignId++;
 				var obj = this.alignments[src]['json'][j];
-				var uris = [];
-				for ( var k=0; k<obj.body.length; k++ ) {
-					if ( obj.body[k].uri) {
-						uris.push( obj.body[k].uri );
-					}
-				}
-				if ( uris.length == 0 && obj.bodyText == null ) {
-					this.mark( ids['body'], srcId, id, obj['body'], null, null );
-				}
-				this.mark( ids['target'], srcId, id, obj['target'], obj['motivation'], { uris: uris, text: obj.bodyText, src: src });
+				this.mark( srcId, alignId, obj );
 			}
 		}
+	}
+	
+	this.mark = function( _srcId, _alignId, _obj ) {
+		//------------------------------------------------------------
+		//  Get a color class
+		//------------------------------------------------------------
+		var color = this.palette.colorClass( _alignId );
+		var type = this.annotationType();
+		var classes = [ color, type ];
+		for ( var i=0; i<_obj['body'].length; i++ ) {
+			var tokens = _obj['body'][i]['tokens'];
+			var count = tokens.length;
+			for ( var j=0; j<count; j++ ) {
+				if ( j == 0 ) {
+					classes.push( 'align-start' );
+				}
+				if ( j == count ) {
+					classes.push( 'align-end' );
+				}
+			}
+		}
+		console.log( _alignId );
+		console.log( _obj );
 	}
 	
 	/**
@@ -329,102 +366,20 @@ var BodinAlign = function() {
 	}
 	
 	/**
-	 *	Markup html with tags for translation alignment UI display
+	 *	Get the annotation type
 	 *
-	 *	@param { String } _bodinId The id of the bodin instance
-	 *	@param { Int } _srcId The id of the alignment source file
-	 *	@param { Int } _alignId The id of the alignment
-	 *	@param { Obj } _obj 
-	 *	@param { String } _motivation 
-	 *	@param { Obj } _body Object with either uris:[] or text:string
+	 * @param { Obj } _body
 	 */
-	this.mark = function( _bodinId, _srcId, _alignId, _obj, _motivation, _body ) {
-		//------------------------------------------------------------
-		//	Get the text selector
-		//------------------------------------------------------------
-		var id = '#'+_bodinId;
-		//------------------------------------------------------------
-		//	Get the color class for this alignment
-		// 
-		//  Adding the srcId will offset the color of 
-		//  overlapping alignments so there'll be less of the same
-		//  color on top of one another.
-		//------------------------------------------------------------
-		var color_class = this.palette.colorClass( _srcId+_alignId );
-		//------------------------------------------------------------
-		//  Get the annotation type
-		//------------------------------------------------------------
-		var annotation_type = this.annotation_classes.align;
-		if ( _body != null ) {
-			if ( _body.uris != null && _body.uris.length > 0 ) {
-				annotation_type = this.annotation_classes.external;
+	this.annotationType = function( _body ) {
+		if ( _body != undefined ) {
+			if ( _body.uris != undefined && _body.uris.length > 0 ) {
+				return this.annotation_classes.external;
 			} 
-			else if ( _body.text != null ) {
-				annotation_type = this.annotation_classes.inline;
-				color_class = '';
+			else if ( _body.text != undefined ) {
+				return this.annotation_classes.inline;
 			} 
 		}
-		//------------------------------------------------------------
-		//	Identify each word in the passage with the alignment id 
-		//------------------------------------------------------------
-		var cite = _obj[0]['cite'];
-		var tokens = jQuery( id + " .token[data-cite='" + cite + "']");
-		if ( tokens.length == 0 ) {
-			throw new Error({'message': "token with data-cite='" + cite + "'" });
-		}
-		for ( var j=0; j<_obj.length; j++ ) {
-			//------------------------------------------------------------
-			//  Get start and end token
-			//------------------------------------------------------------
-			var start = _obj[j]['start'];
-			var end = _obj[j]['end'];
-			var jsonId = _obj[j]['id'];
-			//------------------------------------------------------------
-			//  Get the sibling tokens
-			//------------------------------------------------------------
-			var sibs = tokens;
-			var started = false;
-			for ( var i=0; i<sibs.length; i++ ) {
-				var sib = jQuery( sibs[i] );
-				var start_class = '';
-				if ( ! started ) { 
-					if ( sib.attr('data-ref') == start ) {
-					   start_class = annotation_type + '-start';
-					   started = true;
-					} 
-					else {
-						continue;
-					}
-				}
-				var end_class = '';
-				//------------------------------------------------------------
-				// Add a class to indicate its the end of the alignment
-				//------------------------------------------------------------
-				if ( sib.attr('data-ref') == end ) {
-					end_class = annotation_type + '-end';
-				}
-				//------------------------------------------------------
-				// Add a wrapping element on the token to hold alignment
-				// info and make it an inner element so that the original 
-				// token element remains the outermost element
-				//------------------------------------------------------
-				var classes = [ annotation_type, end_class, start_class, color_class ].join(' ');
-				var elem = this.alignSpan( _srcId+'-'+_alignId, classes, _body, _motivation);
-				sib.wrap( elem.smoosh().noSpaceHtml() );
-				
-				if ( sib.attr('data-ref') == end ) {
-					if ( annotation_type == this.annotation_classes.inline ) {
-						var elem = this.commentSpan( _srcId+'-'+_alignId, classes, _motivation, _body );
-						sib.after( elem.smoosh().noSpaceHtml() );
-					}
-					break;
-				}
-			}
-		}
-		//------------------------------------------------------
-		// we should probably handle the case where the matching
-		// alignment couldn't be found and remove the highlights
-		//------------------------------------------------------
+		return this.annotation_classes.align;
 	}
 	
 	this.commentSpan = function( _alignId, _classes, _motivation, _body ) {
@@ -437,13 +392,12 @@ var BodinAlign = function() {
 			>C</span>';
 	}
 	
-	this.alignSpan = function( _alignId, _classes, _body, _motivation ) {
-		var uris = ( _body != null && _body.uris != null ) ? _body.uris.join(' ') : '';
+	this.alignSpan = function( _alignId, _classes, _motivation ) {
+		_classes = _classes.join(' ');
 		return '\
 			 <span \
 				 class="' + _classes + '" \
 				 data-motivation="' + _motivation + '" \
-				 data-alignUri="' + uris + '" \
 				 data-alignId="'+ _alignId + '" \
 			 >\
 			 </span>';
