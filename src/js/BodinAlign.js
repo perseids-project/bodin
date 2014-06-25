@@ -174,7 +174,7 @@ var BodinAlign = function() {
 	 * @param { String } _start
 	 * @param { String } _end
 	 *
-	 * bodinAlign.tokensBetween( 'french', 'A[1]', 'soueraigntie[1]' );
+	 * bodinAlign.tokenGroup( 'french', 'A[1]', 'soueraigntie[1]' );
 	 */
 	this.tokenGroup = function( _id, _start, _end ) {
 		var tokens = [];
@@ -358,7 +358,7 @@ var BodinAlign = function() {
 					classes.push( 'align-end' );
 				}
 				var elem = this.alignSpan( _srcId+'-'+_alignId, classes, _obj['motivation'] );
-				jQuery( tokens[j] ).wrap( elem );
+				jQuery( tokens[j] ).wrap( elem.smoosh().noSpaceHtml() );
 			}
 		}
 	}
