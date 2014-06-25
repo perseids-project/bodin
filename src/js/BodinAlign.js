@@ -158,14 +158,13 @@ var BodinAlign = function() {
 		//------------------------------------------------------------
 		//  Create the target
 		//------------------------------------------------------------
-		var target = { 
+		return { 
 			'bodin_id': _id,
 			'work': targetUrn, 
 			'tokens': tokens,
 			'cite' : cite, 
 			'uri': uri 
 		}
-		return target;
 	}
 	
 	/**
@@ -181,14 +180,14 @@ var BodinAlign = function() {
 		var tokens = [];
 		var start = this.token( _id, _start );
 		var end = this.token( _id, _end );
-		tokens.push( _start );
+		tokens.push( start.get(0) );
 		start.nextUntil( end, '.token' ).each( function(){
 			var id = jQuery( this ).attr('data-ref');
 			if ( id != undefined ) {
-				tokens.push( id );
+				tokens.push( this );
 			}
 		});
-		tokens.push( _end );
+		tokens.push( end.get(0) );
 		return tokens;
 	}
 	
@@ -322,32 +321,46 @@ var BodinAlign = function() {
 			for ( var j in this.alignments[src]['json'] ) {
 				alignId++;
 				var obj = this.alignments[src]['json'][j];
-				this.mark( srcId, alignId, obj );
+				this.align( srcId, alignId, obj );
 			}
 		}
 	}
 	
-	this.mark = function( _srcId, _alignId, _obj ) {
+	this.align = function( _srcId, _alignId, _obj ) {
 		//------------------------------------------------------------
 		//  Get a color class
 		//------------------------------------------------------------
 		var color = this.palette.colorClass( _alignId );
 		var type = this.annotationType();
-		var classes = [ color, type ];
-		for ( var i=0; i<_obj['body'].length; i++ ) {
-			var tokens = _obj['body'][i]['tokens'];
+		//------------------------------------------------------------
+		//  Mark the body and the target
+		//------------------------------------------------------------
+		this.mark( color, _obj, type, 'body', _srcId, _alignId );
+		this.mark( color, _obj, type, 'target', _srcId, _alignId )
+	}
+	
+	this.mark = function( _color, _obj, _type, _dir, _srcId, _alignId ) {
+		//------------------------------------------------------------
+		//  Mark each alignment subsection
+		//------------------------------------------------------------
+		for ( var i=0; i<_obj[ _dir ].length; i++ ) {
+			var tokens = _obj[ _dir ][i]['tokens'];
+			//------------------------------------------------------------
+			//  Mark each token
+			//------------------------------------------------------------
 			var count = tokens.length;
 			for ( var j=0; j<count; j++ ) {
+				var classes = [ _color, _type ];
 				if ( j == 0 ) {
 					classes.push( 'align-start' );
 				}
-				if ( j == count ) {
+				if ( j == count-1 ) {
 					classes.push( 'align-end' );
 				}
+				var elem = this.alignSpan( _srcId+'-'+_alignId, classes, _obj['motivation'] );
+				jQuery( tokens[j] ).wrap( elem );
 			}
 		}
-		console.log( _alignId );
-		console.log( _obj );
 	}
 	
 	/**
