@@ -181,6 +181,9 @@ var BodinAlign = function() {
 		var start = this.token( _id, _start );
 		var end = this.token( _id, _end );
 		tokens.push( start.get(0) );
+		if ( _start == _end ) {
+			return tokens
+		}
 		start.nextUntil( end, '.token' ).each( function(){
 			var id = jQuery( this ).attr('data-ref');
 			if ( id != undefined ) {

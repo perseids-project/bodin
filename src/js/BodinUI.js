@@ -445,8 +445,10 @@
 		//  TODO I could make this a recursive function...
 		//  Is it worth it?
 		//------------------------------------------------------------
-		var chapter = 1;
+		var chapter = 1; 
+		var chapExists = false;
 		jQuery( '.chapter', self.elem ).each( function() {
+			chapExists = true;
 			//------------------------------------------------------------
 			//   What are you going to use as a chapter title?
 			//------------------------------------------------------------
@@ -466,7 +468,9 @@
 		//------------------------------------------------------------
 		//  Start sidecart
 		//------------------------------------------------------------
-		self.buildSidecart( id, nav );
+		if ( chapExists == true ) {
+			self.buildSidecart( id, nav );
+		}
 		//------------------------------------------------------------
 		//  Start nav events
 		//------------------------------------------------------------
@@ -504,7 +508,7 @@
 	BodinUI.prototype.navEvents = function() {
 		var self = this;
 		var id = jQuery( self.elem ).attr('id');
-		jQuery( '#sidecart_'+id+' .nav a', this.elem ).on( 'touchstart click', function( _e ){
+		jQuery( '#sidecart_'+id+' .nav a', this.elem ).on( 'touchstart click', function( _e ) {
 			_e.preventDefault();
 			var id = jQuery( this ).attr('href').replace('#', '');
 			self.sidecart.hide();
