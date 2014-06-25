@@ -98,10 +98,13 @@ var BodinAlign = function() {
 	 */
 	this.target = function( _id, _target, _bodinTarget ) {
 		if ( _target == undefined ) {
-			throw 'Error target is undefined';
+			throw 'Error: Target is undefined';
 		}
 		var targetUrn = this.getUrn( _target );
 		var uri = ( targetUrn == _bodinTarget ) ?  null :  _target;
+		if ( uri != null ) {
+			throw 'Error: Target is URL';
+		}
 		var colon = _target.lastIndexOf( ':' ) + 1;
 		//------------------------------------------------------------
 		//	Get passage
@@ -163,7 +166,6 @@ var BodinAlign = function() {
 			'work': targetUrn, 
 			'tokens': tokens,
 			'cite' : cite, 
-			'uri': uri 
 		}
 	}
 	
@@ -285,20 +287,70 @@ var BodinAlign = function() {
 		return jQuery( motivation[0] ).attr( 'rdf:resource' );
 	}
 	
-	this.getTargets = function( _has, _annot, _bodin, _workid ) {
+	this.getTargets = function( _has, _annot, _bodin, _workId ) {
 		var self = this;
 		var targets = []
 		jQuery( _annot ).find( _has ).each(
 			function() {
 				var target = this;
 				target = jQuery( target ).attr('rdf:resource');
-				target = self.target( _bodin, target, _workid );
-				if ( target ) {
-					targets.push( target );
+				//------------------------------------------------------------
+				//  Try to get an alignment target
+				//------------------------------------------------------------
+				try {
+					target = self.target( _bodin, target, _workId );
 				}
+				//------------------------------------------------------------
+				//  So you don't have an alignment.
+				//  It's either a link or a commentary.
+				//------------------------------------------------------------
+				catch( _e ) {
+					target = self.otherTarget( _bodin, this, _workId );
+				}
+				//------------------------------------------------------------
+				//  Exit if no target is found
+				//------------------------------------------------------------
+				if ( target == undefined ) {
+					return true
+				}
+				//------------------------------------------------------------
+				//  Otherwise add the target
+				//------------------------------------------------------------
+				targets.push( target );
 			}
 		);
 		return targets;
+	}
+	
+	this.otherTarget = function( _bodin, _annot, _workId ) {
+		var resource = jQuery( _annot ).attr('rdf:resource' );
+		if ( resource != undefined ) {
+			return this.externalTarget( resource );
+		}
+		return this.commentaryTarget( _bodin, _annot, _workId );
+	}
+	
+	this.externalTarget = function( _url ) {
+		return {
+			'url': _url
+		}
+	}
+	
+	this.commentaryTarget = function( _id, _annot, _bodinTarget ) {
+		console.log( _id );
+		console.log( _annot );
+		console.log( _bodinTarget );
+		//------------------------------------------------------------
+		//  Create the target
+		//------------------------------------------------------------
+		/*
+		return { 
+			'bodin_id': _id,
+			'work': targetUrn, 
+			'tokens': tokens,
+			'cite' : cite, 
+			'uri': uri 
+		}*/
 	}
 	
 	/**
@@ -324,6 +376,9 @@ var BodinAlign = function() {
 			for ( var j in this.alignments[src]['json'] ) {
 				alignId++;
 				var obj = this.alignments[src]['json'][j];
+				//------------------------------------------------------------
+				//  Different types...
+				//------------------------------------------------------------
 				this.align( srcId, alignId, obj );
 			}
 		}
@@ -336,32 +391,55 @@ var BodinAlign = function() {
 		var color = this.palette.colorClass( _alignId );
 		var type = this.annotationType();
 		//------------------------------------------------------------
-		//  Mark the body and the target
+		//  Is this an external link?
 		//------------------------------------------------------------
-		this.mark( color, _obj, type, 'body', _srcId, _alignId );
-		this.mark( color, _obj, type, 'target', _srcId, _alignId )
+		if ( 'url' in _obj['body'][0] ) {
+			this.markExternal( color, _obj, _srcId, _alignId );
+			return;
+		}
+		//------------------------------------------------------------
+		//  Oh just an ordinary alignment...
+		//------------------------------------------------------------
+		this.markAlign( color, _obj, type, 'body', _srcId, _alignId );
+		this.markAlign( color, _obj, type, 'target', _srcId, _alignId );
 	}
 	
-	this.mark = function( _color, _obj, _type, _dir, _srcId, _alignId ) {
+	this.markExternal = function( _color, _obj, _srcId, _alignId ) {
+		console.log( _obj['body'][0] );
+		this.markAlign( _color, _obj, 'external', 'target', _srcId, _alignId, _obj['body'][0]['url'] );
+	}
+	
+	this.markAlign = function( _color, _obj, _type, _dir, _srcId, _alignId, _url ) {
 		//------------------------------------------------------------
 		//  Mark each alignment subsection
 		//------------------------------------------------------------
 		for ( var i=0; i<_obj[ _dir ].length; i++ ) {
 			var tokens = _obj[ _dir ][i]['tokens'];
 			//------------------------------------------------------------
-			//  Mark each token
+			//  Check the tokens one last time before marking them 
 			//------------------------------------------------------------
-			var count = tokens.length;
+			var count = 0;
+			try {
+				count = tokens.length;
+			}
+			catch( _e ) {
+				throw 'Error: Tokens not found';
+			}
+			//------------------------------------------------------------
+			//  Mark those tokens
+			//------------------------------------------------------------
 			for ( var j=0; j<count; j++ ) {
 				var classes = [ _color, _type ];
-				if ( j == 0 ) {
-					classes.push( 'align-start' );
+				if ( _type == 'align' ) {
+					if ( j == 0 ) {
+						classes.push( 'align-start' );
+					}
+					if ( j == count-1 ) {
+						classes.push( 'align-end' );
+					}
 				}
-				if ( j == count-1 ) {
-					classes.push( 'align-end' );
-				}
-				var elem = this.alignSpan( _srcId+'-'+_alignId, classes, _obj['motivation'] );
-				jQuery( tokens[j] ).wrap( elem.smoosh().noSpaceHtml() );
+				var elem = this.alignSpan( _srcId+'-'+_alignId, classes, _obj['motivation'], _url );
+				jQuery( tokens[j] ).wrap( elem );
 			}
 		}
 	}
@@ -408,15 +486,19 @@ var BodinAlign = function() {
 			>C</span>';
 	}
 	
-	this.alignSpan = function( _alignId, _classes, _motivation ) {
+	this.alignSpan = function( _alignId, _classes, _motivation, _url ) {
 		_classes = _classes.join(' ');
-		return '\
-			 <span \
-				 class="' + _classes + '" \
-				 data-motivation="' + _motivation + '" \
-				 data-alignId="'+ _alignId + '" \
-			 >\
-			 </span>';
+		var span = '\
+			<span \
+			   	 class="' + _classes + '" \
+			   	 data-motivation="' + _motivation + '" \
+			   	 data-alignId="'+ _alignId + '"';
+		if ( _url != undefined ) {
+			span += 'data-alignUri="'+ _url +'"';
+		}
+		span += '>\
+			</span>';
+		return span.smoosh().noSpaceHtml();
 	}
 	
 	/**
@@ -493,3 +575,15 @@ var BodinAlign = function() {
 	}
 
 }
+
+/*
+* Okay so there are multiple kinds of annotations.
+*
+* Alignments
+*
+* Annotations
+* External
+*
+* This needs to be sorted out.
+*
+*/
