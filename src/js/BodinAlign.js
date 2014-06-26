@@ -496,9 +496,9 @@ var BodinAlign = function() {
 		_classes = _classes.join(' ');
 		var span = '\
 			<a \
-			   	 class="' + _classes + '" \
-			   	 data-motivation="' + _motivation + '" \
-			   	 data-alignId="'+ _alignId + '"';
+				class="' + _classes + '" \
+				data-motivation="' + _motivation + '" \
+				data-alignId="'+ _alignId + '"';
 		if ( _url != undefined ) {
 			span += 'data-alignUri="'+ _url +'"';
 		}
