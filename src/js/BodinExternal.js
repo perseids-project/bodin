@@ -175,47 +175,47 @@
 		return;
 	}
 	/**
-	 * Load external annotation text
-	 * 
-	 * @param {event} _e the event
-	 * @param {string} _uri space-separated list of uris representing the annotation
-	 * @param {string} _target the identifier for the html element containing the target of the annotation
-	 * @param {string} _motivation the motivation for the annotation
-	 */
+	* Load external annotation text
+	* 
+	* @param {event} _e the event
+	* @param {string} _uri space-separated list of uris representing the annotation
+	* @param {string} _target the identifier for the html element containing the target of the annotation
+	* @param {string} _motivation the motivation for the annotation
+	*/
 	BodinExternal.prototype.loadText = function( _e, _uri, _target, _motivation ) {
-	   var self = this;
-	   var uris = _uri.split(/ /);
-	   var id = jQuery( self.elem );
-	   var tokenizer_url = self.config.tokenizer;
-	   
-	   //------------------------------------------------------------
-	   // for now, all annotations with multiple bodies must point
-	   // at the same base uri and just use multiple references for 
-	   // non-contiguous subref spans so we can just call get once
-	   // on the base uri 
-	   //------------------------------------------------------------
-	   var uri_no_subref = uris[0];
-	   var subref_index = uri_no_subref.indexOf('@');
-	   if ( subref_index != -1 ) {
-		   uri_no_subref = uris[0].substr( 0, subref_index );
-	   }
-	   var bodin_align = new BodinAlign();
-	   var urn = bodin_align.getUrn( uris[0] );
-	   var subrefs = [];
-	   var subref = null;
-	   for ( var i=0; i<uris.length; i++ ) {
-		   subref = bodin_align.target( uris[i], urn );
-		   if ( subref != undefined ) {
-			   subrefs.push( subref );
-		   }
-	   }
-	   
-	   //------------------------------------------------------------
-	   //  Ajax call
-	   //------------------------------------------------------------
-	   var request_url = tokenizer_url + encodeURIComponent( uri_no_subref );
-	   jQuery.get( request_url ).done(
-		   function( _data ) {
+		var self = this;
+		var uris = _uri.split(/ /);
+		var id = jQuery( self.elem );
+		var tokenizer_url = self.config.tokenizer;
+		
+		//------------------------------------------------------------
+		// for now, all annotations with multiple bodies must point
+		// at the same base uri and just use multiple references for 
+		// non-contiguous subref spans so we can just call get once
+		// on the base uri 
+		//------------------------------------------------------------
+		var uri_no_subref = uris[0];
+		var subref_index = uri_no_subref.indexOf('@');
+		if ( subref_index != -1 ) {
+			   uri_no_subref = uris[0].substr( 0, subref_index );
+		}
+		var bodin_align = new BodinAlign();
+		var urn = bodin_align.getUrn( uris[0] );
+		var subrefs = [];
+		var subref = null;
+		for ( var i=0; i<uris.length; i++ ) {
+			   subref = bodin_align.target( uris[i], urn );
+			   if ( subref != undefined ) {
+				   subrefs.push( subref );
+			   }
+		}
+		
+		//------------------------------------------------------------
+		//  Ajax call
+		//------------------------------------------------------------
+		var request_url = tokenizer_url + encodeURIComponent( uri_no_subref );
+		jQuery.get( request_url ).done(
+			function( _data ) {
 				//------------------------------------------------------------
 				//	If the data doesn't need to be passed through XSLT just
 				//	display the data raw.

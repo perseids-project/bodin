@@ -173,6 +173,7 @@ var BodinSelector = function( _bodinUI ) {
 	this.linkLink = function( _items, _id ) {
 		return '<a href="' + _items[ _id ]['uri'] + '" \
 					class="link" \
+					target="_blank" \
 					data-motivation="'+ _items[ _id ]['motivation'] +'" \
 					data-alignId="'+ _id +'"> \
 					<span class="small">external -- </span>' + _items[ _id ]['uri'] + '\
@@ -202,6 +203,12 @@ var BodinSelector = function( _bodinUI ) {
 	 * @param { Int } _y
 	 */
 	this.menuPos = function( _x, _y ) {
+		var menuWidth = jQuery( '#bodinMenu' ).width();
+		var winWidth = jQuery( window ).width();
+		var menuHeight = jQuery( '#bodinMenu' ).height();
+		var winHeight = jQuery( window ).height();
+		_x = ( _x+menuWidth > winWidth ) ? winWidth-menuWidth : _x;
+		_y = ( _y+menuHeight > winHeight ) ? winHeight-menuHeight : _y;
 		jQuery( '#bodinMenu' ).css({
 			top: _y,
 			left: _x
@@ -274,3 +281,56 @@ var BodinSelector = function( _bodinUI ) {
 		return html;
 	}
 }
+
+/*
+Tooltipper.prototype.position = function() {
+	//------------------------------------------------------------
+	//  Only procceed if you have what you need.
+	//------------------------------------------------------------
+	if ( this.tooltip == undefined || this.target == undefined ) {
+		return;
+	}
+	//------------------------------------------------------------
+	//  Calculate the position of tooltip relative to the target.
+	//------------------------------------------------------------ 
+	if ( jQuery( window ).width() < this.tooltip.outerWidth() * 1.5 ) {
+		this.tooltip.css( 'max-width', jQuery( window ).width() / 2 );
+	}
+	else {
+		this.tooltip.css( 'max-width', 340 );
+	}
+	var pos_left = this.target.offset().left + ( this.target.outerWidth() / 2 ) - ( this.tooltip.outerWidth() / 2 );
+	var pos_top  = this.target.offset().top - this.tooltip.outerHeight() - 10;
+	if ( pos_left < 0 ) {
+		pos_left = this.target.offset().left + this.target.outerWidth() / 2 - 20;
+		this.tooltip.addClass( 'left' );
+	}
+	else {
+		this.tooltip.removeClass( 'left' );
+	}
+	if ( pos_left + this.tooltip.outerWidth() > jQuery( window ).width() ) {
+		pos_left = this.target.offset().left - this.tooltip.outerWidth() + this.target.outerWidth() / 2 + 20;
+		this.tooltip.addClass( 'right' );
+	}
+	else {
+		this.tooltip.removeClass( 'right' );
+	}
+	if ( pos_top < 0 ) {
+		var pos_top  = this.target.offset().top + this.target.outerHeight() + 10;
+		this.tooltip.addClass( 'top' );
+	}
+	else {
+		this.tooltip.removeClass( 'top' );
+	}
+	//------------------------------------------------------------
+	//  Position that tooltip!
+	//------------------------------------------------------------
+	this.tooltip.css({ 
+		left: pos_left, 
+		top: pos_top 
+	});
+	this.tooltip.animate({
+		opacity: 1 
+	}, 50 );
+}
+*/

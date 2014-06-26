@@ -484,18 +484,18 @@ var BodinAlign = function() {
 	
 	this.commentSpan = function( _alignId, _classes, _motivation, _body ) {
 		return '\
-			<span \
+			<a \
 				class="inline-widget' + _classes + '"\
 				data-alignId="' + _alignId + '" \
 				data-motivation="' + _motivation + '" \
 				data-source="' + _body.src + '" \
-			>C</span>';
+			>C</a>';
 	}
 	
 	this.alignSpan = function( _alignId, _classes, _motivation, _url ) {
 		_classes = _classes.join(' ');
 		var span = '\
-			<span \
+			<a \
 			   	 class="' + _classes + '" \
 			   	 data-motivation="' + _motivation + '" \
 			   	 data-alignId="'+ _alignId + '"';
@@ -503,7 +503,7 @@ var BodinAlign = function() {
 			span += 'data-alignUri="'+ _url +'"';
 		}
 		span += '>\
-			</span>';
+			</a>';
 		return span.smoosh().noSpaceHtml();
 	}
 	
