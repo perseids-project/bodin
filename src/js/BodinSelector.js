@@ -49,6 +49,10 @@ var BodinSelector = function( _bodinUI ) {
 		//------------------------------------------------------------
 		aligns = aligns.concat( self.allTargets( _e.currentTarget, '.external' ) );
 		//------------------------------------------------------------
+		//  Ditto for link links
+		//------------------------------------------------------------
+		aligns = aligns.concat( self.allTargets( _e.currentTarget, '.link' ) );
+		//------------------------------------------------------------
 		//  Otherwise display a menu to select the right alignment.
 		//------------------------------------------------------------
 		if ( aligns.length == 1 ) {
@@ -61,7 +65,7 @@ var BodinSelector = function( _bodinUI ) {
 		for ( var i=0; i<aligns.length; i++ ) {
 			var alignId = jQuery( aligns[i] ).attr( 'data-alignId' );
 			//------------------------------------------------------------
-			//  Normal alignment
+			//  Normal
 			//------------------------------------------------------------
 			if ( jQuery( aligns[i] ).hasClass('align') ) {
 				var clss = jQuery( aligns[i] ).attr( 'class' ).split(' ');
@@ -75,11 +79,20 @@ var BodinSelector = function( _bodinUI ) {
 				items[ alignId ]['first_and_last'] = self.firstAndLast( alignId );
 			}
 			//------------------------------------------------------------
-			//  External alignment
+			//  External
 			//------------------------------------------------------------
 			if ( jQuery( aligns[i] ).hasClass('external') ) {
 				items[ alignId ] = {};
 				items[ alignId ]['type'] = 'external'
+				items[ alignId ]['uri'] = jQuery( aligns[i] ).attr( 'data-alignuri' );
+				items[ alignId ]['motivation'] = jQuery( aligns[i] ).attr( 'data-motivation' );
+			}
+			//------------------------------------------------------------
+			//  Link
+			//------------------------------------------------------------
+			if ( jQuery( aligns[i] ).hasClass('link') ) {
+				items[ alignId ] = {};
+				items[ alignId ]['type'] = 'link'
 				items[ alignId ]['uri'] = jQuery( aligns[i] ).attr( 'data-alignuri' );
 				items[ alignId ]['motivation'] = jQuery( aligns[i] ).attr( 'data-motivation' );
 			}
@@ -126,16 +139,20 @@ var BodinSelector = function( _bodinUI ) {
 	this.menuItem = function( _items, _id ) {
 		switch ( _items[ _id ]['type'] ) {
 			//------------------------------------------------------------
-			//  Alignment link
+			//  Alignment
 			//------------------------------------------------------------
 			case 'align':
 				return this.alignLink( _items, _id );
-						
 			//------------------------------------------------------------
-			//  External link
+			//  External
 			//------------------------------------------------------------
 			case 'external':
 				return this.externalLink( _items, _id );
+			//------------------------------------------------------------
+			//  Link
+			//------------------------------------------------------------
+			case 'link':
+				return this.linkLink( _items, _id );
 		}
 	}
 	
@@ -150,6 +167,15 @@ var BodinSelector = function( _bodinUI ) {
 					class="alignLink" \
 					data-alignId="'+ _id +'"> \
 					'+ _items[ _id ]['first_and_last'] +' \
+				</a>'.smoosh();
+	}
+	
+	this.linkLink = function( _items, _id ) {
+		return '<a href="' + _items[ _id ]['uri'] + '" \
+					class="link" \
+					data-motivation="'+ _items[ _id ]['motivation'] +'" \
+					data-alignId="'+ _id +'"> \
+					<span class="small">external -- </span>' + _items[ _id ]['uri'] + '\
 				</a>'.smoosh();
 	}
 	

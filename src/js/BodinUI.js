@@ -252,19 +252,22 @@
 	
 	BodinUI.prototype.externalClick = function( _elem ) {
 		var self = this;
-		jQuery( '.external', _elem ).on( 'touchstart click', function( _e ) {
+		jQuery( '.external, .link', _elem ).on( 'touchstart click', function( _e ) {
+			if ( 'selector' in self && self.selector != undefined ) {
+				self.selector.remove();
+			}
+			self.selector = new BodinSelector( self );
+			//------------------------------------------------------------
+			//  If there isn't any overlap just align.
+			//------------------------------------------------------------
+			if ( self.selector.menuCheck( _e ) == false ) {
+				var id = jQuery( this ).attr('data-alignId')
+				var uri = jQuery ( this ).attr('data-alignUri');
+				var motivation = jQuery ( this ).attr('data-motivation');
+				jQuery( window ).trigger( self.events['external'], [ uri, id, motivation ] );
+			}
 			_e.stopPropagation();
 			_e.preventDefault();
-			//------------------------------------------------------------
-			//  If the alignments are not active just exit.
-			//------------------------------------------------------------
-			if ( jQuery( this ).hasClass( 'active') == false ) {
-				return;
-			}
-			var id = jQuery( this ).attr('data-alignId')
-			var uri = jQuery ( this ).attr('data-alignUri');
-			var motivation = jQuery ( this ).attr('data-motivation');
-			jQuery( window ).trigger( self.events['external'], [ uri, id, motivation ] );
 		});
 	}
 	

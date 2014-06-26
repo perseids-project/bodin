@@ -337,9 +337,6 @@ var BodinAlign = function() {
 	}
 	
 	this.commentaryTarget = function( _id, _annot, _bodinTarget ) {
-		console.log( _id );
-		console.log( _annot );
-		console.log( _bodinTarget );
 		//------------------------------------------------------------
 		//  Create the target
 		//------------------------------------------------------------
@@ -394,7 +391,13 @@ var BodinAlign = function() {
 		//  Is this an external link?
 		//------------------------------------------------------------
 		if ( 'url' in _obj['body'][0] ) {
-			this.markExternal( color, _obj, _srcId, _alignId );
+			var url = _obj['body'][0]['url'];
+			var urn = this.getUrn( url );
+			if ( urn != undefined ) {
+				this.markExternal( color, _obj, _srcId, _alignId );
+				return;
+			}
+			this.markLink( color, _obj, _srcId, _alignId );
 			return;
 		}
 		//------------------------------------------------------------
@@ -404,8 +407,11 @@ var BodinAlign = function() {
 		this.markAlign( color, _obj, type, 'target', _srcId, _alignId );
 	}
 	
+	this.markLink = function( _color, _obj, _srcId, _alignId ) {
+		this.markAlign( _color, _obj, 'link', 'target', _srcId, _alignId, _obj['body'][0]['url'] );
+	}
+	
 	this.markExternal = function( _color, _obj, _srcId, _alignId ) {
-		console.log( _obj['body'][0] );
 		this.markAlign( _color, _obj, 'external', 'target', _srcId, _alignId, _obj['body'][0]['url'] );
 	}
 	
@@ -564,7 +570,7 @@ var BodinAlign = function() {
 	 * @param { string } _str The string containing the uri
 	 */
 	 this.getUrn = function( _str ) {
-		var stripped = '';
+		var stripped = undefined;
 		var match = _str.match("^https?://.*?/(urn:cts:.*)$");
 		if ( match != null ) {
 			stripped = match[1];

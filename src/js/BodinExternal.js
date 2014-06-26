@@ -77,11 +77,11 @@
 	 *				   annotation transform
 	 */
 	BodinExternal.prototype.loadXslt = function( _xsltPath ) {
-	   var self = this;
-	   jQuery.ajax({
-		   dataType: "xml",
-		   url: _xsltPath,
-		   async: false
+		var self = this;
+		jQuery.ajax({
+			dataType: "xml",
+			url: _xsltPath,
+			async: false
 		})
 		.done( 
 			function( _data ) {
@@ -98,18 +98,18 @@
 	}
 	
 	/**
-	 * Listen for events
-	 * 
-	 * Adds a listener to load annotation text 
-	 */
+	* Listen for events
+	* 
+	* Adds a listener to load annotation text 
+	*/
 	BodinExternal.prototype.listen = function() {
-	   var self=this;
-	   jQuery( window ).on( self.events['loadtext'], function( _e, _uri, _target, _motivation ) {
-		   self.loadText( _e, _uri, _target, _motivation );
-	   });
-	   jQuery( window ).on( self.events['loadinline'], function( _e, _target, _motivation, _src ) {
-		   self.loadInlineText( _e, _target, _motivation, _src );
-	   });
+		var self=this;
+		jQuery( window ).on( self.events['loadtext'], function( _e, _uri, _target, _motivation ) {
+			self.loadText( _e, _uri, _target, _motivation );
+		});
+		jQuery( window ).on( self.events['loadinline'], function( _e, _target, _motivation, _src ) {
+			self.loadInlineText( _e, _target, _motivation, _src );
+		});
 	}
 	
 	/**
@@ -159,7 +159,7 @@
 		var id = jQuery( self.elem );
 		var bodin_align = new BodinAlign();
 		var text = bodin_align.alignments[_src]['json'][_target].bodyText;
-		if (text != null) {
+		if ( text != null ) {
 			//------------------------------------------------------------
 			//	Add the HTML
 			//------------------------------------------------------------

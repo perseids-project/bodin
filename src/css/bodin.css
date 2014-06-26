@@ -156,7 +156,8 @@ body,html {
 /**
  * These are provisional ... Adam will make it better
  */
-.external {
+.external,
+.link {
     text-decoration: underline;
     color: blue;
 }
