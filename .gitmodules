@@ -1,12 +1,12 @@
 [submodule "third_party/jslib"]
 	path = third_party/jslib
-	url = http://github.com/caesarfeta/jslib
+	url = http://github.com/perseids-project/jslib
 [submodule "third_party/sidecart"]
 	path = third_party/sidecart
-	url = https://github.com/caesarfeta/sidecart
+	url = https://github.com/PerseusDL/sidecart
 [submodule "squish"]
 	path = squish
-	url = https://github.com/caesarfeta/squish
+	url = https://github.com/perseids-project/squish
 [submodule "third_party/switch_grid"]
 	path = third_party/switch_grid
-	url = https://github.com/caesarfeta/switch_grid
+	url = https://github.com/perseids-project/switch_grid
