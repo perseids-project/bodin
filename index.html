@@ -86,7 +86,7 @@
 			//------------------------------------------------------------
 			jQuery( '#external_annotation').BodinExternal({
 				xslt_path: "examples/xslt/cts_annotate.xsl",
-				tokenizer: "http://sosol.perseids.org/exist/rest/db/xq/tokenize.xquery?merging=false&splitting=false&uri="
+				tokenizer: "http://services.perseids.org/llt/tokenize?merging=false&splitting=false&uri="
 			}).data('#external_annotation');
 			jQuery( '#external_annotation' ).click( function() { jQuery(this).toggle() } );
 			//------------------------------------------------------------
