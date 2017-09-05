@@ -23,6 +23,7 @@ It's named after Jean Bodin, the French political philosopher, whose translated 
      * e.g. all alignment annotations targeting source A with bodies which are aligned passages from source B should be in a single file
      * all commentary annotations for Source A shoudl be in a separate file
      * all external URL annotations for Source A shoudl be in a separate file
+ * Example files loaded by this demo can be found in https://github.com/perseids-project/bodin/tree/master/examples/bodin/tempXml
  
 # Use
 Add the required Javascript and CSS files.
@@ -33,37 +34,29 @@ Add the required Javascript and CSS files.
 
 See *examples/bodin* for more info.
 
-## Turn CapiTainS-compliant text and Perseids alignment XML into Bodin HTML
-### Grab the publication XML from the appropriate Board.
-	http://sosol.perseids.org/sosol/user/board_dashboard?board_id=7
-	http://sosol.perseids.org/sosol/publications/1396
+## Transform CapiTainS-compliant text into tokenized HTML with CTS passages identified per token
 
-### Download the publication as a zip archive.
-	http://sosol.perseids.org/sosol/publications/download/1396
+The Bodin application expects the CapiTainS TEI XML for the aligned texts to be transformed into tokenized HTML in which each token which might be included in the target or body of an annotation is wrapped in a `span` element with the classes `token text` and the parent passage reference supplied in a `data-cite` attribute. E.g.
 
-### Tokenize the XML
-To tokenize the XML you must move it to a publicly accessible webserver.
+    ```
+        <span data-cite="1.2" class="token text">vn</span> 
+    ```
 
-	scp ~/Desktop/french.xml name@server.org:/var/www/french.xml
+### Process used for Perseids 
 
-Run the XML through the LLT tokenizer.
+#### Step 1: Tokenize the TEI XML
+Use the Perseids llt tokenizer at http://services.perseids.org/llt/tokenize to tokenize the TEI XML. The LLT tokenizer can retrieve XML from a remote URL to tokenize, so if you can deploy your XML to a publicly accessible webserver, that is one way to parse the text.
 
-	http://sosol.perseids.org/exist/rest/db/xq/tokenize.xquery?merging=false&splitting=false&uri=http%3A%2F%2Fserver.org%french.xml
+E.g.
 
-Save the tokenized XML somewhere handy.
+    ```
+	curl -o bodin_fre.tok.xml "http://services.perseids.org/llt/tokenize?merging=false&splitting=false&uri=http%3A%2F%2Fexample.org%2Ffrench.xml"
 
-	examples/bodin/tempXml/bodin_fre.tok.xml
+    ```
 
-### Convert the tokenized XML to HTML
-Open oXygen.
-If you don't have oXygen get it here http://www.oxygenxml.com/
-Contact someone in the know for one of our licenses.
-Set the source XML to the newly tokenized XML.
-Set the XSLT code to Bodin's cts_annotate_saxon.xsl
+#### Step 2: Convert the tokenized XML to HTML
+Use oXygen to transform the tokenized XML to HTML with CTS passages identified per token.
 
-	XML 	examples/bodin/tempXml/bodin_fre.tok.xml
-	XSLT 	examples/xslt/cts_annotate_saxon.xsl
+XSLT driver: [cts_annotate_saxon.xsl](https://github.com/perseids-project/bodin/blob/master/examples/xslt/cts_annotate_saxon.xsl)
 
-Save the HTML output.
-
-	examples/bodin/tempHtml/french.html
+Source XML: tokenized XML
