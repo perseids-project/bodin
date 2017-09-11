@@ -24,6 +24,10 @@ It's named after Jean Bodin, the French political philosopher, whose translated 
      * all commentary annotations for Source A shoudl be in a separate file
      * all external URL annotations for Source A shoudl be in a separate file
  * Example files loaded by this demo can be found in https://github.com/perseids-project/bodin/tree/master/examples/bodin/tempXml
+     * new files with individual annotations can be created in the Perseids environment using the Annotation Editor linked from the CapiTainS Nemo interface at https://cts.perseids.org/. These files can be downloaded from Perseids and aggregated as described above.
+         * e.g. to create a new annotation on Book 1 Chapter 1 of the French Edition:
+	     * at https://cts.perseids.org/read/pdlpsci/bodin/livrep/perseus-fre1/1.1 , click 'Annotate in Perseids' (http://sosol.perseids.org/sosol/cite_publications/create_from_linked_urn/Oa/urn:cite:perseus:pdlann?init_value[]=urn:cts:pdlpsci:bodin.livrep.perseus-fre1:1.1)
+	     * Edit to enter the Annotation Editor and select target and body passages	     
  
 # Transform CapiTainS-compliant text into tokenized HTML with CTS passages identified per token
 
