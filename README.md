@@ -25,16 +25,7 @@ It's named after Jean Bodin, the French political philosopher, whose translated 
      * all external URL annotations for Source A shoudl be in a separate file
  * Example files loaded by this demo can be found in https://github.com/perseids-project/bodin/tree/master/examples/bodin/tempXml
  
-# Use
-Add the required Javascript and CSS files.
-
-	<link href="Bodin.css" rel="stylesheet" type="text/css" />
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script type="text/javascript" src="Bodin.js"></script>
-
-See *examples/bodin* for more info.
-
-## Transform CapiTainS-compliant text into tokenized HTML with CTS passages identified per token
+# Transform CapiTainS-compliant text into tokenized HTML with CTS passages identified per token
 
 The Bodin application expects the CapiTainS TEI XML for the aligned texts to be transformed into tokenized HTML in which each token which might be included in the target or body of an annotation is wrapped in a `span` element with the classes `token text` and the parent passage reference supplied in a `data-cite` attribute. E.g.
 
@@ -42,9 +33,9 @@ The Bodin application expects the CapiTainS TEI XML for the aligned texts to be 
         <span data-cite="1.2" class="token text">vn</span> 
     ```
 
-### Process used for Perseids 
+## Process used for Perseids 
 
-#### Step 1: Tokenize the TEI XML
+### Step 1: Tokenize the TEI XML
 Use the Perseids llt tokenizer at http://services.perseids.org/llt/tokenize to tokenize the TEI XML. The LLT tokenizer can retrieve XML from a remote URL to tokenize, so if you can deploy your XML to a publicly accessible webserver, that is one way to parse the text.
 
 E.g.
@@ -54,9 +45,57 @@ E.g.
 
     ```
 
-#### Step 2: Convert the tokenized XML to HTML
-Use oXygen to transform the tokenized XML to HTML with CTS passages identified per token.
+### Step 2: Convert the tokenized XML to HTML
+Use oXygen to run the cts_annotate_saxon transformation on the tokenized XML to create HTML with CTS passages identified per token.
+
+e.g.
+```
+<w n="1">REPVBLIQVE</w> 
+```
+
+Gets transformed to:
+
+```		
+<span data-cite="1.1" data-ref="REPVBLIQVE[1]" class="token text">REPVBLIQVE</span> 
+```
+
+Where the CTS passage identifier is populated in the `data-cite` attribute and the CTS subreference identifier is populated in the `data-ref` attribute.
 
 XSLT driver: [cts_annotate_saxon.xsl](https://github.com/perseids-project/bodin/blob/master/examples/xslt/cts_annotate_saxon.xsl)
 
 Source XML: tokenized XML
+
+The resulting HTML will be what you load into the view.
+
+# Prepare the index.html
+
+The [index.html](https://github.com/perseids-project/bodin/blob/master/index.html) provides an example driver for the Bodin interface.
+
+The HTML files produced by transforming the TEI XML should be specified in `div` elements with the class attribute `bodin':
+
+```
+<div class="bodin" src="examples/bodin/tempHtml/latin.html" id="latin"></div>
+<div class="bodin" src="examples/bodin/tempHtml/english.html" id="english"></div>
+<div class="bodin" src="examples/bodin/tempHtml/french.html" id="french"></div>
+```
+
+The aggregated annotation RDF/XML files should be loaded in the `Bodin-LOADED` event handler:
+
+```
+jQuery( window ).on( 'Bodin-LOADED', function() {
+				bodinAlign.start([
+					{ 
+						src: 'examples/bodin/tempXml/eng_lat_alignment.xml', 
+						ids: { body: 'english', target: 'latin' }
+					},
+					{ 
+						src: 'examples/bodin/tempXml/eng_fre_alignment.xml', 
+						ids: { body: 'english', target: 'french' }
+					},
+					{ 
+						src: 'examples/bodin/tempXml/commentary.xml', 
+						ids: { body: 'french', target: 'english' }
+					}
+				]);
+			});
+```
